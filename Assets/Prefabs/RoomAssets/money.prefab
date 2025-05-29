@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: money
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a42c39984dc17e54fa6aa0690030b554, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -78,6 +82,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a42c39984dc17e54fa6aa0690030b554, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5123658824993991212}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a42c39984dc17e54fa6aa0690030b554, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2217163356488136757}
   m_SourcePrefab: {fileID: 100100000, guid: a42c39984dc17e54fa6aa0690030b554, type: 3}
 --- !u!1 &289601976429057064 stripped
 GameObject:
@@ -132,3 +139,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.00075, y: 0.0015, z: 0.00002}
   m_Center: {x: 0, y: 0, z: -0.00001}
+--- !u!114 &-2217163356488136757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289601976429057064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bbc163a97d43246aebc83c40fe42b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1
+  lootCategory: {fileID: 11400000, guid: eb26026a906d9b7439fe88e127ed1ffe, type: 2}

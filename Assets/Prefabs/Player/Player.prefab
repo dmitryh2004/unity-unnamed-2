@@ -48,6 +48,9 @@ GameObject:
   - component: {fileID: 6067334545579185054}
   - component: {fileID: 3344384484649247653}
   - component: {fileID: 5267577150279294020}
+  - component: {fileID: 3236858057187582836}
+  - component: {fileID: 4222850720681407689}
+  - component: {fileID: 7479945026821977042}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -65,8 +68,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.7, y: 0.85, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2790036176530536935}
   - {fileID: 5567361824481900740}
@@ -167,7 +170,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -224,6 +227,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 17b2c494-b2e2-4709-9e70-2a8779bb697e
     m_ActionName: 'Gameplay/Flashlight[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f55fb44b-74f9-46e0-b5fc-5a67c1bbc524
+    m_ActionName: 'Gameplay/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c42d47bd-a890-4e8b-8335-e87033a59424
+    m_ActionName: 'Gameplay/ShowInventory[/Keyboard/i]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -282,6 +293,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashlightLight: {fileID: 3139879928906722712}
+--- !u!114 &3236858057187582836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ecc92ebd202fe418b5269a86e17c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 1451614754896726903}
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &4222850720681407689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06eb9dc45b675254f8ad9483b30cf676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxVolume: 0.01
+  lootCategories:
+  - {fileID: 11400000, guid: c32c4288542492a4cb26c50941bf7f7a, type: 2}
+  - {fileID: 11400000, guid: 06e3ae28edf3fb945b2bf49e9ad06d83, type: 2}
+  - {fileID: 11400000, guid: eb26026a906d9b7439fe88e127ed1ffe, type: 2}
+  - {fileID: 11400000, guid: 4dcee1cce50309a419d5986014ddf57d, type: 2}
+  - {fileID: 11400000, guid: 3fa0ba1a5703e774198db5faa685087c, type: 2}
+  - {fileID: 11400000, guid: 7933b3db3a16d3940a219826bffbe8e6, type: 2}
+  - {fileID: 11400000, guid: 29a0f538a13f1c745a1a218554a65379, type: 2}
+  - {fileID: 11400000, guid: 9bec841a025c28a4494d98635d419cea, type: 2}
+  - {fileID: 11400000, guid: 96c0dcfa0f2e4b04ba9e57edbca89a43, type: 2}
+  - {fileID: 11400000, guid: 59b7f04fcafc6464e83029e635942081, type: 2}
+  - {fileID: 11400000, guid: 76b1ce37e08f8814fa2e465fb39a7624, type: 2}
+  - {fileID: 11400000, guid: 670630b5c4dd9c541b0923bdb627ee6d, type: 2}
+  - {fileID: 11400000, guid: e68dc0b9d35c40e44bc4a770f948bfb3, type: 2}
+  - {fileID: 11400000, guid: a86260414e61b7243b2f26dd69dc3dcb, type: 2}
+  - {fileID: 11400000, guid: bdb99786dff007e408127ce4cab14b43, type: 2}
+  - {fileID: 11400000, guid: 100997c4280f72c4fae9992ba7f207dc, type: 2}
+  - {fileID: 11400000, guid: ac2301f55f25aff42929e6c4288e1b6a, type: 2}
+  - {fileID: 11400000, guid: 8b825271f782a504d827a6556b09dce0, type: 2}
+  - {fileID: 11400000, guid: a330a29d4f46e9c459d4b9cc5179b3cb, type: 2}
+  - {fileID: 11400000, guid: 614feb7319ab6c8428f33118fc675bd6, type: 2}
+  - {fileID: 11400000, guid: ab8c4cd24e6cf8144adad73a31ffd945, type: 2}
+  - {fileID: 11400000, guid: 585e6f83151f6144b84db74aab8d8c8f, type: 2}
+  - {fileID: 11400000, guid: 5da134ff781c2284f94a76dbffbfdcc9, type: 2}
+  - {fileID: 11400000, guid: d974e15e50227544db432577ef330d7d, type: 2}
+  - {fileID: 11400000, guid: 430766a2a8c5db44ca63f4fa89c73b99, type: 2}
+  - {fileID: 11400000, guid: c71a37bcf6661224b9dcb1ef08a2f333, type: 2}
+  - {fileID: 11400000, guid: 7b2f6476e9133ba4382078dc5022c230, type: 2}
+  - {fileID: 11400000, guid: 44623bf2376c56c4aa0528d6ed15f9bf, type: 2}
+  - {fileID: 11400000, guid: af56eafd5d258e94b8744d57f7f10cd9, type: 2}
+  - {fileID: 11400000, guid: 3799afc48222e92408f77971a265e8fa, type: 2}
+  - {fileID: 11400000, guid: 57582834391c623438badd612f313b56, type: 2}
+  - {fileID: 11400000, guid: 5e153a730e3fec4449714ad622adfc84, type: 2}
+  - {fileID: 11400000, guid: 2d9e3befe41bbf84aa47b54663d3ed1b, type: 2}
+  - {fileID: 11400000, guid: 624e397c6110aa44d93a953c1b99ad33, type: 2}
+  - {fileID: 11400000, guid: 2fa51c0107d3ec54392302ad9d24fa80, type: 2}
+  - {fileID: 11400000, guid: 84fb2b2997a305e44a5eeb52da1d6fd0, type: 2}
+  - {fileID: 11400000, guid: b4d407d261ba3594cac055f500666e55, type: 2}
+  - {fileID: 11400000, guid: fd90482cc90ed9c4e9490ce0a8d76736, type: 2}
+--- !u!114 &7479945026821977042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8c6481eed013d409fc43f88fffa944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3139879928906722712
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,7 +535,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.2
   far clip plane: 1000
   field of view: 60
   orthographic: 0

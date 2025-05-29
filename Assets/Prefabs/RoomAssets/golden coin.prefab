@@ -54,7 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 771f0f8f57f895d449bc5643ae1a1c4c, type: 2}
     - target: {fileID: 919132149155446097, guid: 49d6d8411790384408c72b7464eff36c, type: 3}
       propertyPath: m_Name
-      value: gold coin
+      value: golden coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 49d6d8411790384408c72b7464eff36c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

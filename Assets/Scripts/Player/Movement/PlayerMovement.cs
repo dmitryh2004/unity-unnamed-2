@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Изменяем высоту персонажа (например, через коллайдер или визуально)
         currentHeight = Mathf.Lerp(currentHeight, isCrouching ? crouchHeight : standHeight, Time.deltaTime * heightChangeSpeed);
-        transform.localScale = new Vector3(standScale, currentHeight / standHeight * standScale, standScale);
+        transform.localScale = new Vector3(transform.localScale.x, currentHeight / standHeight * standScale, transform.localScale.z);
 
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundMask);
     }

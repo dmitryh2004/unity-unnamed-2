@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3333353604172180172
+--- !u!1001 &696111081971255889
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -48,13 +48,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 771f0f8f57f895d449bc5643ae1a1c4c, type: 2}
     - target: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
       propertyPath: m_Name
-      value: gold ingot
+      value: iron ingot10
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
       propertyPath: m_Layer
@@ -66,23 +62,26 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3650029181079839833}
+      addedObject: {fileID: 1986737356409358292}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3918172321780255575}
+      addedObject: {fileID: 6010989954061727936}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7838938151914710624}
   m_SourcePrefab: {fileID: 100100000, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
---- !u!1 &2486860697149790109 stripped
+--- !u!1 &389698285437269760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 658a6e7dd1f106e4ea215347c1806670, type: 3}
-  m_PrefabInstance: {fileID: 3333353604172180172}
+  m_PrefabInstance: {fileID: 696111081971255889}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3650029181079839833
+--- !u!65 &1986737356409358292
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2486860697149790109}
+  m_GameObject: {fileID: 389698285437269760}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -97,13 +96,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0009999999, y: 0.002, z: 0.00049999997}
   m_Center: {x: 2.910383e-11, y: 0, z: 0.00024999998}
---- !u!54 &3918172321780255575
+--- !u!54 &6010989954061727936
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2486860697149790109}
+  m_GameObject: {fileID: 389698285437269760}
   serializedVersion: 4
   m_Mass: 10
   m_Drag: 0
@@ -124,3 +123,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7838938151914710624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389698285437269760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bbc163a97d43246aebc83c40fe42b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1
+  lootCategory: {fileID: 11400000, guid: 9bec841a025c28a4494d98635d419cea, type: 2}

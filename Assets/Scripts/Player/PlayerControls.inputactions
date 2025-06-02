@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ShowInventory",
+                    "name": "Inventory",
                     "type": "Button",
                     "id": "c42d47bd-a890-4e8b-8335-e87033a59424",
                     "expectedControlType": "",
@@ -207,7 +207,35 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShowInventory",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "InventoryUI",
+            "id": "5bf7cd22-1822-456b-80d8-c71514285d90",
+            "actions": [
+                {
+                    "name": "InventoryExit",
+                    "type": "Button",
+                    "id": "e1a50dc3-c0c4-471a-80df-a697d720097a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "741149cc-c6c7-418e-a88d-4bfdd4b64f31",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryExit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

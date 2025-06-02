@@ -8,12 +8,10 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private LayerMask interactionLayer;
 
     private PlayerControls controls;
-    private InputAction interactAction;
 
     private void Awake()
     {
         controls = new PlayerControls();
-        interactAction = controls.Gameplay.Interact;
     }
     void OnEnable()
     {
@@ -25,17 +23,15 @@ public class PlayerInteractor : MonoBehaviour
         controls.Disable();
     }
 
+    public void Interact(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        TryInteract();
+    }
+
     private void Update()
     {
-        if (interactAction.WasPerformedThisFrame())
-        {
-            //Debug.Log($"player: attempting to interact...");
-            TryInteract();
-        }
-        else
-        {
-            UpdateInteractionHints();
-        }
+        UpdateInteractionHints();
     }
 
     private void TryInteract()
@@ -64,7 +60,7 @@ public class PlayerInteractor : MonoBehaviour
     private void UpdateInteractionHints()
     {
         bool openDoorHintActive = false, closeDoorHintActive = false, pickUpHintActive = false,
-            inventoryFullActive = false;
+            inventoryFullActive = false, lockedHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -78,13 +74,20 @@ public class PlayerInteractor : MonoBehaviour
                 {
                     if (interactable is DoorController doorController)
                     {
-                        if (doorController.IsOpen())
+                        if (doorController.IsLocked())
                         {
-                            closeDoorHintActive = true;
+                            lockedHintActive = true;
                         }
                         else
                         {
-                            openDoorHintActive = true;
+                            if (doorController.IsOpen())
+                            {
+                                closeDoorHintActive = true;
+                            }
+                            else
+                            {
+                                openDoorHintActive = true;
+                            }
                         }
                     }
                     else if (interactable is LootableItem lootableItem)
@@ -114,5 +117,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("CloseDoorHint"), closeDoorHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("PickUpHint"), pickUpHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("InventoryFullHint"), inventoryFullActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("LockedHint"), lockedHintActive);
     }
 }

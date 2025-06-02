@@ -6,7 +6,6 @@ public class PlayerFlashlightController : MonoBehaviour
     public GameObject flashlightLight;
 
     private bool _active = false;
-    private bool flashlightButtonPressed;
     private PlayerControls controls;
 
     private void Awake()
@@ -21,7 +20,6 @@ public class PlayerFlashlightController : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        controls.Gameplay.Flashlight.performed += UpdateFlashlight;
     }
 
     private void OnDisable()
@@ -29,8 +27,9 @@ public class PlayerFlashlightController : MonoBehaviour
         controls.Disable();
     }
 
-    private void UpdateFlashlight(InputAction.CallbackContext context)
+    public void UpdateFlashlight(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         _active = !_active;
         flashlightLight.SetActive(_active);
     }

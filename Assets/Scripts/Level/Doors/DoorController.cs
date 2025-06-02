@@ -5,6 +5,7 @@ public class DoorController : Interactable
 {
     Animator anim;
     bool opened = false;
+    [SerializeField] bool locked = false;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -12,12 +13,20 @@ public class DoorController : Interactable
 
     public bool IsOpen()
     {
-        return opened;
+        return !locked && opened;
     }
 
     public override void Interact()
     {
-        opened = !opened;
-        if (opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
+        if (!locked)
+        {
+            opened = !opened;
+            if (opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
+        }
+    }
+
+    public bool IsLocked()
+    {
+        return locked;
     }
 }

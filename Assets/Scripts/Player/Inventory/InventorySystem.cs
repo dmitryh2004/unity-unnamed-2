@@ -132,10 +132,15 @@ public class InventorySystem : MonoBehaviour
         return JsonUtility.ToJson(wrapper, true);
     }
 
+    public Dictionary<int, int> GetItems()
+    {
+        return items;
+    }
+
     /// <summary>
     /// Получить LootCategory по id
     /// </summary>
-    private LootCategory GetLootCategoryById(int id)
+    public LootCategory GetLootCategoryById(int id)
     {
         return lootCategories.FirstOrDefault(x => x.id == id);
     }

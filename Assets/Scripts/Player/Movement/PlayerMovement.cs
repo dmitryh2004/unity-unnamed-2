@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
 
     private PlayerControls controls;
+    PlayerInventoryController inventoryController;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        inventoryController = GetComponent<PlayerInventoryController>();
         controls = new PlayerControls();
         currentHeight = standHeight;
         standScale = transform.localScale.y;
@@ -39,8 +41,6 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         controls.Enable();
-        controls.Gameplay.Jump.performed += _ => { isJumpPressed = true; };
-        controls.Gameplay.Jump.canceled += _ => { isJumpPressed = false; };
     }
 
     void OnDisable()
@@ -48,13 +48,34 @@ public class PlayerMovement : MonoBehaviour
         controls.Disable();
     }
 
+    public void UpdateMove(InputAction.CallbackContext context)
+    {
+        if (context.started) return;
+
+        moveInput = context.ReadValue<Vector2>();
+        Debug.Log($"{gameObject.name}: move input={moveInput}");
+    }
+
+
+    public void UpdateCrouch(InputAction.CallbackContext context)
+    {
+        float value = context.ReadValue<float>();
+        isCrouching = value > 0;
+    }
+
+    public void UpdateSprint(InputAction.CallbackContext context)
+    {
+        float value = context.ReadValue<float>();
+        isSprinting = value > 0 && !isCrouching;
+    }
+
+    public void UpdateJump(InputAction.CallbackContext context)
+    {
+        isJumpPressed = (context.performed) ? true : false;
+    }
+
     void Update()
     {
-        // Читаем ввод
-        moveInput = controls.Gameplay.Move.ReadValue<Vector2>();
-        isCrouching = controls.Gameplay.Crouch.IsPressed();
-        isSprinting = controls.Gameplay.Sprint.IsPressed() && !isCrouching;
-
         // Определяем скорость
         currentSpeed = moveSpeed;
         if (isSprinting) currentSpeed = sprintSpeed;

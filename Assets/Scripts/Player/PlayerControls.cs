@@ -155,7 +155,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ShowInventory"",
+                    ""name"": ""Inventory"",
                     ""type"": ""Button"",
                     ""id"": ""c42d47bd-a890-4e8b-8335-e87033a59424"",
                     ""expectedControlType"": """",
@@ -293,7 +293,35 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ShowInventory"",
+                    ""action"": ""Inventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""InventoryUI"",
+            ""id"": ""5bf7cd22-1822-456b-80d8-c71514285d90"",
+            ""actions"": [
+                {
+                    ""name"": ""InventoryExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1a50dc3-c0c4-471a-80df-a697d720097a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""741149cc-c6c7-418e-a88d-4bfdd4b64f31"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryExit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -311,12 +339,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Flashlight = m_Gameplay.FindAction("Flashlight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
-        m_Gameplay_ShowInventory = m_Gameplay.FindAction("ShowInventory", throwIfNotFound: true);
+        m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
+        // InventoryUI
+        m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
+        m_InventoryUI_InventoryExit = m_InventoryUI.FindAction("InventoryExit", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerControls.Gameplay.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_InventoryUI.enabled, "This will cause a leak and performance issues, PlayerControls.InventoryUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -399,7 +431,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Flashlight;
     private readonly InputAction m_Gameplay_Interact;
-    private readonly InputAction m_Gameplay_ShowInventory;
+    private readonly InputAction m_Gameplay_Inventory;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -440,9 +472,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/ShowInventory".
+        /// Provides access to the underlying input action "Gameplay/Inventory".
         /// </summary>
-        public InputAction @ShowInventory => m_Wrapper.m_Gameplay_ShowInventory;
+        public InputAction @Inventory => m_Wrapper.m_Gameplay_Inventory;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -490,9 +522,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @ShowInventory.started += instance.OnShowInventory;
-            @ShowInventory.performed += instance.OnShowInventory;
-            @ShowInventory.canceled += instance.OnShowInventory;
+            @Inventory.started += instance.OnInventory;
+            @Inventory.performed += instance.OnInventory;
+            @Inventory.canceled += instance.OnInventory;
         }
 
         /// <summary>
@@ -525,9 +557,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @ShowInventory.started -= instance.OnShowInventory;
-            @ShowInventory.performed -= instance.OnShowInventory;
-            @ShowInventory.canceled -= instance.OnShowInventory;
+            @Inventory.started -= instance.OnInventory;
+            @Inventory.performed -= instance.OnInventory;
+            @Inventory.canceled -= instance.OnInventory;
         }
 
         /// <summary>
@@ -561,6 +593,102 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="GameplayActions" /> instance referencing this action map.
     /// </summary>
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // InventoryUI
+    private readonly InputActionMap m_InventoryUI;
+    private List<IInventoryUIActions> m_InventoryUIActionsCallbackInterfaces = new List<IInventoryUIActions>();
+    private readonly InputAction m_InventoryUI_InventoryExit;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "InventoryUI".
+    /// </summary>
+    public struct InventoryUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public InventoryUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "InventoryUI/InventoryExit".
+        /// </summary>
+        public InputAction @InventoryExit => m_Wrapper.m_InventoryUI_InventoryExit;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_InventoryUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="InventoryUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(InventoryUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="InventoryUIActions" />
+        public void AddCallbacks(IInventoryUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_InventoryUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InventoryUIActionsCallbackInterfaces.Add(instance);
+            @InventoryExit.started += instance.OnInventoryExit;
+            @InventoryExit.performed += instance.OnInventoryExit;
+            @InventoryExit.canceled += instance.OnInventoryExit;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="InventoryUIActions" />
+        private void UnregisterCallbacks(IInventoryUIActions instance)
+        {
+            @InventoryExit.started -= instance.OnInventoryExit;
+            @InventoryExit.performed -= instance.OnInventoryExit;
+            @InventoryExit.canceled -= instance.OnInventoryExit;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="InventoryUIActions.UnregisterCallbacks(IInventoryUIActions)" />.
+        /// </summary>
+        /// <seealso cref="InventoryUIActions.UnregisterCallbacks(IInventoryUIActions)" />
+        public void RemoveCallbacks(IInventoryUIActions instance)
+        {
+            if (m_Wrapper.m_InventoryUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="InventoryUIActions.AddCallbacks(IInventoryUIActions)" />
+        /// <seealso cref="InventoryUIActions.RemoveCallbacks(IInventoryUIActions)" />
+        /// <seealso cref="InventoryUIActions.UnregisterCallbacks(IInventoryUIActions)" />
+        public void SetCallbacks(IInventoryUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_InventoryUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_InventoryUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="InventoryUIActions" /> instance referencing this action map.
+    /// </summary>
+    public InventoryUIActions @InventoryUI => new InventoryUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -618,11 +746,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "ShowInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Inventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnShowInventory(InputAction.CallbackContext context);
+        void OnInventory(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "InventoryUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="InventoryUIActions.AddCallbacks(IInventoryUIActions)" />
+    /// <seealso cref="InventoryUIActions.RemoveCallbacks(IInventoryUIActions)" />
+    public interface IInventoryUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "InventoryExit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInventoryExit(InputAction.CallbackContext context);
     }
 }

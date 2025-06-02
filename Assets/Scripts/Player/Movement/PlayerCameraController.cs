@@ -12,23 +12,29 @@ public class PlayerCameraController : MonoBehaviour
     private float cameraPitch = 0f; // Текущий наклон камеры по X
 
     private PlayerControls controls;
+    PlayerInventoryController inventoryController;
     private Vector2 lookInput;
 
     void Awake()
     {
         controls = new PlayerControls();
+        inventoryController = GetComponent<PlayerInventoryController>();
     }
 
     void OnEnable()
     {
         controls.Enable();
-        controls.Gameplay.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
-        controls.Gameplay.Look.canceled += _ => lookInput = Vector2.zero;
     }
 
     void OnDisable()
     {
         controls.Disable();
+    }
+
+    public void UpdateLook(InputAction.CallbackContext context)
+    {
+        if (context.performed) lookInput = context.ReadValue<Vector2>();
+        else lookInput = Vector2.zero;
     }
 
     void Update()

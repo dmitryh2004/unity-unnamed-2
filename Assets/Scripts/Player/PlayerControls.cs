@@ -311,6 +311,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""41f7f037-635c-44c8-ac22-e7a09d1054e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -322,6 +331,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""InventoryExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebf7f75d-6352-430f-8d4f-bfba56482dfd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -343,6 +363,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // InventoryUI
         m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
         m_InventoryUI_InventoryExit = m_InventoryUI.FindAction("InventoryExit", throwIfNotFound: true);
+        m_InventoryUI_DropItem = m_InventoryUI.FindAction("DropItem", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -598,6 +619,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InventoryUI;
     private List<IInventoryUIActions> m_InventoryUIActionsCallbackInterfaces = new List<IInventoryUIActions>();
     private readonly InputAction m_InventoryUI_InventoryExit;
+    private readonly InputAction m_InventoryUI_DropItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "InventoryUI".
     /// </summary>
@@ -613,6 +635,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InventoryUI/InventoryExit".
         /// </summary>
         public InputAction @InventoryExit => m_Wrapper.m_InventoryUI_InventoryExit;
+        /// <summary>
+        /// Provides access to the underlying input action "InventoryUI/DropItem".
+        /// </summary>
+        public InputAction @DropItem => m_Wrapper.m_InventoryUI_DropItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -642,6 +668,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InventoryExit.started += instance.OnInventoryExit;
             @InventoryExit.performed += instance.OnInventoryExit;
             @InventoryExit.canceled += instance.OnInventoryExit;
+            @DropItem.started += instance.OnDropItem;
+            @DropItem.performed += instance.OnDropItem;
+            @DropItem.canceled += instance.OnDropItem;
         }
 
         /// <summary>
@@ -656,6 +685,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InventoryExit.started -= instance.OnInventoryExit;
             @InventoryExit.performed -= instance.OnInventoryExit;
             @InventoryExit.canceled -= instance.OnInventoryExit;
+            @DropItem.started -= instance.OnDropItem;
+            @DropItem.performed -= instance.OnDropItem;
+            @DropItem.canceled -= instance.OnDropItem;
         }
 
         /// <summary>
@@ -767,5 +799,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInventoryExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DropItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDropItem(InputAction.CallbackContext context);
     }
 }

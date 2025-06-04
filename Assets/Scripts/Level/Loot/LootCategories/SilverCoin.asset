@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SilverCoin
   m_EditorClassIdentifier: 
   id: 4
+  sprite: {fileID: 0}
   lootName: "\u0421\u0435\u0440\u0435\u0431\u0440\u044F\u043D\u0430\u044F \u043C\u043E\u043D\u0435\u0442\u0430"
   lootDesc: "\u0421\u0435\u0440\u0435\u0431\u0440\u044F\u043D\u0430\u044F \u043C\u043E\u043D\u0435\u0442\u0430.
     \u041A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u043E\u043D\u0435\u0440\u044B
@@ -20,3 +21,4 @@ MonoBehaviour:
     \u0441\u0443\u043C\u043C\u0443 \u0437\u0430 \u043D\u0435\u0435."
   volume: 0.0001
   cost: 200
+  lootPrefab: {fileID: 5640288965588333352, guid: 3d71f2b56c5fa3b428d8198d422fc768, type: 3}

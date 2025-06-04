@@ -136,7 +136,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3001975501328665053}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8c22d62f54e6c3f4e9e2e8ce8b139bca, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -348,6 +348,22 @@ MonoBehaviour:
         m_CallState: 1
     m_ActionId: e1a50dc3-c0c4-471a-80df-a697d720097a
     m_ActionName: 'InventoryUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7479945026821977042}
+        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
+        m_MethodName: DropItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: 41f7f037-635c-44c8-ac22-e7a09d1054e6
+    m_ActionName: 'InventoryUI/DropItem[/Keyboard/q]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -418,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ecc92ebd202fe418b5269a86e17c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 9095680672409685429}
   playerCamera: {fileID: 1451614754896726903}
   interactionLayer:
     serializedVersion: 2

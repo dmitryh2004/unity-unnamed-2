@@ -45,4 +45,12 @@ public class HintManager : MonoBehaviour
     {
         return (hintMapping.ContainsKey(index)) ? hintMapping[index] : null;
     }
-}
+
+    public void HideAll()
+    {
+        foreach (int i in hintMapping.Keys)
+        {
+            ActivateHint(i, false);
+        }
+    }
+ }

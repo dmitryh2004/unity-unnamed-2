@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [SerializeField] PlayerInput playerInput;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask interactionLayer;
 
@@ -31,7 +32,10 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        UpdateInteractionHints();
+        if (playerInput.currentActionMap.name == "Gameplay")
+            UpdateInteractionHints();
+        else
+            HintManager.Instance.HideAll();
     }
 
     private void TryInteract()

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Emerald
   m_EditorClassIdentifier: 
   id: 11
+  sprite: {fileID: 0}
   lootName: "\u0418\u0437\u0443\u043C\u0440\u0443\u0434"
   lootDesc: "\u0414\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u043A\u0440\u0443\u043F\u043D\u044B\u0439
     \u0438\u0437\u0443\u043C\u0440\u0443\u0434. \u0418\u0437\u0443\u043C\u0440\u0443\u0434\u044B
@@ -23,3 +24,4 @@ MonoBehaviour:
     \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u0439."
   volume: 0.0005
   cost: 20000
+  lootPrefab: {fileID: 4025742974930995176, guid: 6139743e48d414c40b03a49433306a93, type: 3}

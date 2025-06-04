@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerInventoryController : MonoBehaviour
 {
@@ -84,5 +85,11 @@ public class PlayerInventoryController : MonoBehaviour
     public bool IsInventoryVisible()
     {
         return visible;
+    }
+
+    public void DropItem(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        inventoryUIController.DropActiveItem(transform);
     }
 }

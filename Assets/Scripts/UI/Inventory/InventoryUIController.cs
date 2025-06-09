@@ -63,9 +63,9 @@ public class InventoryUIController : MonoBehaviour
         float ratio = currentVolume / maxVolume * 100;
         string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
 
-        totalVolume.text = $"{currentVolume} / {maxVolume} м3 ({(currentVolume / maxVolume * 100).ToString(format)}%)";
+        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume)} / {NumberFormatter.FormatNumber(maxVolume)} м3 ({(currentVolume / maxVolume * 100).ToString(format)}%)";
         volumePB.SetProgress(currentVolume);
-        estimateCost.text = $"ќценочна€ стоимость вещей: {totalCost} руб.";
+        estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
     }
 
     public void SetActiveItem(int id)
@@ -90,7 +90,7 @@ public class InventoryUIController : MonoBehaviour
         LootCategory lc = InventorySystem.Instance.GetLootCategoryById(activeItemID);
 
         InventorySystem.Instance.RemoveItem(lc);
-        GameObject.Instantiate(lc.lootPrefab, spawnPosition.position, Quaternion.Euler(-90f, 0f, 0f));
+        GameObject.Instantiate(lc.lootPrefab, spawnPosition.position, Quaternion.Euler(lc.dropRotation));
 
         UpdateInventory();
         UpdateActiveItem();

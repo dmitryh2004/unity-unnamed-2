@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 1.5
+  locked: 0
 --- !u!65 &7815553658802661687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4609660119790989237}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8c22d62f54e6c3f4e9e2e8ce8b139bca, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

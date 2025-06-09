@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CommonBook4
   m_EditorClassIdentifier: 
   id: 20
+  sprite: {fileID: 0}
   lootName: "\"\u041F\u0440\u0435\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435
     \u0438 \u043D\u0430\u043A\u0430\u0437\u0430\u043D\u0438\u0435\""
   lootDesc: "\u0420\u043E\u043C\u0430\u043D \"\u041F\u0440\u0435\u0441\u0442\u0443\u043F\u043B\u0435\u043D\u0438\u0435
@@ -25,3 +26,5 @@ MonoBehaviour:
     \u044D\u0442\u043E\u0433\u043E \u0430\u0432\u0442\u043E\u0440\u0430..."
   volume: 0.005
   cost: 150
+  lootPrefab: {fileID: 0}
+  dropRotation: {x: 90, y: 0, z: 0}

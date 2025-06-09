@@ -1,11 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class DoorController : Interactable
+public class DoorController : Lockable
 {
     Animator anim;
     bool opened = false;
-    [SerializeField] bool locked = false;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -13,20 +12,15 @@ public class DoorController : Interactable
 
     public bool IsOpen()
     {
-        return !locked && opened;
+        return !IsLocked() && opened;
     }
 
     public override void Interact()
     {
-        if (!locked)
+        if (!IsLocked())
         {
             opened = !opened;
             if (opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
         }
-    }
-
-    public bool IsLocked()
-    {
-        return locked;
     }
 }

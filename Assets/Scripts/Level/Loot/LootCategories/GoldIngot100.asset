@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoldIngot100
   m_EditorClassIdentifier: 
   id: 7
+  sprite: {fileID: 0}
   lootName: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u0441\u043B\u0438\u0442\u043E\u043A
     (100 \u043A\u0433)"
   lootDesc: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u0441\u043B\u0438\u0442\u043E\u043A
@@ -21,3 +22,4 @@ MonoBehaviour:
     \u043D\u0430 \u0440\u044B\u043D\u043A\u0435."
   volume: 0.005
   cost: 200000
+  lootPrefab: {fileID: 4919065344591049517, guid: 904033512e6fd384e9d1248f2446a52a, type: 3}

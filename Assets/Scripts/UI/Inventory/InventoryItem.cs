@@ -48,9 +48,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void UpdateTooltip(LootCategory lc)
     {
-        tooltipHeader.text = $"{lc.lootName} (id={id})";
+        tooltipHeader.text = $"{lc.lootName}";
         tooltipText.text = lc.lootDesc;
-        tooltipCost.text = $"÷ена за одну шт.: {lc.cost}";
+        tooltipCost.text = $"÷ена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} руб.";
     }
 
     public void OnPointerEnter(PointerEventData eventData)

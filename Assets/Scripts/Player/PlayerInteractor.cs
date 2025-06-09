@@ -64,7 +64,8 @@ public class PlayerInteractor : MonoBehaviour
     private void UpdateInteractionHints()
     {
         bool openDoorHintActive = false, closeDoorHintActive = false, pickUpHintActive = false,
-            inventoryFullActive = false, lockedHintActive = false;
+            inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
+            hackNotPossibleHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -110,6 +111,17 @@ public class PlayerInteractor : MonoBehaviour
                             inventoryFullActive = true;
                         }
                     }
+                    else if (interactable is LockController lockController)
+                    {
+                        if (lockController.IsActive() && lockController.IsHackable())
+                        {
+                            hackHintActive = true;
+                        }
+                        else if (!lockController.IsHackable())
+                        {
+                            hackNotPossibleHintActive = true;
+                        }
+                    }
                 }
                 else
                 {
@@ -122,5 +134,7 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("PickUpHint"), pickUpHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("InventoryFullHint"), inventoryFullActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("LockedHint"), lockedHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackHint"), hackHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackNotPossibleHint"), hackNotPossibleHintActive);
     }
 }

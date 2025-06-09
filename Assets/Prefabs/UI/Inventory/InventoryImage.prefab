@@ -252,7 +252,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 300, y: 0}
+  m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5137811170972473761
 CanvasRenderer:
@@ -546,7 +546,7 @@ MonoBehaviour:
   emptySprite: {fileID: 21300000, guid: 4e761298f0f98dc44b54dc1a94ec24b2, type: 3}
   image: {fileID: 4097241999315453284}
   itemCount: {fileID: 3143775498434891963}
-  tooltipParent: {fileID: 3684131761245990615}
+  uiController: {fileID: 0}
   tooltipAnimator: {fileID: 1443202630567039182}
   tooltipHeader: {fileID: 9028873297455904548}
   tooltipText: {fileID: 4604463509717699688}
@@ -586,8 +586,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -20.2}
-  m_SizeDelta: {x: 280, y: 0}
+  m_AnchoredPosition: {x: 225, y: -20.2}
+  m_SizeDelta: {x: 430, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &334209714637019658
 CanvasRenderer:

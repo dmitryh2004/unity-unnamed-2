@@ -11,4 +11,6 @@ public class LootCategory : ScriptableObject
     public int cost;
 
     public GameObject lootPrefab;
+
+    public Vector3 dropRotation = new(-90f, 0f, 0f);
 }

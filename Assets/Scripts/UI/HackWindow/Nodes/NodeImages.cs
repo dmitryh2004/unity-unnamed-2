@@ -5,7 +5,7 @@ public class NodeImages : MonoBehaviour
     public static NodeImages Instance = null;
     public Sprite notAccessibleNode, accessibleNode, visitedNode;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {

@@ -260,6 +260,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "HackUI",
+            "id": "736556b2-554a-4cf3-800f-24bdae5bd588",
+            "actions": [
+                {
+                    "name": "HackExit",
+                    "type": "Button",
+                    "id": "3e252e98-45ac-49e7-80f6-fd357e484c1a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HackInteract",
+                    "type": "Button",
+                    "id": "2c5869a4-528e-41bb-b7ec-828fd07ebb37",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "04100be9-e87c-4633-b845-770bb94910d9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HackExit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72a31675-5a69-4ca9-8b02-05aae8973625",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HackInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

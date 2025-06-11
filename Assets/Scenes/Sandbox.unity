@@ -2970,8 +2970,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14722,6 +14722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1037850201}
   - component: {fileID: 1037850202}
+  - component: {fileID: 1037850203}
   m_Layer: 5
   m_Name: ActiveElementHint
   m_TagString: Untagged
@@ -14776,6 +14777,28 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!95 &1037850203
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037850200}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c3e5c910ac2beea42ba00f672a0f1075, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1057254466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20336,6 +20359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444150341}
+  - component: {fileID: 1444150342}
   m_Layer: 5
   m_Name: VirusModule
   m_TagString: Untagged
@@ -20365,6 +20389,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1444150342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444150340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5efaecc4caf72408b9df68e9633c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBar: {fileID: 1176709553}
+  attackBar: {fileID: 578859526}
+  hpText: {fileID: 781534668}
+  attackText: {fileID: 1906619186}
+  hpByLevel: 46000000500000005a000000640000006e0000007800000087000000
+  attackByLevel: 140000001400000019000000190000001e000000280000002d000000
+  level: 1
 --- !u!1001 &1452960309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26374,6 +26417,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8936425016339914721, guid: f228d4b38b0bab94eacde6d1224703e9, type: 3}
   m_PrefabInstance: {fileID: 1930368491}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1942563725 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+  m_PrefabInstance: {fileID: 9520666981993297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1963161898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27994,6 +28048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52aad2427a04b024495c658ca22a6993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 1942563725}
+  hackUIAnimator: {fileID: 2064470310}
   emptyVisitedNodeTitle: "\u041E\u0431\u0435\u0437\u0432\u0440\u0435\u0436\u0435\u043D\u043D\u044B\u0439
     \u0443\u0437\u0435\u043B"
   UnvisitedNodeTitle: "\u041D\u0435\u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u043D\u044B\u0439
@@ -28015,6 +28071,9 @@ MonoBehaviour:
     \u0443\u0437\u043B\u0435, \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043F\u043E
     \u043D\u0435\u043C\u0443 \u041B\u041A\u041C."
   gridController: {fileID: 1068177246}
+  activeElementHintAnimator: {fileID: 1037850203}
+  activeElementHintTitle: {fileID: 149420779}
+  activeElementHintText: {fileID: 1380368421}
 --- !u!114 &2064470312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28938,6 +28997,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4332730030923987117, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: mapNames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332730030923987117, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: 'mapNames.Array.data[2]'
+      value: HackUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332730030923987117, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: cursorVisibleOnMap.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332730030923987117, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: 'cursorVisibleOnMap.Array.data[2]'
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7479945026821977042, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
       propertyPath: inventoryUI
       value: 
@@ -28946,6 +29021,82 @@ PrefabInstance:
       propertyPath: inventoryUIController
       value: 
       objectReference: {fileID: 1257095865}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
+      value: 3e252e98-45ac-49e7-80f6-fd357e484c1a
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 2c5869a4-528e-41bb-b7ec-828fd07ebb37
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
+      value: 'HackUI/HackExit[/Keyboard/escape]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: 'HackUI/HackInteract[/Mouse/leftButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2064470311}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2064470311}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseHackWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HackWindowController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HackWindowController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

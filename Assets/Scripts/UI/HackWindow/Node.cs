@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Node : MonoBehaviour
+public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Vector2 coords;
     [SerializeField] NodeType type;
@@ -11,11 +12,22 @@ public class Node : MonoBehaviour
     int nearestBonusRange = 5;
     bool visited = false;
     bool active = false;
+    bool rangeShown = false;
 
+    [SerializeField] Animator anim;
     [SerializeField] TMP_Text hpText, attackText, nearestBonusRangeText;
     [SerializeField] Image image;
 
     [SerializeField] List<Node> neighbours = new();
+
+    public void Reinitialize()
+    {
+        visited = false;
+        active = false;
+        rangeShown = false;
+        type = null;
+        ClearNeighbours();
+    }
 
     public Vector2 GetCoords()
     {
@@ -44,6 +56,11 @@ public class Node : MonoBehaviour
         neighbours.Remove(another);
     }
 
+    public void ClearNeighbours()
+    {
+        neighbours.RemoveAll(x => true);
+    }
+
     public NodeType GetNodeType()
     {
         return type;
@@ -52,6 +69,10 @@ public class Node : MonoBehaviour
     public void SetNodeType(NodeType nodeType)
     {
         type = nodeType;
+
+        int difficulty = HackWindowController.Instance.GetDifficulty();
+        currentHP = type.hpByDifficulty[difficulty - 1];
+        currentAttack = type.attackByDifficulty[difficulty - 1];
     }
 
     public bool IsVisited()
@@ -73,6 +94,7 @@ public class Node : MonoBehaviour
         {
             if (n.IsDefensiveNode() && n.IsActive()) return false; // если соседний защитный узел активен, то false
             if (!n.IsDefensiveNode() && n.IsVisited()) accessible = true; // если соседний узел пуст и уже посещен, то клетка доступна
+            if (n.IsDefensiveNode() && n.IsVisited() && !n.IsActive()) accessible = true; // если соседний защитный узел был уничтожен, то клетка доступна
         }
 
         return accessible;
@@ -80,20 +102,20 @@ public class Node : MonoBehaviour
 
     public bool IsDefensiveNode()
     {
-        return GetNodeType() != null && !GetNodeType().isCoreNode && !GetNodeType().isBonus;
+        return GetNodeType() != null && !IsCoreNode() && !IsBonus();
     }
 
     public bool IsCoreNode()
     {
-        return GetNodeType().isCoreNode;
+        return (GetNodeType() != null) && GetNodeType().isCoreNode;
     }
 
     public bool IsBonus()
     {
-        return GetNodeType().isBonus;
+        return (GetNodeType() != null) && GetNodeType().isBonus;
     }
 
-    public void Visit()
+    public void StartVisit()
     {
         visited = true;
         active = false;
@@ -111,11 +133,17 @@ public class Node : MonoBehaviour
         {
             if (IsDefensiveNode() || IsCoreNode())
             {
-                TakeDamage(Virus.Instance.GetCurrentAttack());
-
                 if (IsActive())
                 {
-                    Attack();
+                    TakeDamage(VirusController.Instance.GetCurrentAttack());
+                    if (IsActive())
+                    {
+                        Attack();
+                    }
+                }
+                else
+                {
+                    active = true;
                 }
             }
             else if (IsBonus())
@@ -124,10 +152,15 @@ public class Node : MonoBehaviour
             }
             else
             {
-                visited = true;
                 active = false;
             }
 
+            if (!rangeShown && !active)
+            {
+                anim.SetTrigger("ShowRange");
+                rangeShown = true;
+            }
+            visited = true;
             UpdateIcon();
             foreach(Node n in neighbours)
             {
@@ -189,12 +222,48 @@ public class Node : MonoBehaviour
         currentHP -= damage;
         if (currentHP <= 0)
         {
-            active = false;
+            OnDeath();
         }
+    }
+
+    void OnDeath()
+    {
+        active = false;
+        foreach (Node n in neighbours)
+        {
+            n.UpdateIcon();
+        }
+        if (IsCoreNode())
+        {
+            HackWindowController.Instance.SuccessLock();
+        }
+    }
+
+    public void Repair(int value)
+    {
+        currentHP += value;
+        UpdateIcon();
+    }
+
+    public int GetValue1()
+    {
+        int diff = HackWindowController.Instance.GetDifficulty();
+        return type.value1ByDifficulty[diff - 1];
     }
 
     void Attack()
     {
-        Virus.Instance.TakeDamage(currentAttack);
+        VirusController.Instance.TakeDamage(currentAttack);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (IsVisited() || IsAccessible())
+            HackWindowController.Instance.SetHoveredNode(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        HackWindowController.Instance.ClearHoveredNode();
     }
 }

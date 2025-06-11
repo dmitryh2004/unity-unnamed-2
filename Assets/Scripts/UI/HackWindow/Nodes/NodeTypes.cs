@@ -5,7 +5,7 @@ public class NodeTypes : MonoBehaviour
     public static NodeTypes Instance = null;
     public NodeType CentralCore, WallNode, AntivirusNode, RepairNode, PacifierNode;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {

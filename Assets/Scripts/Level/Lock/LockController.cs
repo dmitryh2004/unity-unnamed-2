@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,13 +22,31 @@ public class LockController : Interactable
         screenRenderer.material = new Material(screenRenderer.material);
         UpdateDifficultyScreen();
     }
+
+    public int GetDifficulty()
+    {
+        return difficulty;
+    }
     
     public override void Interact()
     {
-        if (IsHackable())
+        if (IsActive() && IsHackable())
         {
-            DisableLock();
+            HackWindowController.Instance.OpenHackWindow(this);
         }
+    }
+
+    public void IncreaseDifficulty(int diff)
+    {
+        difficulty += diff;
+        StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
+    }
+
+    IEnumerator ChangeDifficultyOnScreenCoroutine(int diff)
+    {
+        screen.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        UpdateDifficultyScreen();
     }
 
     public bool IsActive()

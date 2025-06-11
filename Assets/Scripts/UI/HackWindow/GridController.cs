@@ -7,7 +7,10 @@ public class GridController : MonoBehaviour
     [SerializeField] Transform gridParent;
     List<Node> nodes = new();
     List<Node> emptyNodes = new();
-    List<Node> positiveNodes = new();
+    List<Node> positiveNodes = new(); // центральный узел и бонусы
+    List<Node> negativeNodes = new(); // защита
+    List<Node> repairNodes = new(); // ремонтные узлы
+    List<Node> pacifierNodes = new(); // блокировщики
     System.Random random = new();
 
     List<Vector2> movements = new();
@@ -52,17 +55,30 @@ public class GridController : MonoBehaviour
     {
         InitializeMovements();
 
+        ReinitializeNodes();
+    }
+
+    void ReinitializeNodes()
+    {
+        nodes.RemoveAll(x => true);
+        emptyNodes.RemoveAll(x => true);
+        positiveNodes.RemoveAll(x => true);
+        negativeNodes.RemoveAll(x => true);
+        repairNodes.RemoveAll(x => true);
+        pacifierNodes.RemoveAll(x => true);
+
         int childCount = gridParent.childCount;
         for (int i = 0; i < childCount; i++)
         {
             Transform child = gridParent.GetChild(i);
             if (child.CompareTag("HackGrid"))
             {
-                nodes.Add(child.GetComponent<Node>());
+                Node node = child.GetComponent<Node>();
+                nodes.Add(node);
+                node.Reinitialize();
+                node.gameObject.SetActive(true);
             }
         }
-
-        Generate(10);
     }
 
     int CalculateDistance(Vector2 start, Vector2 end)
@@ -266,8 +282,10 @@ public class GridController : MonoBehaviour
         while (wallsCount < wallsRequired)
         {
             int wallIndex = random.Next(0, emptyNodes.Count);
-            emptyNodes[wallIndex].SetNodeType(NodeTypes.Instance.WallNode);
-            emptyNodes.Remove(emptyNodes[wallIndex]);
+            Node newWall = emptyNodes[wallIndex];
+            newWall.SetNodeType(NodeTypes.Instance.WallNode);
+            negativeNodes.Add(newWall);
+            emptyNodes.Remove(newWall);
             wallsCount++;
         }
 
@@ -277,8 +295,10 @@ public class GridController : MonoBehaviour
         while (antivirusCount < antivirusRequired)
         {
             int antivirusIndex = random.Next(0, emptyNodes.Count);
-            emptyNodes[antivirusIndex].SetNodeType(NodeTypes.Instance.AntivirusNode);
-            emptyNodes.Remove(emptyNodes[antivirusIndex]);
+            Node newAntivirus = emptyNodes[antivirusIndex];
+            newAntivirus.SetNodeType(NodeTypes.Instance.AntivirusNode);
+            negativeNodes.Add(newAntivirus);
+            emptyNodes.Remove(newAntivirus);
             antivirusCount++;
         }
 
@@ -288,8 +308,11 @@ public class GridController : MonoBehaviour
         while (repairCount < repairRequired)
         {
             int repairIndex = random.Next(0, emptyNodes.Count);
-            emptyNodes[repairIndex].SetNodeType(NodeTypes.Instance.RepairNode);
-            emptyNodes.Remove(emptyNodes[repairIndex]);
+            Node newRepair = emptyNodes[repairIndex];
+            newRepair.SetNodeType(NodeTypes.Instance.RepairNode);
+            negativeNodes.Add(newRepair);
+            repairNodes.Add(newRepair);
+            emptyNodes.Remove(newRepair);
             repairCount++;
         }
 
@@ -299,8 +322,11 @@ public class GridController : MonoBehaviour
         while (pacifierCount < pacifierRequired)
         {
             int pacifierIndex = random.Next(0, emptyNodes.Count);
-            emptyNodes[pacifierIndex].SetNodeType(NodeTypes.Instance.PacifierNode);
-            emptyNodes.Remove(emptyNodes[pacifierIndex]);
+            Node newPacifier = emptyNodes[pacifierIndex];
+            newPacifier.SetNodeType(NodeTypes.Instance.PacifierNode);
+            negativeNodes.Add(newPacifier);
+            pacifierNodes.Add(newPacifier);
+            emptyNodes.Remove(newPacifier);
             pacifierCount++;
         }
     }
@@ -320,9 +346,17 @@ public class GridController : MonoBehaviour
 
     void SelectStartNode()
     {
-        int startIndex = random.Next(0, emptyNodes.Count);
+        int startIndex;
+        while (true)
+        {
+            startIndex = random.Next(0, emptyNodes.Count);
 
-        emptyNodes[startIndex].Visit();
+            if (emptyNodes[startIndex].GetNodeType() != null) continue;
+
+            emptyNodes[startIndex].StartVisit();
+            break;
+        }
+        
     }
 
     void UpdateNodes()
@@ -342,7 +376,8 @@ public class GridController : MonoBehaviour
         }
 
         int size = (difficulty - 1) / 2 + 1;
-        
+
+        ReinitializeNodes();
 
         RemoveRedundantNodes(size);
 
@@ -357,5 +392,32 @@ public class GridController : MonoBehaviour
         SelectStartNode();
 
         UpdateNodes();
+    }
+
+    public void MakeStep()
+    {
+        List<Node> repairTargets = negativeNodes.FindAll(x => x.IsActive());
+        foreach(Node repair in repairNodes)
+        {
+            if (!repair.IsActive()) continue;
+            if (repairTargets.Count == 1 && repair == repairTargets[0]) continue;
+            List<Node> repairTargetsExceptRepair = repairTargets.FindAll(x => x != repair);
+            Node target = repairTargetsExceptRepair[random.Next(0, repairTargetsExceptRepair.Count)];
+
+            target.Repair(repair.GetValue1());
+        }
+
+        VirusController.Instance.RecalculateAttack();
+    }
+
+    public int GetPacifierDebuff()
+    {
+        List<Node> activePacifiers = pacifierNodes.FindAll(x => x.IsActive());
+        int sum = 0;
+        foreach(Node p in activePacifiers)
+        {
+            sum += p.GetValue1();
+        }
+        return sum;
     }
 }

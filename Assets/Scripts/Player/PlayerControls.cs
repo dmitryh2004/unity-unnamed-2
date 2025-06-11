@@ -346,6 +346,54 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""HackUI"",
+            ""id"": ""736556b2-554a-4cf3-800f-24bdae5bd588"",
+            ""actions"": [
+                {
+                    ""name"": ""HackExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e252e98-45ac-49e7-80f6-fd357e484c1a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HackInteract"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c5869a4-528e-41bb-b7ec-828fd07ebb37"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""04100be9-e87c-4633-b845-770bb94910d9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HackExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72a31675-5a69-4ca9-8b02-05aae8973625"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HackInteract"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -364,12 +412,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
         m_InventoryUI_InventoryExit = m_InventoryUI.FindAction("InventoryExit", throwIfNotFound: true);
         m_InventoryUI_DropItem = m_InventoryUI.FindAction("DropItem", throwIfNotFound: true);
+        // HackUI
+        m_HackUI = asset.FindActionMap("HackUI", throwIfNotFound: true);
+        m_HackUI_HackExit = m_HackUI.FindAction("HackExit", throwIfNotFound: true);
+        m_HackUI_HackInteract = m_HackUI.FindAction("HackInteract", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerControls.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_InventoryUI.enabled, "This will cause a leak and performance issues, PlayerControls.InventoryUI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_HackUI.enabled, "This will cause a leak and performance issues, PlayerControls.HackUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -721,6 +774,113 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="InventoryUIActions" /> instance referencing this action map.
     /// </summary>
     public InventoryUIActions @InventoryUI => new InventoryUIActions(this);
+
+    // HackUI
+    private readonly InputActionMap m_HackUI;
+    private List<IHackUIActions> m_HackUIActionsCallbackInterfaces = new List<IHackUIActions>();
+    private readonly InputAction m_HackUI_HackExit;
+    private readonly InputAction m_HackUI_HackInteract;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "HackUI".
+    /// </summary>
+    public struct HackUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public HackUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "HackUI/HackExit".
+        /// </summary>
+        public InputAction @HackExit => m_Wrapper.m_HackUI_HackExit;
+        /// <summary>
+        /// Provides access to the underlying input action "HackUI/HackInteract".
+        /// </summary>
+        public InputAction @HackInteract => m_Wrapper.m_HackUI_HackInteract;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_HackUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="HackUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(HackUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="HackUIActions" />
+        public void AddCallbacks(IHackUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HackUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HackUIActionsCallbackInterfaces.Add(instance);
+            @HackExit.started += instance.OnHackExit;
+            @HackExit.performed += instance.OnHackExit;
+            @HackExit.canceled += instance.OnHackExit;
+            @HackInteract.started += instance.OnHackInteract;
+            @HackInteract.performed += instance.OnHackInteract;
+            @HackInteract.canceled += instance.OnHackInteract;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="HackUIActions" />
+        private void UnregisterCallbacks(IHackUIActions instance)
+        {
+            @HackExit.started -= instance.OnHackExit;
+            @HackExit.performed -= instance.OnHackExit;
+            @HackExit.canceled -= instance.OnHackExit;
+            @HackInteract.started -= instance.OnHackInteract;
+            @HackInteract.performed -= instance.OnHackInteract;
+            @HackInteract.canceled -= instance.OnHackInteract;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="HackUIActions.UnregisterCallbacks(IHackUIActions)" />.
+        /// </summary>
+        /// <seealso cref="HackUIActions.UnregisterCallbacks(IHackUIActions)" />
+        public void RemoveCallbacks(IHackUIActions instance)
+        {
+            if (m_Wrapper.m_HackUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="HackUIActions.AddCallbacks(IHackUIActions)" />
+        /// <seealso cref="HackUIActions.RemoveCallbacks(IHackUIActions)" />
+        /// <seealso cref="HackUIActions.UnregisterCallbacks(IHackUIActions)" />
+        public void SetCallbacks(IHackUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HackUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HackUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="HackUIActions" /> instance referencing this action map.
+    /// </summary>
+    public HackUIActions @HackUI => new HackUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -806,5 +966,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDropItem(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "HackUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="HackUIActions.AddCallbacks(IHackUIActions)" />
+    /// <seealso cref="HackUIActions.RemoveCallbacks(IHackUIActions)" />
+    public interface IHackUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "HackExit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHackExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HackInteract" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHackInteract(InputAction.CallbackContext context);
     }
 }

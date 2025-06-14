@@ -43,6 +43,16 @@ public class PlayerInventoryController : MonoBehaviour
             CloseInventory();
     }
 
+    public void ScrollUp()
+    {
+        inventoryUIController.ScrollUp();
+    }
+
+    public void ScrollDown()
+    {
+        inventoryUIController.ScrollDown();
+    }
+
     void OpenInventory()
     {
         Debug.Log("ToggleInventory called");
@@ -50,6 +60,7 @@ public class PlayerInventoryController : MonoBehaviour
 
         UpdateCurrentInputMap();
 
+        inventoryUIController.ClearOffset();
         UpdateAnimator();
         Debug.Log($"Current inventory: {InventorySystem.Instance.GetInventoryDataJson()}");
     }

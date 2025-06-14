@@ -1,23 +1,31 @@
 using UnityEngine;
 
-public class Reinforcement : Bonus
+public class AdditionalEncryption : Bonus
 {
     public override void Initialize()
     {
-        bonusType = BonusTypes.Instance.Reinforcement;
+        bonusType = BonusTypes.Instance.AdditionalEncryption;
+        useDuration = false;
         int difficulty = HackWindowController.Instance.GetDifficulty();
         duration = bonusType.value1ByDifficulty[difficulty - 1];
-        int bonusValue2 = bonusType.value2ByDifficulty[difficulty - 1];
-        int bonusValue3 = bonusType.value3ByDifficulty[difficulty - 1];
-        value1 = random.Next(bonusValue2, bonusValue3 + 1);
         durationText.text = $"{duration}";
     }
 
     public override void MakeStep()
     {
+        
+    }
+
+    public override void Use()
+    {
+        active = true;
+        animator.SetBool("blink", true);
+    }
+
+    public void BlockAttack()
+    {
         if (active)
         {
-            VirusController.Instance.Heal(value1);
             duration--;
             if (duration == 0)
             {
@@ -26,11 +34,5 @@ public class Reinforcement : Bonus
             }
             durationText.text = $"{duration}";
         }
-    }
-
-    public override void Use()
-    {
-        active = true;
-        animator.SetBool("blink", true);
     }
 }

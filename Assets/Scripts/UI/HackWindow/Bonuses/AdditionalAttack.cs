@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class Reinforcement : Bonus
+public class AdditionalAttack : Bonus
 {
     public override void Initialize()
     {
-        bonusType = BonusTypes.Instance.Reinforcement;
+        bonusType = BonusTypes.Instance.AdditionalAttack;
+        useTarget = true;
         int difficulty = HackWindowController.Instance.GetDifficulty();
-        duration = bonusType.value1ByDifficulty[difficulty - 1];
-        int bonusValue2 = bonusType.value2ByDifficulty[difficulty - 1];
-        int bonusValue3 = bonusType.value3ByDifficulty[difficulty - 1];
-        value1 = random.Next(bonusValue2, bonusValue3 + 1);
+        value1 = bonusType.value1ByDifficulty[difficulty - 1];
+        duration = bonusType.value2ByDifficulty[difficulty - 1];
         durationText.text = $"{duration}";
     }
 
@@ -17,7 +16,9 @@ public class Reinforcement : Bonus
     {
         if (active)
         {
-            VirusController.Instance.Heal(value1);
+            target.TakeDamage(value1);
+            target.UpdateIcon();
+
             duration--;
             if (duration == 0)
             {

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Money100
   m_EditorClassIdentifier: 
   id: 1
+  sprite: {fileID: 0}
   lootName: "100 \u0440\u0443\u0431\u043B\u0435\u0439"
   lootDesc: "\u041E\u0431\u044B\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0440\u0443\u0431\u043B\u0435\u0432\u043A\u0430."
-  volume: 0.0001
+  volume: 0.000001
   cost: 5000
+  lootPrefab: {fileID: 0}
+  dropRotation: {x: -90, y: 0, z: 0}

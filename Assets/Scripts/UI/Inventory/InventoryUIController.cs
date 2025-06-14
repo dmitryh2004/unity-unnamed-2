@@ -7,6 +7,7 @@ public class InventoryUIController : MonoBehaviour
     Dictionary<int, int> items;
     [SerializeField] List<InventoryItem> inventoryItems = new();
     int activeItemID = -1;
+    int offset = 0;
     [SerializeField] TMP_Text totalVolume;
     [SerializeField] ProgressBar volumePB;
     [SerializeField] TMP_Text estimateCost;
@@ -30,7 +31,7 @@ public class InventoryUIController : MonoBehaviour
 
         float totalCost = 0f;
 
-        int inventoryItemIndex = 27;
+        int inventoryItemIndex = 27 + offset;
         foreach(int i in items.Keys)
         {
             LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
@@ -39,7 +40,7 @@ public class InventoryUIController : MonoBehaviour
 
             if (inventoryItemIndex < inventoryItems.Count)
             {
-                inventoryItems[inventoryItemIndex].gameObject.SetActive(true);
+                inventoryItems[inventoryItemIndex].SetActive(true);
 
                 Sprite itemSprite = lc.sprite;
                 if (itemSprite == null) itemSprite = unknownSprite;
@@ -54,7 +55,7 @@ public class InventoryUIController : MonoBehaviour
 
         for (; inventoryItemIndex >= 0; inventoryItemIndex--)
         {
-            inventoryItems[inventoryItemIndex].gameObject.SetActive(false);
+            inventoryItems[inventoryItemIndex].SetActive(false);
         }
 
         float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
@@ -63,7 +64,7 @@ public class InventoryUIController : MonoBehaviour
         float ratio = currentVolume / maxVolume * 100;
         string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
 
-        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume)} / {NumberFormatter.FormatNumber(maxVolume)} м3 ({(currentVolume / maxVolume * 100).ToString(format)}%)";
+        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
         volumePB.SetProgress(currentVolume);
         estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
     }
@@ -94,5 +95,31 @@ public class InventoryUIController : MonoBehaviour
 
         UpdateInventory();
         UpdateActiveItem();
+    }
+
+    void ModifyOffset(int diff)
+    {
+        offset += diff;
+        if (offset < 0) offset = 0;
+        UpdateInventory();
+    }
+
+    public void ScrollDown()
+    {
+        if (inventoryItems.Count - offset > 28)
+        {
+            ModifyOffset(7);
+        }
+    }
+
+    public void ScrollUp()
+    {
+        if (offset > 0)
+            ModifyOffset(-7);
+    }
+
+    public void ClearOffset()
+    {
+        offset = 0;
     }
 }

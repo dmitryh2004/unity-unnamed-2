@@ -64,6 +64,7 @@ public class HackWindowController : MonoBehaviour
         subject = lockController;
         difficulty = subject.GetDifficulty();
         gridController.Generate(difficulty);
+        bonusController.ClearBonuses();
 
         VirusController.Instance.ResetToStart();
         visible = true;

@@ -39,10 +39,36 @@ public class VirusController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHP -= damage;
-        if (currentHP <= 0) currentHP = 0;
-        UpdateBars();
-        if (currentHP == 0) HackWindowController.Instance.FailLock();
+        bool useAEBonus = false;
+        Bonus additionalEncryptionBonus = null;
+        for (int i = 1; i < 4; i++)
+        {
+            additionalEncryptionBonus = BonusController.Instance.GetBonus(i);
+            if (additionalEncryptionBonus != null)
+            {
+                if (additionalEncryptionBonus is AdditionalEncryption ae)
+                {
+                    if (ae.IsActive())
+                    {
+                        useAEBonus = true;
+                        break;
+                    }
+                }
+            }
+        }
+        
+
+        if (useAEBonus)
+        {
+            ((AdditionalEncryption)additionalEncryptionBonus).BlockAttack();
+        }
+        else
+        {
+            currentHP -= damage;
+            if (currentHP <= 0) currentHP = 0;
+            UpdateBars();
+            if (currentHP == 0) HackWindowController.Instance.FailLock();
+        }
     }
 
     public void Heal(int amount)

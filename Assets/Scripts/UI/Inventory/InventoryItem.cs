@@ -7,6 +7,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     int id;
     bool pointerOnItem = false;
+    bool active = false;
     [SerializeField] Sprite emptySprite;
     [SerializeField] Image image;
     [SerializeField] TMP_Text itemCount;
@@ -17,6 +18,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     void Start()
     {
         HideTooltip();
+    }
+
+    public void SetActive(bool active)
+    {
+        this.active = active;
+
+        image.gameObject.SetActive(active);
+        itemCount.gameObject.SetActive(active);
     }
 
     public void Initialize(int id, Sprite newSprite, int count)
@@ -55,6 +64,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!active) return;
         pointerOnItem = true;
         ShowTooltip();
         uiController.SetActiveItem(id);
@@ -62,6 +72,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!active) return;
         pointerOnItem = false;
         HideTooltip();
         uiController.SetActiveItem(-1);

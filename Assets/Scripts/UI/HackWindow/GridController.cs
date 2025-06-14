@@ -9,6 +9,8 @@ public class GridController : MonoBehaviour
     List<Node> emptyNodes = new();
     List<Node> positiveNodes = new(); // центральный узел и бонусы
     List<Node> negativeNodes = new(); // защита
+
+    List<Node> antivirusNodes = new(); // антивирусы
     List<Node> repairNodes = new(); // ремонтные узлы
     List<Node> pacifierNodes = new(); // блокировщики
     System.Random random = new();
@@ -64,6 +66,7 @@ public class GridController : MonoBehaviour
         emptyNodes.RemoveAll(x => true);
         positiveNodes.RemoveAll(x => true);
         negativeNodes.RemoveAll(x => true);
+        antivirusNodes.RemoveAll(x => true);
         repairNodes.RemoveAll(x => true);
         pacifierNodes.RemoveAll(x => true);
 
@@ -340,6 +343,7 @@ public class GridController : MonoBehaviour
             Node newAntivirus = emptyNodes[antivirusIndex];
             newAntivirus.SetNodeType(NodeTypes.Instance.AntivirusNode);
             negativeNodes.Add(newAntivirus);
+            antivirusNodes.Add(newAntivirus);
             emptyNodes.Remove(newAntivirus);
             antivirusCount++;
         }
@@ -417,7 +421,31 @@ public class GridController : MonoBehaviour
             dividersCount++;
         }
 
-        Debug.Log($"Placed {dividersCount} dividers");
+        //place encryptions
+        int additionalEncryptionsCount = 0;
+
+        while (additionalEncryptionsCount < additionalEncryptionsRequired)
+        {
+            int additionalEncryptionIndex = random.Next(0, emptyNodes.Count);
+            Node newadditionalEncryption = emptyNodes[additionalEncryptionIndex];
+            newadditionalEncryption.SetNodeType(NodeTypes.Instance.BonusNode(BonusTypes.Instance.AdditionalEncryption));
+            positiveNodes.Add(newadditionalEncryption);
+            emptyNodes.Remove(newadditionalEncryption);
+            additionalEncryptionsCount++;
+        }
+
+        //place additional attackers
+        int additionalAttacksCount = 0;
+
+        while (additionalAttacksCount < additionalAttacksRequired)
+        {
+            int additionalAttackIndex = random.Next(0, emptyNodes.Count);
+            Node newadditionalAttack = emptyNodes[additionalAttackIndex];
+            newadditionalAttack.SetNodeType(NodeTypes.Instance.BonusNode(BonusTypes.Instance.AdditionalAttack));
+            positiveNodes.Add(newadditionalAttack);
+            emptyNodes.Remove(newadditionalAttack);
+            additionalAttacksCount++;
+        }
     }
 
     public void UpdateBonusRanges()
@@ -524,6 +552,7 @@ public class GridController : MonoBehaviour
 
     public void MakeStepPre()
     {
+        //repair
         List<Node> repairTargets = negativeNodes.FindAll(x => x.IsActive());
         foreach (Node repair in repairNodes)
         {
@@ -533,6 +562,13 @@ public class GridController : MonoBehaviour
             Node target = repairTargetsExceptRepair[random.Next(0, repairTargetsExceptRepair.Count)];
 
             target.Repair(repair.GetValue1());
+        }
+        
+        //antivirus
+        foreach (Node antivirus in antivirusNodes)
+        {
+            if (!antivirus.IsActive()) continue;
+            VirusController.Instance.TakeDamage(antivirus.GetValue1());
         }
     }
     public void MakeStepPost()

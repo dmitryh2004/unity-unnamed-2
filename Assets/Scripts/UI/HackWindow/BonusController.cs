@@ -16,11 +16,32 @@ public class BonusController : MonoBehaviour
         Instance = this;
     }
 
+    public void ClearBonuses()
+    {
+        for (int i = 1; i < 4; i++)
+        {
+            Bonus bonus = GetBonus(i);
+            if (bonus != null)
+                Destroy(bonus.gameObject);
+        }
+        bonusSlot1.SetBonus(null);
+        bonusSlot2.SetBonus(null);
+        bonusSlot3.SetBonus(null);
+    }
+
     BonusSlot FindEmptyBonusSlot()
     {
         if (bonusSlot1.Empty()) return bonusSlot1;
         if (bonusSlot2.Empty()) return bonusSlot2;
         if (bonusSlot3.Empty()) return bonusSlot3;
+        return null;
+    }
+
+    public Bonus GetBonus(int slotNumber)
+    {
+        if (slotNumber == 1) return bonusSlot1.GetBonus();
+        if (slotNumber == 2) return bonusSlot2.GetBonus();
+        if (slotNumber == 3) return bonusSlot3.GetBonus();
         return null;
     }
 

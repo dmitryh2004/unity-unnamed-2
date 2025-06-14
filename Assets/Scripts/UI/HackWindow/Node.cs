@@ -8,7 +8,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Vector2 coords;
     [SerializeField] NodeType type;
-    int currentHP, currentAttack;
+    int currentHP, currentAttack, value1;
     int nearestBonusRange = 5;
     bool visited = false;
     bool active = false;
@@ -78,6 +78,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         int difficulty = HackWindowController.Instance.GetDifficulty();
         currentHP = type.hpByDifficulty[difficulty - 1];
         currentAttack = type.attackByDifficulty[difficulty - 1];
+        value1 = type.value1ByDifficulty[difficulty - 1];
     }
 
     public bool IsVisited()
@@ -301,8 +302,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public int GetValue1()
     {
-        int diff = HackWindowController.Instance.GetDifficulty();
-        return type.value1ByDifficulty[diff - 1];
+        return value1;
     }
 
     void Attack()

@@ -320,6 +320,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1a06c59-ab14-4e36-8b1d-6d51b48c79e8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""3671ea06-1282-46bb-b684-60e8847aabbd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -342,6 +360,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60804a96-331c-4cb7-99ca-4dedb70c3caf"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec3bbfb5-3c80-4dbb-90be-e8d1c8929aca"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -412,6 +452,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
         m_InventoryUI_InventoryExit = m_InventoryUI.FindAction("InventoryExit", throwIfNotFound: true);
         m_InventoryUI_DropItem = m_InventoryUI.FindAction("DropItem", throwIfNotFound: true);
+        m_InventoryUI_ScrollUp = m_InventoryUI.FindAction("ScrollUp", throwIfNotFound: true);
+        m_InventoryUI_ScrollDown = m_InventoryUI.FindAction("ScrollDown", throwIfNotFound: true);
         // HackUI
         m_HackUI = asset.FindActionMap("HackUI", throwIfNotFound: true);
         m_HackUI_HackExit = m_HackUI.FindAction("HackExit", throwIfNotFound: true);
@@ -673,6 +715,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IInventoryUIActions> m_InventoryUIActionsCallbackInterfaces = new List<IInventoryUIActions>();
     private readonly InputAction m_InventoryUI_InventoryExit;
     private readonly InputAction m_InventoryUI_DropItem;
+    private readonly InputAction m_InventoryUI_ScrollUp;
+    private readonly InputAction m_InventoryUI_ScrollDown;
     /// <summary>
     /// Provides access to input actions defined in input action map "InventoryUI".
     /// </summary>
@@ -692,6 +736,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InventoryUI/DropItem".
         /// </summary>
         public InputAction @DropItem => m_Wrapper.m_InventoryUI_DropItem;
+        /// <summary>
+        /// Provides access to the underlying input action "InventoryUI/ScrollUp".
+        /// </summary>
+        public InputAction @ScrollUp => m_Wrapper.m_InventoryUI_ScrollUp;
+        /// <summary>
+        /// Provides access to the underlying input action "InventoryUI/ScrollDown".
+        /// </summary>
+        public InputAction @ScrollDown => m_Wrapper.m_InventoryUI_ScrollDown;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -724,6 +776,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started += instance.OnDropItem;
             @DropItem.performed += instance.OnDropItem;
             @DropItem.canceled += instance.OnDropItem;
+            @ScrollUp.started += instance.OnScrollUp;
+            @ScrollUp.performed += instance.OnScrollUp;
+            @ScrollUp.canceled += instance.OnScrollUp;
+            @ScrollDown.started += instance.OnScrollDown;
+            @ScrollDown.performed += instance.OnScrollDown;
+            @ScrollDown.canceled += instance.OnScrollDown;
         }
 
         /// <summary>
@@ -741,6 +799,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @DropItem.started -= instance.OnDropItem;
             @DropItem.performed -= instance.OnDropItem;
             @DropItem.canceled -= instance.OnDropItem;
+            @ScrollUp.started -= instance.OnScrollUp;
+            @ScrollUp.performed -= instance.OnScrollUp;
+            @ScrollUp.canceled -= instance.OnScrollUp;
+            @ScrollDown.started -= instance.OnScrollDown;
+            @ScrollDown.performed -= instance.OnScrollDown;
+            @ScrollDown.canceled -= instance.OnScrollDown;
         }
 
         /// <summary>
@@ -966,6 +1030,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDropItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollDown(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "HackUI" which allows adding and removing callbacks.

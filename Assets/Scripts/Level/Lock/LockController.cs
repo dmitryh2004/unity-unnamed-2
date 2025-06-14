@@ -76,6 +76,7 @@ public class LockController : Interactable
 
             Debug.Log(screenRenderer.material.color);
             screenRenderer.material.color = new Color(.5f, 0f, 0f);
+            screenRenderer.material.SetColor("_EmissionColor", new Color(.25f, 0f, 0f));
         }
     }
 

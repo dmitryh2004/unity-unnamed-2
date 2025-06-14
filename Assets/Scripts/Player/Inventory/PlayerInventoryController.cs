@@ -43,9 +43,21 @@ public class PlayerInventoryController : MonoBehaviour
             CloseInventory();
     }
 
+    public void ScrollUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        ScrollUp();
+    }
+
     public void ScrollUp()
     {
         inventoryUIController.ScrollUp();
+    }
+
+    public void ScrollDown(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        ScrollDown();
     }
 
     public void ScrollDown()

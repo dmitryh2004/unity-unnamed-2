@@ -26,6 +26,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         image.gameObject.SetActive(active);
         itemCount.gameObject.SetActive(active);
+
+        if (!active) HideTooltip();
     }
 
     public void Initialize(int id, Sprite newSprite, int count)

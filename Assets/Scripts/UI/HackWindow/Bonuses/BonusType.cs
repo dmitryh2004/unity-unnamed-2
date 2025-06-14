@@ -5,6 +5,7 @@ public class BonusType : ScriptableObject
 {
     public int id;
     public Sprite sprite;
+    public Sprite nodeSprite;
     public string bonusName;
 
     [TextArea(6, 10)] public string bonusDesc;

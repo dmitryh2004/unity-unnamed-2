@@ -45,6 +45,12 @@ public class VirusController : MonoBehaviour
         if (currentHP == 0) HackWindowController.Instance.FailLock();
     }
 
+    public void Heal(int amount)
+    {
+        currentHP += amount;
+        UpdateBars();
+    }
+
     public void RecalculateAttack()
     {
         currentAttack = attackByLevel[level - 1] - HackWindowController.Instance.GetGridController().GetPacifierDebuff();

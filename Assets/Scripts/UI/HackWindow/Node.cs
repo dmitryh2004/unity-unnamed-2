@@ -34,6 +34,11 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         return coords;
     }
 
+    public int GetCurrentHP()
+    {
+        return currentHP;
+    }
+
     public List<Node> GetNeighbours()
     {
         return neighbours;
@@ -87,7 +92,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     bool IsAccessible()
     {
-        if (visited) return true; //если узел уже посещен, то true
+        if (visited && !IsCoreNode() && !IsBonus()) return true; //если узел не центральный, не бонус и уже посещен, то true
 
         bool accessible = false; //изначально считаем, что узел недоступен
         foreach(Node n in neighbours)
@@ -148,13 +153,29 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             else if (IsBonus())
             {
-
+                if (IsActive())
+                {
+                    if (BonusController.Instance.AddBonus(type.bonus))
+                    {
+                        type = null;
+                        active = false;
+                        HackWindowController.Instance.GetGridController().RemoveNodeFromLists(this);
+                    }
+                }
+                else
+                {
+                    active = true;
+                }
             }
             else
             {
                 active = false;
             }
 
+            if (!IsVisited())
+            {
+                HackWindowController.Instance.GetGridController().UpdateBonusRanges();
+            }
             if (!rangeShown && !active)
             {
                 anim.SetTrigger("ShowRange");
@@ -171,33 +192,64 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void UpdateIcon()
     {
-        Debug.Log($"{gameObject.name}: updating icon");
+        //Debug.Log($"{gameObject.name}: updating icon");
         bool showHP = false;
         if (!IsAccessible())
         {
-            Debug.Log($"{gameObject.name}: not accessible");
-            image.sprite = NodeImages.Instance.notAccessibleNode;
-            image.color = new Color(1f, 1f, 1f, 1f);
+            //Debug.Log($"{gameObject.name}: not accessible");
+            if ((IsCoreNode() || IsBonus()) && IsVisited())
+            {
+                Color color;
+                
+                if (IsCoreNode())
+                {
+                    int difficulty = HackWindowController.Instance.GetDifficulty();
+                    showHP = true;
+                    image.sprite = type.spriteByDifficulty[difficulty - 1];
+                    color = type.colorByDifficulty[difficulty - 1];
+                }
+                else
+                {
+                    image.sprite = type.bonus.nodeSprite;
+                    color = Color.white;
+                }
+                
+                color.a = 0.5f;
+                image.color = color;
+            }
+            else
+            {
+                image.sprite = NodeImages.Instance.notAccessibleNode;
+                image.color = new Color(1f, 1f, 1f, 1f);
+            }
         }
         else
         {
-            Debug.Log($"{gameObject.name}: accessible");
+            //Debug.Log($"{gameObject.name}: accessible");
             if (IsVisited())
             {
-                Debug.Log($"{gameObject.name}: visited");
+                //Debug.Log($"{gameObject.name}: visited");
                 if (!IsActive())
                 {
-                    Debug.Log($"{gameObject.name}: not active");
+                    //Debug.Log($"{gameObject.name}: not active");
                     image.sprite = NodeImages.Instance.visitedNode;
                     image.color = new Color(1f, 1f, 1f, 1f);
                 }
                 else
                 {
-                    Debug.Log($"{gameObject.name}: active");
-                    showHP = true;
-                    int difficulty = HackWindowController.Instance.GetDifficulty();
-                    image.sprite = type.spriteByDifficulty[difficulty - 1];
-                    image.color = type.colorByDifficulty[difficulty - 1];
+                    //Debug.Log($"{gameObject.name}: active");
+                    if (IsBonus())
+                    {
+                        image.sprite = type.bonus.nodeSprite;
+                        image.color = new Color(1f, 1f, 1f, 1f);
+                    }
+                    else
+                    {
+                        showHP = true;
+                        int difficulty = HackWindowController.Instance.GetDifficulty();
+                        image.sprite = type.spriteByDifficulty[difficulty - 1];
+                        image.color = type.colorByDifficulty[difficulty - 1];
+                    }
                 }
             }
             else
@@ -217,7 +269,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHP -= damage;
         if (currentHP <= 0)
@@ -237,6 +289,8 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             HackWindowController.Instance.SuccessLock();
         }
+        type = null;
+        HackWindowController.Instance.GetGridController().RemoveNodeFromLists(this);
     }
 
     public void Repair(int value)

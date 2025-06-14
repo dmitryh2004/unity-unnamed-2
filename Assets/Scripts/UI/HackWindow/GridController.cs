@@ -81,6 +81,12 @@ public class GridController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Возвращает количество узлов между начальной и конечной точкой (без учета активности узлов).
+    /// </summary>
+    /// <param name="start">Начало</param>
+    /// <param name="end">Конец</param>
+    /// <returns>Расстояние в узлах</returns>
     int CalculateDistance(Vector2 start, Vector2 end)
     {
         if (start == end) return 0;
@@ -102,6 +108,40 @@ public class GridController : MonoBehaviour
                 {
                     visited.Add(next);
                     queue.Enqueue((next, dist + 1));
+                }
+            }
+        }
+
+        // Если путь не найден (на этой сетке такого быть не должно)
+        return -1;
+    }
+
+    /// <summary>
+    /// Возвращает количество узлов между начальным и конечным узлом (с учетом активности узлов).
+    /// </summary>
+    /// <param name="start">Начало</param>
+    /// <param name="end">Конец</param>
+    /// <returns>Расстояние в узлах</returns>
+    int CalculateDistance(Node start, Node end)
+    {
+        if (start == end) return 0;
+
+        var visited = new HashSet<Node>();
+        var queue = new Queue<(Node node, int dist)>();
+        queue.Enqueue((start, 0));
+        visited.Add(start);
+
+        while (queue.Count > 0)
+        {
+            var (current, dist) = queue.Dequeue();
+
+            foreach (Node n in current.GetNeighbours())
+            {
+                if (n == end) return dist + 1;
+                if (!visited.Contains(n))
+                {
+                    visited.Add(n);
+                    queue.Enqueue((n, dist + 1));
                 }
             }
         }
@@ -252,12 +292,14 @@ public class GridController : MonoBehaviour
             emptyNodes.Add(n);
         }
 
-        // place central core
+        // stage 1: place central core
         int centralCoreIndex = random.Next(0, emptyNodes.Count);
-        emptyNodes[centralCoreIndex].SetNodeType(NodeTypes.Instance.CentralCore);
-        positiveNodes.Add(emptyNodes[centralCoreIndex]);
-        emptyNodes.Remove(emptyNodes[centralCoreIndex]);
+        Node centralCore = emptyNodes[centralCoreIndex]; 
+        centralCore.SetNodeType(NodeTypes.Instance.CentralCore);
+        positiveNodes.Add(centralCore);
+        emptyNodes.Remove(centralCore);
 
+        // stage 2: place defense
         // define amount of defensive nodes
         int wallsRequired = random.Next(
                 wallMinCountByDifficulty[difficulty - 1],
@@ -329,34 +371,120 @@ public class GridController : MonoBehaviour
             emptyNodes.Remove(newPacifier);
             pacifierCount++;
         }
+
+        //stage 3: place bonuses
+        //define amount of bonuses
+        int reinforcementsRequired = random.Next(
+                reinforcementMinCountByDifficulty[difficulty - 1],
+                reinforcementMaxCountByDifficulty[difficulty - 1] + 1
+            );
+        int dividersRequired = random.Next(
+                dividerMinCountByDifficulty[difficulty - 1],
+                dividerMaxCountByDifficulty[difficulty - 1] + 1
+            );
+        int additionalEncryptionsRequired = random.Next(
+                additionalEncryptionMinCountByDifficulty[difficulty - 1],
+                additionalEncryptionMaxCountByDifficulty[difficulty - 1] + 1
+            );
+        int additionalAttacksRequired = random.Next(
+                additionalAttackMinCountByDifficulty[difficulty - 1],
+                additionalAttackMaxCountByDifficulty[difficulty - 1] + 1
+            );
+
+        //place reinforcements
+        int reinforcementsCount = 0;
+
+        while (reinforcementsCount < reinforcementsRequired)
+        {
+            int reinforcementIndex = random.Next(0, emptyNodes.Count);
+            Node newReinforcement = emptyNodes[reinforcementIndex];
+            newReinforcement.SetNodeType(NodeTypes.Instance.BonusNode(BonusTypes.Instance.Reinforcement));
+            positiveNodes.Add(newReinforcement);
+            emptyNodes.Remove(newReinforcement);
+            reinforcementsCount++;
+        }
+
+        //place dividers
+        int dividersCount = 0;
+
+        while (dividersCount < dividersRequired)
+        {
+            int dividerIndex = random.Next(0, emptyNodes.Count);
+            Node newDivider = emptyNodes[dividerIndex];
+            newDivider.SetNodeType(NodeTypes.Instance.BonusNode(BonusTypes.Instance.Divider));
+            positiveNodes.Add(newDivider);
+            emptyNodes.Remove(newDivider);
+            dividersCount++;
+        }
+
+        Debug.Log($"Placed {dividersCount} dividers");
     }
 
-    void UpdateBonusRanges()
+    public void UpdateBonusRanges()
     {
         foreach(Node n in nodes)
         {
             int minDist = 5;
             foreach(Node p in positiveNodes)
             {
-                minDist = Mathf.Min(minDist, CalculateDistance(n.GetCoords(), p.GetCoords()));
+                if (!p.IsVisited())
+                    minDist = Mathf.Min(minDist, CalculateDistance(n, p));
             }
             n.SetNearestBonusRange(minDist);
         }
     }
 
+    public void RemoveNodeFromLists(Node node)
+    {
+        negativeNodes.Remove(node);
+        positiveNodes.Remove(node);
+    }
+
     void SelectStartNode()
     {
-        int startIndex;
-        while (true)
+        Node startNode = positiveNodes[0]; //центральный узел
+
+        List<Node> visited = new();
+        Dictionary<Node, int> nodes = new();
+        Queue<Node> queue = new();
+
+        queue.Enqueue(startNode);
+
+        while (queue.Count > 0)
         {
-            startIndex = random.Next(0, emptyNodes.Count);
+            Node current = queue.Dequeue();
 
-            if (emptyNodes[startIndex].GetNodeType() != null) continue;
-
-            emptyNodes[startIndex].StartVisit();
-            break;
+            foreach (Node n in current.GetNeighbours())
+            {
+                if (!visited.Contains(n))
+                {
+                    visited.Add(n);
+                    queue.Enqueue(n);
+                    if (emptyNodes.Contains(n))
+                        nodes.Add(n, CalculateDistance(startNode, n));
+                }
+            }
         }
-        
+
+        var sortedNodes = nodes.OrderByDescending(pair => pair.Value).ToList();
+
+        int sum = 0;
+        foreach (var n in sortedNodes)
+        {
+            sum += n.Value;
+        }
+
+        int choice = random.Next(0, sum);
+        sum = 0;
+        foreach (var n in sortedNodes)
+        {
+            sum += n.Value;
+            if (sum > choice)
+            {
+                n.Key.StartVisit();
+                break;
+            }
+        }
     }
 
     void UpdateNodes()
@@ -394,10 +522,10 @@ public class GridController : MonoBehaviour
         UpdateNodes();
     }
 
-    public void MakeStep()
+    public void MakeStepPre()
     {
         List<Node> repairTargets = negativeNodes.FindAll(x => x.IsActive());
-        foreach(Node repair in repairNodes)
+        foreach (Node repair in repairNodes)
         {
             if (!repair.IsActive()) continue;
             if (repairTargets.Count == 1 && repair == repairTargets[0]) continue;
@@ -406,7 +534,9 @@ public class GridController : MonoBehaviour
 
             target.Repair(repair.GetValue1());
         }
-
+    }
+    public void MakeStepPost()
+    {
         VirusController.Instance.RecalculateAttack();
     }
 

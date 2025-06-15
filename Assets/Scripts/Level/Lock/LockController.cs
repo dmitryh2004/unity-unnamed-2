@@ -12,6 +12,7 @@ public class LockController : Interactable
     MeshRenderer screenRenderer;
     Rigidbody rb;
     [SerializeField] TMP_Text difficultyText;
+    [SerializeField] List<LockController> linkedLocks = new();
     [SerializeField] List<Lockable> lockables = new();
 
     private void Start()
@@ -36,10 +37,30 @@ public class LockController : Interactable
         }
     }
 
-    public void IncreaseDifficulty(int diff)
+    public void SetDifficulty(int diff, bool updateLinked = true)
+    {
+        difficulty = diff;
+        StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
+        if (updateLinked)
+        {
+            foreach (LockController linked in linkedLocks)
+            {
+                if (linked.IsActive()) linked.SetDifficulty(diff, updateLinked: false);
+            }
+        }
+    }
+
+    public void IncreaseDifficulty(int diff, bool updateLinked = true)
     {
         difficulty += diff;
         StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
+        if (updateLinked)
+        {
+            foreach (LockController linked in linkedLocks)
+            {
+                if (linked.IsActive()) linked.IncreaseDifficulty(diff, updateLinked: false);
+            }
+        }
     }
 
     IEnumerator ChangeDifficultyOnScreenCoroutine(int diff)
@@ -80,11 +101,15 @@ public class LockController : Interactable
         }
     }
 
-    public void DisableLock()
+    public void DisableLock(bool updateLinked = true)
     {
         active = false;
         rb.useGravity = true;
         UpdateDifficultyScreen();
+        foreach (LockController linked in linkedLocks)
+        {
+            if (linked.IsActive()) linked.DisableLock(updateLinked: false);
+        }
         foreach (Lockable l in lockables)
         {
             l.UpdateLocked();

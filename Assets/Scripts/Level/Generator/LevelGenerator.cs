@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] GameObject exitRoomPrefab;
     [SerializeField] List<GameObject> roomPrefabs = new();
     List<RoomObject> extensionCandidates = new();
-    List<RoomObject> generatedRooms = new();
+    Dictionary<Vector3, RoomObject> generatedRooms = new();
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour
     void Generate()
     {
         extensionCandidates.RemoveAll(x => true);
+        generatedRooms.Clear();
         PlaceRooms();
         CreateCoridors();
         UpdateRoomDoors();
@@ -33,7 +34,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject exitRoomGO = Instantiate(exitRoomPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), transform);
         RoomObject exitRoom = exitRoomGO.GetComponent<RoomObject>();
 
-        generatedRooms.Add(exitRoom);
+        generatedRooms.Add(Vector3.zero, exitRoom);
         extensionCandidates.Add(exitRoom);
 
         while (roomsCreated < roomsRequired)
@@ -85,13 +86,14 @@ public class LevelGenerator : MonoBehaviour
                     extended.SetNeighbour((int)direction, createdRoomObject);
                     createdRoomObject.SetNeighbour((int)DirectionsController.GetOppositeDirection((Directions)direction), extended);
 
-                    generatedRooms.Add(createdRoomObject);
+                    generatedRooms.Add(center, createdRoomObject);
                     extensionCandidates.Add(createdRoomObject);
+
+                    UpdateNeighbours();
+                    roomsCreated++;
                 }
                 
             }
-
-            roomsCreated++;
             UpdateCandidates();
 
             if (extensionCandidates.Count == 0) break;
@@ -100,6 +102,10 @@ public class LevelGenerator : MonoBehaviour
 
     private bool IsEnoughSpace(Vector3 center, RoomScriptable type)
     {
+        foreach (RoomObject room in generatedRooms.Values)
+        {
+            if (room.IsPointOccupied(center)) return false;
+        }
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < 2; j++)
@@ -111,7 +117,7 @@ public class LevelGenerator : MonoBehaviour
                             center.y + j * type.height,
                             center.z - type.width / 2 + k * type.width
                         );
-                    foreach (RoomObject room in generatedRooms)
+                    foreach (RoomObject room in generatedRooms.Values)
                     {
                         if (room.IsPointOccupied(coords)) return false;
                     }
@@ -123,7 +129,49 @@ public class LevelGenerator : MonoBehaviour
 
     private void UpdateNeighbours()
     {
+        foreach (RoomObject room in generatedRooms.Values)
+        {
+            //add links to neighbours of room
+            for (int i = 0; i < 4; i++)
+            {
+                if (room.CanHaveNeighbour(i))
+                {
+                    RoomObject neighbour = room.GetNeighbour(i);
+                    if (neighbour != null)
+                    {
+                        int index = (i + 2) % 4;
+                        if (neighbour.CanHaveNeighbour(index) && neighbour.GetNeighbour(index) != room)
+                        {
+                            neighbour.SetNeighbour(index, room);
+                        }
+                    }
+                }
+            }
 
+            // find new neighbours
+            Vector3 center = room.GetCenter();
+            RoomObject northNeighbour, westNeighbour, southNeighbour, eastNeighbour;
+            if (!room.HasNeighbour(0) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0,0,1) + room.GetRoomType().northHeightOffset * Vector3.up, out northNeighbour))
+            {
+                if (room.CanHaveNeighbour(0) && northNeighbour.CanHaveNeighbour(2))
+                    room.SetNeighbour(Directions.north, northNeighbour);
+            }
+            if (!room.HasNeighbour(1) && generatedRooms.TryGetValue(center + gridStep * new Vector3(-1, 0, 0) + room.GetRoomType().westHeightOffset * Vector3.up, out westNeighbour))
+            {
+                if (room.CanHaveNeighbour(1) && westNeighbour.CanHaveNeighbour(3))
+                    room.SetNeighbour(Directions.west, westNeighbour);
+            }
+            if (!room.HasNeighbour(2) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0, 0, -1) + room.GetRoomType().southHeightOffset * Vector3.up, out southNeighbour))
+            {
+                if (room.CanHaveNeighbour(2) && southNeighbour.CanHaveNeighbour(0))
+                    room.SetNeighbour(Directions.south, southNeighbour);
+            }
+            if (!room.HasNeighbour(3) && generatedRooms.TryGetValue(center + gridStep * new Vector3(1, 0, 0) + room.GetRoomType().eastHeightOffset * Vector3.up, out eastNeighbour))
+            {
+                if (room.CanHaveNeighbour(3) && eastNeighbour.CanHaveNeighbour(1))
+                    room.SetNeighbour(Directions.east, eastNeighbour);
+            }
+        }
     }
 
     private void UpdateCandidates()
@@ -147,7 +195,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void UpdateRoomDoors()
     {
-        foreach (RoomObject room in generatedRooms)
+        foreach (RoomObject room in generatedRooms.Values)
         {
             room.UpdateDoors();
         }

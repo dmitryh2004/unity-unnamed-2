@@ -28,6 +28,7 @@ public class RoomObject : MonoBehaviour
     RoomObject[] neighbours = new RoomObject[4];
     [SerializeField] GameObject northDoor, westDoor, southDoor, eastDoor;
 
+    bool[] possibleDirections = new bool[4];
     GameObject[] doors = new GameObject[4];
     GameObject[] doorWalls = new GameObject[4];
 
@@ -44,6 +45,11 @@ public class RoomObject : MonoBehaviour
         dirs.Add(southDoor);
         dirs.Add(eastDoor);
 
+        possibleDirections[0] = roomType.north;
+        possibleDirections[1] = roomType.west;
+        possibleDirections[2] = roomType.south;
+        possibleDirections[3] = roomType.east;
+
         for (int i = 0; i < 4; i++)
         {
             doors[i] = dirs[i].transform.GetChild(0).gameObject;
@@ -56,12 +62,24 @@ public class RoomObject : MonoBehaviour
         return transform.position;
     }
 
+    public RoomObject GetNeighbour(int i)
+    {
+        if (i < 0 || i > 3) return null;
+        return neighbours[i];
+    }
+
+    public bool CanHaveNeighbour(int dir)
+    {
+        if (dir < 0 || dir > 3) return false;
+        return possibleDirections[dir];
+    }
+
     public Directions? SelectRandomUnusedDirection()
     {
         if (GetNeighboursCount() >= GetRoomType().maxNeighbours) return null;
         System.Random random = new System.Random();
         int index = random.Next(0, 4);
-        while (neighbours[index] != null)
+        while (neighbours[index] != null || !possibleDirections[index])
         {
             index++;
             if (index == 4) index = 0;

@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c758b58871c5f4cac1df7d8a8d8489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsMin: 10
+  roomsMin: 2
   roomsMax: 15
   gridStep: 9
   exitRoomPrefab: {fileID: 6446649711032756406, guid: 3d6f767d172674d48b91c504c741431e, type: 3}
@@ -354,7 +354,7 @@ Transform:
   m_GameObject: {fileID: 1780391397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -225,6 +225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082150582}
+  - component: {fileID: 1082150583}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -247,6 +248,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1082150583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082150581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c758b58871c5f4cac1df7d8a8d8489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomsMin: 10
+  roomsMax: 15
+  gridStep: 9
+  exitRoomPrefab: {fileID: 6446649711032756406, guid: 3d6f767d172674d48b91c504c741431e, type: 3}
+  roomPrefabs:
+  - {fileID: 8992607179510816413, guid: ed00efbb442ee7641b1c7dc81c939322, type: 3}
+  coridorHorizontal: {fileID: 0}
+  coridorVertical: {fileID: 0}
 --- !u!1 &1780391397
 GameObject:
   m_ObjectHideFlags: 0

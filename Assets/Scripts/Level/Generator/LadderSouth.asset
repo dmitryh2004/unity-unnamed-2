@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
   m_Name: LadderSouth
   m_EditorClassIdentifier: 
-  id: 3
+  id: 7
   length: 5
   width: 3
   height: 6
@@ -24,6 +24,8 @@ MonoBehaviour:
   southHeightOffset: 3
   east: 0
   eastHeightOffset: 0
+  useInputDirection: 1
+  inputDirection: 0
   minNeighbours: 1
   maxNeighbours: 2
   hasDoors: 0

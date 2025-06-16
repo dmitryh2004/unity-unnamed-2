@@ -41,6 +41,11 @@ public class RoomEditor : Editor
         if (room.east)
             room.eastHeightOffset = EditorGUILayout.IntField("East Height Offset", room.eastHeightOffset);
 
+        EditorGUILayout.Space(10);
+        room.useInputDirection = EditorGUILayout.Toggle("Use input direction", room.useInputDirection);
+        if (room.useInputDirection)
+            room.inputDirection = (Directions)EditorGUILayout.EnumPopup("Input Direction", room.inputDirection);
+
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Spawn settings", EditorStyles.boldLabel);
         room.minNeighbours = EditorGUILayout.IntSlider("Min Neighbours", room.minNeighbours, 1, 4);

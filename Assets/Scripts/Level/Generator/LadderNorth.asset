@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
   m_Name: LadderNorth
   m_EditorClassIdentifier: 
-  id: 3
+  id: 5
   length: 5
   width: 3
   height: 6
@@ -24,5 +24,9 @@ MonoBehaviour:
   southHeightOffset: 0
   east: 0
   eastHeightOffset: 0
+  useInputDirection: 1
+  inputDirection: 2
   minNeighbours: 1
   maxNeighbours: 2
+  hasDoors: 0
+  canLockDoors: 0

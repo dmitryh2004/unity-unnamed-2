@@ -21,6 +21,10 @@ public class RoomScriptable : ScriptableObject
     public bool east;
     public int eastHeightOffset = 0;
 
+    [Space(10)]
+    public bool useInputDirection = false;
+    public Directions inputDirection;
+
     [Header("Spawn settings")]
     [Range(1, 4)] public int minNeighbours = 1;
     [Range(1, 4)] public int maxNeighbours = 4;

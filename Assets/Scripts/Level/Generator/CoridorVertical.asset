@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
   m_Name: CoridorVertical
   m_EditorClassIdentifier: 
-  id: 2
+  id: 4
   length: 5
   width: 3
   height: 3
@@ -26,3 +26,5 @@ MonoBehaviour:
   eastHeightOffset: 0
   minNeighbours: 1
   maxNeighbours: 2
+  hasDoors: 0
+  canLockDoors: 0

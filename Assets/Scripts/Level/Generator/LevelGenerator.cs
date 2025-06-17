@@ -190,7 +190,37 @@ public class LevelGenerator : MonoBehaviour
 
     private void CreateCoridors()
     {
-        
+        // generate coridors only on north and east directions for avoiding collisions
+        foreach (RoomObject room in generatedRooms.Values)
+        {
+            Vector3 roomCenter = room.GetCenter();
+            float offsetX = room.GetRoomType().length / 2f;
+            float offsetZ = room.GetRoomType().width / 2f;
+            RoomObject northNeighbour = room.GetNeighbour(0);
+            RoomObject eastNeighbour = room.GetNeighbour(3);
+            
+            //north direction
+            if (northNeighbour != null)
+            {
+                Vector3 curPos = roomCenter + new Vector3(0, room.GetRoomType().northHeightOffset, offsetZ + 0.5f);
+                while (!northNeighbour.IsPointOccupied(curPos))
+                {
+                    Instantiate(coridorVertical, curPos, Quaternion.Euler(0, 0, 0), transform);
+                    curPos += Vector3.forward;
+                }
+            }
+
+            //east direction
+            if (eastNeighbour != null)
+            {
+                Vector3 curPos = roomCenter + new Vector3(offsetX + 0.5f, room.GetRoomType().eastHeightOffset, 0);
+                while (!eastNeighbour.IsPointOccupied(curPos))
+                {
+                    Instantiate(coridorHorizontal, curPos, Quaternion.Euler(0, 0, 0), transform);
+                    curPos += Vector3.right;
+                }
+            }
+        }
     }
 
     private void UpdateRoomDoors()

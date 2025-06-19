@@ -32,4 +32,7 @@ public class RoomScriptable : ScriptableObject
     [Header("Doors settings")]
     public bool hasDoors;
     public bool canLockDoors;
+    public int lockChance = 100;
+    public int lockStartDifficultyMin = 1;
+    public int lockStartDifficultyMax = 3;
 }

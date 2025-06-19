@@ -194,8 +194,8 @@ public class LevelGenerator : MonoBehaviour
         foreach (RoomObject room in generatedRooms.Values)
         {
             Vector3 roomCenter = room.GetCenter();
-            float offsetX = room.GetRoomType().length / 2f;
-            float offsetZ = room.GetRoomType().width / 2f;
+            float offsetX = room.GetRoomType().width / 2f;
+            float offsetZ = room.GetRoomType().length / 2f;
             RoomObject northNeighbour = room.GetNeighbour(0);
             RoomObject eastNeighbour = room.GetNeighbour(3);
             
@@ -203,6 +203,7 @@ public class LevelGenerator : MonoBehaviour
             if (northNeighbour != null)
             {
                 Vector3 curPos = roomCenter + new Vector3(0, room.GetRoomType().northHeightOffset, offsetZ + 0.5f);
+                Debug.Log($"{room.gameObject.name} - generating coridors to north at {curPos}");
                 while (!northNeighbour.IsPointOccupied(curPos))
                 {
                     Instantiate(coridorVertical, curPos, Quaternion.Euler(0, 0, 0), transform);
@@ -214,6 +215,7 @@ public class LevelGenerator : MonoBehaviour
             if (eastNeighbour != null)
             {
                 Vector3 curPos = roomCenter + new Vector3(offsetX + 0.5f, room.GetRoomType().eastHeightOffset, 0);
+                Debug.Log($"{room.gameObject.name} - generating coridors to east at {curPos}");
                 while (!eastNeighbour.IsPointOccupied(curPos))
                 {
                     Instantiate(coridorHorizontal, curPos, Quaternion.Euler(0, 0, 0), transform);

@@ -11,9 +11,9 @@ public class RoomEditor : Editor
 
         // Рисуем стандартные поля
         room.id = EditorGUILayout.IntField("Id", room.id);
-        room.length = EditorGUILayout.IntField("Length", room.length);
-        room.width = EditorGUILayout.IntField("Width", room.width);
-        room.height = EditorGUILayout.IntField("Height", room.height);
+        room.length = EditorGUILayout.IntField("Length (Z)", room.length);
+        room.width = EditorGUILayout.IntField("Width (X)", room.width);
+        room.height = EditorGUILayout.IntField("Height (Y)", room.height);
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Spawn directions", EditorStyles.boldLabel);
@@ -55,6 +55,15 @@ public class RoomEditor : Editor
         EditorGUILayout.LabelField("Doors settings", EditorStyles.boldLabel);
         room.hasDoors = EditorGUILayout.Toggle("Has doors", room.hasDoors);
         room.canLockDoors = EditorGUILayout.Toggle("Can lock the doors", room.canLockDoors);
+        if (room.canLockDoors)
+        {
+            room.lockChance = EditorGUILayout.IntSlider("Lock chance (%)", room.lockChance, 0, 100);
+
+            EditorGUILayout.Space();
+            EditorGUILayout.LabelField("Start difficulty", EditorStyles.miniBoldLabel);
+            room.lockStartDifficultyMin = EditorGUILayout.IntSlider("Min", room.lockStartDifficultyMin, 1, room.lockStartDifficultyMax);
+            room.lockStartDifficultyMax = EditorGUILayout.IntSlider("Max", room.lockStartDifficultyMax, room.lockStartDifficultyMin, 10);
+        }
 
         // Сохраняем изменения
         if (GUI.changed)

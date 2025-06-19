@@ -20,6 +20,11 @@ public abstract class Lockable : Interactable
         return locked;
     }
 
+    public LockController GetLocker()
+    {
+        return locker;
+    }
+
     public void UpdateLocked()
     {
         if (locker == null)

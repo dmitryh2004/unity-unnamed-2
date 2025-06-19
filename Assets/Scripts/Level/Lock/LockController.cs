@@ -15,12 +15,15 @@ public class LockController : Interactable
     [SerializeField] List<LockController> linkedLocks = new();
     [SerializeField] List<Lockable> lockables = new();
 
-    private void Start()
+    private void Awake()
     {
         difficulty = startDifficulty;
         rb = GetComponent<Rigidbody>();
         screenRenderer = screen.GetComponent<MeshRenderer>();
         screenRenderer.material = new Material(screenRenderer.material);
+    }
+    private void Start()
+    {
         UpdateDifficultyScreen();
     }
 
@@ -101,18 +104,38 @@ public class LockController : Interactable
         }
     }
 
-    public void DisableLock(bool updateLinked = true)
+    public void DisableLock(bool updateLinked = true, bool updateScreen = true)
     {
         active = false;
-        rb.useGravity = true;
-        UpdateDifficultyScreen();
-        foreach (LockController linked in linkedLocks)
+        if (rb != null)
+            rb.useGravity = true;
+        if (updateScreen)
+            UpdateDifficultyScreen();
+        if (updateLinked)
         {
-            if (linked.IsActive()) linked.DisableLock(updateLinked: false);
+            foreach (LockController linked in linkedLocks)
+            {
+                if (linked.IsActive()) linked.DisableLock(updateLinked: false, updateScreen: updateScreen);
+            }
         }
         foreach (Lockable l in lockables)
         {
             l.UpdateLocked();
         }
+    }
+
+    public void RemoveLock(bool updateLinked = true)
+    {
+        DisableLock(updateLinked: updateLinked, updateScreen: false);
+
+        if (updateLinked)
+        {
+            foreach (LockController linked in linkedLocks)
+            {
+                Destroy(linked.gameObject);
+            }
+        }
+
+        Destroy(gameObject);
     }
 }

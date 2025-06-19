@@ -28,6 +28,8 @@ public class RoomObject : MonoBehaviour
     RoomObject[] neighbours = new RoomObject[4];
     [SerializeField] GameObject northDoor, westDoor, southDoor, eastDoor;
 
+    System.Random random = new System.Random();
+
     bool[] possibleDirections = new bool[4];
     GameObject[] doors = new GameObject[4];
     GameObject[] doorWalls = new GameObject[4];
@@ -83,7 +85,6 @@ public class RoomObject : MonoBehaviour
     public Directions? SelectRandomUnusedDirection()
     {
         if (GetNeighboursCount() >= roomType.maxNeighbours) return null;
-        System.Random random = new System.Random();
         int index = random.Next(0, 4);
         while (neighbours[index] != null || !possibleDirections[index])
         {
@@ -97,7 +98,7 @@ public class RoomObject : MonoBehaviour
     {
         bool x = false, y = false, z = false;
         Vector3 center = GetCenter();
-        x = (Mathf.Abs(point.x - center.x) < roomType.length / 2f);
+        x = (Mathf.Abs(point.x - center.x) < roomType.width / 2f);
         y = ((point.y - center.y >= 0) && (point.y - center.y < roomType.height));
         z = (Mathf.Abs(point.z - center.z) < roomType.length / 2f);
 
@@ -149,8 +150,50 @@ public class RoomObject : MonoBehaviour
                     bool active = HasNeighbour(i);
                     doors[i].SetActive(active);
                     doorWalls[i].SetActive(!active);
+
+                    if (active)
+                    {
+                        if (roomType.canLockDoors) // если в комнате могут быть запертые двери
+                        {
+                            int chance = random.Next(1, 101); // берем рандомное число [1; 100]
+                            if (chance > roomType.lockChance) // если оно больше заданного в настройках процента
+                            {
+                                // убираем замок
+                                RemoveLockFromDoor(i);
+                            }
+                            else // иначе
+                            {
+                                // задаем рандомную сложность замку в пределах заданной в настройках
+                                SetRandomStartDifficultyForDoor(i);
+                            }
+                        }
+                        else // если в комнате не может быть запертых дверей
+                        {
+                            // убираем замок
+                            RemoveLockFromDoor(i);
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    void SetRandomStartDifficultyForDoor(int direction)
+    {
+        DoorManager door;
+        if (doors[direction].TryGetComponent(out door))
+        {
+            int difficulty = random.Next(roomType.lockStartDifficultyMin, roomType.lockStartDifficultyMax + 1);
+            door.GetDoorController().GetLocker().SetDifficulty(difficulty);
+        }
+    }
+
+    void RemoveLockFromDoor(int direction)
+    {
+        DoorManager door;
+        if (doors[direction].TryGetComponent(out door))
+        {
+            door.GetDoorController().GetLocker().RemoveLock();
         }
     }
 }

@@ -24,7 +24,12 @@ MonoBehaviour:
   southHeightOffset: 0
   east: 1
   eastHeightOffset: 0
+  useInputDirection: 0
+  inputDirection: 0
   minNeighbours: 1
   maxNeighbours: 4
   hasDoors: 1
   canLockDoors: 1
+  lockChance: 50
+  lockStartDifficultyMin: 1
+  lockStartDifficultyMax: 3

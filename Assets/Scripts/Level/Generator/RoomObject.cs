@@ -39,21 +39,27 @@ public class RoomObject : MonoBehaviour
         neighbours[2] = null;
         neighbours[3] = null;
 
-        List<GameObject> dirs = new();
-        dirs.Add(northDoor);
-        dirs.Add(westDoor);
-        dirs.Add(southDoor);
-        dirs.Add(eastDoor);
-
         possibleDirections[0] = roomType.north;
         possibleDirections[1] = roomType.west;
         possibleDirections[2] = roomType.south;
         possibleDirections[3] = roomType.east;
 
-        for (int i = 0; i < 4; i++)
+        if (roomType.hasDoors)
         {
-            doors[i] = dirs[i].transform.GetChild(0).gameObject;
-            doorWalls[i] = dirs[i].transform.GetChild(1).gameObject;
+            List<GameObject> dirs = new();
+            dirs.Add(northDoor);
+            dirs.Add(westDoor);
+            dirs.Add(southDoor);
+            dirs.Add(eastDoor);
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (dirs[i] != null)
+                {
+                    doors[i] = dirs[i].transform.GetChild(0).gameObject;
+                    doorWalls[i] = dirs[i].transform.GetChild(1).gameObject;
+                }
+            }
         }
     }
 
@@ -76,7 +82,7 @@ public class RoomObject : MonoBehaviour
 
     public Directions? SelectRandomUnusedDirection()
     {
-        if (GetNeighboursCount() >= GetRoomType().maxNeighbours) return null;
+        if (GetNeighboursCount() >= roomType.maxNeighbours) return null;
         System.Random random = new System.Random();
         int index = random.Next(0, 4);
         while (neighbours[index] != null || !possibleDirections[index])
@@ -134,11 +140,17 @@ public class RoomObject : MonoBehaviour
 
     public void UpdateDoors()
     {
-        for (int i = 0; i < 4; i++)
+        if (roomType.hasDoors)
         {
-            bool active = HasNeighbour(i);
-            doors[i].SetActive(active);
-            doorWalls[i].SetActive(!active);
+            for (int i = 0; i < 4; i++)
+            {
+                if (possibleDirections[i])
+                {
+                    bool active = HasNeighbour(i);
+                    doors[i].SetActive(active);
+                    doorWalls[i].SetActive(!active);
+                }
+            }
         }
     }
 }

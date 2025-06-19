@@ -452,6 +452,7 @@ public class GridController : MonoBehaviour
     {
         foreach(Node n in nodes)
         {
+            if (n.IsVisited()) continue;
             int minDist = 5;
             foreach(Node p in positiveNodes)
             {
@@ -568,7 +569,7 @@ public class GridController : MonoBehaviour
         foreach (Node antivirus in antivirusNodes)
         {
             if (!antivirus.IsActive()) continue;
-            VirusController.Instance.TakeDamage(antivirus.GetValue1());
+            VirusController.Instance.TakeDamage(antivirus.GetValue1(), ignoreEncryption: true);
         }
     }
     public void MakeStepPost()

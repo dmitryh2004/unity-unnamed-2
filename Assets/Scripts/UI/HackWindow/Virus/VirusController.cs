@@ -37,14 +37,14 @@ public class VirusController : MonoBehaviour
         UpdateBars();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, bool ignoreEncryption = false)
     {
         bool useAEBonus = false;
         Bonus additionalEncryptionBonus = null;
         for (int i = 1; i < 4; i++)
         {
             additionalEncryptionBonus = BonusController.Instance.GetBonus(i);
-            if (additionalEncryptionBonus != null)
+            if (additionalEncryptionBonus != null && !ignoreEncryption)
             {
                 if (additionalEncryptionBonus is AdditionalEncryption ae)
                 {

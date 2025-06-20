@@ -174,22 +174,22 @@ public class LevelGenerator : MonoBehaviour
             RoomObject northNeighbour, westNeighbour, southNeighbour, eastNeighbour;
             if (!room.HasNeighbour(0) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0,0,1) + room.GetRoomType().northHeightOffset * Vector3.up, out northNeighbour))
             {
-                if (room.CanHaveNeighbour(0) && northNeighbour.CanHaveNeighbour(2))
+                if (room.CanHaveNeighbour(0) && northNeighbour.CanHaveNeighbour(2) && !northNeighbour.HasNeighbour(2))
                     room.SetNeighbour(Directions.north, northNeighbour);
             }
             if (!room.HasNeighbour(1) && generatedRooms.TryGetValue(center + gridStep * new Vector3(-1, 0, 0) + room.GetRoomType().westHeightOffset * Vector3.up, out westNeighbour))
             {
-                if (room.CanHaveNeighbour(1) && westNeighbour.CanHaveNeighbour(3))
+                if (room.CanHaveNeighbour(1) && westNeighbour.CanHaveNeighbour(3) && !westNeighbour.HasNeighbour(3))
                     room.SetNeighbour(Directions.west, westNeighbour);
             }
             if (!room.HasNeighbour(2) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0, 0, -1) + room.GetRoomType().southHeightOffset * Vector3.up, out southNeighbour))
             {
-                if (room.CanHaveNeighbour(2) && southNeighbour.CanHaveNeighbour(0))
+                if (room.CanHaveNeighbour(2) && southNeighbour.CanHaveNeighbour(0) && !southNeighbour.HasNeighbour(0))
                     room.SetNeighbour(Directions.south, southNeighbour);
             }
             if (!room.HasNeighbour(3) && generatedRooms.TryGetValue(center + gridStep * new Vector3(1, 0, 0) + room.GetRoomType().eastHeightOffset * Vector3.up, out eastNeighbour))
             {
-                if (room.CanHaveNeighbour(3) && eastNeighbour.CanHaveNeighbour(1))
+                if (room.CanHaveNeighbour(3) && eastNeighbour.CanHaveNeighbour(1) && !eastNeighbour.HasNeighbour(1))
                     room.SetNeighbour(Directions.east, eastNeighbour);
             }
         }

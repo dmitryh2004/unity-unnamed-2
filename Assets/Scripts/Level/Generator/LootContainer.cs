@@ -7,7 +7,7 @@ public class Loot
 {
     [Header("Префаб предмета")]
     public GameObject prefab;
-    [Header("Вес выпадения для предмета")]
+    [Header("Вес лута в группе")]
     public int weight;
 
     [Space(10)]
@@ -18,10 +18,19 @@ public class Loot
     public int maxCount;
 }
 
+[Serializable]
+public class LootGroup
+{
+    [Header("Список лута в группе")]
+    public List<Loot> possibleLoot;
+    [Header("Вес группы лута")]
+    public int weight;
+}
+
 public class LootContainer : MonoBehaviour
 {
     System.Random random = new();
-    [SerializeField] List<Loot> possibleLoot = new();
+    [SerializeField] List<LootGroup> possibleLoot = new();
     [Range(0, 100)][SerializeField] int lootChance = 0;
     [SerializeField] Transform lootPointsParent;
     List<Transform> lootPoints = new();
@@ -53,6 +62,7 @@ public class LootContainer : MonoBehaviour
             int chance = random.Next(1, 101);
             if (chance < lootChance)
             {
+                // выбираем группу лута
                 int sum = 0;
                 for (int i = 0; i < possibleLoot.Count; i++)
                 {
@@ -61,13 +71,34 @@ public class LootContainer : MonoBehaviour
                 int choice = random.Next(0, sum);
 
                 sum = 0;
-                Loot lootEntry = null;
+                LootGroup lootGroup = null;
                 for (int i = 0; i < possibleLoot.Count; i++)
                 {
                     sum += possibleLoot[i].weight;
                     if (sum >= choice)
                     {
-                        lootEntry = possibleLoot[random.Next(0, possibleLoot.Count)];
+                        lootGroup = possibleLoot[i];
+                        break;
+                    }
+                }
+
+                // выбираем лут из группы
+                sum = 0;
+                for (int i = 0; i < lootGroup.possibleLoot.Count; i++)
+                {
+                    sum += lootGroup.possibleLoot[i].weight;
+                }
+
+                choice = random.Next(0, sum);
+
+                sum = 0;
+                Loot lootEntry = null;
+                for (int i = 0; i < lootGroup.possibleLoot.Count; i++)
+                {
+                    sum += lootGroup.possibleLoot[i].weight;
+                    if (sum >= choice)
+                    {
+                        lootEntry = lootGroup.possibleLoot[i];
                         break;
                     }
                 }

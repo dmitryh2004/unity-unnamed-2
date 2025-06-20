@@ -374,10 +374,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleLoot:
-  - prefab: {fileID: 3556230184912787856, guid: ad5cc761ede6d52479e596701f47a76f, type: 3}
+  - possibleLoot:
+    - prefab: {fileID: 2936288412950636818, guid: d9236204168f548459eb0b36c82fb5d9, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 3240339648953676579, guid: 3bf2a8da5fefe17459fb95a39f4cef77, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 202529332237238910, guid: e0e986f67dc573f4485655eab142d2e5, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 7058251095457327862, guid: ba95d951963c6e54580bf5a0fbb90a64, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 4619236124192150497, guid: 229d5c15ed33e3340afc8d2a733c6ea5, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
     weight: 1
-    minCount: 1
-    maxCount: 1
+  - possibleLoot:
+    - prefab: {fileID: 2161695717644652126, guid: 3488c379b065d9544a9ed01fd921bab9, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 3556230184912787856, guid: ab06e3c171ecf3443a70aa9af8a15e6c, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8745994612479495791, guid: 5edaff1ff551d304485837bf1a449e17, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 3556230184912787856, guid: 26e6fc2a24b7527488012f996a5a17d4, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: 3cdc7a84e4b614e47863e6e676c29a51, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: 3cdc7a84e4b614e47863e6e676c29a51, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: 3cdc7a84e4b614e47863e6e676c29a51, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    weight: 9
+  - possibleLoot:
+    - prefab: {fileID: 3556230184912787856, guid: ad5cc761ede6d52479e596701f47a76f, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    weight: 90
   lootChance: 50
   lootPointsParent: {fileID: 7286287043406820782}
   maxLootPointsUsed: 4

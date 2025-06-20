@@ -37,7 +37,7 @@ public class LevelGenerator : MonoBehaviour
         generatedRooms.Clear();
         PlaceRooms();
         CreateCoridors();
-        UpdateRoomDoors();
+        RoomPostGenerate();
         BakeNavMesh();
     }
 
@@ -87,6 +87,10 @@ public class LevelGenerator : MonoBehaviour
                     if (type.useInputDirection)
                     {
                         res = res && type.inputDirection == DirectionsController.GetOppositeDirection((Directions)direction);
+                    }
+                    if (extensionCandidates.Count == 1)
+                    {
+                        res = res && (type.maxNeighbours > 1);
                     }
                     return res;
                 });
@@ -242,11 +246,12 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void UpdateRoomDoors()
+    private void RoomPostGenerate()
     {
         foreach (RoomObject room in generatedRooms.Values)
         {
             room.UpdateDoors();
+            room.SpawnLoot();
         }
     }
 

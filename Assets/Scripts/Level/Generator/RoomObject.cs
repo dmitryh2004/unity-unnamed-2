@@ -34,6 +34,9 @@ public class RoomObject : MonoBehaviour
     GameObject[] doors = new GameObject[4];
     GameObject[] doorWalls = new GameObject[4];
 
+    [SerializeField] List<LootContainer> lootContainers = new();
+    [SerializeField] int lootChance = 100;
+
     private void Awake()
     {
         neighbours[0] = null;
@@ -194,6 +197,22 @@ public class RoomObject : MonoBehaviour
         if (doors[direction].TryGetComponent(out door))
         {
             door.GetDoorController().GetLocker().RemoveLock();
+        }
+    }
+
+    public void SpawnLoot()
+    {
+        foreach (LootContainer lc in lootContainers)
+        {
+            int chance = random.Next(1, 101);
+            if (chance < lootChance)
+            {
+                lc.SpawnLoot();
+            }
+            else
+            {
+                lc.HideLootContainer();
+            }
         }
     }
 }

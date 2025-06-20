@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
-  m_Name: Room
+  m_Name: SecuredRoom
   m_EditorClassIdentifier: 
   id: 2
   length: 5
@@ -28,9 +28,9 @@ MonoBehaviour:
   useInputDirection: 0
   inputDirection: 0
   minNeighbours: 1
-  maxNeighbours: 4
+  maxNeighbours: 1
   hasDoors: 1
   canLockDoors: 1
-  lockChance: 25
-  lockStartDifficultyMin: 1
-  lockStartDifficultyMax: 3
+  lockChance: 100
+  lockStartDifficultyMin: 7
+  lockStartDifficultyMax: 8

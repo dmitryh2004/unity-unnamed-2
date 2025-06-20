@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -8,13 +9,25 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] int roomsMin, roomsMax;
     [SerializeField] int gridStep = 9;
     [SerializeField] GameObject exitRoomPrefab;
-    [SerializeField] List<GameObject> roomPrefabs = new();
+    [SerializeField] List<GameObject> possibleRoomPrefabs = new();
+    [SerializeField] List<int> possibleRoomPrefabsWeights = new();
+
+    List<GameObject> roomPrefabs = new(); 
     List<RoomObject> extensionCandidates = new();
     Dictionary<Vector3, RoomObject> generatedRooms = new();
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (possibleRoomPrefabs.Count != possibleRoomPrefabsWeights.Count) return;
+
+        for (int i = 0; i < possibleRoomPrefabs.Count; i++)
+        {
+            for (int j = 0; j < possibleRoomPrefabsWeights[i]; j++)
+            {
+                roomPrefabs.Add(possibleRoomPrefabs[i]);
+            }
+        }
         Generate();
     }
 
@@ -25,6 +38,7 @@ public class LevelGenerator : MonoBehaviour
         PlaceRooms();
         CreateCoridors();
         UpdateRoomDoors();
+        BakeNavMesh();
     }
 
     private void PlaceRooms()
@@ -80,6 +94,11 @@ public class LevelGenerator : MonoBehaviour
                 if (matching.Count > 0)
                 {
                     GameObject selectedPrefab = matching[random.Next(0, matching.Count)];
+                    
+                    // calculate object height (Y) offset
+                    RoomScriptable type = selectedPrefab.GetComponent<RoomObject>().GetRoomType();
+                    center += Vector3.up * type.spawnHeightOffset;
+
                     GameObject createdRoom = Instantiate(selectedPrefab, center, Quaternion.Euler(0, 0, 0), transform);
                     RoomObject createdRoomObject = createdRoom.GetComponent<RoomObject>();
 
@@ -102,20 +121,18 @@ public class LevelGenerator : MonoBehaviour
 
     private bool IsEnoughSpace(Vector3 center, RoomScriptable type)
     {
-        foreach (RoomObject room in generatedRooms.Values)
+        int sizeX = type.width, sizeY = type.height, sizeZ = type.length;
+        int heightOffset = type.spawnHeightOffset;
+        for (int i = 0; i < sizeX; i++)
         {
-            if (room.IsPointOccupied(center)) return false;
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < sizeY; j++)
             {
-                for (int k = 0; k < 2; k++)
+                for (int k = 0; k < sizeZ; k++)
                 {
                     Vector3 coords = new Vector3(
-                            center.x - type.length / 2 + i * type.length,
-                            center.y + j * type.height,
-                            center.z - type.width / 2 + k * type.width
+                            center.x - sizeX / 2f + i,
+                            center.y + heightOffset + j,
+                            center.z - sizeZ / 2f + k
                         );
                     foreach (RoomObject room in generatedRooms.Values)
                     {
@@ -231,5 +248,11 @@ public class LevelGenerator : MonoBehaviour
         {
             room.UpdateDoors();
         }
+    }
+
+    private void BakeNavMesh()
+    {
+        NavMeshSurface surface = GetComponent<NavMeshSurface>();
+        surface.BuildNavMesh();
     }
 }

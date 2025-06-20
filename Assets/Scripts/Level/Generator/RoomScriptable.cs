@@ -8,6 +8,9 @@ public class RoomScriptable : ScriptableObject
     public int width;
     public int height;
 
+    [Space(10)]
+    public int spawnHeightOffset = 0;
+
     [Header("Spawn directions")]
     public bool north;
     public int northHeightOffset = 0;

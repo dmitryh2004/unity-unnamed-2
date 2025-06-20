@@ -16,6 +16,9 @@ public class RoomEditor : Editor
         room.height = EditorGUILayout.IntField("Height (Y)", room.height);
 
         EditorGUILayout.Space();
+        room.spawnHeightOffset = EditorGUILayout.IntField("Spawn Y offset", room.spawnHeightOffset);
+
+        EditorGUILayout.Space();
         EditorGUILayout.LabelField("Spawn directions", EditorStyles.boldLabel);
 
         // North

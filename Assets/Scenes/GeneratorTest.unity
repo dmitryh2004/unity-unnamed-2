@@ -3553,6 +3553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082150582}
   - component: {fileID: 1082150583}
+  - component: {fileID: 1082150584}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -3587,19 +3588,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c758b58871c5f4cac1df7d8a8d8489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsMin: 10
-  roomsMax: 20
+  roomsMin: 15
+  roomsMax: 30
   gridStep: 9
   exitRoomPrefab: {fileID: 6446649711032756406, guid: 3d6f767d172674d48b91c504c741431e, type: 3}
-  roomPrefabs:
+  possibleRoomPrefabs:
   - {fileID: 8992607179510816413, guid: ed00efbb442ee7641b1c7dc81c939322, type: 3}
   - {fileID: 8460495880427986251, guid: a2483b310aa2a3842856555a67824850, type: 3}
+  - {fileID: 5267749462926616136, guid: 588d901144e67db499d388c025284d50, type: 3}
+  - {fileID: 5267749462926616136, guid: b88fd07306734ae429cb87452e29b4c7, type: 3}
+  - {fileID: 5267749462926616136, guid: 402850d7081394e45ae19adaa0632859, type: 3}
+  - {fileID: 5267749462926616136, guid: 1aeebfbf3f6fd4d4aa35090e0dba7a1d, type: 3}
+  - {fileID: 5267749462926616136, guid: d1b24ddb904f7d84383a94e8f872029c, type: 3}
   - {fileID: 5267749462926616136, guid: 609277153f8a741419e4c8d046f6ed5e, type: 3}
   - {fileID: 5267749462926616136, guid: 517c5b7583f7cd04780d708523b03c16, type: 3}
   - {fileID: 5267749462926616136, guid: 583074ef40b36ff4f93efae9c9253ded, type: 3}
-  - {fileID: 5267749462926616136, guid: d1b24ddb904f7d84383a94e8f872029c, type: 3}
+  possibleRoomPrefabsWeights: 02000000040000000100000001000000010000000100000001000000010000000100000001000000
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
+--- !u!114 &1082150584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082150581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 136
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.11000001
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1 &1394200130
 GameObject:
   m_ObjectHideFlags: 0

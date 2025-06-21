@@ -67,6 +67,7 @@ public class InventorySystem : MonoBehaviour
             return false;
 
         float newVolume = GetOccupiedVolume() + lootCategory.volume;
+        Debug.Log($"volume: current - {GetOccupiedVolume()}, diff - {lootCategory.volume}, new - {newVolume} (max = {maxVolume})");
         return newVolume <= maxVolume;
     }
 

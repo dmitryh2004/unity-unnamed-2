@@ -290,14 +290,34 @@ public class GridController : MonoBehaviour
 
     void PlaceNodes(int difficulty)
     {
+        List<KeyValuePair<Node, int>> nodesWithNeighbourWeight = new();
         foreach (Node n in nodes)
         {
             emptyNodes.Add(n);
+            nodesWithNeighbourWeight.Add(new(n, 7 - n.GetNeighbours().Count));
         }
 
         // stage 1: place central core
-        int centralCoreIndex = random.Next(0, emptyNodes.Count);
-        Node centralCore = emptyNodes[centralCoreIndex]; 
+        int sum = 0;
+        for (int i = 0; i < nodesWithNeighbourWeight.Count; i++)
+        {
+            sum += nodesWithNeighbourWeight[i].Value;
+        }
+
+        int centralCoreIndex = random.Next(0, sum);
+        Node centralCore = null;
+        sum = 0;
+
+        for (int i = 0; i < nodesWithNeighbourWeight.Count; i++)
+        {
+            sum += nodesWithNeighbourWeight[i].Value;
+            if (sum > centralCoreIndex)
+            {
+                centralCore = nodesWithNeighbourWeight[i].Key;
+                break;
+            }
+        }
+
         centralCore.SetNodeType(NodeTypes.Instance.CentralCore);
         positiveNodes.Add(centralCore);
         emptyNodes.Remove(centralCore);
@@ -490,7 +510,7 @@ public class GridController : MonoBehaviour
                     visited.Add(n);
                     queue.Enqueue(n);
                     if (emptyNodes.Contains(n))
-                        nodes.Add(n, CalculateDistance(startNode, n));
+                        nodes.Add(n, (int) Mathf.Pow(CalculateDistance(startNode, n), 2));
                 }
             }
         }

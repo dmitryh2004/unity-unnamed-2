@@ -71,6 +71,11 @@ public class RoomEditor : Editor
             room.lockStartDifficultyMax = EditorGUILayout.IntSlider("Max", room.lockStartDifficultyMax, room.lockStartDifficultyMin, 10);
         }
 
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Statistics", EditorStyles.boldLabel);
+        room.isProtectedRoom = EditorGUILayout.Toggle("Is Protected Room", room.isProtectedRoom);
+        room.isSecuredRoom = EditorGUILayout.Toggle("Is Secured Room", room.isSecuredRoom);
+
         // Сохраняем изменения
         if (GUI.changed)
         {

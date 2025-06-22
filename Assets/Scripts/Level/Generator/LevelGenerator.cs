@@ -22,6 +22,14 @@ public class LevelGenerator : MonoBehaviour
     List<KeyValuePair<RoomObject, int>> extensionCandidates = new();
     Dictionary<Vector3, RoomObject> generatedRooms = new();
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
+
+    int generatedLootSum = 0;
+    int protectedRoomsCount = 0;
+    int securedRoomsCount = 0;
+
+    public int GetGeneratedLootSum() => generatedLootSum;
+    public int GetProtectedRoomsCount() => protectedRoomsCount;
+    public int GetSecuredRoomsCount() => securedRoomsCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -126,6 +134,9 @@ public class LevelGenerator : MonoBehaviour
                     
                     // calculate object height (Y) offset
                     RoomScriptable type = selectedPrefab.GetComponent<RoomObject>().GetRoomType();
+
+                    if (type.isProtectedRoom) protectedRoomsCount++;
+                    if (type.isSecuredRoom) securedRoomsCount++;
                     center += Vector3.up * type.spawnHeightOffset;
 
                     GameObject createdRoom = Instantiate(selectedPrefab, center, Quaternion.Euler(0, 0, 0), transform);
@@ -201,21 +212,29 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (room.CanHaveNeighbour(0) && northNeighbour.CanHaveNeighbour(2) && !northNeighbour.HasNeighbour(2))
                     room.SetNeighbour(Directions.north, northNeighbour);
+                else
+                    room.SetNeighbour(Directions.north, null);
             }
             if (!room.HasNeighbour(1) && generatedRooms.TryGetValue(center + gridStep * new Vector3(-1, 0, 0) + room.GetRoomType().westHeightOffset * Vector3.up, out westNeighbour))
             {
                 if (room.CanHaveNeighbour(1) && westNeighbour.CanHaveNeighbour(3) && !westNeighbour.HasNeighbour(3))
                     room.SetNeighbour(Directions.west, westNeighbour);
+                else
+                    room.SetNeighbour(Directions.west, null);
             }
             if (!room.HasNeighbour(2) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0, 0, -1) + room.GetRoomType().southHeightOffset * Vector3.up, out southNeighbour))
             {
                 if (room.CanHaveNeighbour(2) && southNeighbour.CanHaveNeighbour(0) && !southNeighbour.HasNeighbour(0))
                     room.SetNeighbour(Directions.south, southNeighbour);
+                else
+                    room.SetNeighbour(Directions.south, null);
             }
             if (!room.HasNeighbour(3) && generatedRooms.TryGetValue(center + gridStep * new Vector3(1, 0, 0) + room.GetRoomType().eastHeightOffset * Vector3.up, out eastNeighbour))
             {
                 if (room.CanHaveNeighbour(3) && eastNeighbour.CanHaveNeighbour(1) && !eastNeighbour.HasNeighbour(1))
                     room.SetNeighbour(Directions.east, eastNeighbour);
+                else
+                    room.SetNeighbour(Directions.east, null);
             }
         }
     }
@@ -276,11 +295,16 @@ public class LevelGenerator : MonoBehaviour
 
     private void RoomPostGenerate()
     {
+        int lootSum = 0;
         foreach (RoomObject room in generatedRooms.Values)
         {
             room.UpdateDoors();
-            room.SpawnLoot();
+            lootSum += room.SpawnLoot();
         }
+
+        generatedLootSum = lootSum;
+
+        Debug.Log($"Generated loot with total cost = {generatedLootSum}");
     }
 
     private void BakeNavMesh()

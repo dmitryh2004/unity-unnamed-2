@@ -24,12 +24,14 @@ public abstract class Bonus : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void StartTargeting()
     {
-        animator.SetBool("target", true);
+        if (animator != null)
+            animator.SetBool("target", true);
     }
 
     public void StopTargeting()
     {
-        animator.SetBool("target", false);
+        if (animator != null)
+            animator.SetBool("target", false);
     }
 
     public abstract void Use();

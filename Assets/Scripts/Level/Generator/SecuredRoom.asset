@@ -16,6 +16,7 @@ MonoBehaviour:
   length: 5
   width: 5
   height: 3
+  extensionPriority: 1
   spawnHeightOffset: 0
   north: 1
   northHeightOffset: 0
@@ -34,3 +35,5 @@ MonoBehaviour:
   lockChance: 100
   lockStartDifficultyMin: 7
   lockStartDifficultyMax: 8
+  isProtectedRoom: 0
+  isSecuredRoom: 1

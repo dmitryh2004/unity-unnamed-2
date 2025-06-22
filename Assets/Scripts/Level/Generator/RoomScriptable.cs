@@ -40,4 +40,8 @@ public class RoomScriptable : ScriptableObject
     public int lockChance = 100;
     public int lockStartDifficultyMin = 1;
     public int lockStartDifficultyMax = 3;
+
+    [Header("Statistics")]
+    public bool isProtectedRoom = false;
+    public bool isSecuredRoom = false;
 }

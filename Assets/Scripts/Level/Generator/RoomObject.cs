@@ -82,6 +82,7 @@ public class RoomObject : MonoBehaviour
     public bool CanHaveNeighbour(int dir)
     {
         if (dir < 0 || dir > 3) return false;
+        if (GetNeighboursCount() >= roomType.maxNeighbours) return false;
         return possibleDirections[dir];
     }
 
@@ -200,19 +201,22 @@ public class RoomObject : MonoBehaviour
         }
     }
 
-    public void SpawnLoot()
+    public int SpawnLoot()
     {
+        int sum = 0;
         foreach (LootContainer lc in lootContainers)
         {
             int chance = random.Next(1, 101);
             if (chance < lootChance)
             {
-                lc.SpawnLoot();
+                sum += lc.SpawnLoot();
             }
             else
             {
                 lc.HideLootContainer();
             }
         }
+
+        return sum;
     }
 }

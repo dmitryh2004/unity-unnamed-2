@@ -53,8 +53,9 @@ public class LootContainer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SpawnLoot()
+    public int SpawnLoot()
     {
+        int lootSum = 0;
         int lootPointsUsed = 0;
         foreach (Transform lootPoint in lootPoints)
         {
@@ -104,6 +105,8 @@ public class LootContainer : MonoBehaviour
                 }
                 
                 int lootCount = random.Next(lootEntry.minCount, lootEntry.maxCount + 1);
+                int lootPrice = lootEntry.prefab.GetComponent<LootableItem>().GetLootCategory().cost;
+                lootSum += lootPrice * lootCount;
 
                 for (int i = 0; i < lootCount; i++)
                 {
@@ -113,5 +116,7 @@ public class LootContainer : MonoBehaviour
                 lootPointsUsed++;
             }
         }
+
+        return lootSum;
     }
 }

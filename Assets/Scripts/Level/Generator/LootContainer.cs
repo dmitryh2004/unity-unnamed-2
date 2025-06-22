@@ -69,7 +69,7 @@ public class LootContainer : MonoBehaviour
                 {
                     sum += possibleLoot[i].weight;
                 }
-                int choice = random.Next(0, sum);
+                int choice = random.Next(0, sum + 1);
 
                 sum = 0;
                 LootGroup lootGroup = null;
@@ -90,7 +90,7 @@ public class LootContainer : MonoBehaviour
                     sum += lootGroup.possibleLoot[i].weight;
                 }
 
-                choice = random.Next(0, sum);
+                choice = random.Next(0, sum + 1);
 
                 sum = 0;
                 Loot lootEntry = null;

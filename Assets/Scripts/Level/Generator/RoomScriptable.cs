@@ -8,6 +8,8 @@ public class RoomScriptable : ScriptableObject
     public int width;
     public int height;
 
+    public int extensionPriority = 1;
+
     [Space(10)]
     public int spawnHeightOffset = 0;
 

@@ -1,8 +1,14 @@
-using System;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 
+public class KVPComparer : IComparer<KeyValuePair<RoomObject, int>>
+{
+    public int Compare(KeyValuePair<RoomObject, int> x, KeyValuePair<RoomObject, int> y)
+    {
+        return x.Value - y.Value;
+    }
+}
 public class LevelGenerator : MonoBehaviour
 {
     System.Random random = new System.Random();
@@ -13,7 +19,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] List<int> possibleRoomPrefabsWeights = new();
 
     List<GameObject> roomPrefabs = new(); 
-    List<RoomObject> extensionCandidates = new();
+    List<KeyValuePair<RoomObject, int>> extensionCandidates = new();
     Dictionary<Vector3, RoomObject> generatedRooms = new();
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,11 +55,30 @@ public class LevelGenerator : MonoBehaviour
         RoomObject exitRoom = exitRoomGO.GetComponent<RoomObject>();
 
         generatedRooms.Add(Vector3.zero, exitRoom);
-        extensionCandidates.Add(exitRoom);
+        extensionCandidates.Add(new KeyValuePair<RoomObject, int>(exitRoom, 1));
 
         while (roomsCreated < roomsRequired)
         {
-            RoomObject extended = extensionCandidates[random.Next(0, extensionCandidates.Count)];
+            int sum = 0;
+            foreach(var kvp in extensionCandidates)
+            {
+                sum += kvp.Value;
+            }
+
+            int index = random.Next(0, sum);
+            RoomObject extended = null;
+            sum = 0;
+
+            for (int i = 0; i < extensionCandidates.Count; i++)
+            {
+                sum += extensionCandidates[i].Value;
+                if (sum > index)
+                {
+                    extended = extensionCandidates[i].Key;
+                    break;
+                }
+            }
+            
             RoomScriptable extendedType = extended.GetRoomType();
             Directions? direction = extended.SelectRandomUnusedDirection();
             if (direction != null)
@@ -110,7 +135,7 @@ public class LevelGenerator : MonoBehaviour
                     createdRoomObject.SetNeighbour((int)DirectionsController.GetOppositeDirection((Directions)direction), extended);
 
                     generatedRooms.Add(center, createdRoomObject);
-                    extensionCandidates.Add(createdRoomObject);
+                    extensionCandidates.Add(new KeyValuePair<RoomObject, int>(createdRoomObject, createdRoomObject.GetRoomType().extensionPriority));
 
                     UpdateNeighbours();
                     roomsCreated++;
@@ -161,7 +186,7 @@ public class LevelGenerator : MonoBehaviour
                     if (neighbour != null)
                     {
                         int index = (i + 2) % 4;
-                        if (neighbour.CanHaveNeighbour(index) && neighbour.GetNeighbour(index) != room)
+                        if (neighbour.CanHaveNeighbour(index) && neighbour.GetNeighbour(index) == null)
                         {
                             neighbour.SetNeighbour(index, room);
                         }
@@ -198,15 +223,18 @@ public class LevelGenerator : MonoBehaviour
     private void UpdateCandidates()
     {
         List<RoomObject> removalList = new();
-        foreach(RoomObject room in extensionCandidates)
+        foreach(KeyValuePair<RoomObject, int> kvp in extensionCandidates)
         {
+            RoomObject room = kvp.Key;
             if (room.GetNeighboursCount() == room.GetRoomType().maxNeighbours) removalList.Add(room);
         }
 
         foreach(RoomObject removed in removalList)
         {
-            extensionCandidates.Remove(removed);
+            extensionCandidates.RemoveAll(x => x.Key == removed);
         }
+
+        extensionCandidates.Sort(new KVPComparer());
     }
 
     private void CreateCoridors()

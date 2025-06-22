@@ -16,6 +16,9 @@ public class RoomEditor : Editor
         room.height = EditorGUILayout.IntField("Height (Y)", room.height);
 
         EditorGUILayout.Space();
+        room.extensionPriority = EditorGUILayout.IntField("Extension priority", room.extensionPriority);
+
+        EditorGUILayout.Space();
         room.spawnHeightOffset = EditorGUILayout.IntField("Spawn Y offset", room.spawnHeightOffset);
 
         EditorGUILayout.Space();

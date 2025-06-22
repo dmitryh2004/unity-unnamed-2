@@ -4569,6 +4569,10 @@ PrefabInstance:
       propertyPath: minDifficulty
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6084792885437450984, guid: c866a5282ddaf8d4a8934e681f330ed4, type: 3}
+      propertyPath: lootChance
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8127493034462831669, guid: c866a5282ddaf8d4a8934e681f330ed4, type: 3}
       propertyPath: m_Name
       value: safe
@@ -5306,6 +5310,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: lootChance
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: maxLootPointsUsed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: possibleLoot.Array.data[2].weight
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5657,6 +5673,10 @@ PrefabInstance:
       propertyPath: minDifficulty
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6084792885437450984, guid: c866a5282ddaf8d4a8934e681f330ed4, type: 3}
+      propertyPath: lootChance
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8127493034462831669, guid: c866a5282ddaf8d4a8934e681f330ed4, type: 3}
       propertyPath: m_Name
       value: safe (1)
@@ -5773,6 +5793,18 @@ PrefabInstance:
     - target: {fileID: 1000301262968039582, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: lootChance
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: maxLootPointsUsed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019622900879074110, guid: 974c645a7959fc046af8bb2a9211933d, type: 3}
+      propertyPath: possibleLoot.Array.data[2].weight
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

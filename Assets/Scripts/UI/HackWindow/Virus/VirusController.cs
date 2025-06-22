@@ -7,6 +7,7 @@ public class VirusController : MonoBehaviour
     public static VirusController Instance;
     int currentHP;
     int currentAttack;
+    bool alive = true;
 
     float hpRatio, attackRatio;
     const int maxHP = 150, maxAttack = 45;
@@ -34,6 +35,7 @@ public class VirusController : MonoBehaviour
     {
         currentHP = hpByLevel[level - 1];
         currentAttack = attackByLevel[level - 1];
+        alive = true;
         UpdateBars();
     }
 
@@ -67,7 +69,7 @@ public class VirusController : MonoBehaviour
             currentHP -= damage;
             if (currentHP <= 0) currentHP = 0;
             UpdateBars();
-            if (currentHP == 0) HackWindowController.Instance.FailLock();
+            if (currentHP == 0 && alive) { alive = false; HackWindowController.Instance.FailLock(); }
         }
     }
 

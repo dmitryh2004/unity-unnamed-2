@@ -165,14 +165,71 @@ PrefabInstance:
       propertyPath: m_Name
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+      propertyPath: m_TagString
+      value: AlarmLamp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8274394987540148720}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2528182021362827368}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8502706573293416924}
   m_SourcePrefab: {fileID: 100100000, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+--- !u!23 &83610783502449285 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -1579986286732962241, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+  m_PrefabInstance: {fileID: 7726990894330883258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7492477498526536171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}
+  m_PrefabInstance: {fileID: 7726990894330883258}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2528182021362827368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7492477498526536171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7716ac55db6fb4143a97e63b7f513150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSource: {fileID: 815096081926622853}
+  animator: {fileID: 8502706573293416924}
+  meshRenderer: {fileID: 83610783502449285}
+--- !u!95 &8502706573293416924
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7492477498526536171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 206735f88b0bc0545b7182cd14c1c3ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &7832164621685902161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 63243921051ad4b41bb1e0e48c26c818, type: 3}

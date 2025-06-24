@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class AlarmLightController : MonoBehaviour
 {
-    [SerializeField] Light lightSource;
+    [SerializeField] Light pointLightSource;
+	[SerializeField] Light spotLightSource;
     [SerializeField] Animator animator;
     [SerializeField] MeshRenderer meshRenderer;
     Material material;
@@ -22,7 +23,8 @@ public class AlarmLightController : MonoBehaviour
     void UpdateAnimator()
     {
         animator.SetBool("enabled", lightEnabled);
-        lightSource.gameObject.SetActive(lightEnabled);
+        pointLightSource.gameObject.SetActive(lightEnabled);
+		spotLightSource.gameObject.SetActive(lightEnabled);
         if (lightEnabled)
         {
             material.EnableKeyword("_EMISSION");

@@ -35,6 +35,9 @@ public class LootContainer : MonoBehaviour
     [SerializeField] Transform lootPointsParent;
     List<Transform> lootPoints = new();
     [Tooltip("Max loot points used.\n-1 = no limitations.")][SerializeField] int maxLootPointsUsed = -1;
+    [SerializeField] bool hideIfNoLoot = true;
+
+    public bool HideIfNoLoot() => hideIfNoLoot; 
 
     private void Awake()
     {

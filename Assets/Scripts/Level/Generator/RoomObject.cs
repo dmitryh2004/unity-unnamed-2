@@ -213,7 +213,8 @@ public class RoomObject : MonoBehaviour
             }
             else
             {
-                lc.HideLootContainer();
+                if (lc.HideIfNoLoot())
+                    lc.HideLootContainer();
             }
         }
 

@@ -308,6 +308,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8899525687806672527}
     m_Modifications:
     - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
+      propertyPath: raiseAlarmOnFail
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
       propertyPath: lockables.Array.size
       value: 1
       objectReference: {fileID: 0}

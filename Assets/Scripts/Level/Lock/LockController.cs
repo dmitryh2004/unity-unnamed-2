@@ -14,6 +14,10 @@ public class LockController : Interactable
     [SerializeField] TMP_Text difficultyText;
     [SerializeField] List<LockController> linkedLocks = new();
     [SerializeField] List<Lockable> lockables = new();
+    [Space(10)]
+    [Header("Alarm Raiser")]
+    [SerializeField] bool raiseAlarmOnFail = false;
+    [SerializeField] int raiseAlarmMinDifficulty = 11;
 
     private void Awake()
     {
@@ -40,9 +44,25 @@ public class LockController : Interactable
         }
     }
 
+    void CheckForAlarm()
+    {
+        if (AlarmController.Instance == null) return;
+        if (raiseAlarmOnFail)
+        {
+            if (difficulty >= raiseAlarmMinDifficulty)
+            {
+                if (AlarmController.Instance.GetAlarmState() == false)
+                {
+                    AlarmController.Instance.StartAlarm();
+                }
+            }
+        }
+    }
+
     public void SetDifficulty(int diff, bool updateLinked = true)
     {
         difficulty = diff;
+        CheckForAlarm();
         StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
         if (updateLinked)
         {
@@ -56,6 +76,7 @@ public class LockController : Interactable
     public void IncreaseDifficulty(int diff, bool updateLinked = true)
     {
         difficulty += diff;
+        CheckForAlarm();
         StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
         if (updateLinked)
         {

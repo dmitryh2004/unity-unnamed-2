@@ -7,6 +7,7 @@ public class AlarmController : MonoBehaviour
     public static AlarmController Instance = null;
     [SerializeField] AudioSource alarmSoundSource;
     List<AlarmLightController> alarmLights = new();
+    bool alarmed = false;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class AlarmController : MonoBehaviour
         Instance = this;
         alarmLights = new List<AlarmLightController>(FindObjectsByType<AlarmLightController>(FindObjectsSortMode.None));
 
-        StartCoroutine(TestCoroutine());
+        //StartCoroutine(TestCoroutine());
     }
 
     private IEnumerator TestCoroutine()
@@ -27,8 +28,14 @@ public class AlarmController : MonoBehaviour
         StartAlarm();
     }
 
+    public bool GetAlarmState()
+    {
+        return alarmed;
+    }
+
     public void StartAlarm()
     {
+        alarmed = true;
         foreach (AlarmLightController alarmLightController in alarmLights)
         {
             alarmLightController.ChangeState(true);

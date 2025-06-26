@@ -64,7 +64,7 @@ public class LootContainer : MonoBehaviour
         {
             if (lootPointsUsed == maxLootPointsUsed) break;
             int chance = random.Next(1, 101);
-            if (chance < lootChance)
+            if (chance <= lootChance)
             {
                 // выбираем группу лута
                 int sum = 0;

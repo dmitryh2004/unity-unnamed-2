@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: table
       objectReference: {fileID: 0}
+    - target: {fileID: 2328714282844667542, guid: 30abbfe78e2d8d643a19aaf9b017ba93, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3105955291916002348, guid: 30abbfe78e2d8d643a19aaf9b017ba93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3716,7 +3720,10 @@ MonoBehaviour:
   - {fileID: 5267749462926616136, guid: 583074ef40b36ff4f93efae9c9253ded, type: 3}
   - {fileID: 8992607179510816413, guid: 0608ab5c1addbad4db9eddbac5c11374, type: 3}
   - {fileID: 8992607179510816413, guid: 06cb7ebc9f69e34469fd9dae6205b32b, type: 3}
-  possibleRoomPrefabsWeights: 020000000600000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  - {fileID: 8992607179510816413, guid: 28b77d19b1fabe84ab0ac9e22c79988a, type: 3}
+  - {fileID: 8992607179510816413, guid: 470ae33b5dfcea04c9d2e44502dbdab4, type: 3}
+  - {fileID: 8992607179510816413, guid: f27afa6d18c96804fa1318565c96cb66, type: 3}
+  possibleRoomPrefabsWeights: 020000000600000001000000010000000100000001000000010000000100000001000000010000000100000001000000020000000100000001000000
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
 --- !u!114 &1082150584

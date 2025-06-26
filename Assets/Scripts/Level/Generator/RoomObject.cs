@@ -207,7 +207,7 @@ public class RoomObject : MonoBehaviour
         foreach (LootContainer lc in lootContainers)
         {
             int chance = random.Next(1, 101);
-            if (chance < lootChance)
+            if (chance <= lootChance)
             {
                 sum += lc.SpawnLoot();
             }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LockController : Interactable
 {
@@ -11,9 +12,18 @@ public class LockController : Interactable
     [SerializeField] GameObject screen;
     MeshRenderer screenRenderer;
     Rigidbody rb;
+
+    [Space(10)]
+    [Header("UI")]
     [SerializeField] TMP_Text difficultyText;
+    [SerializeField] Image alarmSign;
+    [SerializeField] TMP_Text alarmMinDifficultyText;
+
+    [Space(10)]
+    [Header("Links")]
     [SerializeField] List<LockController> linkedLocks = new();
     [SerializeField] List<Lockable> lockables = new();
+
     [Space(10)]
     [Header("Alarm Raiser")]
     [SerializeField] bool raiseAlarmOnFail = false;
@@ -110,16 +120,31 @@ public class LockController : Interactable
         if (!active) return;
 
         if (IsHackable()) 
-        { 
+        {
+            Color difficultyColor = new Color(Mathf.Clamp01(-0.25f + difficulty * 0.25f), Mathf.Clamp01(2.5f - difficulty * 0.25f), 0f);
+
             difficultyText.text = $"C: {difficulty}";
-            difficultyText.color = new Color(Mathf.Clamp01(-0.25f + difficulty * 0.25f), Mathf.Clamp01(2.5f - difficulty * 0.25f), 0f);
+            difficultyText.color = difficultyColor;
+
+            alarmSign.gameObject.SetActive(raiseAlarmOnFail);
+            alarmSign.color = difficultyColor;
+
+            int ramd = raiseAlarmMinDifficulty - 1;
+            if (ramd < difficulty) ramd = difficulty;
+
+            alarmMinDifficultyText.gameObject.SetActive(raiseAlarmOnFail);
+            alarmMinDifficultyText.text = $"{ramd}";
+            alarmMinDifficultyText.color = difficultyColor;
         }
         else
         {
             difficultyText.text = $"Locked";
             difficultyText.color = new Color(1f, 0f, 0f);
 
-            Debug.Log(screenRenderer.material.color);
+            alarmMinDifficultyText.gameObject.SetActive(false);
+
+            alarmSign.gameObject.SetActive(false);
+            
             screenRenderer.material.color = new Color(.5f, 0f, 0f);
             screenRenderer.material.SetColor("_EmissionColor", new Color(.25f, 0f, 0f));
         }

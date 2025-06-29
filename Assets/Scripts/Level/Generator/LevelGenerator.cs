@@ -14,7 +14,16 @@ public class LevelGenerator : MonoBehaviour
     System.Random random = new System.Random();
     [SerializeField] int roomsMin, roomsMax;
     [SerializeField] int gridStep = 9;
+    [Space(10)]
+    [Header("Exit room")]
+    [SerializeField] bool generateExitRoom = true;
     [SerializeField] GameObject exitRoomPrefab;
+    [Space(10)]
+    [Header("Preplaced rooms")]
+    [SerializeField] bool usePreplacedRooms = false;
+    [SerializeField] List<RoomObject> preplacedRooms = new();
+    [Space(10)]
+    [Header("Possible rooms")]
     [SerializeField] List<GameObject> possibleRoomPrefabs = new();
     [SerializeField] List<int> possibleRoomPrefabsWeights = new();
 
@@ -58,12 +67,29 @@ public class LevelGenerator : MonoBehaviour
     private void PlaceRooms()
     {
         int roomsRequired = random.Next(roomsMin, roomsMax + 1);
-        int roomsCreated = 1;
-        GameObject exitRoomGO = Instantiate(exitRoomPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), transform);
-        RoomObject exitRoom = exitRoomGO.GetComponent<RoomObject>();
+        int roomsCreated = 0;
 
-        generatedRooms.Add(Vector3.zero, exitRoom);
-        extensionCandidates.Add(new KeyValuePair<RoomObject, int>(exitRoom, 1));
+        if (generateExitRoom)
+        {
+            GameObject exitRoomGO = Instantiate(exitRoomPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0), transform);
+            RoomObject exitRoom = exitRoomGO.GetComponent<RoomObject>();
+
+            generatedRooms.Add(Vector3.zero, exitRoom);
+            extensionCandidates.Add(new KeyValuePair<RoomObject, int>(exitRoom, 1));
+
+            roomsCreated++;
+        }
+        if (usePreplacedRooms)
+        {
+            foreach (RoomObject room in preplacedRooms)
+            {
+                generatedRooms.Add(room.transform.position, room);
+                extensionCandidates.Add(new KeyValuePair<RoomObject, int>(room, room.GetRoomType().extensionPriority));
+            }
+
+            UpdateNeighbours();
+            UpdateCandidates();
+        }
 
         while (roomsCreated < roomsRequired)
         {
@@ -257,7 +283,9 @@ public class LevelGenerator : MonoBehaviour
         foreach(KeyValuePair<RoomObject, int> kvp in extensionCandidates)
         {
             RoomObject room = kvp.Key;
-            if (room.GetNeighboursCount() == room.GetRoomType().maxNeighbours) removalList.Add(room);
+            bool remove = room.DontExtend(); // проверка условий непродления этой комнаты
+            remove = remove || (room.GetNeighboursCount() == room.GetRoomType().maxNeighbours);
+            if (remove) removalList.Add(room);
         }
 
         foreach(RoomObject removed in removalList)

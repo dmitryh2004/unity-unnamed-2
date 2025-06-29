@@ -25,6 +25,7 @@ public static class DirectionsController
 public class RoomObject : MonoBehaviour
 {
     [SerializeField] RoomScriptable roomType;
+    [SerializeField] bool dontExtend = false;
     RoomObject[] neighbours = new RoomObject[4];
     [SerializeField] GameObject northDoor, westDoor, southDoor, eastDoor;
 
@@ -120,6 +121,7 @@ public class RoomObject : MonoBehaviour
     }
 
     public RoomScriptable GetRoomType() => roomType;
+    public bool DontExtend() => dontExtend;
 
     public bool HasNeighbour(int direction)
     {

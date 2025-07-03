@@ -26,7 +26,7 @@ public class StartStatsController : MonoBehaviour
         int maxCost = (totalCost / precision + 1) * precision;
 
         titleText = "Краткая сводка";
-        estimatedCostText = $"Примерная стоимость вещей: {minCost} - {maxCost}";
+        estimatedCostText = $"Примерная стоимость вещей:\n{NumberFormatter.FormatNumberWithGrouping(minCost)} - {NumberFormatter.FormatNumberWithGrouping(maxCost)}";
 
         int protectedRooms = generator.GetProtectedRoomsCount();
         int securedRooms = generator.GetSecuredRoomsCount();

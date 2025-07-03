@@ -29,7 +29,8 @@ public class GuardianController : MonoBehaviour
     [Header("Common Settings")]
     [SerializeField] float speed = 2f;
     [SerializeField] float runningSpeed = 6f;
-    [SerializeField] float spotDistance = 10f;
+    [SerializeField] float xraySpotDistance = 1f;
+    [SerializeField] float maxSpotDistance = 10f;
     [SerializeField] float fov = 60f;
     [SerializeField] float phaseUpdateInterval = .5f;
 
@@ -50,7 +51,9 @@ public class GuardianController : MonoBehaviour
     {
         Vector3 direction = point.position - eye.position;
         //Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
-        if (direction.magnitude > spotDistance) return false;
+        if (direction.magnitude < xraySpotDistance) return true;
+
+        if (direction.magnitude > maxSpotDistance) return false;
 
         Vector3 facingDirection = eye.forward;
         //Debug.Log($"face: {facingDirection}");
@@ -60,7 +63,7 @@ public class GuardianController : MonoBehaviour
         if (dot < Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
 
         RaycastHit hit;
-        if (Physics.Raycast(eye.position, direction, out hit, spotDistance))
+        if (Physics.Raycast(eye.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
         {
             if (hit.collider.transform == point) return true;
         }
@@ -69,12 +72,12 @@ public class GuardianController : MonoBehaviour
 
     private void Start()
     {
-        fovLight.range = spotDistance;
+        fovLight.range = maxSpotDistance;
         fovLight.spotAngle = fov * 2;
         SwitchPhase(1);
     }
 
-    public void SwitchPhase(int newPhase)
+    public void SwitchPhase(int newPhase, bool raiseAlarm = false)
     {
         phase = newPhase; //change phase
         switch (phase) //update npc
@@ -86,6 +89,7 @@ public class GuardianController : MonoBehaviour
             case 2:
                 agent.speed = runningSpeed;
 
+                if (raiseAlarm && !AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
                 agent.SetDestination(target.position);
                 break;
             case 3:
@@ -139,7 +143,7 @@ public class GuardianController : MonoBehaviour
             if (IsPointVisible(tracked))
             {
                 target = tracked;
-                SwitchPhase(2);
+                SwitchPhase(2, true);
                 break;
             }
         }
@@ -216,5 +220,17 @@ public class GuardianController : MonoBehaviour
         }
 
         CheckForTrackedObjects();
+    }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
+    public void CallGuardian(Transform target, Vector3 position)
+    {
+        SetTarget(target);
+        SwitchPhase(2);
+        agent.SetDestination(position);
     }
 }

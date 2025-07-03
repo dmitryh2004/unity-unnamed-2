@@ -40,7 +40,7 @@ public class LevelGenerator : MonoBehaviour
     public int GetProtectedRoomsCount() => protectedRoomsCount;
     public int GetSecuredRoomsCount() => securedRoomsCount;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         if (possibleRoomPrefabs.Count != possibleRoomPrefabsWeights.Count) return;
 
@@ -51,10 +51,9 @@ public class LevelGenerator : MonoBehaviour
                 roomPrefabs.Add(possibleRoomPrefabs[i]);
             }
         }
-        Generate();
     }
 
-    void Generate()
+    public void Generate()
     {
         extensionCandidates.RemoveAll(x => true);
         generatedRooms.Clear();

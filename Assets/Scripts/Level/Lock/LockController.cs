@@ -65,6 +65,7 @@ public class LockController : Interactable
                 {
                     AlarmController.Instance.StartAlarm();
                 }
+                GuardianManager.Instance.CallGuardians();
             }
         }
     }

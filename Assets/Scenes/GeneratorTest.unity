@@ -270,6 +270,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 966913749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &142284333 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1451614754896726903, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+  m_PrefabInstance: {fileID: 587828348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &188773895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3566,6 +3571,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 478765169}
     - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: 469c2d50-bb1a-4504-9ae3-3bcdf700eb5a
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: 'Gameplay/CheckFOV[/Mouse/rightButton]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
       propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -3596,14 +3613,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3001975501328665053, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253419797}
   m_SourcePrefab: {fileID: 100100000, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
 --- !u!114 &587828349 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9095680672409685429, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
   m_PrefabInstance: {fileID: 587828348}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1253419785}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -3833,10 +3853,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eye: {fileID: 126330628}
   agent: {fileID: 678139964}
+  trackedObjects: []
   speed: 2
   runningSpeed: 6
   spotDistance: 10
   fov: 60
+  checkPointsInterval: 0.5
   patrolPoints:
   - {fileID: 1039074656}
   - {fileID: 132762837}
@@ -3873,7 +3895,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7479945026821977042, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
   m_PrefabInstance: {fileID: 587828348}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1253419785}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db8c6481eed013d409fc43f88fffa944, type: 3}
@@ -4480,6 +4502,27 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!1 &1253419785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3001975501328665053, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+  m_PrefabInstance: {fileID: 587828348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1253419797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253419785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4397b5ea349047e4a84ba461cccff192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideables: []
+  playerCamera: {fileID: 142284333}
+  hiddenLayerName: HiddenFromCamera
+  hiddenTag: HiddenFromCamera
 --- !u!1 &1394200130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,7 +4643,7 @@ GameObject:
   - component: {fileID: 1484163929}
   m_Layer: 0
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: HiddenFromCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

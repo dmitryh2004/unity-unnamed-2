@@ -3852,6 +3852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eye: {fileID: 126330628}
+  fovLight: {fileID: 1484163929}
   agent: {fileID: 678139964}
   trackedObjects:
   - {fileID: 1253419798}
@@ -3862,11 +3863,10 @@ MonoBehaviour:
   phaseUpdateInterval: 0.5
   patrolPoints:
   - {fileID: 1039074656}
-  - {fileID: 132762837}
   - {fileID: 837039960}
-  - {fileID: 132762837}
   - {fileID: 347942479}
-  delayOnPoints: 1
+  enterPhase3OnPoints: 0
+  openClosedDoors: 1
   delay: 7.5
   turnAroundInterval: 2.5
 --- !u!195 &678139964
@@ -4073,7 +4073,7 @@ Transform:
   m_GameObject: {fileID: 736364030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1597644, y: 0.8959015, z: 0.17317334}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4683,7 +4683,7 @@ Light:
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 60
-  m_InnerSpotAngle: 6
+  m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0

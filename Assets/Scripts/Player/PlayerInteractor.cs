@@ -43,7 +43,8 @@ public class PlayerInteractor : MonoBehaviour
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
-            interactionLayer))
+            interactionLayer,
+            QueryTriggerInteraction.Ignore))
         {
             //Debug.Log($"player: found {hit.collider.gameObject.name}");
             if (hit.collider.TryGetComponent(out Interactable interactable))
@@ -69,7 +70,8 @@ public class PlayerInteractor : MonoBehaviour
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
-            interactionLayer))
+            interactionLayer,
+            QueryTriggerInteraction.Ignore))
         {
             //Debug.Log($"player: found {hit.collider.gameObject.name}");
             if (hit.collider.TryGetComponent(out Interactable interactable))

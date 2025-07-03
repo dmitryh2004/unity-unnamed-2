@@ -40,4 +40,20 @@ public class DoorController : Lockable
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"{gameObject.name}: {other.name} entered the trigger");
+        GuardianController gc;
+        if (other.TryGetComponent(out gc))
+        {
+            if (gc.CanOpenClosedDoors())
+            {
+                if (!IsLocked() && !IsOpen())
+                {
+                    Interact();
+                }
+            }
+        }
+    }
 }

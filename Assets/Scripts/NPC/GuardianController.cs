@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class GuardianController : MonoBehaviour
 {
+    System.Random random = new();
+
     int phase = 1;
     float phaseUpdateTimer = 0f;
 
@@ -14,8 +16,13 @@ public class GuardianController : MonoBehaviour
     //Phase 2
     Transform target = null;
 
+    //Phase 3
+    float phase3Timer = 0f;
+    float phase3TurnAroundTimer = 0f;
+
     [Header("Links")]
     [SerializeField] Transform eye;
+    [SerializeField] Light fovLight;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] List<Transform> trackedObjects = new();
 
@@ -28,22 +35,29 @@ public class GuardianController : MonoBehaviour
 
     [Header("Phase 1 Settings")]
     [SerializeField] List<Transform> patrolPoints = new();
-    [SerializeField] bool delayOnPoints = true;
+    [SerializeField] bool enterPhase3OnPoints = true;
+
+    [Header("Phase 2 Settings")]
+    [SerializeField] bool openClosedDoors = true;
+
+    [Header("Phase 3 Settings")]
     [SerializeField] float delay = 7.5f;
     [SerializeField] float turnAroundInterval = 2.5f;
+
+    public bool CanOpenClosedDoors() => openClosedDoors;
 
     public bool IsPointVisible(Transform point)
     {
         Vector3 direction = point.position - eye.position;
-        Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
+        //Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
         if (direction.magnitude > spotDistance) return false;
 
         Vector3 facingDirection = eye.forward;
-        Debug.Log($"face: {facingDirection}");
+        //Debug.Log($"face: {facingDirection}");
         float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
 
-        Debug.Log($"dot: {dot}");
-        if (dot > Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
+        //Debug.Log($"dot: {dot}");
+        if (dot < Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
 
         RaycastHit hit;
         if (Physics.Raycast(eye.position, direction, out hit, spotDistance))
@@ -55,6 +69,8 @@ public class GuardianController : MonoBehaviour
 
     private void Start()
     {
+        fovLight.range = spotDistance;
+        fovLight.spotAngle = fov * 2;
         SwitchPhase(1);
     }
 
@@ -65,10 +81,7 @@ public class GuardianController : MonoBehaviour
         {
             case 1:
                 agent.speed = speed;
-
-                agent.SetDestination(patrolPoints[0].position);
-                currentPoint = 0;
-                goForward = true;
+                SetNextWaypoint();
                 break;
             case 2:
                 agent.speed = runningSpeed;
@@ -77,6 +90,9 @@ public class GuardianController : MonoBehaviour
                 break;
             case 3:
                 agent.speed = speed;
+
+                phase3Timer = 0f;
+                phase3TurnAroundTimer = 0f;
                 break;
         }
     }
@@ -84,6 +100,11 @@ public class GuardianController : MonoBehaviour
     private void Update()
     {
         phaseUpdateTimer += Time.deltaTime;
+        if (phase == 3)
+        {
+            phase3Timer += Time.deltaTime;
+            phase3TurnAroundTimer += Time.deltaTime;
+        }
         if (phaseUpdateTimer >= phaseUpdateInterval)
         {
             phaseUpdateTimer = 0f;
@@ -95,6 +116,31 @@ public class GuardianController : MonoBehaviour
                 case 2:
                     Phase2Update();
                     break;
+                case 3:
+                    Phase3Update();
+                    break;
+            }
+        }
+    }
+
+    private void SetNextWaypoint()
+    {
+        currentPoint += ((goForward) ? 1 : -1);
+        if (currentPoint == 0 || currentPoint == patrolPoints.Count - 1) goForward = !goForward;
+
+        agent.SetDestination(patrolPoints[currentPoint].position);
+    }
+
+    private void CheckForTrackedObjects()
+    {
+        // check for tracked objects
+        foreach (var tracked in trackedObjects)
+        {
+            if (IsPointVisible(tracked))
+            {
+                target = tracked;
+                SwitchPhase(2);
+                break;
             }
         }
     }
@@ -106,10 +152,14 @@ public class GuardianController : MonoBehaviour
         {
             if (agent.remainingDistance < 0.5f)
             {
-                currentPoint += ((goForward) ? 1 : -1);
-                if (currentPoint == 0 || currentPoint == patrolPoints.Count - 1) goForward = !goForward;
-
-                agent.SetDestination(patrolPoints[currentPoint].position);
+                if (enterPhase3OnPoints)
+                {
+                    SwitchPhase(3);
+                }
+                else
+                {
+                    SetNextWaypoint();
+                }
             }
         }
         else
@@ -119,20 +169,7 @@ public class GuardianController : MonoBehaviour
             goForward = true;
         }
 
-        // check for tracked objects
-        foreach (var tracked in trackedObjects)
-        {
-            if (IsPointVisible(tracked))
-            {
-                target = tracked;
-                SwitchPhase(2);
-                break;
-            }
-            else
-            {
-                Debug.Log(gameObject.name + ": target " + tracked + " is not visible");
-            }
-        }
+        CheckForTrackedObjects();
     }
 
     private void Phase2Update()
@@ -142,9 +179,9 @@ public class GuardianController : MonoBehaviour
         // update npc movement
         if (agent.destination != null)
         {
-            if (agent.remainingDistance < 0.5f)
+            if (agent.remainingDistance < 0.5f) // if npc is near the dest point, switch phase to 3
             {
-                SwitchPhase(1);
+                SwitchPhase(3);
             }
         }
 
@@ -158,7 +195,26 @@ public class GuardianController : MonoBehaviour
         }
         else
         {
-            SwitchPhase(1);
+            SwitchPhase(3);
         }
+    }
+
+    private void Phase3Update()
+    {
+        if (phase3Timer >= delay) // exit to phase 1
+        {
+            SwitchPhase(1);
+            return;
+        }
+
+        // handle turnaround
+        if (phase3TurnAroundTimer >= turnAroundInterval)
+        {
+            phase3TurnAroundTimer = 0f;
+            float randomAngle = 4 * fov * (float)(random.NextDouble() - 0.5);
+            transform.Rotate(new Vector3(0f, randomAngle, 0f));
+        }
+
+        CheckForTrackedObjects();
     }
 }

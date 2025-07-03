@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 126330631}
   - component: {fileID: 126330630}
   - component: {fileID: 126330629}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GuardianEye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3853,12 +3853,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eye: {fileID: 126330628}
   agent: {fileID: 678139964}
-  trackedObjects: []
+  trackedObjects:
+  - {fileID: 1253419798}
   speed: 2
   runningSpeed: 6
   spotDistance: 10
   fov: 60
-  checkPointsInterval: 0.5
+  phaseUpdateInterval: 0.5
   patrolPoints:
   - {fileID: 1039074656}
   - {fileID: 132762837}
@@ -4523,6 +4524,11 @@ MonoBehaviour:
   playerCamera: {fileID: 142284333}
   hiddenLayerName: HiddenFromCamera
   hiddenTag: HiddenFromCamera
+--- !u!4 &1253419798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4262186092781986205, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+  m_PrefabInstance: {fileID: 587828348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1394200130
 GameObject:
   m_ObjectHideFlags: 0

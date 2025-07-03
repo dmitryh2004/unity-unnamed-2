@@ -5,11 +5,14 @@ using UnityEngine.AI;
 public class GuardianController : MonoBehaviour
 {
     int phase = 1;
-    
+    float phaseUpdateTimer = 0f;
+
     //Phase 1
     bool goForward = true;
     int currentPoint = 0;
-    float checkPointsTimer = 0f;
+
+    //Phase 2
+    Transform target = null;
 
     [Header("Links")]
     [SerializeField] Transform eye;
@@ -21,7 +24,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float spotDistance = 10f;
     [SerializeField] float fov = 60f;
-    [SerializeField] float checkPointsInterval = .5f;
+    [SerializeField] float phaseUpdateInterval = .5f;
 
     [Header("Phase 1 Settings")]
     [SerializeField] List<Transform> patrolPoints = new();
@@ -32,12 +35,15 @@ public class GuardianController : MonoBehaviour
     public bool IsPointVisible(Transform point)
     {
         Vector3 direction = point.position - eye.position;
+        Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
         if (direction.magnitude > spotDistance) return false;
 
         Vector3 facingDirection = eye.forward;
+        Debug.Log($"face: {facingDirection}");
         float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
 
-        if (dot > Mathf.Cos(fov)) return false;
+        Debug.Log($"dot: {dot}");
+        if (dot > Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
 
         RaycastHit hit;
         if (Physics.Raycast(eye.position, direction, out hit, spotDistance))
@@ -59,9 +65,15 @@ public class GuardianController : MonoBehaviour
         {
             case 1:
                 agent.speed = speed;
+
+                agent.SetDestination(patrolPoints[0].position);
+                currentPoint = 0;
+                goForward = true;
                 break;
             case 2:
                 agent.speed = runningSpeed;
+
+                agent.SetDestination(target.position);
                 break;
             case 3:
                 agent.speed = speed;
@@ -71,21 +83,25 @@ public class GuardianController : MonoBehaviour
 
     private void Update()
     {
-        switch (phase)
+        phaseUpdateTimer += Time.deltaTime;
+        if (phaseUpdateTimer >= phaseUpdateInterval)
         {
-            case 1:
-                checkPointsTimer += Time.deltaTime;
-                if (checkPointsTimer >= checkPointsInterval)
-                {
-                    checkPointsTimer = 0f;
+            phaseUpdateTimer = 0f;
+            switch (phase)
+            {
+                case 1:
                     Phase1Update();
-                }
-                break;
+                    break;
+                case 2:
+                    Phase2Update();
+                    break;
+            }
         }
     }
 
     private void Phase1Update()
     {
+        // update npc movement
         if (agent.destination != null)
         {
             if (agent.remainingDistance < 0.5f)
@@ -101,6 +117,48 @@ public class GuardianController : MonoBehaviour
             agent.SetDestination(patrolPoints[0].position);
             currentPoint = 0;
             goForward = true;
+        }
+
+        // check for tracked objects
+        foreach (var tracked in trackedObjects)
+        {
+            if (IsPointVisible(tracked))
+            {
+                target = tracked;
+                SwitchPhase(2);
+                break;
+            }
+            else
+            {
+                Debug.Log(gameObject.name + ": target " + tracked + " is not visible");
+            }
+        }
+    }
+
+    private void Phase2Update()
+    {
+        // check for player in 0.5 range
+        
+        // update npc movement
+        if (agent.destination != null)
+        {
+            if (agent.remainingDistance < 0.5f)
+            {
+                SwitchPhase(1);
+            }
+        }
+
+        // update npc destination if target is visible
+        if (target != null)
+        {
+            if (IsPointVisible(target))
+            {
+                agent.SetDestination(target.position);
+            }
+        }
+        else
+        {
+            SwitchPhase(1);
         }
     }
 }

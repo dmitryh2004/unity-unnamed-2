@@ -72,7 +72,7 @@ public class PlayerVisibilityManager : MonoBehaviour
         {
             hideable.Key.layer = hiddenLayer;
             Light light;
-            if (TryGetComponent<Light>(out light)) hideable.Key.SetActive(false);
+            if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(false);
         }
     }
 
@@ -82,7 +82,7 @@ public class PlayerVisibilityManager : MonoBehaviour
         {
             hideable.Key.layer = hideable.Value;
             Light light;
-            if (TryGetComponent<Light>(out light)) hideable.Key.SetActive(true);
+            if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(true);
         }
     }
 }

@@ -61,16 +61,16 @@ public class StartStatsController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSecondsRealtime(3f);
 
-        currentCoroutine = StartCoroutine(ShowTextCoroutine(title, titleText));
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(title, titleText, tap);
         yield return new WaitUntil(() => currentCoroutine == null);
 
-        currentCoroutine = StartCoroutine(ShowTextCoroutine(estimatedCost, estimatedCostText));
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(estimatedCost, estimatedCostText, tap);
         yield return new WaitUntil(() => currentCoroutine == null);
 
-        currentCoroutine = StartCoroutine(ShowTextCoroutine(protectedRoomCount, protectedRoomCountText));
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(protectedRoomCount, protectedRoomCountText, tap);
         yield return new WaitUntil(() => currentCoroutine == null);
 
-        currentCoroutine = StartCoroutine(ShowTextCoroutine(securedRoomCount, securedRoomCountText));
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(securedRoomCount, securedRoomCountText, tap);
         yield return new WaitUntil(() => currentCoroutine == null);
 
         yield return new WaitForSecondsRealtime(3f);
@@ -78,19 +78,5 @@ public class StartStatsController : MonoBehaviour
         animator.SetTrigger("hide");
     }
 
-    private IEnumerator ShowTextCoroutine(TMP_Text textElement, string text)
-    {
-        for (int i = 0; i < text.Length; i++)
-        {
-            textElement.text += text[i];
-            if (i % 3 == 0)
-            {
-                tap.PlayTypewriterSound();
-            }
-            yield return new WaitForEndOfFrame();
-        }
-
-        yield return new WaitForSeconds(0.5f);
-        currentCoroutine = null;
-    }
+    
 }

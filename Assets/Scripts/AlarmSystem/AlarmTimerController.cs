@@ -23,7 +23,7 @@ public class AlarmTimerController : MonoBehaviour
     public bool IsPlaying() => playing;
     public float GetRemainingTime() => secondsRemaining;
 
-    string GetTimerText()
+    public string GetTimerText()
     {
         int minutes = ((int)secondsRemaining) / 60;
         int seconds = ((int)secondsRemaining) % 60;

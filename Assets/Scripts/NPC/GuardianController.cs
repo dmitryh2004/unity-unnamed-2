@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,7 @@ public class GuardianController : MonoBehaviour
 
     int phase = 1;
     float phaseUpdateTimer = 0f;
+    bool active = true;
 
     //Phase 1
     bool goForward = true;
@@ -24,6 +26,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] Transform eye;
     [SerializeField] Light fovLight;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GuardianAudioPlayer audioPlayer;
     [SerializeField] List<Transform> trackedObjects = new();
 
     [Header("Common Settings")]
@@ -55,13 +58,16 @@ public class GuardianController : MonoBehaviour
 
         if (direction.magnitude > maxSpotDistance) return false;
 
-        Vector3 facingDirection = eye.forward;
-        //Debug.Log($"face: {facingDirection}");
-        float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
+        if (phase != 2) // если npc в фазе 2, он "запоминает" куда бежит игрок
+        {
+            Vector3 facingDirection = eye.forward;
+            //Debug.Log($"face: {facingDirection}");
+            float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
 
-        //Debug.Log($"dot: {dot}");
-        if (dot < Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
-
+            //Debug.Log($"dot: {dot}");
+            if (dot < Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
+        }
+        
         RaycastHit hit;
         if (Physics.Raycast(eye.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
         {
@@ -103,6 +109,7 @@ public class GuardianController : MonoBehaviour
 
     private void Update()
     {
+        if (!active) return;
         phaseUpdateTimer += Time.deltaTime;
         if (phase == 3)
         {
@@ -178,7 +185,16 @@ public class GuardianController : MonoBehaviour
 
     private void Phase2Update()
     {
-        // check for player in 0.5 range
+        // check for player in range 1m
+        if (target != null)
+        {
+            if (Vector3.Distance(target.position, transform.position) < 1f)
+            {
+                active = false;
+                audioPlayer.PlayAttackAudio();
+                // game over
+            }
+        }
         
         // update npc movement
         if (agent.destination != null)
@@ -216,10 +232,22 @@ public class GuardianController : MonoBehaviour
         {
             phase3TurnAroundTimer = 0f;
             float randomAngle = 4 * fov * (float)(random.NextDouble() - 0.5);
-            transform.Rotate(new Vector3(0f, randomAngle, 0f));
+            StartCoroutine(SmoothlyRotate(randomAngle));
         }
 
         CheckForTrackedObjects();
+    }
+
+    IEnumerator SmoothlyRotate(float angle)
+    {
+        float rotated = 0f;
+        while (Mathf.Abs(rotated) < Mathf.Abs(angle))
+        {
+            float frameRotation = Mathf.Sign(angle) * agent.angularSpeed * Time.deltaTime;
+            transform.Rotate(new Vector3(0f, frameRotation, 0f));
+            rotated += frameRotation;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void SetTarget(Transform target)

@@ -91,6 +91,11 @@ public class LockController : Interactable
         StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
         if (updateLinked)
         {
+            StatisticCollector.Instance.FailedHacks++;
+            if (difficulty >= 11)
+            {
+                StatisticCollector.Instance.LockedLocks++;
+            }
             foreach (LockController linked in linkedLocks)
             {
                 if (linked.IsActive()) linked.IncreaseDifficulty(diff, updateLinked: false);
@@ -160,6 +165,7 @@ public class LockController : Interactable
             UpdateDifficultyScreen();
         if (updateLinked)
         {
+            StatisticCollector.Instance.LocksHacked++;
             foreach (LockController linked in linkedLocks)
             {
                 if (linked.IsActive()) linked.DisableLock(updateLinked: false, updateScreen: updateScreen);

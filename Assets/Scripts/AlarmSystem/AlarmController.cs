@@ -21,11 +21,7 @@ public class AlarmController : MonoBehaviour
         alarmLights = new List<AlarmLightController>(FindObjectsByType<AlarmLightController>(FindObjectsSortMode.None));
     }
 
-    private IEnumerator TestCoroutine()
-    {
-        yield return new WaitForSeconds(5f);
-        StartAlarm();
-    }
+    public AlarmTimerController GetTimerController() => timerController;
 
     public bool GetAlarmState()
     {
@@ -38,6 +34,7 @@ public class AlarmController : MonoBehaviour
         foreach (AlarmLightController alarmLightController in alarmLights)
         {
             alarmLightController.ChangeState(true);
+            StatisticCollector.Instance.AlarmRaised = true;
         }
         timerController.StartTimer();
         alarmSoundSource.Play();

@@ -7,6 +7,7 @@ public class WeightedAudioClip
     public AudioClip clip;
     public int weight;
 }
+[RequireComponent(typeof(AudioSource))]
 public class RandomAudioPlayer : MonoBehaviour
 {
     AudioSource audioSource;

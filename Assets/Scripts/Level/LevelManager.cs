@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
             PlayerLootPredictor.Instance.SetLevel(0);
         }
         generator.Generate();
+        StatisticCollector.Instance.TotalLootCost = generator.GetGeneratedLootSum();
         startStatsController.ShowStatsWindow();
     }
 }

@@ -29,8 +29,8 @@ public class StartStatsController : MonoBehaviour
 
         int totalCost = generator.GetGeneratedLootSum();
 
-        titleText = "Краткая сводка";
-        estimatedCostText = $"Примерная стоимость вещей:\n";
+        titleText = "РљСЂР°С‚РєР°СЏ СЃРІРѕРґРєР°";
+        estimatedCostText = $"РџСЂРёРјРµСЂРЅР°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ РІРµС‰РµР№:\n";
 
         if (precision != -1)
         {
@@ -47,14 +47,14 @@ public class StartStatsController : MonoBehaviour
         }
         else
         {
-            estimatedCostText += "[неизвестно]";
+            estimatedCostText += "[РЅРµРёР·РІРµСЃС‚РЅРѕ]";
         }
 
         int protectedRooms = generator.GetProtectedRoomsCount();
         int securedRooms = generator.GetSecuredRoomsCount();
 
-        protectedRoomCountText = $"Число защищенных комнат: {protectedRooms}";
-        securedRoomCountText = $"Число комнат-тайников: {securedRooms}";
+        protectedRoomCountText = $"Р§РёСЃР»Рѕ Р·Р°С‰РёС‰РµРЅРЅС‹С… РєРѕРјРЅР°С‚: {protectedRooms}";
+        securedRoomCountText = $"Р§РёСЃР»Рѕ РєРѕРјРЅР°С‚-С‚Р°Р№РЅРёРєРѕРІ: {securedRooms}";
 
         animator.SetTrigger("show");
 

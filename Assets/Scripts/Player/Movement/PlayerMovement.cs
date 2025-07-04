@@ -76,12 +76,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Определяем скорость
+        // РћРїСЂРµРґРµР»СЏРµРј СЃРєРѕСЂРѕСЃС‚СЊ
         currentSpeed = moveSpeed;
         if (isSprinting) currentSpeed = sprintSpeed;
         if (isCrouching) currentSpeed = crouchSpeed;
 
-        // Изменяем высоту персонажа (например, через коллайдер или визуально)
+        // РР·РјРµРЅСЏРµРј РІС‹СЃРѕС‚Сѓ РїРµСЂСЃРѕРЅР°Р¶Р° (РЅР°РїСЂРёРјРµСЂ, С‡РµСЂРµР· РєРѕР»Р»Р°Р№РґРµСЂ РёР»Рё РІРёР·СѓР°Р»СЊРЅРѕ)
         currentHeight = Mathf.Lerp(currentHeight, isCrouching ? crouchHeight : standHeight, Time.deltaTime * heightChangeSpeed);
         transform.localScale = new Vector3(transform.localScale.x, currentHeight / standHeight * standScale, transform.localScale.z);
 
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         if (isJumpPressed && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce * rb.mass, ForceMode.Impulse);
-            isJumpPressed = false; // Сброс, чтобы не прыгал повторно в этом кадре
+            isJumpPressed = false; // РЎР±СЂРѕСЃ, С‡С‚РѕР±С‹ РЅРµ РїСЂС‹РіР°Р» РїРѕРІС‚РѕСЂРЅРѕ РІ СЌС‚РѕРј РєР°РґСЂРµ
         }
     }
 }

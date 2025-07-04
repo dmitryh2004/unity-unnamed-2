@@ -23,7 +23,7 @@ public class RandomAudioPlayer : MonoBehaviour
 
     /**
      * <summary>
-     * Воспроизводит звук. Возвращает его длительность в секундах.
+     * Р’РѕСЃРїСЂРѕРёР·РІРѕРґРёС‚ Р·РІСѓРє. Р’РѕР·РІСЂР°С‰Р°РµС‚ РµРіРѕ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РІ СЃРµРєСѓРЅРґР°С….
      * </summary>
      * **/
     public float PlayRandomAudio(List<WeightedAudioClip> audios)

@@ -23,13 +23,13 @@ public class InventorySystem : MonoBehaviour
     [SerializeField]
     [Range(1, 4)] int level = 1;
 
-    // Максимальный объем инвентаря
+    // РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РѕР±СЉРµРј РёРЅРІРµРЅС‚Р°СЂСЏ
     float maxVolume = 0.01f;
 
-    [Tooltip("Список всех доступных типов предметов (ScriptableObject)")]
+    [Tooltip("РЎРїРёСЃРѕРє РІСЃРµС… РґРѕСЃС‚СѓРїРЅС‹С… С‚РёРїРѕРІ РїСЂРµРґРјРµС‚РѕРІ (ScriptableObject)")]
     public List<LootCategory> lootCategories;
 
-    // Словарь: ключ - id LootCategory, значение - количество предметов данного типа
+    // РЎР»РѕРІР°СЂСЊ: РєР»СЋС‡ - id LootCategory, Р·РЅР°С‡РµРЅРёРµ - РєРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ РґР°РЅРЅРѕРіРѕ С‚РёРїР°
     private Dictionary<int, int> items = new Dictionary<int, int>();
 
     private void Start()
@@ -75,7 +75,7 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить суммарный занятый объем в инвентаре
+    /// РџРѕР»СѓС‡РёС‚СЊ СЃСѓРјРјР°СЂРЅС‹Р№ Р·Р°РЅСЏС‚С‹Р№ РѕР±СЉРµРј РІ РёРЅРІРµРЅС‚Р°СЂРµ
     /// </summary>
     public float GetOccupiedVolume()
     {
@@ -92,10 +92,10 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверить, можно ли добавить предмет заданного типа в инвентарь
+    /// РџСЂРѕРІРµСЂРёС‚СЊ, РјРѕР¶РЅРѕ Р»Рё РґРѕР±Р°РІРёС‚СЊ РїСЂРµРґРјРµС‚ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° РІ РёРЅРІРµРЅС‚Р°СЂСЊ
     /// </summary>
-    /// <param name="lootCategory">Тип предмета</param>
-    /// <returns>True, если добавить можно, иначе false</returns>
+    /// <param name="lootCategory">РўРёРї РїСЂРµРґРјРµС‚Р°</param>
+    /// <returns>True, РµСЃР»Рё РґРѕР±Р°РІРёС‚СЊ РјРѕР¶РЅРѕ, РёРЅР°С‡Рµ false</returns>
     public bool CanAddItem(LootCategory lootCategory, int amount = 1)
     {
         if (lootCategory == null)
@@ -111,10 +111,10 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Добавить предмет заданного типа в инвентарь
+    /// Р”РѕР±Р°РІРёС‚СЊ РїСЂРµРґРјРµС‚ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° РІ РёРЅРІРµРЅС‚Р°СЂСЊ
     /// </summary>
-    /// <param name="lootCategory">Тип предмета</param>
-    /// <returns>True, если предмет успешно добавлен, иначе false</returns>
+    /// <param name="lootCategory">РўРёРї РїСЂРµРґРјРµС‚Р°</param>
+    /// <returns>True, РµСЃР»Рё РїСЂРµРґРјРµС‚ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ, РёРЅР°С‡Рµ false</returns>
     public bool AddItem(LootCategory lootCategory)
     {
         if (lootCategory == null)
@@ -135,10 +135,10 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Удалить один предмет заданного типа из инвентаря
+    /// РЈРґР°Р»РёС‚СЊ РѕРґРёРЅ РїСЂРµРґРјРµС‚ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° РёР· РёРЅРІРµРЅС‚Р°СЂСЏ
     /// </summary>
-    /// <param name="lootCategory">Тип предмета</param>
-    /// <returns>True, если предмет успешно удалён, иначе false</returns>
+    /// <param name="lootCategory">РўРёРї РїСЂРµРґРјРµС‚Р°</param>
+    /// <returns>True, РµСЃР»Рё РїСЂРµРґРјРµС‚ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»С‘РЅ, РёРЅР°С‡Рµ false</returns>
     public bool RemoveItem(LootCategory lootCategory)
     {
         if (lootCategory == null)
@@ -157,9 +157,9 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить данные всех предметов в инвентаре в JSON-формате
+    /// РџРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ РІ JSON-С„РѕСЂРјР°С‚Рµ
     /// </summary>
-    /// <returns>JSON строка с данными предметов</returns>
+    /// <returns>JSON СЃС‚СЂРѕРєР° СЃ РґР°РЅРЅС‹РјРё РїСЂРµРґРјРµС‚РѕРІ</returns>
     public string GetInventoryDataJson()
     {
         List<InventoryItemData> dataList = new List<InventoryItemData>();
@@ -178,14 +178,14 @@ public class InventorySystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить LootCategory по id
+    /// РџРѕР»СѓС‡РёС‚СЊ LootCategory РїРѕ id
     /// </summary>
     public LootCategory GetLootCategoryById(int id)
     {
         return lootCategories.FirstOrDefault(x => x.id == id);
     }
 
-    // Вспомогательный класс для сериализации списка в JSON
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СЃРµСЂРёР°Р»РёР·Р°С†РёРё СЃРїРёСЃРєР° РІ JSON
     [Serializable]
     private class InventoryDataWrapper
     {

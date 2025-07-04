@@ -282,7 +282,7 @@ public class LevelGenerator : MonoBehaviour
         foreach(KeyValuePair<RoomObject, int> kvp in extensionCandidates)
         {
             RoomObject room = kvp.Key;
-            bool remove = room.DontExtend(); // проверка условий непродления этой комнаты
+            bool remove = room.DontExtend(); // РїСЂРѕРІРµСЂРєР° СѓСЃР»РѕРІРёР№ РЅРµРїСЂРѕРґР»РµРЅРёСЏ СЌС‚РѕР№ РєРѕРјРЅР°С‚С‹
             remove = remove || (room.GetNeighboursCount() == room.GetRoomType().maxNeighbours);
             if (remove) removalList.Add(room);
         }

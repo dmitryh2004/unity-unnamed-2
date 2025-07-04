@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
-    public Image fillImage; // Ссылка на Image с типом Fill
-    public float maxValue = 100f; // Максимальное значение прогресса
-    private float currentValue = 0f; // Текущее значение прогресса
+    public Image fillImage; // РЎСЃС‹Р»РєР° РЅР° Image СЃ С‚РёРїРѕРј Fill
+    public float maxValue = 100f; // РњР°РєСЃРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїСЂРѕРіСЂРµСЃСЃР°
+    private float currentValue = 0f; // РўРµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ РїСЂРѕРіСЂРµСЃСЃР°
 
     void Start()
     {
-        // Инициализация, если нужно
+        // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ, РµСЃР»Рё РЅСѓР¶РЅРѕ
         SetProgress(0f);
     }
 

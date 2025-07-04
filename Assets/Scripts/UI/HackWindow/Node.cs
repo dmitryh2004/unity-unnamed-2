@@ -93,14 +93,14 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     bool IsAccessible()
     {
-        if (visited && !IsCoreNode() && !IsBonus()) return true; //если узел не центральный, не бонус и уже посещен, то true
+        if (visited && !IsCoreNode() && !IsBonus()) return true; //РµСЃР»Рё СѓР·РµР» РЅРµ С†РµРЅС‚СЂР°Р»СЊРЅС‹Р№, РЅРµ Р±РѕРЅСѓСЃ Рё СѓР¶Рµ РїРѕСЃРµС‰РµРЅ, С‚Рѕ true
 
-        bool accessible = false; //изначально считаем, что узел недоступен
+        bool accessible = false; //РёР·РЅР°С‡Р°Р»СЊРЅРѕ СЃС‡РёС‚Р°РµРј, С‡С‚Рѕ СѓР·РµР» РЅРµРґРѕСЃС‚СѓРїРµРЅ
         foreach(Node n in neighbours)
         {
-            if (n.IsDefensiveNode() && n.IsActive()) return false; // если соседний защитный узел активен, то false
-            if (!n.IsDefensiveNode() && n.IsVisited()) accessible = true; // если соседний узел пуст и уже посещен, то клетка доступна
-            if (n.IsDefensiveNode() && n.IsVisited() && !n.IsActive()) accessible = true; // если соседний защитный узел был уничтожен, то клетка доступна
+            if (n.IsDefensiveNode() && n.IsActive()) return false; // РµСЃР»Рё СЃРѕСЃРµРґРЅРёР№ Р·Р°С‰РёС‚РЅС‹Р№ СѓР·РµР» Р°РєС‚РёРІРµРЅ, С‚Рѕ false
+            if (!n.IsDefensiveNode() && n.IsVisited()) accessible = true; // РµСЃР»Рё СЃРѕСЃРµРґРЅРёР№ СѓР·РµР» РїСѓСЃС‚ Рё СѓР¶Рµ РїРѕСЃРµС‰РµРЅ, С‚Рѕ РєР»РµС‚РєР° РґРѕСЃС‚СѓРїРЅР°
+            if (n.IsDefensiveNode() && n.IsVisited() && !n.IsActive()) accessible = true; // РµСЃР»Рё СЃРѕСЃРµРґРЅРёР№ Р·Р°С‰РёС‚РЅС‹Р№ СѓР·РµР» Р±С‹Р» СѓРЅРёС‡С‚РѕР¶РµРЅ, С‚Рѕ РєР»РµС‚РєР° РґРѕСЃС‚СѓРїРЅР°
         }
 
         return accessible;

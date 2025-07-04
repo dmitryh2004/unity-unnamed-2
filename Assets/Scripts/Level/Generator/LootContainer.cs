@@ -5,13 +5,13 @@ using UnityEngine;
 [Serializable]
 public class Loot
 {
-    [Header("Префаб предмета")]
+    [Header("РџСЂРµС„Р°Р± РїСЂРµРґРјРµС‚Р°")]
     public GameObject prefab;
-    [Header("Вес лута в группе")]
+    [Header("Р’РµСЃ Р»СѓС‚Р° РІ РіСЂСѓРїРїРµ")]
     public int weight;
 
     [Space(10)]
-    [Header("Количество предметов")]
+    [Header("РљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ")]
     [Min(1)]
     public int minCount;
     [Min(1)]
@@ -21,9 +21,9 @@ public class Loot
 [Serializable]
 public class LootGroup
 {
-    [Header("Список лута в группе")]
+    [Header("РЎРїРёСЃРѕРє Р»СѓС‚Р° РІ РіСЂСѓРїРїРµ")]
     public List<Loot> possibleLoot;
-    [Header("Вес группы лута")]
+    [Header("Р’РµСЃ РіСЂСѓРїРїС‹ Р»СѓС‚Р°")]
     public int weight;
 }
 
@@ -66,7 +66,7 @@ public class LootContainer : MonoBehaviour
             int chance = random.Next(1, 101);
             if (chance <= lootChance)
             {
-                // выбираем группу лута
+                // РІС‹Р±РёСЂР°РµРј РіСЂСѓРїРїСѓ Р»СѓС‚Р°
                 int sum = 0;
                 for (int i = 0; i < possibleLoot.Count; i++)
                 {
@@ -86,7 +86,7 @@ public class LootContainer : MonoBehaviour
                     }
                 }
 
-                // выбираем лут из группы
+                // РІС‹Р±РёСЂР°РµРј Р»СѓС‚ РёР· РіСЂСѓРїРїС‹
                 sum = 0;
                 for (int i = 0; i < lootGroup.possibleLoot.Count; i++)
                 {

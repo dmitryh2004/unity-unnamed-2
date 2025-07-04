@@ -105,7 +105,7 @@ public class PlayerInteractor : MonoBehaviour
                             TMP_Text hintText = HintManager.Instance.GetHintText(HintManager.Instance.GetHintByName("PickUpHint"));
                             if (hintText)
                             {
-                                hintText.text = $"[E]: подобрать\n({lootableItem.GetLootCategory().lootName})";
+                                hintText.text = $"[E]: РїРѕРґРѕР±СЂР°С‚СЊ\n({lootableItem.GetLootCategory().lootName})";
                             }
                         }
                         else

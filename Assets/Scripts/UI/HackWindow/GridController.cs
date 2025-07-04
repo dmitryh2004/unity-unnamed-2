@@ -7,17 +7,17 @@ public class GridController : MonoBehaviour
     [SerializeField] Transform gridParent;
     List<Node> nodes = new();
     List<Node> emptyNodes = new();
-    List<Node> positiveNodes = new(); // центральный узел и бонусы
-    List<Node> negativeNodes = new(); // защита
+    List<Node> positiveNodes = new(); // С†РµРЅС‚СЂР°Р»СЊРЅС‹Р№ СѓР·РµР» Рё Р±РѕРЅСѓСЃС‹
+    List<Node> negativeNodes = new(); // Р·Р°С‰РёС‚Р°
 
-    List<Node> antivirusNodes = new(); // антивирусы
-    List<Node> repairNodes = new(); // ремонтные узлы
-    List<Node> pacifierNodes = new(); // блокировщики
+    List<Node> antivirusNodes = new(); // Р°РЅС‚РёРІРёСЂСѓСЃС‹
+    List<Node> repairNodes = new(); // СЂРµРјРѕРЅС‚РЅС‹Рµ СѓР·Р»С‹
+    List<Node> pacifierNodes = new(); // Р±Р»РѕРєРёСЂРѕРІС‰РёРєРё
     System.Random random = new();
 
     List<Vector2> movements = new();
 
-    [Header("Баланс - количество защиты")]
+    [Header("Р‘Р°Р»Р°РЅСЃ - РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°С‰РёС‚С‹")]
     [SerializeField] int[] wallMinCountByDifficulty = new int[10];
     [SerializeField] int[] wallMaxCountByDifficulty = new int[10];
 
@@ -30,7 +30,7 @@ public class GridController : MonoBehaviour
     [SerializeField] int[] pacifierMinCountByDifficulty = new int[10];
     [SerializeField] int[] pacifierMaxCountByDifficulty = new int[10];
 
-    [Header("Баланс - количество бонусов")]
+    [Header("Р‘Р°Р»Р°РЅСЃ - РєРѕР»РёС‡РµСЃС‚РІРѕ Р±РѕРЅСѓСЃРѕРІ")]
     [SerializeField] int[] reinforcementMinCountByDifficulty = new int[10];
     [SerializeField] int[] reinforcementMaxCountByDifficulty = new int[10];
 
@@ -85,11 +85,11 @@ public class GridController : MonoBehaviour
     }
 
     /// <summary>
-    /// Возвращает количество узлов между начальной и конечной точкой (без учета активности узлов).
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓР·Р»РѕРІ РјРµР¶РґСѓ РЅР°С‡Р°Р»СЊРЅРѕР№ Рё РєРѕРЅРµС‡РЅРѕР№ С‚РѕС‡РєРѕР№ (Р±РµР· СѓС‡РµС‚Р° Р°РєС‚РёРІРЅРѕСЃС‚Рё СѓР·Р»РѕРІ).
     /// </summary>
-    /// <param name="start">Начало</param>
-    /// <param name="end">Конец</param>
-    /// <returns>Расстояние в узлах</returns>
+    /// <param name="start">РќР°С‡Р°Р»Рѕ</param>
+    /// <param name="end">РљРѕРЅРµС†</param>
+    /// <returns>Р Р°СЃСЃС‚РѕСЏРЅРёРµ РІ СѓР·Р»Р°С…</returns>
     int CalculateDistance(Vector2 start, Vector2 end)
     {
         if (start == end) return 0;
@@ -115,16 +115,16 @@ public class GridController : MonoBehaviour
             }
         }
 
-        // Если путь не найден (на этой сетке такого быть не должно)
+        // Р•СЃР»Рё РїСѓС‚СЊ РЅРµ РЅР°Р№РґРµРЅ (РЅР° СЌС‚РѕР№ СЃРµС‚РєРµ С‚Р°РєРѕРіРѕ Р±С‹С‚СЊ РЅРµ РґРѕР»Р¶РЅРѕ)
         return -1;
     }
 
     /// <summary>
-    /// Возвращает количество узлов между начальным и конечным узлом (с учетом активности узлов).
+    /// Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓР·Р»РѕРІ РјРµР¶РґСѓ РЅР°С‡Р°Р»СЊРЅС‹Рј Рё РєРѕРЅРµС‡РЅС‹Рј СѓР·Р»РѕРј (СЃ СѓС‡РµС‚РѕРј Р°РєС‚РёРІРЅРѕСЃС‚Рё СѓР·Р»РѕРІ).
     /// </summary>
-    /// <param name="start">Начало</param>
-    /// <param name="end">Конец</param>
-    /// <returns>Расстояние в узлах</returns>
+    /// <param name="start">РќР°С‡Р°Р»Рѕ</param>
+    /// <param name="end">РљРѕРЅРµС†</param>
+    /// <returns>Р Р°СЃСЃС‚РѕСЏРЅРёРµ РІ СѓР·Р»Р°С…</returns>
     int CalculateDistance(Node start, Node end)
     {
         if (start == end) return 0;
@@ -149,7 +149,7 @@ public class GridController : MonoBehaviour
             }
         }
 
-        // Если путь не найден (на этой сетке такого быть не должно)
+        // Р•СЃР»Рё РїСѓС‚СЊ РЅРµ РЅР°Р№РґРµРЅ (РЅР° СЌС‚РѕР№ СЃРµС‚РєРµ С‚Р°РєРѕРіРѕ Р±С‹С‚СЊ РЅРµ РґРѕР»Р¶РЅРѕ)
         return -1;
     }
 
@@ -224,10 +224,10 @@ public class GridController : MonoBehaviour
     }
 
     /// <summary>
-    /// Проверяет, будет ли граф связным, если удалить узел.
+    /// РџСЂРѕРІРµСЂСЏРµС‚, Р±СѓРґРµС‚ Р»Рё РіСЂР°С„ СЃРІСЏР·РЅС‹Рј, РµСЃР»Рё СѓРґР°Р»РёС‚СЊ СѓР·РµР».
     /// </summary>
-    /// <param name="n">Проверяемый узел</param>
-    /// <returns>Связен ли граф после удаления узла</returns>
+    /// <param name="n">РџСЂРѕРІРµСЂСЏРµРјС‹Р№ СѓР·РµР»</param>
+    /// <returns>РЎРІСЏР·РµРЅ Р»Рё РіСЂР°С„ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ СѓР·Р»Р°</returns>
     bool CheckIfRemove(Node n)
     {
         if (!nodes.Contains(n)) return true;
@@ -491,7 +491,7 @@ public class GridController : MonoBehaviour
 
     void SelectStartNode()
     {
-        Node startNode = positiveNodes[0]; //центральный узел
+        Node startNode = positiveNodes[0]; //С†РµРЅС‚СЂР°Р»СЊРЅС‹Р№ СѓР·РµР»
 
         List<Node> visited = new();
         Dictionary<Node, int> nodes = new();

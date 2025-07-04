@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public string inventory; // Сохраняем JSON как строку
+    public string inventory; // РЎРѕС…СЂР°РЅСЏРµРј JSON РєР°Рє СЃС‚СЂРѕРєСѓ
     public int inventoryLevel;
     public int virusLevel;
     public int predictorLevel;
@@ -33,7 +33,7 @@ public class SaveManager : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath, saveName);
         File.WriteAllText(path, json);
 
-        Debug.Log($"Данные сохранены в {path}");
+        Debug.Log($"Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹ РІ {path}");
     }
 
     public GameData LoadData()
@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.LogWarning($"Файл сохранения не найден по пути: {path}");
+            Debug.LogWarning($"Р¤Р°Р№Р» СЃРѕС…СЂР°РЅРµРЅРёСЏ РЅРµ РЅР°Р№РґРµРЅ РїРѕ РїСѓС‚Рё: {path}");
             return null;
         }
 
@@ -50,12 +50,12 @@ public class SaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             GameData data = JsonUtility.FromJson<GameData>(json);
-            Debug.Log($"Данные загружены из {path}");
+            Debug.Log($"Р”Р°РЅРЅС‹Рµ Р·Р°РіСЂСѓР¶РµРЅС‹ РёР· {path}");
             return data;
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"Ошибка при загрузке данных: {e.Message}");
+            Debug.LogError($"РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РґР°РЅРЅС‹С…: {e.Message}");
             return null;
         }
     }

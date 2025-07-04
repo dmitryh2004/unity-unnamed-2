@@ -15,13 +15,13 @@ public class InputActionMapSwitcher : MonoBehaviour
 
     public void SwitchMap(string mapName)
     {
-        Debug.Log($"Попытка переключения на карту: {mapName}");
+        Debug.Log($"РџРѕРїС‹С‚РєР° РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РЅР° РєР°СЂС‚Сѓ: {mapName}");
         playerInput.currentActionMap?.Disable();
         playerInput.SwitchCurrentActionMap(mapName);
         Cursor.visible = cursorVisibility[mapName];
         Cursor.lockState = cursorVisibility[mapName] ? CursorLockMode.None : CursorLockMode.Locked;
         playerInput.currentActionMap.Enable();
-        Debug.Log($"Текущая карта: {playerInput.currentActionMap?.name}");
+        Debug.Log($"РўРµРєСѓС‰Р°СЏ РєР°СЂС‚Р°: {playerInput.currentActionMap?.name}");
     }
 
     void Awake()
@@ -45,7 +45,7 @@ public class InputActionMapSwitcher : MonoBehaviour
             }
         }
 
-        // отключаем все карты и включаем карту Gameplay
+        // РѕС‚РєР»СЋС‡Р°РµРј РІСЃРµ РєР°СЂС‚С‹ Рё РІРєР»СЋС‡Р°РµРј РєР°СЂС‚Сѓ Gameplay
         playerInput.actions.Disable();
         SwitchMap(startMap);
     }

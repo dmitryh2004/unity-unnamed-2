@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NodeType", menuName = "Scriptable Objects/NodeType")]
 public class NodeType : ScriptableObject
 {
-    [Header("Общая информация")]
+    [Header("РћР±С‰Р°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ")]
     public int id;
     public Sprite[] spriteByDifficulty = new Sprite[10];
     public Color[] colorByDifficulty = new Color[10];
@@ -15,7 +15,7 @@ public class NodeType : ScriptableObject
     public bool isBonus;
     public BonusType bonus;
 
-    [Header("Элемент защиты - Баланс")]
+    [Header("Р­Р»РµРјРµРЅС‚ Р·Р°С‰РёС‚С‹ - Р‘Р°Р»Р°РЅСЃ")]
     public int minDifficulty;
     public int[] hpByDifficulty = new int[10];
     public int[] attackByDifficulty = new int[10];

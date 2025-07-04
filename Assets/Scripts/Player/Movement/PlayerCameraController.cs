@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 public class PlayerCameraController : MonoBehaviour
 {
     [Header("Camera")]
-    public Transform cameraTransform; // Ссылка на Transform камеры (или её родителя)
+    public Transform cameraTransform; // РЎСЃС‹Р»РєР° РЅР° Transform РєР°РјРµСЂС‹ (РёР»Рё РµС‘ СЂРѕРґРёС‚РµР»СЏ)
     public float mouseSensitivity = 2f;
     public float cameraPitchMin = -70f;
     public float cameraPitchMax = 70f;
 
-    private float cameraPitch = 0f; // Текущий наклон камеры по X
+    private float cameraPitch = 0f; // РўРµРєСѓС‰РёР№ РЅР°РєР»РѕРЅ РєР°РјРµСЂС‹ РїРѕ X
 
     private PlayerControls controls;
     PlayerInventoryController inventoryController;
@@ -39,11 +39,11 @@ public class PlayerCameraController : MonoBehaviour
 
     void Update()
     {
-        // Вращение персонажа по оси Y (горизонталь)
+        // Р’СЂР°С‰РµРЅРёРµ РїРµСЂСЃРѕРЅР°Р¶Р° РїРѕ РѕСЃРё Y (РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊ)
         float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
         transform.Rotate(0, mouseX, 0);
 
-        // Вращение камеры по оси X (вертикаль)
+        // Р’СЂР°С‰РµРЅРёРµ РєР°РјРµСЂС‹ РїРѕ РѕСЃРё X (РІРµСЂС‚РёРєР°Р»СЊ)
         float mouseY = lookInput.y * mouseSensitivity * Time.deltaTime;
         cameraPitch -= mouseY;
         cameraPitch = Mathf.Clamp(cameraPitch, cameraPitchMin, cameraPitchMax);

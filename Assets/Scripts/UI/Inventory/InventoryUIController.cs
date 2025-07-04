@@ -35,7 +35,7 @@ public class InventoryUIController : MonoBehaviour
         foreach(int i in items.Keys)
         {
             LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
-            Debug.Log($"{i} ({lc.lootName}): стоимость 1 шт.={lc.cost}");
+            Debug.Log($"{i} ({lc.lootName}): СЃС‚РѕРёРјРѕСЃС‚СЊ 1 С€С‚.={lc.cost}");
             totalCost += items[i] * lc.cost;
 
             if (inventoryItemIndex < inventoryItems.Count)
@@ -64,10 +64,10 @@ public class InventoryUIController : MonoBehaviour
         float ratio = currentVolume / maxVolume * 100;
         string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
 
-        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
+        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} Р» ({ratio.ToString(format)}%)";
         volumePB.SetMaxValue(maxVolume);
         volumePB.SetProgress(currentVolume);
-        estimateCost.text = $"Оценочная стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
+        estimateCost.text = $"СњС†РµРЅРѕС‡РЅР°в‚¬ СЃС‚РѕРёРјРѕСЃС‚СЊ РІРµС‰РµР№: {NumberFormatter.FormatNumberWithGrouping(totalCost)} СЂСѓР±.";
     }
 
     public void SetActiveItem(int id)

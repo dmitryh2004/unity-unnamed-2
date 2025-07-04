@@ -13,6 +13,12 @@ public class ProgressBar : MonoBehaviour
         SetProgress(0f);
     }
 
+    public void SetMaxValue(float newMaxValue)
+    {
+        maxValue = newMaxValue;
+        SetProgress(currentValue);
+    }
+
     public void SetProgress(float value)
     {
         currentValue = Mathf.Clamp(value, 0f, maxValue);

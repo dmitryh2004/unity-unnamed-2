@@ -52,6 +52,8 @@ GameObject:
   - component: {fileID: 4222850720681407689}
   - component: {fileID: 7479945026821977042}
   - component: {fileID: 4332730030923987117}
+  - component: {fileID: 486206194635256262}
+  - component: {fileID: 3147326689473254937}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -590,6 +592,35 @@ MonoBehaviour:
   - HackUI
   cursorVisibleOnMap: 000101
   startMap: Gameplay
+--- !u!114 &486206194635256262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4397b5ea349047e4a84ba461cccff192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideables: []
+  playerCamera: {fileID: 1451614754896726903}
+  hiddenLayerName: HiddenFromCamera
+  hiddenTag: HiddenFromCamera
+--- !u!114 &3147326689473254937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50b9dd71da7275419ff317c46cfbac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 0
 --- !u!1 &3139879928906722712
 GameObject:
   m_ObjectHideFlags: 0

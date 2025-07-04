@@ -59,12 +59,13 @@ public class InventoryUIController : MonoBehaviour
         }
 
         float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
-        float maxVolume = InventorySystem.Instance.maxVolume;
+        float maxVolume = InventorySystem.Instance.GetMaxVolume();
 
         float ratio = currentVolume / maxVolume * 100;
         string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
 
         totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
+        volumePB.SetMaxValue(maxVolume);
         volumePB.SetProgress(currentVolume);
         estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
     }

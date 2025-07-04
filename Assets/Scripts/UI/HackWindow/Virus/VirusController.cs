@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,17 @@ public class VirusController : MonoBehaviour
         }
         Instance = this;
 
+        ResetToStart();
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+
+    public void SetLevel(int level)
+    {
+        this.level = level;
         ResetToStart();
     }
 
@@ -105,4 +117,6 @@ public class VirusController : MonoBehaviour
         hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, hpRatio, 0.2f);
         attackBar.fillAmount = Mathf.Lerp(attackBar.fillAmount, attackRatio, 0.2f);
     }
+
+    
 }

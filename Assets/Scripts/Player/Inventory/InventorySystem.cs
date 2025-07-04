@@ -20,8 +20,11 @@ public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance = null;
 
-    [Tooltip("Максимальный объем инвентаря")]
-    public float maxVolume = 0.01f;
+    [SerializeField]
+    [Range(1, 4)] int level = 1;
+
+    // Максимальный объем инвентаря
+    float maxVolume = 0.01f;
 
     [Tooltip("Список всех доступных типов предметов (ScriptableObject)")]
     public List<LootCategory> lootCategories;
@@ -37,6 +40,38 @@ public class InventorySystem : MonoBehaviour
             return;
         }
         Instance = this;
+
+        RecalculateMaxSize();
+    }
+
+    public float GetMaxVolume() => maxVolume;
+    public int GetLevel() => level;
+    public void SetLevel(int level)
+    {
+        this.level = level;
+        RecalculateMaxSize();
+    }
+
+    void RecalculateMaxSize()
+    {
+        switch (level)
+        {
+            case 1:
+                maxVolume = 0.01f;
+                break;
+            case 2:
+                maxVolume = 0.02f;
+                break;
+            case 3:
+                maxVolume = 0.04f;
+                break;
+            case 4:
+                maxVolume = 0.08f;
+                break;
+            default:
+                maxVolume = 0.01f;
+                break;
+        }
     }
 
     /// <summary>
@@ -61,14 +96,18 @@ public class InventorySystem : MonoBehaviour
     /// </summary>
     /// <param name="lootCategory">Тип предмета</param>
     /// <returns>True, если добавить можно, иначе false</returns>
-    public bool CanAddItem(LootCategory lootCategory)
+    public bool CanAddItem(LootCategory lootCategory, int amount = 1)
     {
         if (lootCategory == null)
             return false;
 
-        float newVolume = GetOccupiedVolume() + lootCategory.volume;
-        Debug.Log($"volume: current - {GetOccupiedVolume()}, diff - {lootCategory.volume}, new - {newVolume} (max = {maxVolume})");
-        return newVolume <= maxVolume;
+        float currentVolume = MathF.Round(GetOccupiedVolume(), 6);
+        float itemVolume = MathF.Round(lootCategory.volume, 6);
+        float newVolume = MathF.Round(currentVolume + itemVolume * amount, 6);
+        float roundedMaxVolume = MathF.Round(maxVolume, 6);
+
+        Debug.Log($"volume: current - {currentVolume}, diff - {itemVolume}, new - {newVolume} (max = {roundedMaxVolume})");
+        return newVolume <= roundedMaxVolume;
     }
 
     /// <summary>
@@ -151,5 +190,25 @@ public class InventorySystem : MonoBehaviour
     private class InventoryDataWrapper
     {
         public List<InventoryItemData> items;
+    }
+
+    public void SetItemsFromJson(string json)
+    {
+        InventoryDataWrapper wrapper = JsonUtility.FromJson<InventoryDataWrapper>(json);
+        if (wrapper != null)
+        {
+            foreach (InventoryItemData inventoryItem in wrapper.items)
+            {
+                LootCategory lc = GetLootCategoryById(inventoryItem.lootCategoryId);
+
+                for (int i = 0; i < inventoryItem.quantity; i++)
+                {
+                    if (CanAddItem(lc))
+                    {
+                        AddItem(lc);
+                    }
+                }
+            }
+        }
     }
 }

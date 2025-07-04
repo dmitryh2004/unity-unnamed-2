@@ -10,10 +10,17 @@ public class StartStatsController : MonoBehaviour
     string titleText, estimatedCostText, protectedRoomCountText, securedRoomCountText;
 
     Coroutine currentCoroutine = null;
+    TypewiterAudioPlayer tap;
 
     private void Start()
     {
-        StartCoroutine(MainCoroutine(0.5f, 1000000));
+        tap = GetComponent<TypewiterAudioPlayer>();
+    }
+
+    public void ShowStatsWindow()
+    {
+        int precision = PlayerLootPredictor.Instance.GetPrecision();
+        StartCoroutine(MainCoroutine(0.5f, precision));
     }
 
     private IEnumerator MainCoroutine(float startDelay, int precision)
@@ -22,11 +29,26 @@ public class StartStatsController : MonoBehaviour
 
         int totalCost = generator.GetGeneratedLootSum();
 
-        int minCost = totalCost / precision * precision;
-        int maxCost = (totalCost / precision + 1) * precision;
-
         titleText = "Краткая сводка";
-        estimatedCostText = $"Примерная стоимость вещей:\n{NumberFormatter.FormatNumberWithGrouping(minCost)} - {NumberFormatter.FormatNumberWithGrouping(maxCost)}";
+        estimatedCostText = $"Примерная стоимость вещей:\n";
+
+        if (precision != -1)
+        {
+            if (precision > 0)
+            {
+                int minCost = totalCost / precision * precision;
+                int maxCost = (totalCost / precision + 1) * precision;
+                estimatedCostText += $"{NumberFormatter.FormatNumberWithGrouping(minCost)} - {NumberFormatter.FormatNumberWithGrouping(maxCost)}";
+            }
+            else if (precision == 0)
+            {
+                estimatedCostText += $"{NumberFormatter.FormatNumberWithGrouping(totalCost)}";
+            }
+        }
+        else
+        {
+            estimatedCostText += "[неизвестно]";
+        }
 
         int protectedRooms = generator.GetProtectedRoomsCount();
         int securedRooms = generator.GetSecuredRoomsCount();
@@ -61,6 +83,10 @@ public class StartStatsController : MonoBehaviour
         for (int i = 0; i < text.Length; i++)
         {
             textElement.text += text[i];
+            if (i % 3 == 0)
+            {
+                tap.PlayTypewriterSound();
+            }
             yield return new WaitForEndOfFrame();
         }
 

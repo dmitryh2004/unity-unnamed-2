@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using System;
 
 public class TypewriterTextShower : MonoBehaviour
 {
@@ -14,26 +15,25 @@ public class TypewriterTextShower : MonoBehaviour
         }
         Instance = this;
     }
-    public Coroutine ShowText(TMP_Text textElement, string text, TypewiterAudioPlayer tap, bool playAudio = true)
+    public Coroutine ShowText(TMP_Text textElement, string text, TypewiterAudioPlayer tap, Action onComplete = null, bool playAudio = true)
     {
-        Coroutine c = StartCoroutine(ShowTextCoroutine(textElement, text, tap, playAudio));
+        Coroutine c = StartCoroutine(ShowTextCoroutine(textElement, text, tap, onComplete, playAudio));
         return c;
     }
-    IEnumerator ShowTextCoroutine(TMP_Text textElement, string text, TypewiterAudioPlayer tap, bool playAudio = true)
+
+    IEnumerator ShowTextCoroutine(TMP_Text textElement, string text, TypewiterAudioPlayer tap, Action onComplete, bool playAudio = true)
     {
         for (int i = 0; i < text.Length; i++)
         {
             textElement.text += text[i];
-            if (playAudio)
+            if (playAudio && i % 3 == 0)
             {
-                if (i % 3 == 0)
-                {
-                    tap.PlayTypewriterSound();
-                }
+                tap.PlayTypewriterSound();
             }
             yield return new WaitForEndOfFrame();
         }
-
         yield return new WaitForSeconds(0.5f);
+
+        onComplete?.Invoke();
     }
 }

@@ -24,6 +24,23 @@ public class InputActionMapSwitcher : MonoBehaviour
         Debug.Log($"Текущая карта: {playerInput.currentActionMap?.name}");
     }
 
+    public void DisableAllMaps()
+    {
+        playerInput.currentActionMap?.Disable();
+    }
+
+    public void ShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void Awake()
     {
         if (Instance != null)

@@ -18,8 +18,6 @@ public class AlarmTimerController : MonoBehaviour
     float secondsRemaining;
     bool playing = false;
 
-    [HideInInspector] public static event Action OnExpire;
-
     public bool IsPlaying() => playing;
     public float GetRemainingTime() => secondsRemaining;
 
@@ -71,7 +69,7 @@ public class AlarmTimerController : MonoBehaviour
             {
                 secondsRemaining = 0f;
                 StopTimer();
-                OnExpire.Invoke();
+                LevelManager.Instance.DefeatPlayer(2);
             }
         }
     }

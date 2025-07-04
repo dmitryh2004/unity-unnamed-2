@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -61,22 +62,22 @@ public class StartStatsController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSecondsRealtime(3f);
 
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(title, titleText, tap);
-        yield return new WaitUntil(() => currentCoroutine == null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(estimatedCost, estimatedCostText, tap);
-        yield return new WaitUntil(() => currentCoroutine == null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(protectedRoomCount, protectedRoomCountText, tap);
-        yield return new WaitUntil(() => currentCoroutine == null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(securedRoomCount, securedRoomCountText, tap);
-        yield return new WaitUntil(() => currentCoroutine == null);
-
-        yield return new WaitForSecondsRealtime(3f);
-
-        animator.SetTrigger("hide");
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(title, titleText, tap, () => {
+            currentCoroutine = TypewriterTextShower.Instance.ShowText(estimatedCost, estimatedCostText, tap, () => {
+                currentCoroutine = TypewriterTextShower.Instance.ShowText(protectedRoomCount, protectedRoomCountText, tap, () => {
+                    currentCoroutine = TypewriterTextShower.Instance.ShowText(securedRoomCount, securedRoomCountText, tap, () => {
+                        StartCoroutine(WaitCoroutine(3f, () => {
+                            animator.SetTrigger("hide");
+                        }));
+                    });
+                });
+            });
+        });
     }
 
-    
+    IEnumerator WaitCoroutine(float seconds, Action onComplete = null)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        onComplete?.Invoke();
+    }
 }

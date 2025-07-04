@@ -24,4 +24,12 @@ public class GuardianManager : MonoBehaviour
             guardian.CallGuardian(player, player.position);
         }
     }
+
+    public void StopGuardians()
+    {
+        foreach (var guardian in guardians)
+        {
+            guardian.SetActive(false);
+        }
+    }
 }

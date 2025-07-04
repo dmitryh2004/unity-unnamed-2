@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -6,6 +7,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] LevelGenerator generator;
     [SerializeField] SaveManager saveManager;
     [SerializeField] StartStatsController startStatsController;
+    [SerializeField] DefeatScreenController defeatScreenController;
+
+    [TextArea(5, 10)]
+    [SerializeField] List<string> gameOverReasons = new();
 
     private void Awake()
     {
@@ -36,5 +41,17 @@ public class LevelManager : MonoBehaviour
         generator.Generate();
         StatisticCollector.Instance.TotalLootCost = generator.GetGeneratedLootSum();
         startStatsController.ShowStatsWindow();
+    }
+
+    public void DefeatPlayer(int reasonCode)
+    {
+        GuardianManager.Instance.StopGuardians(); //deactivate all guardians
+
+        InputActionMapSwitcher.Instance.DisableAllMaps();
+        InputActionMapSwitcher.Instance.ShowCursor();
+
+        if (AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StopAlarm();
+
+        defeatScreenController.ShowDefeatWindow(gameOverReasons[reasonCode]);
     }
 }

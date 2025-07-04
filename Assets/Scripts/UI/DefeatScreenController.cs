@@ -51,19 +51,14 @@ public class DefeatScreenController : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(headerText, header, tap);
-        yield return new WaitWhile(() => currentCoroutine != null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(descText, desc, tap);
-        yield return new WaitWhile(() => currentCoroutine != null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(statsText, stats, tap);
-        yield return new WaitWhile(() => currentCoroutine != null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(statsDescText, statsDesc, tap);
-        yield return new WaitWhile(() => currentCoroutine != null);
-
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(exitHintText, exitHint, tap);
-        yield return new WaitWhile(() => currentCoroutine != null);
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(headerText, header, tap, () => {
+            currentCoroutine = TypewriterTextShower.Instance.ShowText(descText, desc, tap, () => {
+                currentCoroutine = TypewriterTextShower.Instance.ShowText(statsText, stats, tap, () => {
+                    currentCoroutine = TypewriterTextShower.Instance.ShowText(statsDescText, statsDesc, tap, () => {
+                        currentCoroutine = TypewriterTextShower.Instance.ShowText(exitHintText, exitHint, tap);
+                    });
+                });
+            });
+        });
     }
 }

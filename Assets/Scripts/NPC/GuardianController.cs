@@ -50,6 +50,8 @@ public class GuardianController : MonoBehaviour
 
     public bool CanOpenClosedDoors() => openClosedDoors;
 
+    public void SetActive(bool active) => this.active = active;
+
     public bool IsPointVisible(Transform point)
     {
         Vector3 direction = point.position - eye.position;
@@ -192,7 +194,8 @@ public class GuardianController : MonoBehaviour
             {
                 active = false;
                 audioPlayer.PlayAttackAudio();
-                // game over
+
+                LevelManager.Instance.DefeatPlayer(1);
             }
         }
         

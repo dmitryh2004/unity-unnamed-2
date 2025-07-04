@@ -34,9 +34,20 @@ public class AlarmController : MonoBehaviour
         foreach (AlarmLightController alarmLightController in alarmLights)
         {
             alarmLightController.ChangeState(true);
-            StatisticCollector.Instance.AlarmRaised = true;
         }
+        StatisticCollector.Instance.AlarmRaised = true;
         timerController.StartTimer();
         alarmSoundSource.Play();
+    }
+
+    public void StopAlarm()
+    {
+        alarmed = false;
+        foreach (AlarmLightController alarmLightController in alarmLights)
+        {
+            alarmLightController.ChangeState(false);
+        }
+        timerController.StopTimer();
+        alarmSoundSource.Stop();
     }
 }

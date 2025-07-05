@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] LevelGenerator generator;
     [SerializeField] SaveManager saveManager;
     [SerializeField] StartStatsController startStatsController;
-    [SerializeField] DefeatScreenController defeatScreenController;
+    [SerializeField] GameOverScreenController gameOverScreenController;
 
     [TextArea(5, 10)]
     [SerializeField] List<string> gameOverReasons = new();
@@ -43,15 +43,24 @@ public class LevelManager : MonoBehaviour
         startStatsController.ShowStatsWindow();
     }
 
-    public void DefeatPlayer(int reasonCode)
+    public void GameOver(int reasonCode)
     {
         GuardianManager.Instance.StopGuardians(); //deactivate all guardians
 
-        InputActionMapSwitcher.Instance.DisableAllMaps();
+        InputActionMapSwitcher.Instance.DisableAllMaps(); // disable input
         InputActionMapSwitcher.Instance.ShowCursor();
 
-        if (AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StopAlarm();
+        if (AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StopAlarm(); // stop alarm
 
-        defeatScreenController.ShowDefeatWindow(gameOverReasons[reasonCode]);
+        StatisticCollector.Instance.CollectedLootCost = InventorySystem.Instance.GetTotalCost();
+
+        if (reasonCode != 0) // clear inventory if defeat
+        {
+            InventorySystem.Instance.RemoveAllItems();
+        }
+
+        saveManager.SaveData();
+
+        gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);
     }
 }

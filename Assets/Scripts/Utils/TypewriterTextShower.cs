@@ -3,9 +3,11 @@ using System.Collections;
 using TMPro;
 using System;
 
+[RequireComponent(typeof(TypewriterAudioPlayer))]
 public class TypewriterTextShower : MonoBehaviour
 {
     public static TypewriterTextShower Instance = null;
+    TypewriterAudioPlayer tap;
     private void Awake()
     {
         if (Instance != null)
@@ -14,14 +16,15 @@ public class TypewriterTextShower : MonoBehaviour
             return;
         }
         Instance = this;
+        tap = GetComponent<TypewriterAudioPlayer>();
     }
-    public Coroutine ShowText(TMP_Text textElement, string text, TypewiterAudioPlayer tap, Action onComplete = null, bool playAudio = true)
+    public Coroutine ShowText(TMP_Text textElement, string text, Action onComplete = null, bool playAudio = true)
     {
-        Coroutine c = StartCoroutine(ShowTextCoroutine(textElement, text, tap, onComplete, playAudio));
+        Coroutine c = StartCoroutine(ShowTextCoroutine(textElement, text, onComplete, playAudio));
         return c;
     }
 
-    IEnumerator ShowTextCoroutine(TMP_Text textElement, string text, TypewiterAudioPlayer tap, Action onComplete, bool playAudio = true)
+    IEnumerator ShowTextCoroutine(TMP_Text textElement, string text, Action onComplete, bool playAudio = true)
     {
         for (int i = 0; i < text.Length; i++)
         {

@@ -35,6 +35,7 @@ public class HackWindowController : MonoBehaviour
 
     int difficulty;
     private bool visible = false;
+    bool hacked = false;
 
     private void Awake()
     {
@@ -68,6 +69,7 @@ public class HackWindowController : MonoBehaviour
 
         VirusController.Instance.ResetToStart();
         visible = true;
+        hacked = false;
 
         UpdateCurrentInputMap();
 
@@ -91,6 +93,8 @@ public class HackWindowController : MonoBehaviour
 
     public void SuccessLock()
     {
+        hacked = true;
+        StatisticCollector.Instance.LocksHacked++;
         subject.DisableLock();
         CloseHackWindow();
     }
@@ -234,14 +238,27 @@ public class HackWindowController : MonoBehaviour
 
             if (correctTarget)
             {
-                gridController.MakeStepPre();
-                if (hoveredNode != null)
+                if (hoveredNode != null) 
+                {
+                    gridController.MakeStepPre();
                     hoveredNode.Interact();
-                if (hoveredBonus != null)
+                    if (!hacked)
+                    {
+                        gridController.MakeStepPost();
+                        bonusController.MakeStepPost();
+                    }
+                }
+                else if (hoveredBonus != null)
                 {
                     if (!hoveredBonus.UseTarget())
                     {
+                        gridController.MakeStepPre();
                         hoveredBonus.Use();
+                        if (!hacked)
+                        {
+                            gridController.MakeStepPost();
+                            bonusController.MakeStepPost();
+                        }
                     }
                     else
                     {
@@ -250,8 +267,6 @@ public class HackWindowController : MonoBehaviour
                         interactMode = 1;
                     }
                 }
-                gridController.MakeStepPost();
-                bonusController.MakeStepPost();
             }
         }
         else
@@ -276,8 +291,11 @@ public class HackWindowController : MonoBehaviour
                 gridController.MakeStepPre();
                 targetingBonus.SetTarget(hoveredNode);
                 targetingBonus.Use();
-                gridController.MakeStepPost();
-                bonusController.MakeStepPost();
+                if (!hacked)
+                {
+                    gridController.MakeStepPost();
+                    bonusController.MakeStepPost();
+                }
             }
             targetingBonus = null;
             interactMode = 0;

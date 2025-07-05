@@ -165,7 +165,6 @@ public class LockController : Interactable
             UpdateDifficultyScreen();
         if (updateLinked)
         {
-            StatisticCollector.Instance.LocksHacked++;
             foreach (LockController linked in linkedLocks)
             {
                 if (linked.IsActive()) linked.DisableLock(updateLinked: false, updateScreen: updateScreen);

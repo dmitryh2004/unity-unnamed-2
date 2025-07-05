@@ -29,14 +29,10 @@ public class InventoryUIController : MonoBehaviour
     {
         items = InventorySystem.Instance.GetItems();
 
-        float totalCost = 0f;
-
         int inventoryItemIndex = 27 + offset;
         foreach(int i in items.Keys)
         {
             LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
-            Debug.Log($"{i} ({lc.lootName}): стоимость 1 шт.={lc.cost}");
-            totalCost += items[i] * lc.cost;
 
             if (inventoryItemIndex < inventoryItems.Count)
             {
@@ -44,7 +40,6 @@ public class InventoryUIController : MonoBehaviour
 
                 Sprite itemSprite = lc.sprite;
                 if (itemSprite == null) itemSprite = unknownSprite;
-                Debug.Log($"{i}: {itemSprite}");
 
                 inventoryItems[inventoryItemIndex].Initialize(i, itemSprite, items[i]);
                 inventoryItems[inventoryItemIndex].UpdateTooltip(lc);
@@ -67,7 +62,7 @@ public class InventoryUIController : MonoBehaviour
         totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
         volumePB.SetMaxValue(maxVolume);
         volumePB.SetProgress(currentVolume);
-        estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
+        estimateCost.text = $"Оценочная стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(InventorySystem.Instance.GetTotalCost())} руб.";
     }
 
     public void SetActiveItem(int id)

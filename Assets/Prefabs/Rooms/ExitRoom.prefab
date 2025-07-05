@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 6083838898154498922}
   - component: {fileID: 7057824817334979131}
   - component: {fileID: 2441705609655904701}
-  m_Layer: 0
+  - component: {fileID: 5871972419276868476}
+  m_Layer: 6
   m_Name: ExitDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,6 +140,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5871972419276868476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030298102222985225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d4f29a7a5e5c264886993e868d18b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1.5
 --- !u!1 &1518077858965624930
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,10 +541,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: {fileID: 11400000, guid: 8f8fa288c291300438520255ffa7db22, type: 2}
+  dontExtend: 0
   northDoor: {fileID: 8776912079340346127}
   westDoor: {fileID: 2661075538399136780}
   southDoor: {fileID: 2573830380029126286}
   eastDoor: {fileID: 7068132365995660540}
+  lootContainers: []
+  lootChance: 100
 --- !u!1 &7068132365995660540
 GameObject:
   m_ObjectHideFlags: 0

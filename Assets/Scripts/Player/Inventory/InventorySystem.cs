@@ -91,6 +91,20 @@ public class InventorySystem : MonoBehaviour
         return totalVolume;
     }
 
+    public int GetTotalCost()
+    {
+        int totalCost = 0;
+        foreach (var kvp in items)
+        {
+            LootCategory category = GetLootCategoryById(kvp.Key);
+            if (category != null)
+            {
+                totalCost += category.cost * kvp.Value;
+            }
+        }
+        return totalCost;
+    }
+
     /// <summary>
     /// Проверить, можно ли добавить предмет заданного типа в инвентарь
     /// </summary>
@@ -154,6 +168,11 @@ public class InventorySystem : MonoBehaviour
             items.Remove(lootCategory.id);
         }
         return true;
+    }
+
+    public void RemoveAllItems()
+    {
+        items.Clear();
     }
 
     /// <summary>

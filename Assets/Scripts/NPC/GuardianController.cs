@@ -195,7 +195,7 @@ public class GuardianController : MonoBehaviour
                 active = false;
                 audioPlayer.PlayAttackAudio();
 
-                LevelManager.Instance.DefeatPlayer(1);
+                LevelManager.Instance.GameOver(1);
             }
         }
         

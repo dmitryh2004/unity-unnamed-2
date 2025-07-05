@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 [System.Serializable]
 public class TimedColor
@@ -21,13 +19,13 @@ public class AlarmTimerController : MonoBehaviour
     public bool IsPlaying() => playing;
     public float GetRemainingTime() => secondsRemaining;
 
-    public string GetTimerText()
+    public string GetTimerText(bool internalUsage = true)
     {
         int minutes = ((int)secondsRemaining) / 60;
         int seconds = ((int)secondsRemaining) % 60;
         
         if (playing && (seconds % 2 == 1))
-            return $"{minutes:D2} {seconds:D2}";
+            return $"{minutes:D2}{(internalUsage ? " " : ":")}{seconds:D2}";
         return $"{minutes:D2}:{seconds:D2}";
     }
 
@@ -56,6 +54,7 @@ public class AlarmTimerController : MonoBehaviour
     private void Start()
     {
         secondsRemaining = startSeconds;
+        timerText.text = GetTimerText();
     }
 
     private void Update()
@@ -63,14 +62,14 @@ public class AlarmTimerController : MonoBehaviour
         if (playing)
         {
             secondsRemaining -= Time.deltaTime;
-            timerText.text = GetTimerText();
-            timerText.color = GetTimerColor();
             if (secondsRemaining < 0f)
             {
                 secondsRemaining = 0f;
                 StopTimer();
-                LevelManager.Instance.DefeatPlayer(2);
+                LevelManager.Instance.GameOver(2);
             }
+            timerText.text = GetTimerText();
+            timerText.color = GetTimerColor();
         }
     }
 }

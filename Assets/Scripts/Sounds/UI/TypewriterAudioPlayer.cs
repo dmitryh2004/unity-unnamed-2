@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TypewiterAudioPlayer : RandomAudioPlayer
+public class TypewriterAudioPlayer : RandomAudioPlayer
 {
     [SerializeField] List<WeightedAudioClip> typewriterAudios;
 

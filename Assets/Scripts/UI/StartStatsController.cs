@@ -11,12 +11,6 @@ public class StartStatsController : MonoBehaviour
     string titleText, estimatedCostText, protectedRoomCountText, securedRoomCountText;
 
     Coroutine currentCoroutine = null;
-    TypewiterAudioPlayer tap;
-
-    private void Start()
-    {
-        tap = GetComponent<TypewiterAudioPlayer>();
-    }
 
     public void ShowStatsWindow()
     {
@@ -62,10 +56,10 @@ public class StartStatsController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return new WaitForSecondsRealtime(3f);
 
-        currentCoroutine = TypewriterTextShower.Instance.ShowText(title, titleText, tap, () => {
-            currentCoroutine = TypewriterTextShower.Instance.ShowText(estimatedCost, estimatedCostText, tap, () => {
-                currentCoroutine = TypewriterTextShower.Instance.ShowText(protectedRoomCount, protectedRoomCountText, tap, () => {
-                    currentCoroutine = TypewriterTextShower.Instance.ShowText(securedRoomCount, securedRoomCountText, tap, () => {
+        currentCoroutine = TypewriterTextShower.Instance.ShowText(title, titleText, () => {
+            currentCoroutine = TypewriterTextShower.Instance.ShowText(estimatedCost, estimatedCostText, () => {
+                currentCoroutine = TypewriterTextShower.Instance.ShowText(protectedRoomCount, protectedRoomCountText, () => {
+                    currentCoroutine = TypewriterTextShower.Instance.ShowText(securedRoomCount, securedRoomCountText, () => {
                         StartCoroutine(WaitCoroutine(3f, () => {
                             animator.SetTrigger("hide");
                         }));

@@ -66,7 +66,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         bool openDoorHintActive = false, closeDoorHintActive = false, pickUpHintActive = false,
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
-            hackNotPossibleHintActive = false;
+            hackNotPossibleHintActive = false, exitHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -96,6 +96,10 @@ public class PlayerInteractor : MonoBehaviour
                                 openDoorHintActive = true;
                             }
                         }
+                    }
+                    else if (interactable is ExitDoorController exitDoorController)
+                    {
+                        exitHintActive = true;
                     }
                     else if (interactable is LootableItem lootableItem)
                     {
@@ -138,5 +142,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("LockedHint"), lockedHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackHint"), hackHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackNotPossibleHint"), hackNotPossibleHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("ExitHint"), exitHintActive);
     }
 }

@@ -32,7 +32,7 @@ public class InventorySystem : MonoBehaviour
     // Словарь: ключ - id LootCategory, значение - количество предметов данного типа
     private Dictionary<int, int> items = new Dictionary<int, int>();
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -40,7 +40,10 @@ public class InventorySystem : MonoBehaviour
             return;
         }
         Instance = this;
+    }
 
+    private void Start()
+    {
         RecalculateMaxSize();
     }
 

@@ -20,7 +20,7 @@ public class VirusController : MonoBehaviour
     [SerializeField] int[] attackByLevel = new int[7];
     [Range(1, 7)][SerializeField] int level;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -28,7 +28,10 @@ public class VirusController : MonoBehaviour
             return;
         }
         Instance = this;
+    }
 
+    private void Start()
+    {
         ResetToStart();
     }
 

@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"Initialized:\n- inventory system: {InventorySystem.Instance != null};\n- virus: {VirusController.Instance != null};\nloot predictor: {PlayerLootPredictor.Instance != null}");
         GameData gameData = saveManager.LoadData();
         if (gameData != null)
         {

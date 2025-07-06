@@ -26,45 +26,30 @@ public class RoomObject : MonoBehaviour
 {
     [SerializeField] RoomScriptable roomType;
     [SerializeField] bool dontExtend = false;
-    RoomObject[] neighbours = new RoomObject[4];
-    [SerializeField] GameObject northDoor, westDoor, southDoor, eastDoor;
+    List<RoomObject> neighbours = new();
+    [SerializeField] List<GameObject> doorObjects = new();
 
     System.Random random = new System.Random();
 
-    bool[] possibleDirections = new bool[4];
-    GameObject[] doors = new GameObject[4];
-    GameObject[] doorWalls = new GameObject[4];
+    List<GameObject> doors = new();
+    List<GameObject> doorWalls = new();
 
     [SerializeField] List<LootContainer> lootContainers = new();
     [SerializeField] int lootChance = 100;
 
     private void Awake()
     {
-        neighbours[0] = null;
-        neighbours[1] = null;
-        neighbours[2] = null;
-        neighbours[3] = null;
-
-        possibleDirections[0] = roomType.north;
-        possibleDirections[1] = roomType.west;
-        possibleDirections[2] = roomType.south;
-        possibleDirections[3] = roomType.east;
+        foreach (Neighbour n in roomType.neighbours)
+        {
+            neighbours.Add(null);
+        }
 
         if (roomType.hasDoors)
         {
-            List<GameObject> dirs = new();
-            dirs.Add(northDoor);
-            dirs.Add(westDoor);
-            dirs.Add(southDoor);
-            dirs.Add(eastDoor);
-
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < doorObjects.Count; i++)
             {
-                if (dirs[i] != null)
-                {
-                    doors[i] = dirs[i].transform.GetChild(0).gameObject;
-                    doorWalls[i] = dirs[i].transform.GetChild(1).gameObject;
-                }
+                doors.Add(doorObjects[i].transform.GetChild(0).gameObject);
+                doorWalls.Add(doorObjects[i].transform.GetChild(1).gameObject);
             }
         }
     }
@@ -76,27 +61,27 @@ public class RoomObject : MonoBehaviour
 
     public RoomObject GetNeighbour(int i)
     {
-        if (i < 0 || i > 3) return null;
+        if (i < 0 || i >= neighbours.Count) return null;
         return neighbours[i];
     }
 
     public bool CanHaveNeighbour(int dir)
     {
-        if (dir < 0 || dir > 3) return false;
+        if (dir < 0 || dir >= neighbours.Count) return false;
         if (GetNeighboursCount() >= roomType.maxNeighbours) return false;
-        return possibleDirections[dir];
+        return true;
     }
 
-    public Directions? SelectRandomUnusedDirection()
+    public int? SelectRandomUnusedDirection()
     {
         if (GetNeighboursCount() >= roomType.maxNeighbours) return null;
-        int index = random.Next(0, 4);
-        while (neighbours[index] != null || !possibleDirections[index])
+        int index = random.Next(0, neighbours.Count);
+        while (neighbours[index] != null)
         {
             index++;
-            if (index == 4) index = 0;
+            if (index == neighbours.Count) index = 0;
         }
-        return (Directions)index;
+        return index;
     }
 
     public bool IsPointOccupied(Vector3 point)
@@ -113,7 +98,7 @@ public class RoomObject : MonoBehaviour
     public int GetNeighboursCount()
     {
         int res = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < neighbours.Count; i++)
         {
             if (HasNeighbour(i)) res++;
         }
@@ -125,59 +110,46 @@ public class RoomObject : MonoBehaviour
 
     public bool HasNeighbour(int direction)
     {
-        if (direction < 0 || direction > 3) throw new System.IndexOutOfRangeException();
+        if (direction < 0 || direction >= neighbours.Count) throw new System.IndexOutOfRangeException();
         return (neighbours[direction] != null);
-    }
-
-    public bool HasNeighbour(Directions direction)
-    {
-        return HasNeighbour((int)direction);
     }
 
     public void SetNeighbour(int direction, RoomObject neighbour)
     {
-        if (direction < 0 || direction > 3) throw new System.IndexOutOfRangeException();
+        if (direction < 0 || direction >= neighbours.Count) throw new System.IndexOutOfRangeException();
         neighbours[direction] = neighbour;
-    }
-
-    public void SetNeighbour(Directions direction, RoomObject neighbour)
-    {
-        SetNeighbour((int)direction, neighbour);
     }
 
     public void UpdateDoors()
     {
         if (roomType.hasDoors)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < roomType.neighbours.Count; i++)
             {
-                if (possibleDirections[i])
-                {
-                    bool active = HasNeighbour(i);
-                    doors[i].SetActive(active);
-                    doorWalls[i].SetActive(!active);
+                bool active = HasNeighbour(i);
+                doors[i].SetActive(active);
+                doorWalls[i].SetActive(!active);
 
-                    if (active)
+                if (active)
+                {
+                    if (roomType.canLockDoors) // если в комнате могут быть запертые двери
                     {
-                        if (roomType.canLockDoors) // если в комнате могут быть запертые двери
-                        {
-                            int chance = random.Next(1, 101); // берем рандомное число [1; 100]
-                            if (chance > roomType.lockChance) // если оно больше заданного в настройках процента
-                            {
-                                // убираем замок
-                                RemoveLockFromDoor(i);
-                            }
-                            else // иначе
-                            {
-                                // задаем рандомную сложность замку в пределах заданной в настройках
-                                SetRandomStartDifficultyForDoor(i);
-                            }
-                        }
-                        else // если в комнате не может быть запертых дверей
+                        int chance = random.Next(1, 101); // берем рандомное число [1; 100]
+                        if (chance > roomType.lockChance) // если оно больше заданного в настройках процента
                         {
                             // убираем замок
                             RemoveLockFromDoor(i);
                         }
+                        else // иначе
+                        {
+                            // задаем рандомную сложность замку в пределах заданной в настройках
+                            SetRandomStartDifficultyForDoor(i);
+                        }
+                    }
+                    else // если в комнате не может быть запертых дверей
+                    {
+                        // убираем замок
+                        RemoveLockFromDoor(i);
                     }
                 }
             }

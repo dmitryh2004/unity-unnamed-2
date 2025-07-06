@@ -1,4 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class Neighbour
+{
+    public Directions direction;
+    public Vector3 spawnOffset;
+}
 
 [CreateAssetMenu(fileName = "RoomScriptable", menuName = "Scriptable Objects/Generator/RoomScriptable")]
 public class RoomScriptable : ScriptableObject
@@ -14,25 +22,15 @@ public class RoomScriptable : ScriptableObject
     public int spawnHeightOffset = 0;
 
     [Header("Spawn directions")]
-    public bool north;
-    public int northHeightOffset = 0;
-    [Space(10)]
-    public bool west;
-    public int westHeightOffset = 0;
-    [Space(10)]
-    public bool south;
-    public int southHeightOffset = 0;
-    [Space(10)]
-    public bool east;
-    public int eastHeightOffset = 0;
+    public List<Neighbour> neighbours = new();
 
     [Space(10)]
     public bool useInputDirection = false;
-    public Directions inputDirection;
+    public int inputDirection;
 
     [Header("Spawn settings")]
-    [Range(1, 4)] public int minNeighbours = 1;
-    [Range(1, 4)] public int maxNeighbours = 4;
+    public int minNeighbours = 1;
+    public int maxNeighbours = 4;
 
     [Header("Doors settings")]
     public bool hasDoors;

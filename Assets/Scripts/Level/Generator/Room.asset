@@ -16,15 +16,17 @@ MonoBehaviour:
   length: 5
   width: 5
   height: 3
+  extensionPriority: 1
   spawnHeightOffset: 0
-  north: 1
-  northHeightOffset: 0
-  west: 1
-  westHeightOffset: 0
-  south: 1
-  southHeightOffset: 0
-  east: 1
-  eastHeightOffset: 0
+  neighbours:
+  - direction: 0
+    spawnOffset: {x: 0, y: 0, z: 2.5}
+  - direction: 1
+    spawnOffset: {x: -2.5, y: 0, z: 0}
+  - direction: 2
+    spawnOffset: {x: 0, y: 0, z: -2.5}
+  - direction: 3
+    spawnOffset: {x: 2.5, y: 0, z: 0}
   useInputDirection: 0
   inputDirection: 0
   minNeighbours: 1
@@ -34,3 +36,5 @@ MonoBehaviour:
   lockChance: 25
   lockStartDifficultyMin: 1
   lockStartDifficultyMax: 3
+  isProtectedRoom: 0
+  isSecuredRoom: 0

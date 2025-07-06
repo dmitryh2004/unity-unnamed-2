@@ -13,7 +13,8 @@ public class LevelGenerator : MonoBehaviour
 {
     System.Random random = new System.Random();
     [SerializeField] int roomsMin, roomsMax;
-    [SerializeField] int gridStep = 9;
+    [SerializeField] int newRoomOffsetStep = 9;
+    [SerializeField] int maxJoinRange = 11;
     [Space(10)]
     [Header("Exit room")]
     [SerializeField] bool generateExitRoom = true;
@@ -58,9 +59,9 @@ public class LevelGenerator : MonoBehaviour
         extensionCandidates.RemoveAll(x => true);
         generatedRooms.Clear();
         PlaceRooms();
-        CreateCoridors();
-        RoomPostGenerate();
-        BakeNavMesh();
+        //CreateCoridors();
+        //RoomPostGenerate();
+        //BakeNavMesh();
     }
 
     private void PlaceRooms()
@@ -113,79 +114,86 @@ public class LevelGenerator : MonoBehaviour
             }
             
             RoomScriptable extendedType = extended.GetRoomType();
-            Directions? direction = extended.SelectRandomUnusedDirection();
+            int? direction = extended.SelectRandomUnusedDirection();
             if (direction != null)
             {
                 Vector3 center = extended.GetCenter();
-                int offsetX = 0, offsetY = 0, offsetZ = 0;
-                switch (direction)
-                {
-                    case Directions.north:
-                        offsetZ += gridStep;
-                        offsetY = extendedType.northHeightOffset;
-                        break;
-                    case Directions.south:
-                        offsetZ -= gridStep;
-                        offsetY = extendedType.southHeightOffset;
-                        break;
-                    case Directions.west:
-                        offsetX -= gridStep;
-                        offsetY = extendedType.westHeightOffset;
-                        break;
-                    case Directions.east:
-                        offsetX += gridStep;
-                        offsetY = extendedType.eastHeightOffset;
-                        break;
-                }
+                Vector3 typeSpawnOffset = extendedType.neighbours[direction.Value].spawnOffset;
+                Directions oppositeDirection = DirectionsController.GetOppositeDirection(extendedType.neighbours[direction.Value].direction);
 
-                center += new Vector3(offsetX, offsetY, offsetZ);
-                List<GameObject> matching = roomPrefabs.FindAll(x => {
-                    RoomScriptable type = x.GetComponent<RoomObject>().GetRoomType();
-                    bool res = IsEnoughSpace(center, type);
+                int offsetX = (int)typeSpawnOffset.x, offsetY = (int)typeSpawnOffset.y, offsetZ = (int)typeSpawnOffset.z;
+                int gridOffsetX = newRoomOffsetStep * ((Mathf.Abs(offsetX) > Mathf.Abs(offsetZ)) ? (offsetX > 0 ? 1 : -1) : 0), 
+                    gridOffsetY = offsetY, 
+                    gridOffsetZ = newRoomOffsetStep * ((Mathf.Abs(offsetZ) > Mathf.Abs(offsetX)) ? (offsetZ > 0 ? 1 : -1) : 0);
+
+                center += new Vector3(gridOffsetX, gridOffsetY, gridOffsetZ);
+                List<KeyValuePair<GameObject, int>> matching = new();
+                foreach (GameObject prefab in roomPrefabs)
+                {
+                    RoomScriptable type = prefab.GetComponent<RoomObject>().GetRoomType();
+                    bool res = true;
                     if (type.useInputDirection)
                     {
-                        res = res && type.inputDirection == DirectionsController.GetOppositeDirection((Directions)direction);
+                        res = res && type.neighbours[type.inputDirection].direction == oppositeDirection;
                     }
                     if (extensionCandidates.Count == 1)
                     {
                         res = res && (type.maxNeighbours > 1);
                     }
-                    return res;
-                });
+
+                    if (res)
+                    {
+                        for (int i = 0; i < type.neighbours.Count; i++)
+                        {
+                            Neighbour n = type.neighbours[i];
+                            if (n.direction == oppositeDirection)
+                            {
+                                if (IsEnoughSpace(center, type, i))
+                                {
+                                    matching.Add(new KeyValuePair<GameObject, int>(prefab, i));
+                                }
+                            }
+                        }
+                    }
+                }
 
                 if (matching.Count > 0)
                 {
-                    GameObject selectedPrefab = matching[random.Next(0, matching.Count)];
-                    
-                    // calculate object height (Y) offset
+                    var selected = matching[random.Next(0, matching.Count)];
+
+                    GameObject selectedPrefab = selected.Key;
                     RoomScriptable type = selectedPrefab.GetComponent<RoomObject>().GetRoomType();
+
+                    center += Vector3.up * type.spawnHeightOffset;
 
                     if (type.isProtectedRoom) protectedRoomsCount++;
                     if (type.isSecuredRoom) securedRoomsCount++;
-                    center += Vector3.up * type.spawnHeightOffset;
 
                     GameObject createdRoom = Instantiate(selectedPrefab, center, Quaternion.Euler(0, 0, 0), transform);
                     RoomObject createdRoomObject = createdRoom.GetComponent<RoomObject>();
 
+                    int createdRoomDirection = selected.Value;
+
                     extended.SetNeighbour((int)direction, createdRoomObject);
-                    createdRoomObject.SetNeighbour((int)DirectionsController.GetOppositeDirection((Directions)direction), extended);
+                    createdRoomObject.SetNeighbour(createdRoomDirection, extended);
 
                     generatedRooms.Add(center, createdRoomObject);
                     extensionCandidates.Add(new KeyValuePair<RoomObject, int>(createdRoomObject, createdRoomObject.GetRoomType().extensionPriority));
 
                     UpdateNeighbours();
-                    roomsCreated++;
+                    //roomsCreated++;
                 }
-                
             }
+            roomsCreated++;
             UpdateCandidates();
 
             if (extensionCandidates.Count == 0) break;
         }
     }
 
-    private bool IsEnoughSpace(Vector3 center, RoomScriptable type)
+    private bool IsEnoughSpace(Vector3 _center, RoomScriptable type, int inputDirection)
     {
+        Vector3 center = _center - type.neighbours[inputDirection].spawnOffset;
         int sizeX = type.width, sizeY = type.height, sizeZ = type.length;
         int heightOffset = type.spawnHeightOffset;
         for (int i = 0; i < sizeX; i++)
@@ -213,66 +221,56 @@ public class LevelGenerator : MonoBehaviour
     {
         foreach (RoomObject room in generatedRooms.Values)
         {
-            //add links to neighbours of room
-            for (int i = 0; i < 4; i++)
+            if (room.GetNeighboursCount() >= room.GetRoomType().maxNeighbours) continue;
+            // find new neighbours
+            Vector3 center = room.GetCenter();
+            RoomScriptable type = room.GetRoomType();
+
+            for (int i = 0; i < type.neighbours.Count; i++)
             {
-                if (room.CanHaveNeighbour(i))
+                if (room.HasNeighbour(i)) continue;
+                CheckNeighbourDirection(center, type, i, room);
+            }
+        }
+    }
+
+    private void CheckNeighbourDirection(Vector3 center, RoomScriptable type, int i, RoomObject room)
+    {
+        Neighbour neighbour = type.neighbours[i];
+        Vector3 offset = neighbour.spawnOffset;
+        Directions dir = neighbour.direction;
+        Vector3 searchDirection = new Vector3(
+            (dir == Directions.east) ? 1 : ((dir == Directions.west) ? -1 : 0),
+            0,
+            (dir == Directions.north) ? 1 : ((dir == Directions.south) ? -1 : 0)
+        );
+        for (int currentRange = 0; currentRange < maxJoinRange; currentRange++)
+        {
+            RoomObject possibleNeighbour = null;
+            foreach (RoomObject existingRoom in generatedRooms.Values)
+            {
+                if (existingRoom.IsPointOccupied(center + offset + searchDirection * currentRange))
                 {
-                    RoomObject neighbour = room.GetNeighbour(i);
-                    if (neighbour != null)
-                    {
-                        int index = (i + 2) % 4;
-                        if (neighbour.CanHaveNeighbour(index) && neighbour.GetNeighbour(index) == null)
-                        {
-                            neighbour.SetNeighbour(index, room);
-                        }
-                    }
+                    possibleNeighbour = existingRoom;
+                    break;
                 }
             }
 
-            // find new neighbours
-            Vector3 center = room.GetCenter();
-            RoomObject northNeighbour, westNeighbour, southNeighbour, eastNeighbour;
-            if (!room.HasNeighbour(0) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0,0,1) + room.GetRoomType().northHeightOffset * Vector3.up, out northNeighbour))
+            if (possibleNeighbour == null) continue;
+
+            List<Neighbour> possibleNeighbourNeighbours = possibleNeighbour.GetRoomType().neighbours;
+            for (int j = 0; j < possibleNeighbourNeighbours.Count; j++)
             {
-                if (room.CanHaveNeighbour(0) && northNeighbour.CanHaveNeighbour(2) && !northNeighbour.HasNeighbour(2))
+                Neighbour possibleNeighbourN = possibleNeighbourNeighbours[j];
+                if (center + offset + searchDirection * currentRange == possibleNeighbour.GetCenter() + possibleNeighbourN.spawnOffset)
                 {
-                    room.SetNeighbour(Directions.north, northNeighbour);
-                    northNeighbour.SetNeighbour(Directions.south, room);
+                    room.SetNeighbour(i, possibleNeighbour);
+                    possibleNeighbour.SetNeighbour(j, room);
+                    return;
                 }
-                else
-                    room.SetNeighbour(Directions.north, null);
             }
-            if (!room.HasNeighbour(1) && generatedRooms.TryGetValue(center + gridStep * new Vector3(-1, 0, 0) + room.GetRoomType().westHeightOffset * Vector3.up, out westNeighbour))
-            {
-                if (room.CanHaveNeighbour(1) && westNeighbour.CanHaveNeighbour(3) && !westNeighbour.HasNeighbour(3))
-                {
-                    room.SetNeighbour(Directions.west, westNeighbour);
-                    westNeighbour.SetNeighbour(Directions.east, room);
-                }
-                else
-                    room.SetNeighbour(Directions.west, null);
-            }
-            if (!room.HasNeighbour(2) && generatedRooms.TryGetValue(center + gridStep * new Vector3(0, 0, -1) + room.GetRoomType().southHeightOffset * Vector3.up, out southNeighbour))
-            {
-                if (room.CanHaveNeighbour(2) && southNeighbour.CanHaveNeighbour(0) && !southNeighbour.HasNeighbour(0))
-                {
-                    room.SetNeighbour(Directions.south, southNeighbour);
-                    southNeighbour.SetNeighbour(Directions.north, room);
-                }
-                else
-                    room.SetNeighbour(Directions.south, null);
-            }
-            if (!room.HasNeighbour(3) && generatedRooms.TryGetValue(center + gridStep * new Vector3(1, 0, 0) + room.GetRoomType().eastHeightOffset * Vector3.up, out eastNeighbour))
-            {
-                if (room.CanHaveNeighbour(3) && eastNeighbour.CanHaveNeighbour(1) && !eastNeighbour.HasNeighbour(1))
-                {
-                    room.SetNeighbour(Directions.east, eastNeighbour);
-                    eastNeighbour.SetNeighbour(Directions.west, room);
-                }
-                else
-                    room.SetNeighbour(Directions.east, null);
-            }
+
+            break;
         }
     }
 
@@ -301,32 +299,42 @@ public class LevelGenerator : MonoBehaviour
         foreach (RoomObject room in generatedRooms.Values)
         {
             Vector3 roomCenter = room.GetCenter();
-            float offsetX = room.GetRoomType().width / 2f;
-            float offsetZ = room.GetRoomType().length / 2f;
-            RoomObject northNeighbour = room.GetNeighbour(0);
-            RoomObject eastNeighbour = room.GetNeighbour(3);
             
-            //north direction
-            if (northNeighbour != null)
+            for (int i = 0; i < room.GetRoomType().neighbours.Count; i++)
             {
-                Vector3 curPos = roomCenter + new Vector3(0, room.GetRoomType().northHeightOffset, offsetZ + 0.5f);
-                Debug.Log($"{room.gameObject.name} - generating coridors to north at {curPos}");
-                while (!northNeighbour.IsPointOccupied(curPos))
+                Neighbour n = room.GetRoomType().neighbours[i];
+                Vector3 offset = Vector3.zero;
+                switch(n.direction)
                 {
-                    Instantiate(coridorVertical, curPos, Quaternion.Euler(0, 0, 0), transform);
-                    curPos += Vector3.forward;
+                    case Directions.north:
+                        offset = Vector3.forward;
+                        break;
+                    case Directions.east:
+                        offset = Vector3.right;
+                        break;
+                    default:
+                        continue;
                 }
-            }
 
-            //east direction
-            if (eastNeighbour != null)
-            {
-                Vector3 curPos = roomCenter + new Vector3(offsetX + 0.5f, room.GetRoomType().eastHeightOffset, 0);
-                Debug.Log($"{room.gameObject.name} - generating coridors to east at {curPos}");
-                while (!eastNeighbour.IsPointOccupied(curPos))
+                Vector3 curPos = roomCenter + n.spawnOffset + offset * 0.5f;
+                GameObject usingPrefab = null;
+                if (n.direction == Directions.north)
                 {
-                    Instantiate(coridorHorizontal, curPos, Quaternion.Euler(0, 0, 0), transform);
-                    curPos += Vector3.right;
+                    usingPrefab = coridorVertical;
+                }
+                else
+                {
+                    usingPrefab = coridorHorizontal;
+                }
+
+                RoomObject neighbour = room.GetNeighbour(i);
+                if (neighbour != null)
+                {
+                    while (!neighbour.IsPointOccupied(curPos))
+                    {
+                        Instantiate(usingPrefab, curPos, Quaternion.Euler(0, 0, 0), transform);
+                        curPos += offset;
+                    }
                 }
             }
         }

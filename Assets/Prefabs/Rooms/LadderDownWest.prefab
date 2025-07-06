@@ -324,10 +324,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: {fileID: 11400000, guid: b5ee9ee6fa0c2ab43a002d8588aabff4, type: 2}
-  northDoor: {fileID: 0}
-  westDoor: {fileID: 7377434734068977377}
-  southDoor: {fileID: 0}
-  eastDoor: {fileID: 1054176012229714439}
+  dontExtend: 0
+  doorObjects:
+  - {fileID: 1054176012229714439}
+  - {fileID: 7377434734068977377}
+  lootContainers: []
+  lootChance: 100
 --- !u!1 &7377434734068977377
 GameObject:
   m_ObjectHideFlags: 0

@@ -5315,9 +5315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c758b58871c5f4cac1df7d8a8d8489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsMin: 30
-  roomsMax: 30
-  gridStep: 9
+  roomsMin: 10
+  roomsMax: 10
+  newRoomOffsetStep: 9
+  maxJoinRange: 11
   generateExitRoom: 1
   exitRoomPrefab: {fileID: 6446649711032756406, guid: 3d6f767d172674d48b91c504c741431e, type: 3}
   usePreplacedRooms: 1

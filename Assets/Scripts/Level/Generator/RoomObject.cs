@@ -88,9 +88,9 @@ public class RoomObject : MonoBehaviour
     {
         bool x = false, y = false, z = false;
         Vector3 center = GetCenter();
-        x = (Mathf.Abs(point.x - center.x) < roomType.width / 2f);
+        x = (Mathf.Abs(point.x - center.x) <= roomType.width / 2f);
         y = ((point.y - center.y >= 0) && (point.y - center.y < roomType.height));
-        z = (Mathf.Abs(point.z - center.z) < roomType.length / 2f);
+        z = (Mathf.Abs(point.z - center.z) <= roomType.length / 2f);
 
         return x && y && z;
     }

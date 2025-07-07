@@ -59,9 +59,15 @@ public class LevelGenerator : MonoBehaviour
         extensionCandidates.RemoveAll(x => true);
         generatedRooms.Clear();
         PlaceRooms();
-        //CreateCoridors();
-        //RoomPostGenerate();
-        //BakeNavMesh();
+
+        foreach (var room in generatedRooms.Values)
+        {
+            Debug.Log($"room {room.gameObject.name}: neighbours count={room.GetNeighboursCount()}, directions count={room.GetRoomType().neighbours.Count}");
+        }
+
+        CreateCoridors();
+        RoomPostGenerate();
+        BakeNavMesh();
     }
 
     private void PlaceRooms()
@@ -181,10 +187,10 @@ public class LevelGenerator : MonoBehaviour
                     extensionCandidates.Add(new KeyValuePair<RoomObject, int>(createdRoomObject, createdRoomObject.GetRoomType().extensionPriority));
 
                     UpdateNeighbours();
-                    //roomsCreated++;
+                    roomsCreated++;
                 }
             }
-            roomsCreated++;
+            //roomsCreated++;
             UpdateCandidates();
 
             if (extensionCandidates.Count == 0) break;
@@ -249,6 +255,7 @@ public class LevelGenerator : MonoBehaviour
             RoomObject possibleNeighbour = null;
             foreach (RoomObject existingRoom in generatedRooms.Values)
             {
+                if (existingRoom == room) continue;
                 if (existingRoom.IsPointOccupied(center + offset + searchDirection * currentRange))
                 {
                     possibleNeighbour = existingRoom;
@@ -262,10 +269,12 @@ public class LevelGenerator : MonoBehaviour
             for (int j = 0; j < possibleNeighbourNeighbours.Count; j++)
             {
                 Neighbour possibleNeighbourN = possibleNeighbourNeighbours[j];
+                Debug.Log($"cycle coords: {center + offset + searchDirection * currentRange}, pn coords: {possibleNeighbour.GetCenter() + possibleNeighbourN.spawnOffset}");
                 if (center + offset + searchDirection * currentRange == possibleNeighbour.GetCenter() + possibleNeighbourN.spawnOffset)
                 {
                     room.SetNeighbour(i, possibleNeighbour);
                     possibleNeighbour.SetNeighbour(j, room);
+                    Debug.Log($"{room.gameObject.name}: found new neighbour at direction {i} ({possibleNeighbour.gameObject.name})");
                     return;
                 }
             }

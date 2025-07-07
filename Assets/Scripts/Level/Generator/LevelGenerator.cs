@@ -62,7 +62,7 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (var room in generatedRooms.Values)
         {
-            Debug.Log($"room {room.gameObject.name}: neighbours count={room.GetNeighboursCount()}, directions count={room.GetRoomType().neighbours.Count}");
+            //Debug.Log($"room {room.gameObject.name}: neighbours count={room.GetNeighboursCount()}, directions count={room.GetRoomType().neighbours.Count}");
         }
 
         CreateCoridors();
@@ -210,7 +210,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     Vector3 coords = new Vector3(
                             center.x - sizeX / 2f + i,
-                            center.y + heightOffset + j,
+                            center.y + j,
                             center.z - sizeZ / 2f + k
                         );
                     foreach (RoomObject room in generatedRooms.Values)
@@ -235,6 +235,7 @@ public class LevelGenerator : MonoBehaviour
             for (int i = 0; i < type.neighbours.Count; i++)
             {
                 if (room.HasNeighbour(i)) continue;
+                if (room.GetNeighboursCount() >= room.GetRoomType().maxNeighbours) continue;
                 CheckNeighbourDirection(center, type, i, room);
             }
         }
@@ -265,9 +266,12 @@ public class LevelGenerator : MonoBehaviour
 
             if (possibleNeighbour == null) continue;
 
+            if (possibleNeighbour.GetNeighboursCount() >= possibleNeighbour.GetRoomType().maxNeighbours) return;
+
             List<Neighbour> possibleNeighbourNeighbours = possibleNeighbour.GetRoomType().neighbours;
             for (int j = 0; j < possibleNeighbourNeighbours.Count; j++)
             {
+                if (possibleNeighbour.HasNeighbour(j)) continue;
                 Neighbour possibleNeighbourN = possibleNeighbourNeighbours[j];
                 Debug.Log($"cycle coords: {center + offset + searchDirection * currentRange}, pn coords: {possibleNeighbour.GetCenter() + possibleNeighbourN.spawnOffset}");
                 if (center + offset + searchDirection * currentRange == possibleNeighbour.GetCenter() + possibleNeighbourN.spawnOffset)
@@ -339,9 +343,11 @@ public class LevelGenerator : MonoBehaviour
                 RoomObject neighbour = room.GetNeighbour(i);
                 if (neighbour != null)
                 {
-                    while (!neighbour.IsPointOccupied(curPos))
+                    int count = 0;
+                    while (!neighbour.IsPointOccupied(curPos) && count < maxJoinRange)
                     {
                         Instantiate(usingPrefab, curPos, Quaternion.Euler(0, 0, 0), transform);
+                        count++;
                         curPos += offset;
                     }
                 }

@@ -26,7 +26,7 @@ public class RoomObject : MonoBehaviour
 {
     [SerializeField] RoomScriptable roomType;
     [SerializeField] bool dontExtend = false;
-    List<RoomObject> neighbours = new();
+    [SerializeField] List<RoomObject> neighbours = new();
     [SerializeField] List<GameObject> doorObjects = new();
 
     System.Random random = new System.Random();

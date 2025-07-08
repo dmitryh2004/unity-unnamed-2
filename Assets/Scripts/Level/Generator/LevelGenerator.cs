@@ -12,10 +12,15 @@ public class KVPComparer : IComparer<KeyValuePair<RoomObject, int>>
 public class LevelGenerator : MonoBehaviour
 {
     System.Random random = new System.Random();
-    [SerializeField] int roomsMin, roomsMax;
+    [Header("Common settings")]
+    [SerializeField] int roomsMin;
+    [SerializeField] int roomsMax;
+    [Space]
     [SerializeField] int newRoomOffsetStep = 9;
     [SerializeField] int maxJoinRange = 11;
-    [Space(10)]
+    [Space]
+    [SerializeField] float minHeight = -50f;
+    [SerializeField] float maxHeight = 0f;
     [Header("Exit room")]
     [SerializeField] bool generateExitRoom = true;
     [SerializeField] GameObject exitRoomPrefab;
@@ -170,15 +175,15 @@ public class LevelGenerator : MonoBehaviour
                     GameObject selectedPrefab = selected.Key;
                     RoomScriptable type = selectedPrefab.GetComponent<RoomObject>().GetRoomType();
 
-                    center += Vector3.up * type.spawnHeightOffset;
+                    int createdRoomDirection = selected.Value;
+
+                    center += Vector3.up * (type.spawnHeightOffset - type.neighbours[createdRoomDirection].spawnOffset.y);
 
                     if (type.isProtectedRoom) protectedRoomsCount++;
                     if (type.isSecuredRoom) securedRoomsCount++;
 
                     GameObject createdRoom = Instantiate(selectedPrefab, center, Quaternion.Euler(0, 0, 0), transform);
                     RoomObject createdRoomObject = createdRoom.GetComponent<RoomObject>();
-
-                    int createdRoomDirection = selected.Value;
 
                     extended.SetNeighbour((int)direction, createdRoomObject);
                     createdRoomObject.SetNeighbour(createdRoomDirection, extended);
@@ -213,6 +218,7 @@ public class LevelGenerator : MonoBehaviour
                             center.y + j,
                             center.z - sizeZ / 2f + k
                         );
+                    if (coords.y < minHeight || coords.y > maxHeight) return false;
                     foreach (RoomObject room in generatedRooms.Values)
                     {
                         if (room.IsPointOccupied(coords)) return false;

@@ -20,11 +20,11 @@ MonoBehaviour:
   spawnHeightOffset: 0
   neighbours:
   - direction: 1
-    spawnOffset: {x: -2.5, y: 4, z: 0}
+    spawnOffset: {x: -2.5, y: 0, z: 0}
   - direction: 3
-    spawnOffset: {x: 2.5, y: 0, z: 0}
+    spawnOffset: {x: 2.5, y: 4, z: 0}
   useInputDirection: 1
-  inputDirection: 1
+  inputDirection: 0
   minNeighbours: 1
   maxNeighbours: 2
   hasDoors: 1

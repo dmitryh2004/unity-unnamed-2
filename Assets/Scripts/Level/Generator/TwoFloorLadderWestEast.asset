@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
+  m_Name: TwoFloorLadderWestEast
+  m_EditorClassIdentifier: 
+  id: 13
+  length: 7
+  width: 7
+  height: 9
+  extensionPriority: 1
+  spawnHeightOffset: 0
+  neighbours:
+  - direction: 1
+    spawnOffset: {x: -3.5, y: 6, z: 0}
+  - direction: 3
+    spawnOffset: {x: 3.5, y: 0, z: 0}
+  useInputDirection: 0
+  inputDirection: 0
+  minNeighbours: 1
+  maxNeighbours: 2
+  hasDoors: 1
+  canLockDoors: 0
+  lockChance: 0
+  lockStartDifficultyMin: 1
+  lockStartDifficultyMax: 1
+  isProtectedRoom: 0
+  isSecuredRoom: 0

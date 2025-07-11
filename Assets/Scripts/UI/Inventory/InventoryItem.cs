@@ -1,20 +1,38 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     int id;
+    PlayerControls controls;
     bool pointerOnItem = false;
     bool active = false;
+    [SerializeField] bool isInChestUI = false;
+    [SerializeField] bool isChestItem = false;
     [SerializeField] Sprite emptySprite;
     [SerializeField] Image image;
     [SerializeField] TMP_Text itemCount;
     [SerializeField] InventoryUIController uiController;
+    [SerializeField] ChestUIController chestUIController;
     [SerializeField] Animator tooltipAnimator;
-    [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost;
+    [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost, tooltipActions;
 
+    void Awake()
+    {
+        controls = new();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
     void Start()
     {
         HideTooltip();
@@ -62,6 +80,25 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         tooltipHeader.text = $"{lc.lootName}";
         tooltipText.text = lc.lootDesc;
         tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} руб.";
+        
+        tooltipActions.text = "";
+        if (!isInChestUI)
+        {
+            string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
+            tooltipActions.text += $"\n[{dropBind}] - выкинуть";
+        }
+        else
+        {
+            string transferBind = controls.InventoryUI.TransferItem.GetBindingDisplayString();
+            if (isChestItem)
+            {
+                tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь";
+            }
+            else
+            {
+                tooltipActions.text += $"\n[{transferBind}] - положить в сундук";
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -69,7 +106,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!active) return;
         pointerOnItem = true;
         ShowTooltip();
-        uiController.SetActiveItem(id);
+        if (isInChestUI)
+        {
+
+        }
+        else
+        {
+            uiController.SetActiveItem(id);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -77,7 +121,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!active) return;
         pointerOnItem = false;
         HideTooltip();
-        uiController.SetActiveItem(-1);
+        if (isInChestUI)
+        {
+
+        }
+        else
+        {
+            uiController.SetActiveItem(-1);
+        }
     }
 
     public bool IsPointerOnItem()

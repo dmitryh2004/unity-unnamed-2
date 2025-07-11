@@ -358,6 +358,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TransferItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""a877f9b8-0cb0-45ca-9c0b-d57bc8381bda"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -402,6 +411,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ScrollDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83ce1f4e-09b9-4993-ba41-e97720ab4878"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TransferItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -475,6 +495,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_InventoryUI_DropItem = m_InventoryUI.FindAction("DropItem", throwIfNotFound: true);
         m_InventoryUI_ScrollUp = m_InventoryUI.FindAction("ScrollUp", throwIfNotFound: true);
         m_InventoryUI_ScrollDown = m_InventoryUI.FindAction("ScrollDown", throwIfNotFound: true);
+        m_InventoryUI_TransferItem = m_InventoryUI.FindAction("TransferItem", throwIfNotFound: true);
         // HackUI
         m_HackUI = asset.FindActionMap("HackUI", throwIfNotFound: true);
         m_HackUI_HackExit = m_HackUI.FindAction("HackExit", throwIfNotFound: true);
@@ -749,6 +770,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InventoryUI_DropItem;
     private readonly InputAction m_InventoryUI_ScrollUp;
     private readonly InputAction m_InventoryUI_ScrollDown;
+    private readonly InputAction m_InventoryUI_TransferItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "InventoryUI".
     /// </summary>
@@ -776,6 +798,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InventoryUI/ScrollDown".
         /// </summary>
         public InputAction @ScrollDown => m_Wrapper.m_InventoryUI_ScrollDown;
+        /// <summary>
+        /// Provides access to the underlying input action "InventoryUI/TransferItem".
+        /// </summary>
+        public InputAction @TransferItem => m_Wrapper.m_InventoryUI_TransferItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -814,6 +840,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollDown.started += instance.OnScrollDown;
             @ScrollDown.performed += instance.OnScrollDown;
             @ScrollDown.canceled += instance.OnScrollDown;
+            @TransferItem.started += instance.OnTransferItem;
+            @TransferItem.performed += instance.OnTransferItem;
+            @TransferItem.canceled += instance.OnTransferItem;
         }
 
         /// <summary>
@@ -837,6 +866,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollDown.started -= instance.OnScrollDown;
             @ScrollDown.performed -= instance.OnScrollDown;
             @ScrollDown.canceled -= instance.OnScrollDown;
+            @TransferItem.started -= instance.OnTransferItem;
+            @TransferItem.performed -= instance.OnTransferItem;
+            @TransferItem.canceled -= instance.OnTransferItem;
         }
 
         /// <summary>
@@ -1083,6 +1115,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScrollDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TransferItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTransferItem(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "HackUI" which allows adding and removing callbacks.

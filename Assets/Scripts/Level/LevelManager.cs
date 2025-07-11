@@ -4,6 +4,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance = null;
+    [SerializeField] bool isLevel = true;
     [SerializeField] LevelGenerator generator;
     [SerializeField] SaveManager saveManager;
     [SerializeField] StartStatsController startStatsController;
@@ -29,19 +30,29 @@ public class LevelManager : MonoBehaviour
         if (gameData != null)
         {
             InventorySystem.Instance.SetLevel(gameData.inventoryLevel);
-            VirusController.Instance.SetLevel(gameData.virusLevel);
-            PlayerLootPredictor.Instance.SetLevel(gameData.predictorLevel);
             InventorySystem.Instance.SetItemsFromJson(gameData.inventory);
+
+            if (VirusController.Instance != null)
+                VirusController.Instance.SetLevel(gameData.virusLevel);
+            if (PlayerLootPredictor.Instance != null)
+                PlayerLootPredictor.Instance.SetLevel(gameData.predictorLevel);
         }
         else
         {
             InventorySystem.Instance.SetLevel(1);
-            VirusController.Instance.SetLevel(1);
-            PlayerLootPredictor.Instance.SetLevel(0);
+
+            if (VirusController.Instance != null)
+                VirusController.Instance.SetLevel(1);
+            if (PlayerLootPredictor.Instance != null)
+                PlayerLootPredictor.Instance.SetLevel(0);
         }
-        generator.Generate();
-        StatisticCollector.Instance.TotalLootCost = generator.GetGeneratedLootSum();
-        startStatsController.ShowStatsWindow();
+
+        if (isLevel)
+        {
+            generator.Generate();
+            StatisticCollector.Instance.TotalLootCost = generator.GetGeneratedLootSum();
+            startStatsController.ShowStatsWindow();
+        }
     }
 
     public void GameOver(int reasonCode)

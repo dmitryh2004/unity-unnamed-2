@@ -15,7 +15,7 @@ public class StartStatsController : MonoBehaviour
     public void ShowStatsWindow()
     {
         int precision = PlayerLootPredictor.Instance.GetPrecision();
-        StartCoroutine(MainCoroutine(0.5f, precision));
+        StartCoroutine(MainCoroutine(1.5f, precision));
     }
 
     private IEnumerator MainCoroutine(float startDelay, int precision)

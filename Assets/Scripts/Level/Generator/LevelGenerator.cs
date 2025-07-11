@@ -209,7 +209,7 @@ public class LevelGenerator : MonoBehaviour
         int heightOffset = type.spawnHeightOffset;
         for (int i = 0; i < sizeX; i++)
         {
-            for (int j = 0; j < sizeY; j++)
+            for (int j = 0; j <= sizeY; j++)
             {
                 for (int k = 0; k < sizeZ; k++)
                 {

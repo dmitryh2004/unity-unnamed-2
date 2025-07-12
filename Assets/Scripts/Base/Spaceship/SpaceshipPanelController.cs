@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpaceshipPanelController : Interactable
 {
@@ -12,7 +13,7 @@ public class SpaceshipPanelController : Interactable
     [SerializeField] Animator animator;
     [SerializeField] Camera playerCamera;
     [SerializeField] Camera panelCamera;
-    
+    [SerializeField] PlayerInput playerInput;
     [Header("First screen")]
     [SerializeField] TMP_Text currentComplex;
     [SerializeField] TMP_Text currentComplexDifficulty;
@@ -20,15 +21,27 @@ public class SpaceshipPanelController : Interactable
     [SerializeField] TMP_Text currentComplexGuardiansAmount;
     [SerializeField] TMP_Text currentComplexReinforcementTimer;
     [SerializeField] TMP_Text currentComplexDescription;
+
+    [SerializeField] string currentComplexTemplate, currentComplexDifficultyTemplate, currentComplexRoomsAmountTemplate,
+        currentComplexGuardiansAmountTemplate, currentComplexReinforcementTimerTemplate, currentComplexDescriptionTemplate;
     [Header("Second screen")]
     [SerializeField] List<Complex> complexList = new();
     [SerializeField] List<TMP_Text> complexTextsList = new();
 
     Vector3 cameraLastPosition, cameraLastRotation;
-    int currentScreen = 1;
+    int currentScreen = 0;
+
+    int currentComplexIndex = 0;
+
+    private void Start()
+    {
+        UpdateScreen1Text();
+    }
 
     public override void Interact()
     {
+        InputActionMapSwitcher.Instance.DisableAllMaps();
+
         cameraLastPosition = playerCamera.transform.position;
         cameraLastRotation = playerCamera.transform.eulerAngles;
 
@@ -37,8 +50,38 @@ public class SpaceshipPanelController : Interactable
 
         StartCoroutine(TranslatePanelCamera(true, 1f, () =>
         {
-            // change input map
+            InputActionMapSwitcher.Instance.SwitchMap("SpaceshipPanelUI");
+            ChangeScreen(1);
         }));
+    }
+
+    void ChangeScreen(int newScreen)
+    {
+        if (currentScreen != 0 && newScreen != 0) animator.SetTrigger("swap");
+        currentScreen = newScreen;
+
+        if (currentScreen == 1)
+        {
+            UpdateScreen1Text();
+        }
+        else if (currentScreen == 2)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    private void UpdateScreen1Text()
+    {
+        currentComplex.text = currentComplexTemplate.Replace("A", complexList[currentComplexIndex].complexName);
+        currentComplexDifficulty.text = currentComplexDifficultyTemplate.Replace("A", $"{complexList[currentComplexIndex].difficulty}");
+        currentComplexRoomsAmount.text = currentComplexRoomsAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].minRooms}").Replace("B", $"{complexList[currentComplexIndex].maxRooms}");
+        currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansCount}");
+        currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", complexList[currentComplexIndex].reinforcementTimer);
+        currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", complexList[currentComplexIndex].description);
     }
 
     Vector3 Clamp(Vector3 vector, float degs)
@@ -118,5 +161,40 @@ public class SpaceshipPanelController : Interactable
         panelCamera.transform.rotation = Quaternion.Euler(startRot + rotateAngles);
 
         onComplete?.Invoke();
+    }
+
+    public void Exit(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 1)
+        {
+            ChangeScreen(0);
+            InputActionMapSwitcher.Instance.DisableAllMaps();
+
+            StartCoroutine(TranslatePanelCamera(false, 1f, () =>
+            {
+                InputActionMapSwitcher.Instance.SwitchMap("Gameplay");
+                playerCamera.gameObject.SetActive(true);
+                panelCamera.gameObject.SetActive(false);
+            }));
+        }
+    }
+
+    public void ComplexList(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 1)
+        {
+            ChangeScreen(2);
+        }
+    }
+
+    public void Back(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
+        {
+            ChangeScreen(1);
+        }
     }
 }

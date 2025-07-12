@@ -582,6 +582,134 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""SpaceshipPanelUI"",
+            ""id"": ""fe9e0d5a-1e6f-463d-b7fa-2dec2dcc0c05"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""de8d6c6a-3d45-48c3-9569-a226aa75e832"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ComplexList"",
+                    ""type"": ""Button"",
+                    ""id"": ""94a4680c-0907-4607-b945-0635af03e875"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectComplex"",
+                    ""type"": ""Button"",
+                    ""id"": ""71112f23-37f2-4697-af55-3523cf7dafe2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""c74b84f8-a832-40a8-ba47-efb0b91ae9de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavigationUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""783d3c1e-8edd-4eb2-9036-37bdeed65da2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NavigationDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""b80f4c2a-12f9-443b-ae13-da643f113676"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0b05410c-b9f6-4ddd-b484-843343fc0cca"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7163288b-f813-41ac-b03a-6abffca59db7"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ComplexList"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82df4210-72a2-4f89-874d-a676e8e3d5e1"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectComplex"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2780fcc7-4867-451a-9280-dfed17193c95"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9adadaf1-3bb3-4164-8589-48be53a5779b"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigationUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c195506-f24e-4aa2-bb7e-16dbac8068a7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NavigationDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -615,6 +743,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_ChestUI_ScrollDownInventory = m_ChestUI.FindAction("ScrollDownInventory", throwIfNotFound: true);
         m_ChestUI_ScrollUpChest = m_ChestUI.FindAction("ScrollUpChest", throwIfNotFound: true);
         m_ChestUI_ScrollDownChest = m_ChestUI.FindAction("ScrollDownChest", throwIfNotFound: true);
+        // SpaceshipPanelUI
+        m_SpaceshipPanelUI = asset.FindActionMap("SpaceshipPanelUI", throwIfNotFound: true);
+        m_SpaceshipPanelUI_Exit = m_SpaceshipPanelUI.FindAction("Exit", throwIfNotFound: true);
+        m_SpaceshipPanelUI_ComplexList = m_SpaceshipPanelUI.FindAction("ComplexList", throwIfNotFound: true);
+        m_SpaceshipPanelUI_SelectComplex = m_SpaceshipPanelUI.FindAction("SelectComplex", throwIfNotFound: true);
+        m_SpaceshipPanelUI_Back = m_SpaceshipPanelUI.FindAction("Back", throwIfNotFound: true);
+        m_SpaceshipPanelUI_NavigationUp = m_SpaceshipPanelUI.FindAction("NavigationUp", throwIfNotFound: true);
+        m_SpaceshipPanelUI_NavigationDown = m_SpaceshipPanelUI.FindAction("NavigationDown", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -623,6 +759,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_InventoryUI.enabled, "This will cause a leak and performance issues, PlayerControls.InventoryUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_HackUI.enabled, "This will cause a leak and performance issues, PlayerControls.HackUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_ChestUI.enabled, "This will cause a leak and performance issues, PlayerControls.ChestUI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_SpaceshipPanelUI.enabled, "This will cause a leak and performance issues, PlayerControls.SpaceshipPanelUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1265,6 +1402,157 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ChestUIActions" /> instance referencing this action map.
     /// </summary>
     public ChestUIActions @ChestUI => new ChestUIActions(this);
+
+    // SpaceshipPanelUI
+    private readonly InputActionMap m_SpaceshipPanelUI;
+    private List<ISpaceshipPanelUIActions> m_SpaceshipPanelUIActionsCallbackInterfaces = new List<ISpaceshipPanelUIActions>();
+    private readonly InputAction m_SpaceshipPanelUI_Exit;
+    private readonly InputAction m_SpaceshipPanelUI_ComplexList;
+    private readonly InputAction m_SpaceshipPanelUI_SelectComplex;
+    private readonly InputAction m_SpaceshipPanelUI_Back;
+    private readonly InputAction m_SpaceshipPanelUI_NavigationUp;
+    private readonly InputAction m_SpaceshipPanelUI_NavigationDown;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "SpaceshipPanelUI".
+    /// </summary>
+    public struct SpaceshipPanelUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public SpaceshipPanelUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_SpaceshipPanelUI_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/ComplexList".
+        /// </summary>
+        public InputAction @ComplexList => m_Wrapper.m_SpaceshipPanelUI_ComplexList;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/SelectComplex".
+        /// </summary>
+        public InputAction @SelectComplex => m_Wrapper.m_SpaceshipPanelUI_SelectComplex;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/Back".
+        /// </summary>
+        public InputAction @Back => m_Wrapper.m_SpaceshipPanelUI_Back;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/NavigationUp".
+        /// </summary>
+        public InputAction @NavigationUp => m_Wrapper.m_SpaceshipPanelUI_NavigationUp;
+        /// <summary>
+        /// Provides access to the underlying input action "SpaceshipPanelUI/NavigationDown".
+        /// </summary>
+        public InputAction @NavigationDown => m_Wrapper.m_SpaceshipPanelUI_NavigationDown;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_SpaceshipPanelUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="SpaceshipPanelUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(SpaceshipPanelUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="SpaceshipPanelUIActions" />
+        public void AddCallbacks(ISpaceshipPanelUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_SpaceshipPanelUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_SpaceshipPanelUIActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @ComplexList.started += instance.OnComplexList;
+            @ComplexList.performed += instance.OnComplexList;
+            @ComplexList.canceled += instance.OnComplexList;
+            @SelectComplex.started += instance.OnSelectComplex;
+            @SelectComplex.performed += instance.OnSelectComplex;
+            @SelectComplex.canceled += instance.OnSelectComplex;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
+            @NavigationUp.started += instance.OnNavigationUp;
+            @NavigationUp.performed += instance.OnNavigationUp;
+            @NavigationUp.canceled += instance.OnNavigationUp;
+            @NavigationDown.started += instance.OnNavigationDown;
+            @NavigationDown.performed += instance.OnNavigationDown;
+            @NavigationDown.canceled += instance.OnNavigationDown;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="SpaceshipPanelUIActions" />
+        private void UnregisterCallbacks(ISpaceshipPanelUIActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @ComplexList.started -= instance.OnComplexList;
+            @ComplexList.performed -= instance.OnComplexList;
+            @ComplexList.canceled -= instance.OnComplexList;
+            @SelectComplex.started -= instance.OnSelectComplex;
+            @SelectComplex.performed -= instance.OnSelectComplex;
+            @SelectComplex.canceled -= instance.OnSelectComplex;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
+            @NavigationUp.started -= instance.OnNavigationUp;
+            @NavigationUp.performed -= instance.OnNavigationUp;
+            @NavigationUp.canceled -= instance.OnNavigationUp;
+            @NavigationDown.started -= instance.OnNavigationDown;
+            @NavigationDown.performed -= instance.OnNavigationDown;
+            @NavigationDown.canceled -= instance.OnNavigationDown;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="SpaceshipPanelUIActions.UnregisterCallbacks(ISpaceshipPanelUIActions)" />.
+        /// </summary>
+        /// <seealso cref="SpaceshipPanelUIActions.UnregisterCallbacks(ISpaceshipPanelUIActions)" />
+        public void RemoveCallbacks(ISpaceshipPanelUIActions instance)
+        {
+            if (m_Wrapper.m_SpaceshipPanelUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="SpaceshipPanelUIActions.AddCallbacks(ISpaceshipPanelUIActions)" />
+        /// <seealso cref="SpaceshipPanelUIActions.RemoveCallbacks(ISpaceshipPanelUIActions)" />
+        /// <seealso cref="SpaceshipPanelUIActions.UnregisterCallbacks(ISpaceshipPanelUIActions)" />
+        public void SetCallbacks(ISpaceshipPanelUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_SpaceshipPanelUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_SpaceshipPanelUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="SpaceshipPanelUIActions" /> instance referencing this action map.
+    /// </summary>
+    public SpaceshipPanelUIActions @SpaceshipPanelUI => new SpaceshipPanelUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -1443,5 +1731,55 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScrollDownChest(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "SpaceshipPanelUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="SpaceshipPanelUIActions.AddCallbacks(ISpaceshipPanelUIActions)" />
+    /// <seealso cref="SpaceshipPanelUIActions.RemoveCallbacks(ISpaceshipPanelUIActions)" />
+    public interface ISpaceshipPanelUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ComplexList" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnComplexList(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SelectComplex" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelectComplex(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Back" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavigationUp" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigationUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "NavigationDown" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigationDown(InputAction.CallbackContext context);
     }
 }

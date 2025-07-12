@@ -496,6 +496,134 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "SpaceshipPanelUI",
+            "id": "fe9e0d5a-1e6f-463d-b7fa-2dec2dcc0c05",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "de8d6c6a-3d45-48c3-9569-a226aa75e832",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ComplexList",
+                    "type": "Button",
+                    "id": "94a4680c-0907-4607-b945-0635af03e875",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectComplex",
+                    "type": "Button",
+                    "id": "71112f23-37f2-4697-af55-3523cf7dafe2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Back",
+                    "type": "Button",
+                    "id": "c74b84f8-a832-40a8-ba47-efb0b91ae9de",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NavigationUp",
+                    "type": "Button",
+                    "id": "783d3c1e-8edd-4eb2-9036-37bdeed65da2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NavigationDown",
+                    "type": "Button",
+                    "id": "b80f4c2a-12f9-443b-ae13-da643f113676",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0b05410c-b9f6-4ddd-b484-843343fc0cca",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7163288b-f813-41ac-b03a-6abffca59db7",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComplexList",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82df4210-72a2-4f89-874d-a676e8e3d5e1",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectComplex",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2780fcc7-4867-451a-9280-dfed17193c95",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Back",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9adadaf1-3bb3-4164-8589-48be53a5779b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigationUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c195506-f24e-4aa2-bb7e-16dbac8068a7",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigationDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -89,7 +89,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
-            string transferBind = controls.InventoryUI.TransferItem.GetBindingDisplayString();
+            string transferBind = controls.ChestUI.TransferItem.GetBindingDisplayString();
             if (isChestItem)
             {
                 tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь";
@@ -103,12 +103,20 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log($"cursor on the inventory item {gameObject.name} (active={active})");
         if (!active) return;
         pointerOnItem = true;
         ShowTooltip();
         if (isInChestUI)
         {
-
+            if (isChestItem)
+            {
+                chestUIController.SetActiveChestItem(id);
+            }
+            else
+            {
+                chestUIController.SetActiveItem(id);
+            }
         }
         else
         {
@@ -123,7 +131,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         HideTooltip();
         if (isInChestUI)
         {
-
+            if (isChestItem)
+            {
+                chestUIController.SetActiveChestItem(id);
+            }
+            else
+            {
+                chestUIController.SetActiveItem(id);
+            }
         }
         else
         {

@@ -66,7 +66,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         bool openDoorHintActive = false, closeDoorHintActive = false, pickUpHintActive = false,
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
-            hackNotPossibleHintActive = false, exitHintActive = false;
+            hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -101,6 +101,10 @@ public class PlayerInteractor : MonoBehaviour
                     {
                         exitHintActive = true;
                     }
+                    else if (interactable is ChestController chestController)
+                    {
+                        openChestHintActive = true;
+                    }
                     else if (interactable is LootableItem lootableItem)
                     {
                         if (InventorySystem.Instance.CanAddItem(lootableItem.GetLootCategory()))
@@ -115,6 +119,11 @@ public class PlayerInteractor : MonoBehaviour
                         else
                         {
                             inventoryFullActive = true;
+                            TMP_Text hintText = HintManager.Instance.GetHintText(HintManager.Instance.GetHintByName("InventoryFullHint"));
+                            if (hintText)
+                            {
+                                hintText.text = $"{lootableItem.GetLootCategory().lootName}\n[Недостаточно места в инвентаре!]";
+                            }
                         }
                     }
                     else if (interactable is LockController lockController)
@@ -143,5 +152,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackHint"), hackHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("HackNotPossibleHint"), hackNotPossibleHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("ExitHint"), exitHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenChestHint"), openChestHintActive);
     }
 }

@@ -40,14 +40,14 @@ public class ChestController : Interactable
     {
         if (!context.performed) return;
         Debug.Log("Esc pressed");
-        if (playerInput.currentActionMap.name == "InventoryUI")
+        if (playerInput.currentActionMap.name == "ChestUI")
             CloseChest();
     }
 
     public void ScrollUpInventory(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollUpInventory();
+        if (playerInput.currentActionMap.name == "ChestUI") ScrollUpInventory();
     }
 
     public void ScrollUpInventory()
@@ -58,7 +58,7 @@ public class ChestController : Interactable
     public void ScrollDownInventory(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollDownInventory();
+        if (playerInput.currentActionMap.name == "ChestUI") ScrollDownInventory();
     }
 
     public void ScrollDownInventory()
@@ -69,7 +69,7 @@ public class ChestController : Interactable
     public void ScrollUpChest(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollUpChest();
+        if (playerInput.currentActionMap.name == "ChestUI") ScrollUpChest();
     }
 
     public void ScrollUpChest()
@@ -80,7 +80,7 @@ public class ChestController : Interactable
     public void ScrollDownChest(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollDownChest();
+        if (playerInput.currentActionMap.name == "ChestUI") ScrollDownChest();
     }
 
     public void ScrollDownChest()
@@ -112,7 +112,7 @@ public class ChestController : Interactable
     {
         if (visible)
         {
-            InputActionMapSwitcher.Instance.SwitchMap("InventoryUI");
+            InputActionMapSwitcher.Instance.SwitchMap("ChestUI");
             chestUIController.UpdateInventory();
             chestUIController.UpdateChest();
         }
@@ -135,7 +135,7 @@ public class ChestController : Interactable
     public void TransferItem(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        chestUIController.TransferActiveItem();
+        if (playerInput.currentActionMap.name == "ChestUI") chestUIController.TransferActiveItem();
     }
 
     public override void Interact()

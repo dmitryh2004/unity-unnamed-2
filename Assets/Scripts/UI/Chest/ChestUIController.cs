@@ -72,6 +72,8 @@ public class ChestUIController : MonoBehaviour
             inventoryItems[inventoryItemIndex].SetActive(false);
         }
 
+        UpdateActiveItem();
+
         float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
         float maxVolume = InventorySystem.Instance.GetMaxVolume();
 
@@ -112,6 +114,8 @@ public class ChestUIController : MonoBehaviour
             chestInventoryItems[chestItemIndex].SetActive(false);
         }
 
+        UpdateActiveChestItem();
+
         chestEstimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(Chest.Instance.GetTotalCost())} руб.";
     }
 
@@ -148,13 +152,13 @@ public class ChestUIController : MonoBehaviour
         }
         else if (activeChestItemID != -1)
         {
-            if (chestItems[activeItemID] <= 0)
+            if (chestItems[activeChestItemID] <= 0)
             {
-                Debug.LogWarning($"Error while transfering: active item count ({chestItems[activeItemID]}) <= 0");
+                Debug.LogWarning($"Error while transfering: active item count ({chestItems[activeChestItemID]}) <= 0");
                 return;
             }
 
-            LootCategory lc = InventorySystem.Instance.GetLootCategoryById(activeItemID);
+            LootCategory lc = InventorySystem.Instance.GetLootCategoryById(activeChestItemID);
 
             if (InventorySystem.Instance.CanAddItem(lc))
             {
@@ -166,6 +170,9 @@ public class ChestUIController : MonoBehaviour
                 Debug.Log($"Unable to transfer item: not enough space in inventory");
             }
         }
+
+        UpdateInventory();
+        UpdateChest();
     }
 
     void ModifyOffset(int diff)

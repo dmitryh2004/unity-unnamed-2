@@ -272,15 +272,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "TransferItem",
-                    "type": "Button",
-                    "id": "a877f9b8-0cb0-45ca-9c0b-d57bc8381bda",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -325,17 +316,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "ScrollDown",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "83ce1f4e-09b9-4993-ba41-e97720ab4878",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TransferItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -384,6 +364,134 @@
                     "processors": "",
                     "groups": "",
                     "action": "HackInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ChestUI",
+            "id": "5c1570f2-ff87-4c4f-99af-ef6f7bde8447",
+            "actions": [
+                {
+                    "name": "ChestExit",
+                    "type": "Button",
+                    "id": "9e8e878e-5992-466a-bad0-10d71b984250",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TransferItem",
+                    "type": "Button",
+                    "id": "d50694c9-e9fc-4cec-9bdc-4ebd93bd8900",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollUpInventory",
+                    "type": "Button",
+                    "id": "b85c4790-fd0f-43f7-9f15-316a14658864",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollDownInventory",
+                    "type": "Button",
+                    "id": "e1471963-07de-47b6-8994-8a57f871afca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollUpChest",
+                    "type": "Button",
+                    "id": "36759108-c9e1-4efe-bfc9-e03258d8766f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ScrollDownChest",
+                    "type": "Button",
+                    "id": "e71b98e1-4a8b-4281-abf3-7e36cbe3d8ce",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9272dfae-292e-4c32-be78-1474edeb824a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChestExit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f08cda50-6137-4259-9af1-8fca9e948385",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransferItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85ac98c1-e237-49ba-9b16-44e981a24b10",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollUpInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "960842ab-ac49-491e-aaf7-5b9cf0b35c1f",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollDownInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "914f199f-1de6-459b-aea8-861bd753d39a",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollUpChest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d49f4cc-f3e8-418c-9a40-be89af4c7f28",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollDownChest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -53,6 +53,8 @@ public class InventoryUIController : MonoBehaviour
             inventoryItems[inventoryItemIndex].SetActive(false);
         }
 
+        UpdateActiveItem();
+
         float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
         float maxVolume = InventorySystem.Instance.GetMaxVolume();
 

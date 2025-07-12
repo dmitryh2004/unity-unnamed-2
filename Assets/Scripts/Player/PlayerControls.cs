@@ -358,15 +358,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TransferItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""a877f9b8-0cb0-45ca-9c0b-d57bc8381bda"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -411,17 +402,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ScrollDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""83ce1f4e-09b9-4993-ba41-e97720ab4878"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TransferItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -474,6 +454,134 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ChestUI"",
+            ""id"": ""5c1570f2-ff87-4c4f-99af-ef6f7bde8447"",
+            ""actions"": [
+                {
+                    ""name"": ""ChestExit"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e8e878e-5992-466a-bad0-10d71b984250"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TransferItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""d50694c9-e9fc-4cec-9bdc-4ebd93bd8900"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollUpInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""b85c4790-fd0f-43f7-9f15-316a14658864"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollDownInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1471963-07de-47b6-8994-8a57f871afca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollUpChest"",
+                    ""type"": ""Button"",
+                    ""id"": ""36759108-c9e1-4efe-bfc9-e03258d8766f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollDownChest"",
+                    ""type"": ""Button"",
+                    ""id"": ""e71b98e1-4a8b-4281-abf3-7e36cbe3d8ce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9272dfae-292e-4c32-be78-1474edeb824a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChestExit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f08cda50-6137-4259-9af1-8fca9e948385"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TransferItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85ac98c1-e237-49ba-9b16-44e981a24b10"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollUpInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""960842ab-ac49-491e-aaf7-5b9cf0b35c1f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollDownInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""914f199f-1de6-459b-aea8-861bd753d39a"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollUpChest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d49f4cc-f3e8-418c-9a40-be89af4c7f28"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollDownChest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -495,11 +603,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_InventoryUI_DropItem = m_InventoryUI.FindAction("DropItem", throwIfNotFound: true);
         m_InventoryUI_ScrollUp = m_InventoryUI.FindAction("ScrollUp", throwIfNotFound: true);
         m_InventoryUI_ScrollDown = m_InventoryUI.FindAction("ScrollDown", throwIfNotFound: true);
-        m_InventoryUI_TransferItem = m_InventoryUI.FindAction("TransferItem", throwIfNotFound: true);
         // HackUI
         m_HackUI = asset.FindActionMap("HackUI", throwIfNotFound: true);
         m_HackUI_HackExit = m_HackUI.FindAction("HackExit", throwIfNotFound: true);
         m_HackUI_HackInteract = m_HackUI.FindAction("HackInteract", throwIfNotFound: true);
+        // ChestUI
+        m_ChestUI = asset.FindActionMap("ChestUI", throwIfNotFound: true);
+        m_ChestUI_ChestExit = m_ChestUI.FindAction("ChestExit", throwIfNotFound: true);
+        m_ChestUI_TransferItem = m_ChestUI.FindAction("TransferItem", throwIfNotFound: true);
+        m_ChestUI_ScrollUpInventory = m_ChestUI.FindAction("ScrollUpInventory", throwIfNotFound: true);
+        m_ChestUI_ScrollDownInventory = m_ChestUI.FindAction("ScrollDownInventory", throwIfNotFound: true);
+        m_ChestUI_ScrollUpChest = m_ChestUI.FindAction("ScrollUpChest", throwIfNotFound: true);
+        m_ChestUI_ScrollDownChest = m_ChestUI.FindAction("ScrollDownChest", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -507,6 +622,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerControls.Gameplay.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_InventoryUI.enabled, "This will cause a leak and performance issues, PlayerControls.InventoryUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_HackUI.enabled, "This will cause a leak and performance issues, PlayerControls.HackUI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ChestUI.enabled, "This will cause a leak and performance issues, PlayerControls.ChestUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -770,7 +886,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InventoryUI_DropItem;
     private readonly InputAction m_InventoryUI_ScrollUp;
     private readonly InputAction m_InventoryUI_ScrollDown;
-    private readonly InputAction m_InventoryUI_TransferItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "InventoryUI".
     /// </summary>
@@ -798,10 +913,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InventoryUI/ScrollDown".
         /// </summary>
         public InputAction @ScrollDown => m_Wrapper.m_InventoryUI_ScrollDown;
-        /// <summary>
-        /// Provides access to the underlying input action "InventoryUI/TransferItem".
-        /// </summary>
-        public InputAction @TransferItem => m_Wrapper.m_InventoryUI_TransferItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -840,9 +951,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollDown.started += instance.OnScrollDown;
             @ScrollDown.performed += instance.OnScrollDown;
             @ScrollDown.canceled += instance.OnScrollDown;
-            @TransferItem.started += instance.OnTransferItem;
-            @TransferItem.performed += instance.OnTransferItem;
-            @TransferItem.canceled += instance.OnTransferItem;
         }
 
         /// <summary>
@@ -866,9 +974,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ScrollDown.started -= instance.OnScrollDown;
             @ScrollDown.performed -= instance.OnScrollDown;
             @ScrollDown.canceled -= instance.OnScrollDown;
-            @TransferItem.started -= instance.OnTransferItem;
-            @TransferItem.performed -= instance.OnTransferItem;
-            @TransferItem.canceled -= instance.OnTransferItem;
         }
 
         /// <summary>
@@ -1009,6 +1114,157 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="HackUIActions" /> instance referencing this action map.
     /// </summary>
     public HackUIActions @HackUI => new HackUIActions(this);
+
+    // ChestUI
+    private readonly InputActionMap m_ChestUI;
+    private List<IChestUIActions> m_ChestUIActionsCallbackInterfaces = new List<IChestUIActions>();
+    private readonly InputAction m_ChestUI_ChestExit;
+    private readonly InputAction m_ChestUI_TransferItem;
+    private readonly InputAction m_ChestUI_ScrollUpInventory;
+    private readonly InputAction m_ChestUI_ScrollDownInventory;
+    private readonly InputAction m_ChestUI_ScrollUpChest;
+    private readonly InputAction m_ChestUI_ScrollDownChest;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ChestUI".
+    /// </summary>
+    public struct ChestUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ChestUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/ChestExit".
+        /// </summary>
+        public InputAction @ChestExit => m_Wrapper.m_ChestUI_ChestExit;
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/TransferItem".
+        /// </summary>
+        public InputAction @TransferItem => m_Wrapper.m_ChestUI_TransferItem;
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/ScrollUpInventory".
+        /// </summary>
+        public InputAction @ScrollUpInventory => m_Wrapper.m_ChestUI_ScrollUpInventory;
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/ScrollDownInventory".
+        /// </summary>
+        public InputAction @ScrollDownInventory => m_Wrapper.m_ChestUI_ScrollDownInventory;
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/ScrollUpChest".
+        /// </summary>
+        public InputAction @ScrollUpChest => m_Wrapper.m_ChestUI_ScrollUpChest;
+        /// <summary>
+        /// Provides access to the underlying input action "ChestUI/ScrollDownChest".
+        /// </summary>
+        public InputAction @ScrollDownChest => m_Wrapper.m_ChestUI_ScrollDownChest;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ChestUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ChestUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ChestUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ChestUIActions" />
+        public void AddCallbacks(IChestUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ChestUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ChestUIActionsCallbackInterfaces.Add(instance);
+            @ChestExit.started += instance.OnChestExit;
+            @ChestExit.performed += instance.OnChestExit;
+            @ChestExit.canceled += instance.OnChestExit;
+            @TransferItem.started += instance.OnTransferItem;
+            @TransferItem.performed += instance.OnTransferItem;
+            @TransferItem.canceled += instance.OnTransferItem;
+            @ScrollUpInventory.started += instance.OnScrollUpInventory;
+            @ScrollUpInventory.performed += instance.OnScrollUpInventory;
+            @ScrollUpInventory.canceled += instance.OnScrollUpInventory;
+            @ScrollDownInventory.started += instance.OnScrollDownInventory;
+            @ScrollDownInventory.performed += instance.OnScrollDownInventory;
+            @ScrollDownInventory.canceled += instance.OnScrollDownInventory;
+            @ScrollUpChest.started += instance.OnScrollUpChest;
+            @ScrollUpChest.performed += instance.OnScrollUpChest;
+            @ScrollUpChest.canceled += instance.OnScrollUpChest;
+            @ScrollDownChest.started += instance.OnScrollDownChest;
+            @ScrollDownChest.performed += instance.OnScrollDownChest;
+            @ScrollDownChest.canceled += instance.OnScrollDownChest;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ChestUIActions" />
+        private void UnregisterCallbacks(IChestUIActions instance)
+        {
+            @ChestExit.started -= instance.OnChestExit;
+            @ChestExit.performed -= instance.OnChestExit;
+            @ChestExit.canceled -= instance.OnChestExit;
+            @TransferItem.started -= instance.OnTransferItem;
+            @TransferItem.performed -= instance.OnTransferItem;
+            @TransferItem.canceled -= instance.OnTransferItem;
+            @ScrollUpInventory.started -= instance.OnScrollUpInventory;
+            @ScrollUpInventory.performed -= instance.OnScrollUpInventory;
+            @ScrollUpInventory.canceled -= instance.OnScrollUpInventory;
+            @ScrollDownInventory.started -= instance.OnScrollDownInventory;
+            @ScrollDownInventory.performed -= instance.OnScrollDownInventory;
+            @ScrollDownInventory.canceled -= instance.OnScrollDownInventory;
+            @ScrollUpChest.started -= instance.OnScrollUpChest;
+            @ScrollUpChest.performed -= instance.OnScrollUpChest;
+            @ScrollUpChest.canceled -= instance.OnScrollUpChest;
+            @ScrollDownChest.started -= instance.OnScrollDownChest;
+            @ScrollDownChest.performed -= instance.OnScrollDownChest;
+            @ScrollDownChest.canceled -= instance.OnScrollDownChest;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ChestUIActions.UnregisterCallbacks(IChestUIActions)" />.
+        /// </summary>
+        /// <seealso cref="ChestUIActions.UnregisterCallbacks(IChestUIActions)" />
+        public void RemoveCallbacks(IChestUIActions instance)
+        {
+            if (m_Wrapper.m_ChestUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ChestUIActions.AddCallbacks(IChestUIActions)" />
+        /// <seealso cref="ChestUIActions.RemoveCallbacks(IChestUIActions)" />
+        /// <seealso cref="ChestUIActions.UnregisterCallbacks(IChestUIActions)" />
+        public void SetCallbacks(IChestUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ChestUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ChestUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ChestUIActions" /> instance referencing this action map.
+    /// </summary>
+    public ChestUIActions @ChestUI => new ChestUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -1115,13 +1371,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScrollDown(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "TransferItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTransferItem(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "HackUI" which allows adding and removing callbacks.
@@ -1144,5 +1393,55 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHackInteract(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ChestUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ChestUIActions.AddCallbacks(IChestUIActions)" />
+    /// <seealso cref="ChestUIActions.RemoveCallbacks(IChestUIActions)" />
+    public interface IChestUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ChestExit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChestExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TransferItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTransferItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollUpInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollUpInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollDownInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollDownInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollUpChest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollUpChest(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ScrollDownChest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnScrollDownChest(InputAction.CallbackContext context);
     }
 }

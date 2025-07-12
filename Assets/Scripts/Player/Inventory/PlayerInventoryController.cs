@@ -47,7 +47,7 @@ public class PlayerInventoryController : MonoBehaviour
     public void ScrollUp(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollUp();
+        if (playerInput.currentActionMap.name == "InventoryUI") ScrollUp();
     }
 
     public void ScrollUp()
@@ -58,7 +58,7 @@ public class PlayerInventoryController : MonoBehaviour
     public void ScrollDown(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        ScrollDown();
+        if (playerInput.currentActionMap.name == "InventoryUI") ScrollDown();
     }
 
     public void ScrollDown()
@@ -113,6 +113,6 @@ public class PlayerInventoryController : MonoBehaviour
     public void DropItem(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        inventoryUIController.DropActiveItem(transform);
+        if (playerInput.currentActionMap.name == "InventoryUI") inventoryUIController.DropActiveItem(transform);
     }
 }

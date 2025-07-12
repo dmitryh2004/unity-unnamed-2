@@ -38,6 +38,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         HideTooltip();
     }
 
+    public bool IsActive() => active;
+
     public void SetActive(bool active)
     {
         this.active = active;
@@ -104,40 +106,41 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log($"cursor on the inventory item {gameObject.name} (active={active})");
-        if (!active) return;
         pointerOnItem = true;
-        ShowTooltip();
-        if (isInChestUI)
+        if (active)
         {
-            if (isChestItem)
+            ShowTooltip();
+            if (isInChestUI)
             {
-                chestUIController.SetActiveChestItem(id);
+                if (isChestItem)
+                {
+                    chestUIController.SetActiveChestItem(id);
+                }
+                else
+                {
+                    chestUIController.SetActiveItem(id);
+                }
             }
             else
             {
-                chestUIController.SetActiveItem(id);
+                uiController.SetActiveItem(id);
             }
-        }
-        else
-        {
-            uiController.SetActiveItem(id);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!active) return;
         pointerOnItem = false;
         HideTooltip();
         if (isInChestUI)
         {
             if (isChestItem)
             {
-                chestUIController.SetActiveChestItem(id);
+                chestUIController.SetActiveChestItem(-1);
             }
             else
             {
-                chestUIController.SetActiveItem(id);
+                chestUIController.SetActiveItem(-1);
             }
         }
         else

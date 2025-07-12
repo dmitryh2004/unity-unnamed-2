@@ -20,28 +20,52 @@ public class ChestUIController : MonoBehaviour
     int chestOffset = 0;
     [SerializeField] TMP_Text chestEstimateCost;
 
+    string GetItemsString()
+    {
+        string res = "";
+        foreach (var kvp in items)
+        {
+            if (res != "") res += "; ";
+            res += $"{kvp.Key} => {kvp.Value}";
+        }
+        return res;
+    }
+
+    string GetChestItemsString()
+    {
+        string res = "";
+        foreach (var kvp in chestItems)
+        {
+            if (res != "") res += "; ";
+            res += $"{kvp.Key} => {kvp.Value}";
+        }
+        return res;
+    }
+
     public void UpdateActiveItem()
     {
         foreach (InventoryItem item in inventoryItems)
         {
-            if (item.IsPointerOnItem())
+            if (item.IsPointerOnItem() && item.IsActive())
             {
                 activeItemID = item.GetID();
-                break;
+                return;
             }
         }
+        activeItemID = -1;
     }
 
     public void UpdateActiveChestItem()
     {
         foreach (InventoryItem item in chestInventoryItems)
         {
-            if (item.IsPointerOnItem())
+            if (item.IsPointerOnItem() && item.IsActive())
             {
                 activeChestItemID = item.GetID();
-                break;
+                return;
             }
         }
+        activeChestItemID = -1;
     }
 
     public void UpdateInventory()
@@ -139,9 +163,14 @@ public class ChestUIController : MonoBehaviour
 
         if (activeItemID != -1)
         {
+            if (!items.ContainsKey(activeItemID))
+            {
+                Debug.LogWarning($"Error while transfering: active item ({activeItemID}) does not exist. Items: {GetItemsString()}");
+                return;
+            }
             if (items[activeItemID] <= 0)
             {
-                Debug.LogWarning($"Error while transfering: active item count ({items[activeItemID]}) <= 0");
+                Debug.LogWarning($"Error while transfering: active item count ({items[activeItemID]}) <= 0. Items: {GetItemsString()}");
                 return;
             }
 
@@ -152,9 +181,14 @@ public class ChestUIController : MonoBehaviour
         }
         else if (activeChestItemID != -1)
         {
+            if (!chestItems.ContainsKey(activeChestItemID))
+            {
+                Debug.LogWarning($"Error while transfering: active item ({activeChestItemID}) does not exist. Chest items: {GetChestItemsString()}");
+                return;
+            }
             if (chestItems[activeChestItemID] <= 0)
             {
-                Debug.LogWarning($"Error while transfering: active item count ({chestItems[activeChestItemID]}) <= 0");
+                Debug.LogWarning($"Error while transfering: active item count ({chestItems[activeChestItemID]}) <= 0. Chest items: {GetChestItemsString()}");
                 return;
             }
 

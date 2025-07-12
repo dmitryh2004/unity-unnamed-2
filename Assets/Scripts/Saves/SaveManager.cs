@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameData
 {
     public string inventory; // Сохраняем JSON как строку
-    public int inventoryLevel;
-    public int virusLevel;
-    public int predictorLevel;
+    public string chest;
+    public int inventoryLevel = 1;
+    public int virusLevel = 1;
+    public int predictorLevel = 0;
 }
 
 public class SaveManager : MonoBehaviour
@@ -17,13 +18,46 @@ public class SaveManager : MonoBehaviour
     public void SaveData()
     {
         string inventoryJson = InventorySystem.Instance.GetInventoryDataJson();
+
+        string chestJson = "";
+        if (Chest.Instance != null)
+        {
+            chestJson = Chest.Instance.GetInventoryDataJson();
+        }
+        else
+        {
+            string savedChest = LoadData().chest;
+            if (savedChest != null)
+            {
+                chestJson = savedChest;
+            }
+        }
         int inventoryLevel = InventorySystem.Instance.GetLevel();
-        int virusLevel = VirusController.Instance.GetLevel();
-        int predictorLevel = PlayerLootPredictor.Instance.GetLevel();
+
+        int virusLevel = 1;
+        if (VirusController.Instance != null)
+        {
+            virusLevel = VirusController.Instance.GetLevel();
+        }
+        else
+        {
+            virusLevel = LoadData().virusLevel;
+        }
+        
+        int predictorLevel = 0;
+        if (PlayerLootPredictor.Instance != null)
+        {
+            predictorLevel = PlayerLootPredictor.Instance.GetLevel();
+        }
+        else
+        {
+            predictorLevel = LoadData().predictorLevel;
+        }
 
         GameData data = new GameData
         {
             inventory = inventoryJson,
+            chest = chestJson,
             inventoryLevel = inventoryLevel,
             virusLevel = virusLevel,
             predictorLevel = predictorLevel

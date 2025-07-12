@@ -19,6 +19,7 @@ public class VirusController : MonoBehaviour
     [SerializeField] int[] hpByLevel = new int[7];
     [SerializeField] int[] attackByLevel = new int[7];
     [Range(1, 7)][SerializeField] int level;
+    int minLevel = 1, maxLevel = 7;
 
     private void Awake()
     {
@@ -42,7 +43,18 @@ public class VirusController : MonoBehaviour
 
     public void SetLevel(int level)
     {
-        this.level = level;
+        if (level < minLevel)
+        {
+            this.level = minLevel;
+            Debug.LogWarning($"Virus controller: level clamped to {minLevel} ({level} < {minLevel})");
+        }
+        else if (level > maxLevel)
+        {
+            this.level = maxLevel;
+            Debug.LogWarning($"Virus controller: level clamped to {maxLevel} ({level} > {maxLevel})");
+        }
+        else
+            this.level = level;
         ResetToStart();
     }
 

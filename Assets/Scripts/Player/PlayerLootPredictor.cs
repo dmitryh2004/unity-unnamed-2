@@ -4,6 +4,7 @@ public class PlayerLootPredictor : MonoBehaviour
 {
     public static PlayerLootPredictor Instance = null;
     [SerializeField][Range(0, 5)] int level;
+    int minLevel = 0, maxLevel = 5;
 
     public int GetLevel() => level;
     public int GetPrecision()
@@ -24,7 +25,21 @@ public class PlayerLootPredictor : MonoBehaviour
                 return -1;
         }
     }
-    public void SetLevel(int level) => this.level = level;
+    public void SetLevel(int level) 
+    {
+        if (level < minLevel)
+        {
+            this.level = minLevel;
+            Debug.LogWarning($"Loot predictor: level clamped to {minLevel} ({level} < {minLevel})");
+        }
+        else if (level > maxLevel)
+        {
+            this.level = maxLevel;
+            Debug.LogWarning($"Loot predictor: level clamped to {maxLevel} ({level} > {maxLevel})");
+        }
+        else
+            this.level = level;
+    }
 
     private void Awake()
     {

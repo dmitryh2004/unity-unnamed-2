@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour
                 VirusController.Instance.SetLevel(gameData.virusLevel);
             if (PlayerLootPredictor.Instance != null)
                 PlayerLootPredictor.Instance.SetLevel(gameData.predictorLevel);
+            if (Chest.Instance != null)
+                Chest.Instance.SetItemsFromJson(gameData.chest);
         }
         else
         {

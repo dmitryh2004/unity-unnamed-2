@@ -20,6 +20,10 @@ public class Chest : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    private void Start()
+    {
         lootCategories = InventorySystem.Instance.lootCategories;
     }
 

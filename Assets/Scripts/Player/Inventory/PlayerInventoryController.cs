@@ -5,6 +5,7 @@ public class PlayerInventoryController : MonoBehaviour
 {
     private PlayerControls controls;
     [SerializeField] PlayerInput playerInput;
+    [Header("Inventory")]
     [SerializeField] Canvas inventoryUI;
     [SerializeField] InventoryUIController inventoryUIController;
     Animator inventoryUIAnimator;

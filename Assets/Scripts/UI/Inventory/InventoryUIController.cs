@@ -29,7 +29,7 @@ public class InventoryUIController : MonoBehaviour
     {
         items = InventorySystem.Instance.GetItems();
 
-        int inventoryItemIndex = 27 + offset;
+        int inventoryItemIndex = inventoryItems.Count - 1 + offset;
         foreach(int i in items.Keys)
         {
             LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
@@ -102,7 +102,7 @@ public class InventoryUIController : MonoBehaviour
 
     public void ScrollDown()
     {
-        if (inventoryItems.Count - offset > 28)
+        if (items.Count - offset > inventoryItems.Count)
         {
             ModifyOffset(7);
         }

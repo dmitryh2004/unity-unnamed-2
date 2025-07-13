@@ -10,6 +10,7 @@ public class Complex : ScriptableObject
     public int difficulty;
     public int minRooms;
     public int maxRooms;
-    public int guardiansCount;
+    public int guardiansMinCount;
+    public int guardiansMaxCount;
     public string reinforcementTimer;
 }

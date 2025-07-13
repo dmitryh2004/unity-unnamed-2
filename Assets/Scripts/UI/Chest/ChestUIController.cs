@@ -176,8 +176,15 @@ public class ChestUIController : MonoBehaviour
 
             LootCategory lc = InventorySystem.Instance.GetLootCategoryById(activeItemID);
 
-            InventorySystem.Instance.RemoveItem(lc);
-            Chest.Instance.AddItem(lc);
+            if (Chest.Instance.CanAddItem())
+            {
+                InventorySystem.Instance.RemoveItem(lc);
+                Chest.Instance.AddItem(lc);
+            }
+            else
+            {
+                Debug.Log($"Unable to transfer item: not enough space in chest");
+            }
         }
         else if (activeChestItemID != -1)
         {

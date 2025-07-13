@@ -6,6 +6,8 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     public static Chest Instance = null;
+    int totalItemsAmount = 0;
+    int maxItemsAmount = 1000;
 
     // список всех предметов. берется из InventorySystem
     List<LootCategory> lootCategories;
@@ -41,9 +43,27 @@ public class Chest : MonoBehaviour
         return totalCost;
     }
 
+    public int GetTotalItemsAmount()
+    {
+        return totalItemsAmount;
+    }
+
+    public int GetMaxItemsAmount()
+    {
+        return maxItemsAmount;
+    }
+
+    public bool CanAddItem()
+    {
+        return totalItemsAmount < maxItemsAmount;
+    }
+
     public bool AddItem(LootCategory lootCategory)
     {
         if (lootCategory == null)
+            return false;
+
+        if (!CanAddItem())
             return false;
 
         if (items.ContainsKey(lootCategory.id))
@@ -54,6 +74,7 @@ public class Chest : MonoBehaviour
         {
             items.Add(lootCategory.id, 1);
         }
+        totalItemsAmount++;
         return true;
     }
 
@@ -71,6 +92,7 @@ public class Chest : MonoBehaviour
         {
             items.Remove(lootCategory.id);
         }
+        totalItemsAmount--;
         return true;
     }
 
@@ -92,7 +114,7 @@ public class Chest : MonoBehaviour
         }
 
         InventoryDataWrapper wrapper = new InventoryDataWrapper() { items = dataList };
-        return JsonUtility.ToJson(wrapper, true);
+        return JsonUtility.ToJson(wrapper, false);
     }
 
     public Dictionary<int, int> GetItems()
@@ -126,7 +148,8 @@ public class Chest : MonoBehaviour
 
                 for (int i = 0; i < inventoryItem.quantity; i++)
                 {
-                    AddItem(lc);
+                    if (CanAddItem())
+                        AddItem(lc);
                 }
             }
         }

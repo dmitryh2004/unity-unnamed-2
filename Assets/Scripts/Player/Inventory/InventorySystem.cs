@@ -191,7 +191,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         InventoryDataWrapper wrapper = new InventoryDataWrapper() { items = dataList };
-        return JsonUtility.ToJson(wrapper, true);
+        return JsonUtility.ToJson(wrapper, false);
     }
 
     public Dictionary<int, int> GetItems()

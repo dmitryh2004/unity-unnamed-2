@@ -32,6 +32,7 @@ public class SpaceshipPanelController : Interactable
     int currentScreen = 0;
 
     int currentComplexIndex = 0;
+    int screen2SelectedComplexIndex = 0;
 
     private void Start()
     {
@@ -66,7 +67,7 @@ public class SpaceshipPanelController : Interactable
         }
         else if (currentScreen == 2)
         {
-
+            UpdateScreen2Text();
         }
         else
         {
@@ -79,9 +80,31 @@ public class SpaceshipPanelController : Interactable
         currentComplex.text = currentComplexTemplate.Replace("A", complexList[currentComplexIndex].complexName);
         currentComplexDifficulty.text = currentComplexDifficultyTemplate.Replace("A", $"{complexList[currentComplexIndex].difficulty}");
         currentComplexRoomsAmount.text = currentComplexRoomsAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].minRooms}").Replace("B", $"{complexList[currentComplexIndex].maxRooms}");
-        currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansCount}");
+        
+        if (complexList[currentComplexIndex].guardiansMinCount == complexList[currentComplexIndex].guardiansMaxCount)
+        {
+            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansMinCount}").Replace("-B", "");
+        }
+        else
+        {
+            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansMinCount}")
+                .Replace("-B", $"{complexList[currentComplexIndex].guardiansMaxCount}");
+        }
+        
         currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", complexList[currentComplexIndex].reinforcementTimer);
         currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", complexList[currentComplexIndex].description);
+    }
+
+    private void UpdateScreen2Text()
+    {
+        for (int i = 0; i < complexTextsList.Count; i++)
+        {
+            complexTextsList[i].text = $"{complexList[i].complexName} ({complexList[i].difficulty} / 10)";
+            if (i == screen2SelectedComplexIndex)
+            {
+                complexTextsList[i].text = $"> {complexTextsList[i].text} <";
+            }
+        }
     }
 
     Vector3 Clamp(Vector3 vector, float degs)
@@ -185,6 +208,7 @@ public class SpaceshipPanelController : Interactable
         if (!context.performed) return;
         if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 1)
         {
+            screen2SelectedComplexIndex = currentComplexIndex;
             ChangeScreen(2);
         }
     }
@@ -195,6 +219,43 @@ public class SpaceshipPanelController : Interactable
         if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
         {
             ChangeScreen(1);
+        }
+    }
+
+    public void SelectComplex(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
+        {
+            currentComplexIndex = screen2SelectedComplexIndex;
+            ChangeScreen(1);
+        }
+    }
+
+    public void NavigateUp(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
+        {
+            screen2SelectedComplexIndex--;
+            if (screen2SelectedComplexIndex < 0)
+            {
+                screen2SelectedComplexIndex = complexList.Count - 1;
+            }
+            UpdateScreen2Text();
+        }
+    }
+    public void NavigateDown(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
+        {
+            screen2SelectedComplexIndex++;
+            if (screen2SelectedComplexIndex > complexList.Count)
+            {
+                screen2SelectedComplexIndex = 0;
+            }
+            UpdateScreen2Text();
         }
     }
 }

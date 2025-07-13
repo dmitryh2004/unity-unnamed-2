@@ -46,6 +46,8 @@ public class InventoryUIController : MonoBehaviour
             }
 
             inventoryItemIndex--;
+
+            if (inventoryItemIndex < 0) break;
         }
 
         for (; inventoryItemIndex >= 0; inventoryItemIndex--)

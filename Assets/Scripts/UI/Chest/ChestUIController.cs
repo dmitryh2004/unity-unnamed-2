@@ -91,6 +91,8 @@ public class ChestUIController : MonoBehaviour
             }
 
             inventoryItemIndex--;
+
+            if (inventoryItemIndex < 0) break;
         }
 
         for (; inventoryItemIndex >= 0; inventoryItemIndex--)
@@ -120,7 +122,7 @@ public class ChestUIController : MonoBehaviour
     {
         chestItems = Chest.Instance.GetItems();
 
-        int chestItemIndex = chestInventoryItems.Count - 1 + offset;
+        int chestItemIndex = chestInventoryItems.Count - 1 + chestOffset;
         foreach (int i in chestItems.Keys)
         {
             LootCategory lc = Chest.Instance.GetLootCategoryById(i);
@@ -137,6 +139,8 @@ public class ChestUIController : MonoBehaviour
             }
 
             chestItemIndex--;
+
+            if (chestItemIndex < 0) break;
         }
 
         for (; chestItemIndex >= 0; chestItemIndex--)
@@ -245,6 +249,7 @@ public class ChestUIController : MonoBehaviour
 
     public void ScrollDown()
     {
+        Debug.Log($"inventory: item count={items.Count}, offset={offset}");
         if (items.Count - offset > inventoryItems.Count)
         {
             ModifyOffset(3);
@@ -271,7 +276,8 @@ public class ChestUIController : MonoBehaviour
 
     public void ChestScrollDown()
     {
-        if (chestItems.Count - offset > chestInventoryItems.Count)
+        Debug.Log($"chest: item count={chestItems.Count}, offset={chestOffset}");
+        if (chestItems.Count - chestOffset > chestInventoryItems.Count)
         {
             ModifyChestOffset(3);
         }

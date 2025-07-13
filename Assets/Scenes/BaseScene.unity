@@ -4101,6 +4101,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2112576325800701834, guid: afc78c7e7cf8fba40aef40b95dce09c6, type: 3}
+--- !u!65 &619072658
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619072650}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.10000001, y: 0.059921883, z: 0.0013209882}
+  m_Center: {x: 0, y: 4.440892e-18, z: -0.00033950206}
 --- !u!20 &621065991 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1451614754896726903, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
@@ -5884,26 +5905,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4158459161997308549, guid: e47642e8f980a0a42a2d655066712634, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158459161997308549, guid: e47642e8f980a0a42a2d655066712634, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158459161997308549, guid: e47642e8f980a0a42a2d655066712634, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158459161997308549, guid: e47642e8f980a0a42a2d655066712634, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158459161997308549, guid: e47642e8f980a0a42a2d655066712634, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4235474476039035184, guid: e47642e8f980a0a42a2d655066712634, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6642,6 +6643,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3383686664694006189, guid: e47642e8f980a0a42a2d655066712634, type: 3}
       insertIndex: -1
       addedObject: {fileID: 619072654}
+    - targetCorrespondingSourceObject: {fileID: 3383686664694006189, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 619072658}
     - targetCorrespondingSourceObject: {fileID: 8024150442717260088, guid: e47642e8f980a0a42a2d655066712634, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1425979217}

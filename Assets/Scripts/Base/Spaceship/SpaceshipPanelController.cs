@@ -36,7 +36,7 @@ public class SpaceshipPanelController : Interactable
 
     private void Start()
     {
-        UpdateScreen1Text();
+        UpdateScreen1();
     }
 
     public override void Interact()
@@ -63,11 +63,11 @@ public class SpaceshipPanelController : Interactable
 
         if (currentScreen == 1)
         {
-            UpdateScreen1Text();
+            UpdateScreen1();
         }
         else if (currentScreen == 2)
         {
-            UpdateScreen2Text();
+            UpdateScreen2();
         }
         else
         {
@@ -75,8 +75,9 @@ public class SpaceshipPanelController : Interactable
         }
     }
 
-    private void UpdateScreen1Text()
+    private void UpdateScreen1()
     {
+        //text
         currentComplex.text = currentComplexTemplate.Replace("A", complexList[currentComplexIndex].complexName);
         currentComplexDifficulty.text = currentComplexDifficultyTemplate.Replace("A", $"{complexList[currentComplexIndex].difficulty}");
         currentComplexRoomsAmount.text = currentComplexRoomsAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].minRooms}").Replace("B", $"{complexList[currentComplexIndex].maxRooms}");
@@ -93,9 +94,12 @@ public class SpaceshipPanelController : Interactable
         
         currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", complexList[currentComplexIndex].reinforcementTimer);
         currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", complexList[currentComplexIndex].description);
+
+        //update spaceship
+        SpaceshipController.Instance.SetCurrentComplex(complexList[currentComplexIndex]);
     }
 
-    private void UpdateScreen2Text()
+    private void UpdateScreen2()
     {
         for (int i = 0; i < complexTextsList.Count; i++)
         {
@@ -242,7 +246,7 @@ public class SpaceshipPanelController : Interactable
             {
                 screen2SelectedComplexIndex = complexList.Count - 1;
             }
-            UpdateScreen2Text();
+            UpdateScreen2();
         }
     }
     public void NavigateDown(InputAction.CallbackContext context)
@@ -251,11 +255,11 @@ public class SpaceshipPanelController : Interactable
         if (playerInput.currentActionMap.name == "SpaceshipPanelUI" && currentScreen == 2)
         {
             screen2SelectedComplexIndex++;
-            if (screen2SelectedComplexIndex > complexList.Count)
+            if (screen2SelectedComplexIndex >= complexList.Count)
             {
                 screen2SelectedComplexIndex = 0;
             }
-            UpdateScreen2Text();
+            UpdateScreen2();
         }
     }
 }

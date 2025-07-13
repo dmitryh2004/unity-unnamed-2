@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: saveManager
       value: 
       objectReference: {fileID: 1940409339}
+    - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
+      propertyPath: gameOverScreenController
+      value: 
+      objectReference: {fileID: 1475967198}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -223,10 +227,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HintsUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2480769555553646434, guid: 0239d43751c40cd4aa65b393befbe0ac, type: 3}
-      propertyPath: 'hints.Array.data[8]'
-      value: 
-      objectReference: {fileID: 455332899}
     - target: {fileID: 7110444005853311542, guid: 0239d43751c40cd4aa65b393befbe0ac, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -312,17 +312,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0239d43751c40cd4aa65b393befbe0ac, type: 3}
---- !u!114 &455332899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1869000627110103732, guid: 0239d43751c40cd4aa65b393befbe0ac, type: 3}
-  m_PrefabInstance: {fileID: 390042959}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &466913487 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5916517911100261783, guid: e47642e8f980a0a42a2d655066712634, type: 3}
@@ -987,10 +976,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1658112577}
-    - target: {fileID: 1639897755451613401, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollDown
-      objectReference: {fileID: 0}
     - target: {fileID: 1719606317481029392, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1067,10 +1052,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1658112577}
-    - target: {fileID: 1828934880644929209, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseInventory
-      objectReference: {fileID: 0}
     - target: {fileID: 1923552921859294210, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1339,10 +1320,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1658112577}
-    - target: {fileID: 2296396393301654759, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollUp
-      objectReference: {fileID: 0}
     - target: {fileID: 2456671744777868595, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2858,10 +2835,6 @@ PrefabInstance:
     - target: {fileID: 5972907372584231985, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -20.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5991414757589312302, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
-      propertyPath: m_Color.a
-      value: 0.29803923
       objectReference: {fileID: 0}
     - target: {fileID: 6195027947733190694, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4563,6 +4536,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0010000038, y: 0.03, z: 0.03}
   m_Center: {x: -0.0005000019, y: 0, z: -0.015}
+--- !u!114 &1475967198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387549584124247642, guid: 9e5b0e1dabc496a48a89acfe505c7e68, type: 3}
+  m_PrefabInstance: {fileID: 1050308616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83bdd0ad0fb8cb742b4192b7666c4731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1514145349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7937,15 +7921,7 @@ PrefabInstance:
     - target: {fileID: 1771445702470584963, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771445702470584963, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseChest
-      objectReference: {fileID: 0}
-    - target: {fileID: 1771445702470584963, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChestController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7534516705218245926}
     - target: {fileID: 1777735991651165363, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_Name
       value: ChestUI
@@ -9705,15 +9681,7 @@ PrefabInstance:
     - target: {fileID: 5590415575462169577, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5590415575462169577, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollDownChest
-      objectReference: {fileID: 0}
-    - target: {fileID: 5590415575462169577, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChestController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7534516705218245926}
     - target: {fileID: 5790028455008797895, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -10273,15 +10241,7 @@ PrefabInstance:
     - target: {fileID: 6750548558815350610, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6750548558815350610, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollUpChest
-      objectReference: {fileID: 0}
-    - target: {fileID: 6750548558815350610, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChestController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7534516705218245926}
     - target: {fileID: 6775318843550766354, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -10509,15 +10469,7 @@ PrefabInstance:
     - target: {fileID: 7128107170698612861, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7128107170698612861, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollDownInventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 7128107170698612861, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChestController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7534516705218245926}
     - target: {fileID: 7182919000134444250, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -10685,15 +10637,7 @@ PrefabInstance:
     - target: {fileID: 7731400006205626781, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731400006205626781, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ScrollUpInventory
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731400006205626781, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ChestController, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7534516705218245926}
     - target: {fileID: 7732407751186935959, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

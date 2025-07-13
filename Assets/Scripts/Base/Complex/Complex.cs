@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "Complex", menuName = "Scriptable Objects/Complex")]
 public class Complex : ScriptableObject
@@ -13,4 +14,6 @@ public class Complex : ScriptableObject
     public int guardiansMinCount;
     public int guardiansMaxCount;
     public string reinforcementTimer;
+    [Space(10)]
+    public string sceneName;
 }

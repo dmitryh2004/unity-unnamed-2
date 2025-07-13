@@ -77,4 +77,10 @@ public class LevelManager : MonoBehaviour
 
         gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);
     }
+
+    public void BaseGameOver()
+    {
+        saveManager.SaveData();
+        gameOverScreenController.ShowGameOverWindow(true, gameOverReasons[0], false);
+    }
 }

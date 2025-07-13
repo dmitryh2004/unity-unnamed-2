@@ -11,36 +11,39 @@ public class GameOverScreenController : MonoBehaviour
 
     Coroutine currentCoroutine = null;
 
-    public void ShowGameOverWindow(bool victory, string reason)
+    public void ShowGameOverWindow(bool victory, string reason, bool fill = true)
     {
-        StartCoroutine(MainCoroutine(victory, reason));
+        StartCoroutine(MainCoroutine(victory, reason, fill));
     }
 
-    private IEnumerator MainCoroutine(bool victory, string reason)
+    private IEnumerator MainCoroutine(bool victory, string reason, bool fill)
     {
-        header = (victory) ? "Победа" : "Поражение";
-        headerText.text = "";
+        if (fill)
+        {
+            header = (victory) ? "Победа" : "Поражение";
+            headerText.text = "";
 
-        desc = reason;
-        descText.text = "";
+            desc = reason;
+            descText.text = "";
 
-        stats = statsText.text;
-        statsText.text = "";
+            stats = statsText.text;
+            statsText.text = "";
 
-        statsDesc = statsDescText.text;
-        statsDescText.text = "";
+            statsDesc = statsDescText.text;
+            statsDescText.text = "";
 
-        exitHint = exitHintText.text;
-        exitHintText.text = "";
+            exitHint = exitHintText.text;
+            exitHintText.text = "";
 
-        statsDesc = statsDesc.Replace("A", $"{NumberFormatter.FormatNumberWithGrouping(StatisticCollector.Instance.TotalLootCost)}")
-            .Replace("B", $"{NumberFormatter.FormatNumberWithGrouping(StatisticCollector.Instance.CollectedLootCost)}")
-            .Replace("C", $"{StatisticCollector.Instance.Percent.ToString("0.00", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.')}")
-            .Replace("D", $"{StatisticCollector.Instance.LocksHacked}")
-            .Replace("E", $"{StatisticCollector.Instance.FailedHacks}")
-            .Replace("F", $"{StatisticCollector.Instance.LockedLocks}")
-            .Replace("G", $"{(StatisticCollector.Instance.AlarmRaised ? "да" : "нет")}")
-            .Replace("H", $"{AlarmController.Instance.GetTimerController().GetTimerText(internalUsage: false)}");
+            statsDesc = statsDesc.Replace("A", $"{NumberFormatter.FormatNumberWithGrouping(StatisticCollector.Instance.TotalLootCost)}")
+                .Replace("B", $"{NumberFormatter.FormatNumberWithGrouping(StatisticCollector.Instance.CollectedLootCost)}")
+                .Replace("C", $"{StatisticCollector.Instance.Percent.ToString("0.00", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.')}")
+                .Replace("D", $"{StatisticCollector.Instance.LocksHacked}")
+                .Replace("E", $"{StatisticCollector.Instance.FailedHacks}")
+                .Replace("F", $"{StatisticCollector.Instance.LockedLocks}")
+                .Replace("G", $"{(StatisticCollector.Instance.AlarmRaised ? "да" : "нет")}")
+                .Replace("H", $"{AlarmController.Instance.GetTimerController().GetTimerText(internalUsage: false)}");
+        }
 
         animator.SetTrigger("show");
 

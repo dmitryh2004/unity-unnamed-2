@@ -18,6 +18,8 @@ public class ChestUIController : MonoBehaviour
     [SerializeField] List<InventoryItem> chestInventoryItems = new();
     int activeChestItemID = -1;
     int chestOffset = 0;
+    [SerializeField] TMP_Text chestTotalItems;
+    [SerializeField] ProgressBar chestItemsPB;
     [SerializeField] TMP_Text chestEstimateCost;
 
     string GetItemsString()
@@ -100,6 +102,7 @@ public class ChestUIController : MonoBehaviour
 
         float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
         float maxVolume = InventorySystem.Instance.GetMaxVolume();
+        int totalCost = InventorySystem.Instance.GetTotalCost();
 
         float ratio = currentVolume / maxVolume * 100;
         string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
@@ -107,7 +110,10 @@ public class ChestUIController : MonoBehaviour
         totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
         volumePB.SetMaxValue(maxVolume);
         volumePB.SetProgress(currentVolume);
-        estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(InventorySystem.Instance.GetTotalCost())} руб.";
+        if (totalCost < 2_000_000_000)
+            estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
+        else
+            estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
     }
 
     public void UpdateChest()
@@ -140,7 +146,21 @@ public class ChestUIController : MonoBehaviour
 
         UpdateActiveChestItem();
 
-        chestEstimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(Chest.Instance.GetTotalCost())} руб.";
+        float currentItemsCount = Chest.Instance.GetTotalItemsAmount();
+        float maxItemsCount = Chest.Instance.GetMaxItemsAmount();
+        int totalCost = Chest.Instance.GetTotalCost();
+
+        float ratio = currentItemsCount / maxItemsCount * 100;
+        string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
+
+        chestTotalItems.text = $"{NumberFormatter.FormatNumber(currentItemsCount)} / {NumberFormatter.FormatNumber(maxItemsCount)} ({ratio.ToString(format)}%)";
+        chestItemsPB.SetMaxValue(maxItemsCount);
+        chestItemsPB.SetProgress(currentItemsCount);
+        
+        if (totalCost < 2_000_000_000)
+            chestEstimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
+        else
+            chestEstimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
     }
 
     public void SetActiveItem(int id)

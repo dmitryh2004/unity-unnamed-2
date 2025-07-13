@@ -104,6 +104,11 @@ public class InventorySystem : MonoBehaviour
             {
                 totalCost += category.cost * kvp.Value;
             }
+            if (totalCost >= 2_000_000_000 || totalCost < 0)
+            {
+                totalCost = 2_000_000_000;
+                break;
+            }
         }
         return totalCost;
     }

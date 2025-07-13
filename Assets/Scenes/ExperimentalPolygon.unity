@@ -13681,17 +13681,6 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!114 &714572437 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 548000765695563316, guid: a723333155073364bb0205f4f03e2f91, type: 3}
-  m_PrefabInstance: {fileID: 94325795586785935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01226287fdbfac4d88102c85cf5995d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &718432954
 GameObject:
   m_ObjectHideFlags: 0
@@ -29248,10 +29237,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2840848554750065126, guid: 9e5b0e1dabc496a48a89acfe505c7e68, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 714572437}
     - target: {fileID: 4441522534640093957, guid: 9e5b0e1dabc496a48a89acfe505c7e68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

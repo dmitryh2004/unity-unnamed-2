@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static SpaceshipController Instance = null;
+    Complex currentComplex;
+
+    private void Awake()
     {
-        
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Complex GetCurrentComplex() => currentComplex;
+    public void SetCurrentComplex(Complex complex) => currentComplex = complex;
 }

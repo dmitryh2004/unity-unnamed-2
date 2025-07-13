@@ -1,16 +1,29 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SpaceshipLeverController : MonoBehaviour
+public class SpaceshipLeverController : Interactable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    Animator animator;
+
+    public override void Interact()
     {
-        
+        StartCoroutine(StartShipCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        animator = GetComponent<Animator>();
+    }
+
+    IEnumerator StartShipCoroutine()
+    {
+        InputActionMapSwitcher.Instance.DisableAllMaps();
+        animator.SetTrigger("Start");
+
+        LevelManager.Instance.BaseGameOver();
+        yield return new WaitForSeconds(2f);
+
+        SceneManager.LoadScene(SpaceshipController.Instance.GetCurrentComplex().sceneName);
     }
 }

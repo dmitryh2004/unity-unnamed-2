@@ -5,6 +5,7 @@ public class ChestController : Interactable
 {
     private PlayerControls controls;
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] Animator animator;
     [Header("Inventory")]
     [SerializeField] Canvas chestUI;
     [SerializeField] ChestUIController chestUIController;
@@ -90,7 +91,7 @@ public class ChestController : Interactable
 
     void OpenChest()
     {
-        visible = !visible;
+        visible = true;
 
         UpdateCurrentInputMap();
 
@@ -125,6 +126,7 @@ public class ChestController : Interactable
     void UpdateAnimator()
     {
         chestUIAnimator.SetBool("visible", visible);
+        animator.SetBool("open", visible);
     }
 
     public bool IsChestUIVisible()

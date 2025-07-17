@@ -7,6 +7,11 @@ public class GuardianManager : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] List<GuardianController> guardians = new();
 
+    [Header("Guardians initial spawn")]
+    [SerializeField] bool removeRedundantGuardians = true;
+    [SerializeField] int minGuardians;
+    [SerializeField] int maxGuardians;
+
     private void Awake()
     {
         if (Instance != null) 
@@ -15,13 +20,29 @@ public class GuardianManager : MonoBehaviour
             return; 
         }
         Instance = this;
+
+        if (removeRedundantGuardians)
+        {
+            System.Random random = new();
+            int count = random.Next(minGuardians, maxGuardians + 1);
+            List<int> temp = RandomNumbers.GetUniqueRandomNumbers(count, minGuardians, maxGuardians);
+
+            for (int i = 0; i < guardians.Count; i++)
+            {
+                if (!temp.Contains(i))
+                {
+                    guardians[i].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     public void CallGuardians()
     {
         foreach (var guardian in guardians)
         {
-            guardian.CallGuardian(player, player.position);
+            if (guardian.gameObject.activeInHierarchy)
+                guardian.CallGuardian(player, player.position);
         }
     }
 
@@ -29,7 +50,8 @@ public class GuardianManager : MonoBehaviour
     {
         foreach (var guardian in guardians)
         {
-            guardian.SetActive(false);
+            if (guardian.gameObject.activeInHierarchy)
+                guardian.SetActive(false);
         }
     }
 }

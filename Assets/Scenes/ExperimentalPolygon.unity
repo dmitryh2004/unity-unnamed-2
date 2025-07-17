@@ -10270,6 +10270,9 @@ MonoBehaviour:
   player: {fileID: 1253419798}
   guardians:
   - {fileID: 678139963}
+  removeRedundantGuardians: 1
+  minGuardians: 1
+  maxGuardians: 1
 --- !u!4 &542123432
 Transform:
   m_ObjectHideFlags: 0
@@ -18072,8 +18075,12 @@ MonoBehaviour:
   roomsMax: 15
   newRoomOffsetStep: 15
   maxJoinRange: 15
-  minHeight: -50
-  maxHeight: 0
+  minX: 0
+  maxX: 50
+  minY: -20
+  maxY: 0
+  minZ: -50
+  maxZ: 50
   generateExitRoom: 1
   exitRoomPrefab: {fileID: 6446649711032756406, guid: 3d6f767d172674d48b91c504c741431e, type: 3}
   usePreplacedRooms: 1

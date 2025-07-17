@@ -18,9 +18,16 @@ public class LevelGenerator : MonoBehaviour
     [Space]
     [SerializeField] int newRoomOffsetStep = 9;
     [SerializeField] int maxJoinRange = 11;
+    [Space(10)]
+    [Header("Generation bounds")]
+    [SerializeField] float minX = -100f;
+    [SerializeField] float maxX = 100f;
     [Space]
-    [SerializeField] float minHeight = -50f;
-    [SerializeField] float maxHeight = 0f;
+    [SerializeField] float minY = -50f;
+    [SerializeField] float maxY = 0f;
+    [Space]
+    [SerializeField] float minZ = -100f;
+    [SerializeField] float maxZ = 100f;
     [Header("Exit room")]
     [SerializeField] bool generateExitRoom = true;
     [SerializeField] GameObject exitRoomPrefab;
@@ -79,6 +86,7 @@ public class LevelGenerator : MonoBehaviour
     {
         int roomsRequired = random.Next(roomsMin, roomsMax + 1);
         int roomsCreated = 0;
+        int failedAttempts = 0;
 
         if (generateExitRoom)
         {
@@ -102,7 +110,7 @@ public class LevelGenerator : MonoBehaviour
             UpdateCandidates();
         }
 
-        while (roomsCreated < roomsRequired)
+        while (roomsCreated < roomsRequired && failedAttempts < roomsRequired * 2)
         {
             int sum = 0;
             foreach(var kvp in extensionCandidates)
@@ -194,11 +202,20 @@ public class LevelGenerator : MonoBehaviour
                     UpdateNeighbours();
                     roomsCreated++;
                 }
+                else
+                {
+                    failedAttempts++;
+                }
             }
             //roomsCreated++;
             UpdateCandidates();
 
             if (extensionCandidates.Count == 0) break;
+        }
+
+        if (failedAttempts == roomsRequired * 2)
+        {
+            Debug.LogWarning($"Failed to spawn {roomsRequired} rooms (only {roomsCreated} spawned). Generation bounds maybe too narrow.");
         }
     }
 
@@ -218,7 +235,9 @@ public class LevelGenerator : MonoBehaviour
                             center.y + j,
                             center.z - sizeZ / 2f + k
                         );
-                    if (coords.y < minHeight || coords.y > maxHeight) return false;
+                    if (coords.x < minX || coords.x > maxX) return false;
+                    if (coords.y < minY || coords.y > maxY) return false;
+                    if (coords.z < minZ || coords.z > maxZ) return false;
                     foreach (RoomObject room in generatedRooms.Values)
                     {
                         if (room.IsPointOccupied(coords)) return false;

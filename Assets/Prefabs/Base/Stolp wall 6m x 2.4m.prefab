@@ -1,0 +1,978 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8581131186438685953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4108585695414781137}
+  m_Layer: 0
+  m_Name: Stolp wall 6m x 2.4m
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4108585695414781137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8581131186438685953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6877356771891631280}
+  - {fileID: 5639534474557114135}
+  - {fileID: 1838035635332129837}
+  - {fileID: 670957228435311263}
+  - {fileID: 565615329648054634}
+  - {fileID: 7303417038135781386}
+  - {fileID: 4817653213417251767}
+  - {fileID: 8403802614205241984}
+  - {fileID: 258468263031569167}
+  - {fileID: 3431150972561830621}
+  - {fileID: 712364294633538408}
+  - {fileID: 3327065367875941060}
+  - {fileID: 6435556572808151436}
+  - {fileID: 196132398073137652}
+  - {fileID: 785421265513437726}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &823321834390540332
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &1838035635332129837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 823321834390540332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1177629819409055221
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (14)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &196132398073137652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1177629819409055221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1259115570140647182
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &258468263031569167 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1259115570140647182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1528546914308515179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &565615329648054634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1528546914308515179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1732026644168158751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (15)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &785421265513437726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1732026644168158751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1949450581183379305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &712364294633538408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1949450581183379305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1990799392592821918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &670957228435311263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 1990799392592821918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4378370921223620293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &3327065367875941060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 4378370921223620293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4427848592322479836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &3431150972561830621 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 4427848592322479836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5449555590256391565
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (13)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &6435556572808151436 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 5449555590256391565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5592981452320579761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &6877356771891631280 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 5592981452320579761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5779450269625604022
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &4817653213417251767 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 5779450269625604022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6677892449225618198
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &5639534474557114135 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 6677892449225618198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7372190861379186305
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &8403802614205241984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 7372190861379186305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8626071611294784523
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4108585695414781137}
+    m_Modifications:
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830883043391752355, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+      propertyPath: m_Name
+      value: Stolp wall 2.4m (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+--- !u!4 &7303417038135781386 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1364315210756715521, guid: 5d5ff2aca2e3612489545bcbe23a6e5f, type: 3}
+  m_PrefabInstance: {fileID: 8626071611294784523}
+  m_PrefabAsset: {fileID: 0}

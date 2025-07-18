@@ -25,7 +25,7 @@ public class GuardianManager : MonoBehaviour
         {
             System.Random random = new();
             int count = random.Next(minGuardians, maxGuardians + 1);
-            List<int> temp = RandomNumbers.GetUniqueRandomNumbers(count, minGuardians, maxGuardians);
+            List<int> temp = RandomNumbers.GetUniqueRandomNumbers(count, 0, maxGuardians - 1);
 
             for (int i = 0; i < guardians.Count; i++)
             {

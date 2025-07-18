@@ -83,7 +83,7 @@ public class Chest : MonoBehaviour
         return true;
     }
 
-    public bool RemoveItem(LootCategory lootCategory)
+    public bool RemoveItem(LootCategory lootCategory, bool all = false)
     {
         if (lootCategory == null)
             return false;
@@ -91,13 +91,21 @@ public class Chest : MonoBehaviour
         if (!items.ContainsKey(lootCategory.id))
             return false;
 
-        items[lootCategory.id]--;
-
-        if (items[lootCategory.id] <= 0)
+        if (all)
         {
+            totalItemsAmount -= items[lootCategory.id];
             items.Remove(lootCategory.id);
         }
-        totalItemsAmount--;
+        else
+        {
+            items[lootCategory.id]--;
+
+            if (items[lootCategory.id] <= 0)
+            {
+                items.Remove(lootCategory.id);
+            }
+            totalItemsAmount--;
+        }
         return true;
     }
 

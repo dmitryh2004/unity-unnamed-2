@@ -78,7 +78,7 @@ public class InventoryUIController : MonoBehaviour
         activeItemID = id;
     }
 
-    public void DropActiveItem(Transform spawnPosition)
+    public void DropActiveItem(Transform spawnPosition, bool all = false)
     {
         if (activeItemID == -1) 
         {
@@ -94,9 +94,20 @@ public class InventoryUIController : MonoBehaviour
 
         LootCategory lc = InventorySystem.Instance.GetLootCategoryById(activeItemID);
 
-        InventorySystem.Instance.RemoveItem(lc);
-        GameObject.Instantiate(lc.lootPrefab, spawnPosition.position, Quaternion.Euler(lc.dropRotation));
-
+        if (all)
+        {
+            int count = items[activeItemID];
+            InventorySystem.Instance.RemoveItem(lc, true);
+            for (int i = 0; i < count; i++)
+            {
+                GameObject.Instantiate(lc.lootPrefab, spawnPosition.position, Quaternion.Euler(lc.dropRotation));
+            }
+        }
+        else
+        {
+            InventorySystem.Instance.RemoveItem(lc);
+            GameObject.Instantiate(lc.lootPrefab, spawnPosition.position, Quaternion.Euler(lc.dropRotation));
+        }
         UpdateInventory();
         UpdateActiveItem();
     }

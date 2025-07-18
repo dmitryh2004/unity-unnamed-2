@@ -113,6 +113,8 @@ public class PlayerInventoryController : MonoBehaviour
     public void DropItem(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if (playerInput.currentActionMap.name == "InventoryUI") inventoryUIController.DropActiveItem(transform);
+        var keyboard = Keyboard.current;
+        bool shiftPressed = keyboard != null && keyboard.leftShiftKey.isPressed;
+        if (playerInput.currentActionMap.name == "InventoryUI") inventoryUIController.DropActiveItem(transform, shiftPressed);
     }
 }

@@ -87,18 +87,18 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!isInChestUI)
         {
             string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{dropBind}] - выкинуть";
+            tooltipActions.text += $"\n[{dropBind}] - выкинуть 1 шт. (+Shift - выкинуть всё)";
         }
         else
         {
             string transferBind = controls.ChestUI.TransferItem.GetBindingDisplayString();
             if (isChestItem)
             {
-                tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь";
+                tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь (+Shift - взять всё)";
             }
             else
             {
-                tooltipActions.text += $"\n[{transferBind}] - положить в сундук";
+                tooltipActions.text += $"\n[{transferBind}] - положить в сундук (+Shift - положить всё)";
             }
         }
     }

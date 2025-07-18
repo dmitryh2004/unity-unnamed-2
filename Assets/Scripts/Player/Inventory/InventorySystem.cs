@@ -161,7 +161,7 @@ public class InventorySystem : MonoBehaviour
     /// </summary>
     /// <param name="lootCategory">Тип предмета</param>
     /// <returns>True, если предмет успешно удалён, иначе false</returns>
-    public bool RemoveItem(LootCategory lootCategory)
+    public bool RemoveItem(LootCategory lootCategory, bool all = false)
     {
         if (lootCategory == null)
             return false;
@@ -169,11 +169,18 @@ public class InventorySystem : MonoBehaviour
         if (!items.ContainsKey(lootCategory.id))
             return false;
 
-        items[lootCategory.id]--;
-
-        if (items[lootCategory.id] <= 0)
+        if (all)
         {
             items.Remove(lootCategory.id);
+        }
+        else
+        {
+            items[lootCategory.id]--;
+
+            if (items[lootCategory.id] <= 0)
+            {
+                items.Remove(lootCategory.id);
+            }
         }
         return true;
     }

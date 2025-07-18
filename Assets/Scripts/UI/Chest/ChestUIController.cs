@@ -177,7 +177,7 @@ public class ChestUIController : MonoBehaviour
         activeChestItemID = id;
     }
 
-    public void TransferActiveItem()
+    public void TransferActiveItem(bool all = false)
     {
         if (activeItemID == -1 && activeChestItemID == -1)
         {
@@ -202,8 +202,19 @@ public class ChestUIController : MonoBehaviour
 
             if (Chest.Instance.CanAddItem())
             {
-                InventorySystem.Instance.RemoveItem(lc);
-                Chest.Instance.AddItem(lc);
+                if (all)
+                {
+                    while (items.ContainsKey(activeItemID) && items[activeItemID] > 0 && Chest.Instance.CanAddItem())
+                    {
+                        InventorySystem.Instance.RemoveItem(lc);
+                        Chest.Instance.AddItem(lc);
+                    }
+                }
+                else
+                {
+                    InventorySystem.Instance.RemoveItem(lc);
+                    Chest.Instance.AddItem(lc);
+                }
             }
             else
             {
@@ -227,8 +238,19 @@ public class ChestUIController : MonoBehaviour
 
             if (InventorySystem.Instance.CanAddItem(lc))
             {
-                Chest.Instance.RemoveItem(lc);
-                InventorySystem.Instance.AddItem(lc);
+                if (all)
+                {
+                    while (chestItems.ContainsKey(activeChestItemID) && chestItems[activeChestItemID] > 0 && InventorySystem.Instance.CanAddItem(lc))
+                    {
+                        Chest.Instance.RemoveItem(lc);
+                        InventorySystem.Instance.AddItem(lc);
+                    }
+                }
+                else
+                {
+                    Chest.Instance.RemoveItem(lc);
+                    InventorySystem.Instance.AddItem(lc);
+                }
             }
             else
             {

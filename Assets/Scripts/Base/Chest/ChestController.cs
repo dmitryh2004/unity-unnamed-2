@@ -137,7 +137,9 @@ public class ChestController : Interactable
     public void TransferItem(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        if (playerInput.currentActionMap.name == "ChestUI") chestUIController.TransferActiveItem();
+        var keyboard = Keyboard.current;
+        bool shiftPressed = keyboard != null && keyboard.leftShiftKey.isPressed;
+        if (playerInput.currentActionMap.name == "ChestUI") chestUIController.TransferActiveItem(shiftPressed);
     }
 
     public override void Interact()

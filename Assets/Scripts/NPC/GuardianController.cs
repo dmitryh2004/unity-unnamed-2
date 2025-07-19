@@ -43,6 +43,7 @@ public class GuardianController : MonoBehaviour
 
     [Header("Phase 2 Settings")]
     [SerializeField] bool openClosedDoors = true;
+    [SerializeField] float phase2Fov = 90f;
 
     [Header("Phase 3 Settings")]
     [SerializeField] float delay = 7.5f;
@@ -60,15 +61,13 @@ public class GuardianController : MonoBehaviour
 
         if (direction.magnitude > maxSpotDistance) return false;
 
-        if (phase != 2) // если npc в фазе 2, он "запоминает" куда бежит игрок
-        {
-            Vector3 facingDirection = eye.forward;
-            //Debug.Log($"face: {facingDirection}");
-            float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
+        Vector3 facingDirection = eye.forward;
+        //Debug.Log($"face: {facingDirection}");
+        float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
 
-            //Debug.Log($"dot: {dot}");
-            if (dot < Mathf.Cos(fov * Mathf.Deg2Rad)) return false;
-        }
+        float minDot = Mathf.Deg2Rad * GetCurrentFov();
+        //Debug.Log($"dot: {dot}");
+        if (dot < Mathf.Cos(minDot)) return false;
         
         RaycastHit hit;
         if (Physics.Raycast(eye.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
@@ -80,13 +79,24 @@ public class GuardianController : MonoBehaviour
 
     private void Start()
     {
-        fovLight.range = maxSpotDistance;
-        fovLight.spotAngle = fov * 2;
+        UpdateFovLight();
     }
+
+    float GetCurrentFov()
+    {
+        return (phase != 2) ? fov : phase2Fov;
+    }
+
+    void UpdateFovLight()
+    {
+        fovLight.range = maxSpotDistance;
+        fovLight.spotAngle = GetCurrentFov() * 2;
+    } 
 
     public void SwitchPhase(int newPhase, bool raiseAlarm = false)
     {
         phase = newPhase; //change phase
+        UpdateFovLight();
         switch (phase) //update npc
         {
             case 1:

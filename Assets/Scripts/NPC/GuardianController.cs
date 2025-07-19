@@ -28,6 +28,8 @@ public class GuardianController : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GuardianAudioPlayer audioPlayer;
     [SerializeField] List<Transform> trackedObjects = new();
+    [SerializeField] GameObject patrolPointPrefab;
+    [SerializeField] Transform levelPatrolPoints;
 
     [Header("Common Settings")]
     [SerializeField] float speed = 2f;
@@ -36,6 +38,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] float maxSpotDistance = 10f;
     [SerializeField] float fov = 60f;
     [SerializeField] float phaseUpdateInterval = .5f;
+    [SerializeField] bool addDestinationsToPatrolPoints = false;
 
     [Header("Phase 1 Settings")]
     [SerializeField] List<Transform> patrolPoints = new();
@@ -120,6 +123,7 @@ public class GuardianController : MonoBehaviour
 
     private void Update()
     {
+        agent.isStopped = !active;
         if (!active) return;
         phaseUpdateTimer += Time.deltaTime;
         if (phase == 3)
@@ -213,6 +217,27 @@ public class GuardianController : MonoBehaviour
         {
             if (agent.remainingDistance < 0.5f) // if npc is near the dest point, switch phase to 3
             {
+                if (addDestinationsToPatrolPoints)
+                {
+                    //check for absence of patrol points in 2 meters around
+                    Vector3 destination = agent.destination;
+                    bool noPatrolPoints = true;
+                    foreach (Transform pp in patrolPoints)
+                    {
+                        if (Vector3.Distance(pp.position, destination) < 2f)
+                        {
+                            noPatrolPoints = false;
+                            break;
+                        }
+                    }
+
+                    if (noPatrolPoints)
+                    {
+                        GameObject newPatrolPoint = Instantiate(patrolPointPrefab, destination, Quaternion.Euler(0, 0, 0), levelPatrolPoints);
+                        patrolPoints.Add(newPatrolPoint.transform);
+                    }
+                }
+                
                 SwitchPhase(3);
             }
         }

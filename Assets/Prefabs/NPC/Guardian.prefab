@@ -242,12 +242,15 @@ MonoBehaviour:
   audioPlayer: {fileID: 5140023452055430594}
   trackedObjects:
   - {fileID: 0}
+  patrolPointPrefab: {fileID: 8908337971192136298, guid: f9fac14da36bd6a4c976beaf7da54c23, type: 3}
+  levelPatrolPoints: {fileID: 0}
   speed: 2
   runningSpeed: 6
   xraySpotDistance: 2
   maxSpotDistance: 15
   fov: 60
   phaseUpdateInterval: 0.5
+  addDestinationsToPatrolPoints: 0
   patrolPoints: []
   enterPhase3OnPoints: 0
   openClosedDoors: 1

@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
     int totalItemsAmount = 0;
     int maxItemsAmount = 1000;
 
+    public LootCategoryManager lootCategoryManager;
     // список всех предметов. берется из InventorySystem
     List<LootCategory> lootCategories;
 
@@ -26,7 +27,7 @@ public class Chest : MonoBehaviour
 
     private void Start()
     {
-        lootCategories = InventorySystem.Instance.lootCategories;
+        lootCategories = lootCategoryManager.lootCategories;
     }
 
     public int GetTotalCost()

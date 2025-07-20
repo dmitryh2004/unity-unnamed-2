@@ -6,6 +6,7 @@ public class GameData
 {
     public string inventory; // Сохраняем JSON как строку
     public string chest;
+    public int currentComplexIndex = 0;
     public int inventoryLevel = 1;
     public int virusLevel = 1;
     public int predictorLevel = 0;
@@ -54,13 +55,24 @@ public class SaveManager : MonoBehaviour
             predictorLevel = LoadData().predictorLevel;
         }
 
+        int currentComplexIndex = 0;
+        if (SpaceshipController.Instance != null)
+        {
+            currentComplexIndex = SpaceshipController.Instance.GetPanelController().GetCurrentComplexIndex();
+        }
+        else
+        {
+            currentComplexIndex = LoadData().currentComplexIndex;
+        }
+
         GameData data = new GameData
         {
             inventory = inventoryJson,
             chest = chestJson,
             inventoryLevel = inventoryLevel,
             virusLevel = virusLevel,
-            predictorLevel = predictorLevel
+            predictorLevel = predictorLevel,
+            currentComplexIndex = currentComplexIndex
         };
 
         string json = JsonUtility.ToJson(data, true);

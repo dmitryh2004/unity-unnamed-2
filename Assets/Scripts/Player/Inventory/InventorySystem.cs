@@ -26,8 +26,9 @@ public class InventorySystem : MonoBehaviour
     // Максимальный объем инвентаря
     float maxVolume = 0.01f;
 
-    [Tooltip("Список всех доступных типов предметов (ScriptableObject)")]
-    public List<LootCategory> lootCategories;
+    public LootCategoryManager lootCategoryManager;
+    //Список всех доступных типов предметов (ScriptableObject)
+    List<LootCategory> lootCategories;
 
     // Словарь: ключ - id LootCategory, значение - количество предметов данного типа
     private Dictionary<int, int> items = new Dictionary<int, int>();
@@ -40,6 +41,8 @@ public class InventorySystem : MonoBehaviour
             return;
         }
         Instance = this;
+
+        lootCategories = lootCategoryManager.lootCategories;
     }
 
     private void Start()

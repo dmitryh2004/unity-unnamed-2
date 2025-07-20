@@ -38,6 +38,8 @@ public class LevelManager : MonoBehaviour
                 PlayerLootPredictor.Instance.SetLevel(gameData.predictorLevel);
             if (Chest.Instance != null)
                 Chest.Instance.SetItemsFromJson(gameData.chest);
+            if (SpaceshipController.Instance != null)
+                SpaceshipController.Instance.GetPanelController().SetCurrentComplexIndex(gameData.currentComplexIndex);
         }
         else
         {

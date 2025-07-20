@@ -39,6 +39,24 @@ public class SpaceshipPanelController : Interactable
         UpdateScreen1();
     }
 
+    public int GetCurrentComplexIndex()
+    {
+        return currentComplexIndex;
+    }
+
+    public void SetCurrentComplexIndex(int cci)
+    {
+        if (cci < 0 || cci >= complexList.Count)
+        {
+            currentComplexIndex = 0;
+            Debug.LogWarning($"Spaceship panel: can not set current complex to {cci}, setted to 0");
+            return;
+        }
+        currentComplexIndex = cci;
+        UpdateScreen1();
+        UpdateScreen2();
+    }
+
     public override void Interact()
     {
         InputActionMapSwitcher.Instance.DisableAllMaps();

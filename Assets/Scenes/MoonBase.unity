@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0
+  m_AmbientIntensity: 0.1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 581201336aad04b489090eca004b7b72, type: 2}
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0
+  m_ReflectionIntensity: 0.1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -4545,6 +4545,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 966913749}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
+      propertyPath: enterPhase3OnPoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -4555,7 +4559,7 @@ PrefabInstance:
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1911444727}
+      objectReference: {fileID: 1860981501}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 
@@ -4726,7 +4730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &868576096
 Light:
   m_ObjectHideFlags: 0
@@ -6759,6 +6763,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 966913749}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
+      propertyPath: enterPhase3OnPoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -6769,7 +6777,7 @@ PrefabInstance:
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 1860981501}
+      objectReference: {fileID: 1911444727}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 

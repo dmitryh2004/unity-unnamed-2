@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 5496516628356194556}
   - component: {fileID: 1937251138375716018}
   - component: {fileID: 1970512087748965690}
+  - component: {fileID: 3007462159237000413}
   m_Layer: 5
   m_Name: Quota
   m_TagString: Untagged
@@ -619,6 +620,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 1937251138375716018}
+--- !u!114 &3007462159237000413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147517156993202310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62444d7d07364d6478a619c3e6f1e2cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientTypes:
+  - {fileID: 11400000, guid: 24bcd89814eec174fbf613af922ea3da, type: 2}
+  - {fileID: 11400000, guid: 5e9609cc1c1157f488a2b7ebc934cec3, type: 2}
+  - {fileID: 11400000, guid: 9cca33840c4ae5043a6ee8c4f747efa9, type: 2}
+  - {fileID: 11400000, guid: 66c165b2fe8d1c448a7b45e8861bab45, type: 2}
+  - {fileID: 11400000, guid: d6d80cdb954272444a08cb3d0f01c559, type: 2}
 --- !u!1 &3761488589983113618
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class LootCostModifier
 {
-    public int key;
-    public float value;
+    public int itemID;
+    public float modifier;
 }
 
 [CreateAssetMenu(fileName = "ClientType", menuName = "Scriptable Objects/Quota/Client Type")]
@@ -20,12 +20,12 @@ public class ClientType : ScriptableObject
         var dict = new Dictionary<int, float>();
         foreach (var item in lootCostModifiers)
         {
-            dict[item.key] = item.value;
+            dict[item.itemID] = item.modifier;
         }
         return dict;
     }
 
     public bool hasEarlyCompletionBonus;
-    public int earlyCompletionBonus2; //за 2 дня до дедлайна
-    public int earlyCompletionBonus1; //за 1 день до дедлайна
+    public float earlyCompletionBonusModifier2; //за 2 дня до дедлайна
+    public float earlyCompletionBonusModifier1; //за 1 день до дедлайна
 }

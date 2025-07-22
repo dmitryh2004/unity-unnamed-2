@@ -25,24 +25,52 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"Initialized:\n- inventory system: {InventorySystem.Instance != null};\n- virus: {VirusController.Instance != null};\nloot predictor: {PlayerLootPredictor.Instance != null}");
-        GameData gameData = saveManager.LoadData();
+        bool validationResult = false;
+        GameData gameData = saveManager.LoadData(out validationResult);
         if (gameData != null)
         {
-            InventorySystem.Instance.SetLevel(gameData.inventoryLevel);
-            InventorySystem.Instance.SetItemsFromJson(gameData.inventory);
+            InventorySystem.Instance.SetLevel(gameData.save.playerData.inventoryLevel);
+            InventorySystem.Instance.SetItemsFromJson(gameData.save.playerData.inventory);
 
             if (VirusController.Instance != null)
-                VirusController.Instance.SetLevel(gameData.virusLevel);
+                VirusController.Instance.SetLevel(gameData.save.playerData.virusLevel);
             if (PlayerLootPredictor.Instance != null)
-                PlayerLootPredictor.Instance.SetLevel(gameData.predictorLevel);
+                PlayerLootPredictor.Instance.SetLevel(gameData.save.playerData.predictorLevel);
             if (Chest.Instance != null)
-                Chest.Instance.SetItemsFromJson(gameData.chest);
+                Chest.Instance.SetItemsFromJson(gameData.save.baseData.chest);
             if (SpaceshipController.Instance != null)
-                SpaceshipController.Instance.GetPanelController().SetCurrentComplexIndex(gameData.currentComplexIndex);
+                SpaceshipController.Instance.GetPanelController().SetCurrentComplexIndex(gameData.save.baseData.currentComplexIndex);
+
+            if (QuotaSystem.Instance != null)
+            {
+                QuotaSystem.Instance.SetRequired(gameData.save.quotaData.required);
+                QuotaSystem.Instance.SetCollected(gameData.save.quotaData.collected);
+                QuotaSystem.Instance.SetDaysLeft(gameData.save.quotaData.daysLeft);
+                QuotaSystem.Instance.SetMultiplier(gameData.save.quotaData.multiplier);
+
+                ClientType ct = ClientTypeManager.Instance.GetClientType(gameData.save.quotaData.clientTypeID);
+
+                if (ct != null)
+                {
+                    Order order = new ();
+                    order.SetClientType(ct);
+                    order.SetRequired(gameData.save.quotaData.required);
+                    QuotaSystem.Instance.SetOrder(order);
+                }
+                else
+                {
+                    QuotaSystem.Instance.SetOrder(null);
+                }
+            }
         }
         else
         {
+            if (validationResult == false)
+            {
+                Debug.LogWarning("Validation failed: applying default values");
+                // add message box for the player
+            }
+
             InventorySystem.Instance.SetLevel(1);
 
             if (VirusController.Instance != null)

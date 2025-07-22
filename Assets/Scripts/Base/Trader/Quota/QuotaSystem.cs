@@ -30,12 +30,19 @@ public class QuotaSystem : MonoBehaviour
 
     public bool HasOrder() => order != null;
     public Order GetOrder() => order;
+    public int GetClientTypeID() => HasOrder() ? ClientTypeManager.Instance.GetID(order.GetClientType()) : -1;
     public int GetRequired() => required;
     public int GetCollected() => collected;
     public int GetDaysLeft() => daysLeft;
     public float GetMultiplier() => multiplier;
+    public void SetRequired(int required) => this.required = required;
+    public void SetCollected(int collected) => this.collected = collected;
+    public void SetDaysLeft(int daysLeft) => this.daysLeft = daysLeft;
+    public void SetMultiplier(float multiplier) => this.multiplier = multiplier;
+    public void SetOrder(Order order) => this.order = order;
     public void UpdateUI()
     {
-        uiController.UpdateUI();
+        if (uiController != null)
+            uiController.UpdateUI();
     }
 }

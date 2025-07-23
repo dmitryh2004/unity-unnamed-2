@@ -35,7 +35,8 @@ public class AlarmController : MonoBehaviour
         {
             alarmLightController.ChangeState(true);
         }
-        StatisticCollector.Instance.AlarmRaised = true;
+        if (StatisticCollector.Instance != null)
+            StatisticCollector.Instance.AlarmRaised = true;
         if (timerController != null)
             timerController.StartTimer();
         alarmSoundSource.Play();

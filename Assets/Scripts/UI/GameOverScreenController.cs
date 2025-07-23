@@ -13,6 +13,8 @@ public class GameOverScreenController : MonoBehaviour
 
     public void ShowGameOverWindow(bool victory, string reason, bool fill = true)
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         StartCoroutine(MainCoroutine(victory, reason, fill));
     }
 

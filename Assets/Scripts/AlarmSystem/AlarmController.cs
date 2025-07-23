@@ -36,7 +36,8 @@ public class AlarmController : MonoBehaviour
             alarmLightController.ChangeState(true);
         }
         StatisticCollector.Instance.AlarmRaised = true;
-        timerController.StartTimer();
+        if (timerController != null)
+            timerController.StartTimer();
         alarmSoundSource.Play();
     }
 
@@ -47,7 +48,8 @@ public class AlarmController : MonoBehaviour
         {
             alarmLightController.ChangeState(false);
         }
-        timerController.StopTimer();
+        if (timerController != null)
+            timerController.StopTimer();
         alarmSoundSource.Stop();
     }
 }

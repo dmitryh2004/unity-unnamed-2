@@ -2547,6 +2547,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3bf3e12fc25def40bee4b91116af956, type: 3}
+--- !u!1 &188773896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7135495624461785173, guid: e3bf3e12fc25def40bee4b91116af956, type: 3}
+  m_PrefabInstance: {fileID: 188773895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &190680220
 GameObject:
   m_ObjectHideFlags: 0
@@ -9676,7 +9681,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2689594002850695783, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
   m_PrefabInstance: {fileID: 478765168}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 478765171}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae3d1959d2a5cc640aef90499e58ea70, type: 3}
@@ -9685,6 +9690,11 @@ MonoBehaviour:
 --- !u!223 &478765170 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 2225347206602123670, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
+  m_PrefabInstance: {fileID: 478765168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &478765171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3780932989571002669, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
   m_PrefabInstance: {fileID: 478765168}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &482654972
@@ -15378,7 +15388,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8546370174451817847, guid: e3bf3e12fc25def40bee4b91116af956, type: 3}
   m_PrefabInstance: {fileID: 188773895}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 188773896}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52aad2427a04b024495c658ca22a6993, type: 3}
@@ -28480,9 +28490,25 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
+      propertyPath: hwc
+      value: 
+      objectReference: {fileID: 877846459}
+    - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
+      propertyPath: pic
+      value: 
+      objectReference: {fileID: 678238891}
+    - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
+      propertyPath: hackUI
+      value: 
+      objectReference: {fileID: 188773896}
+    - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
       propertyPath: generator
       value: 
       objectReference: {fileID: 1082150583}
+    - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 478765171}
     - target: {fileID: 5283665006324937206, guid: a723333155073364bb0205f4f03e2f91, type: 3}
       propertyPath: saveManager
       value: 

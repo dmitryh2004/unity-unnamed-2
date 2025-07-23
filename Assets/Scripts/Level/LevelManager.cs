@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] SaveManager saveManager;
     [SerializeField] StartStatsController startStatsController;
     [SerializeField] GameOverScreenController gameOverScreenController;
+    [SerializeField] GameObject inventoryUI, hackUI;
 
     [TextArea(5, 10)]
     [SerializeField] List<string> gameOverReasons = new();
@@ -102,6 +103,12 @@ public class LevelManager : MonoBehaviour
         {
             InventorySystem.Instance.RemoveAllItems();
         }
+
+        // close all windows
+        if (inventoryUI != null)
+            inventoryUI.GetComponent<Animator>().SetBool("visible", false);
+        if (hackUI != null)
+            hackUI.GetComponent<Animator>().SetBool("visible", false);
 
         saveManager.SaveData();
 

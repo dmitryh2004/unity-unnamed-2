@@ -9,11 +9,11 @@ public class TraderUIWindowController : MonoBehaviour
     [Header("Links")]
     [SerializeField] Animator animator;
     [Space(10)]
-    [SerializeField] GameObject mainMenuScreen; // 0
-    [SerializeField] GameObject quotaScreen; // 1
-    [SerializeField] GameObject noQuotaScreen; // 2
-    [SerializeField] GameObject sellItemsScreen; // 3
-    [SerializeField] GameObject upgradeEquipmentScreen; // 4
+    [SerializeField] TraderUIBaseScreenController mainMenuScreen; // 0
+    [SerializeField] TraderUIBaseScreenController quotaScreen; // 1
+    [SerializeField] TraderUIBaseScreenController noQuotaScreen; // 2
+    [SerializeField] TraderUIBaseScreenController sellItemsScreen; // 3
+    [SerializeField] TraderUIBaseScreenController upgradeEquipmentScreen; // 4
 
     int currentScreen = 0;
     bool visible = false;
@@ -26,15 +26,34 @@ public class TraderUIWindowController : MonoBehaviour
             currentScreen = 0;
         }
         if (mainMenuScreen != null)
-            mainMenuScreen.SetActive(currentScreen == 0);
+            mainMenuScreen.gameObject.SetActive(currentScreen == 0);
         if (quotaScreen != null)
-            quotaScreen.SetActive(currentScreen == 1);
+            quotaScreen.gameObject.SetActive(currentScreen == 1);
         if (noQuotaScreen != null)
-            noQuotaScreen.SetActive(currentScreen == 2);
+            noQuotaScreen.gameObject.SetActive(currentScreen == 2);
         if (sellItemsScreen != null)
-            sellItemsScreen.SetActive(currentScreen == 3);
+            sellItemsScreen.gameObject.SetActive(currentScreen == 3);
         if (upgradeEquipmentScreen != null)
-            upgradeEquipmentScreen.SetActive(currentScreen == 4);
+            upgradeEquipmentScreen.gameObject.SetActive(currentScreen == 4);
+
+        switch(currentScreen)
+        {
+            case 0:
+                mainMenuScreen.OnShow();
+                break;
+            case 1:
+                quotaScreen.OnShow();
+                break;
+            case 2:
+                noQuotaScreen.OnShow();
+                break;
+            case 3:
+                sellItemsScreen.OnShow();
+                break;
+            case 4:
+                upgradeEquipmentScreen.OnShow();
+                break;
+        }
     }
 
     public void SetScreen(int screen)

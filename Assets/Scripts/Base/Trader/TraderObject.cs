@@ -21,6 +21,11 @@ public class TraderObject : Interactable
     {
         rand = new();
     }
+
+    private void Start()
+    {
+        GenerateOrders();
+    }
     public override void Interact()
     {
         windowController.ShowWindow();
@@ -31,6 +36,7 @@ public class TraderObject : Interactable
         min = multiplier - range * (float)rand.NextDouble();
         if (min < 1.0f) min = 1.0f;
         max = multiplier + range * (float)rand.NextDouble();
+        if (max < 1.0f) max = 1.0f;
     }
 
     public ClientType SelectRandomClientType()
@@ -39,6 +45,15 @@ public class TraderObject : Interactable
         foreach(var temp in clientTypes)
         {
             sum += temp.weight;
+        }
+
+        int choice = rand.Next(0, sum);
+        sum = 0;
+
+        for (int i = 0; i < clientTypes.Count; i++)
+        {
+            sum += clientTypes[i].weight;
+            if (choice < sum) return ClientTypeManager.Instance.GetClientType(clientTypes[i].clientTypeID);
         }
         return null;
     }
@@ -55,5 +70,21 @@ public class TraderObject : Interactable
         {
             muls[i] = minMultiplier + (float)rand.NextDouble() * (maxMultiplier - minMultiplier);
         }
+
+        order1 = new Order();
+        order1.SetRequired((int)(baseOrderSum * muls[0]));
+        order1.SetClientType(SelectRandomClientType());
+
+        order2 = new Order();
+        order2.SetRequired((int)(baseOrderSum * muls[1]));
+        order2.SetClientType(SelectRandomClientType());
+
+        order3 = new Order();
+        order3.SetRequired((int)(baseOrderSum * muls[2]));
+        order3.SetClientType(SelectRandomClientType());
     }
+
+    public Order GetOrder1() => order1;
+    public Order GetOrder2() => order2;
+    public Order GetOrder3() => order3;
 }

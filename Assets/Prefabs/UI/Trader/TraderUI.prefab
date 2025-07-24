@@ -343,10 +343,10 @@ RectTransform:
   - {fileID: 6394459771071990438}
   m_Father: {fileID: 6731231420202692447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 584, y: 548}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &917185496968189226
 GameObject:
@@ -1078,9 +1078,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
   animator: {fileID: 1700870453933531600}
-  mainMenuScreen: {fileID: 3224748910818256928}
-  quotaScreen: {fileID: 6080404721215181879}
-  noQuotaScreen: {fileID: 7464956022575938021}
+  mainMenuScreen: {fileID: 1999247166012035539}
+  quotaScreen: {fileID: 0}
+  noQuotaScreen: {fileID: 4438007366487309231}
   sellItemsScreen: {fileID: 0}
   upgradeEquipmentScreen: {fileID: 0}
 --- !u!95 &1700870453933531600
@@ -2767,6 +2767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5040769144000498631}
   - component: {fileID: 424963063135065514}
+  - component: {fileID: 4612575651812968325}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2796,8 +2797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0010053343}
-  m_SizeDelta: {x: 0, y: 1200}
+  m_AnchoredPosition: {x: 0, y: -0.00047834747}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &424963063135065514
 MonoBehaviour:
@@ -2825,6 +2826,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &4612575651812968325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905159692024223510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &6080404721215181879
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,6 +4128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016788538204026122}
   - component: {fileID: 7971646572991521906}
+  - component: {fileID: 4438007366487309231}
   m_Layer: 5
   m_Name: QuotaScreenNoQuota
   m_TagString: Untagged
@@ -4167,6 +4183,31 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4438007366487309231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7464956022575938021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676239e873463d7479407340e194e918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windowController: {fileID: 4250313105451655847}
+  trader: {fileID: 0}
+  lootCategories: {fileID: 11400000, guid: c6410895e9f9eca4eb5d108f54ae1fb3, type: 2}
+  taskCard1: {fileID: 2517414733461336098}
+  taskCard2: {fileID: 3885803559143980834}
+  taskCard3: {fileID: 6664387451027033187}
+  chosenTaskInfo: {fileID: 8432178953981528340}
+  noChosenTask: {fileID: 562156511379806727}
+  commonInfo: {fileID: 1275187811988074143}
+  earlyCompletionBonuses: {fileID: 3744749470931333662}
+  clientType: {fileID: 7898023919033964033}
+  lootCostModifiersPositive: {fileID: 1344804906775235742}
+  lootCostModifiersNegative: {fileID: 8314363238611788955}
 --- !u!1 &7532892460403203163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4570,7 +4611,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 411452729098538757}
   m_HandleRect: {fileID: 7575885879948013246}
   m_Direction: 2
-  m_Value: 1.0000014
+  m_Value: 1.0000007
   m_Size: 0.44333333
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4713,14 +4754,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 98e5c53369545ca44bcbe5b0126869b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6827,6 +6868,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskCard (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4438007366487309231}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TraderUINoQuotaScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6837,6 +6910,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2407702182018682548, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
   m_PrefabInstance: {fileID: 3416526985770223932}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6664387451027033187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8292631195688584543, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+  m_PrefabInstance: {fileID: 3416526985770223932}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b003a0e24955e744c913136360dac12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3689269699053596032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7801,11 +7885,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskCard (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4438007366487309231}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TraderUINoQuotaScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+--- !u!114 &3885803559143980834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8292631195688584543, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+  m_PrefabInstance: {fileID: 5113975490846063229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b003a0e24955e744c913136360dac12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7462919771471148233 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2407702182018682548, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
@@ -8339,11 +8466,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: TaskCard
       objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4438007366487309231}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectTask
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TraderUINoQuotaScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973321099391625746, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+--- !u!114 &2517414733461336098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8292631195688584543, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}
+  m_PrefabInstance: {fileID: 5907314779426092413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b003a0e24955e744c913136360dac12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8111861570087386057 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2407702182018682548, guid: 7afdd73617a056d4294f95a14d5dc615, type: 3}

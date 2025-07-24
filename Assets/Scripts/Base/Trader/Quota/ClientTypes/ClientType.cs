@@ -25,6 +25,8 @@ public class ClientType : ScriptableObject
         return dict;
     }
 
+    public int days = 4;
+
     public bool hasEarlyCompletionBonus;
     public float earlyCompletionBonusModifier2; //за 2 дня до дедлайна
     public float earlyCompletionBonusModifier1; //за 1 день до дедлайна

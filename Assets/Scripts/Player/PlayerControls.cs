@@ -710,6 +710,114 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TraderUI"",
+            ""id"": ""ed9fef7d-cf18-430e-aeac-fc5a7a7f09e4"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d0025b4-47ba-41f2-b671-224de5a584d4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Option1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c2d9d369-0feb-4f9a-b62a-9fcc5c43868c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Option2"",
+                    ""type"": ""Button"",
+                    ""id"": ""fbe4b501-54af-44f7-a5e5-1ccee2a9da63"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Option3"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a5ca924-6a20-459d-b48b-375efd4775b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""82462628-64d6-4178-a9a3-b8c508ecf359"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7fc21e0c-dc83-419a-8764-93c0ca211619"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88f81b90-5baa-4a70-85e7-363b2ce1ebf7"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Option1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""336a7851-557b-48c8-9378-6a58e42bb61d"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Option2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94db253f-2eb8-43ca-990a-5f2997639f3b"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Option3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f461549-44c4-4e4c-b253-912bad3ea152"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -751,6 +859,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_SpaceshipPanelUI_Back = m_SpaceshipPanelUI.FindAction("Back", throwIfNotFound: true);
         m_SpaceshipPanelUI_NavigationUp = m_SpaceshipPanelUI.FindAction("NavigationUp", throwIfNotFound: true);
         m_SpaceshipPanelUI_NavigationDown = m_SpaceshipPanelUI.FindAction("NavigationDown", throwIfNotFound: true);
+        // TraderUI
+        m_TraderUI = asset.FindActionMap("TraderUI", throwIfNotFound: true);
+        m_TraderUI_Exit = m_TraderUI.FindAction("Exit", throwIfNotFound: true);
+        m_TraderUI_Option1 = m_TraderUI.FindAction("Option1", throwIfNotFound: true);
+        m_TraderUI_Option2 = m_TraderUI.FindAction("Option2", throwIfNotFound: true);
+        m_TraderUI_Option3 = m_TraderUI.FindAction("Option3", throwIfNotFound: true);
+        m_TraderUI_Confirm = m_TraderUI.FindAction("Confirm", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -760,6 +875,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_HackUI.enabled, "This will cause a leak and performance issues, PlayerControls.HackUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_ChestUI.enabled, "This will cause a leak and performance issues, PlayerControls.ChestUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_SpaceshipPanelUI.enabled, "This will cause a leak and performance issues, PlayerControls.SpaceshipPanelUI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TraderUI.enabled, "This will cause a leak and performance issues, PlayerControls.TraderUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1553,6 +1669,146 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="SpaceshipPanelUIActions" /> instance referencing this action map.
     /// </summary>
     public SpaceshipPanelUIActions @SpaceshipPanelUI => new SpaceshipPanelUIActions(this);
+
+    // TraderUI
+    private readonly InputActionMap m_TraderUI;
+    private List<ITraderUIActions> m_TraderUIActionsCallbackInterfaces = new List<ITraderUIActions>();
+    private readonly InputAction m_TraderUI_Exit;
+    private readonly InputAction m_TraderUI_Option1;
+    private readonly InputAction m_TraderUI_Option2;
+    private readonly InputAction m_TraderUI_Option3;
+    private readonly InputAction m_TraderUI_Confirm;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TraderUI".
+    /// </summary>
+    public struct TraderUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TraderUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_TraderUI_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Option1".
+        /// </summary>
+        public InputAction @Option1 => m_Wrapper.m_TraderUI_Option1;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Option2".
+        /// </summary>
+        public InputAction @Option2 => m_Wrapper.m_TraderUI_Option2;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Option3".
+        /// </summary>
+        public InputAction @Option3 => m_Wrapper.m_TraderUI_Option3;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Confirm".
+        /// </summary>
+        public InputAction @Confirm => m_Wrapper.m_TraderUI_Confirm;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TraderUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TraderUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TraderUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TraderUIActions" />
+        public void AddCallbacks(ITraderUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TraderUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TraderUIActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @Option1.started += instance.OnOption1;
+            @Option1.performed += instance.OnOption1;
+            @Option1.canceled += instance.OnOption1;
+            @Option2.started += instance.OnOption2;
+            @Option2.performed += instance.OnOption2;
+            @Option2.canceled += instance.OnOption2;
+            @Option3.started += instance.OnOption3;
+            @Option3.performed += instance.OnOption3;
+            @Option3.canceled += instance.OnOption3;
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TraderUIActions" />
+        private void UnregisterCallbacks(ITraderUIActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @Option1.started -= instance.OnOption1;
+            @Option1.performed -= instance.OnOption1;
+            @Option1.canceled -= instance.OnOption1;
+            @Option2.started -= instance.OnOption2;
+            @Option2.performed -= instance.OnOption2;
+            @Option2.canceled -= instance.OnOption2;
+            @Option3.started -= instance.OnOption3;
+            @Option3.performed -= instance.OnOption3;
+            @Option3.canceled -= instance.OnOption3;
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TraderUIActions.UnregisterCallbacks(ITraderUIActions)" />.
+        /// </summary>
+        /// <seealso cref="TraderUIActions.UnregisterCallbacks(ITraderUIActions)" />
+        public void RemoveCallbacks(ITraderUIActions instance)
+        {
+            if (m_Wrapper.m_TraderUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TraderUIActions.AddCallbacks(ITraderUIActions)" />
+        /// <seealso cref="TraderUIActions.RemoveCallbacks(ITraderUIActions)" />
+        /// <seealso cref="TraderUIActions.UnregisterCallbacks(ITraderUIActions)" />
+        public void SetCallbacks(ITraderUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TraderUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TraderUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TraderUIActions" /> instance referencing this action map.
+    /// </summary>
+    public TraderUIActions @TraderUI => new TraderUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -1781,5 +2037,48 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNavigationDown(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TraderUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TraderUIActions.AddCallbacks(ITraderUIActions)" />
+    /// <seealso cref="TraderUIActions.RemoveCallbacks(ITraderUIActions)" />
+    public interface ITraderUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Option1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOption1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Option2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOption2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Option3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOption3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Confirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }

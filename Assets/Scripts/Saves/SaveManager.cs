@@ -126,6 +126,8 @@ public class SaveManager : MonoBehaviour
         bool validationResult = false;
         string inventoryJson = InventorySystem.Instance.GetInventoryDataJson();
 
+        GameData loadedData = LoadData(out validationResult, false);
+
         string chestJson = "";
         if (Chest.Instance != null)
         {
@@ -133,10 +135,21 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            string savedChest = LoadData(out validationResult, false).save.baseData.chest;
-            if (savedChest != null)
+            if (loadedData != null)
             {
-                chestJson = savedChest;
+                string savedChest = loadedData.save.baseData.chest;
+                if (savedChest != null)
+                {
+                    chestJson = savedChest;
+                }
+                else
+                {
+                    chestJson = "{\"items\": []}";
+                }
+            }
+            else
+            {
+                chestJson = "{\"items\": []}";
             }
         }
         int inventoryLevel = InventorySystem.Instance.GetLevel();
@@ -148,7 +161,10 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            virusLevel = LoadData(out validationResult, false).save.playerData.virusLevel;
+            if (loadedData != null)
+            {
+                virusLevel = loadedData.save.playerData.virusLevel;
+            }
         }
         
         int predictorLevel = 0;
@@ -158,7 +174,10 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            predictorLevel = LoadData(out validationResult, false).save.playerData.predictorLevel;
+            if (loadedData != null)
+            {
+                predictorLevel = loadedData.save.playerData.predictorLevel;
+            }
         }
 
         int currentComplexIndex = 0;
@@ -168,7 +187,10 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            currentComplexIndex = LoadData(out validationResult, false).save.baseData.currentComplexIndex;
+            if (loadedData != null)
+            {
+                currentComplexIndex = loadedData.save.baseData.currentComplexIndex;
+            }
         }
 
         int money = 0;
@@ -178,7 +200,10 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            money = LoadData(out validationResult, false).save.playerData.money;
+            if (loadedData != null)
+            {
+                money = loadedData.save.playerData.money;
+            }
         }
 
         Player playerData = new Player

@@ -7,20 +7,12 @@ public class ChestUIController : MonoBehaviour
     Dictionary<int, int> items, chestItems;
     [SerializeField] Sprite unknownSprite;
     [Header("Inventory")]
-    [SerializeField] List<InventoryItem> inventoryItems = new();
+    [SerializeField] InventoryLayoutElement inventoryLayoutElement;
     int activeItemID = -1;
-    int offset = 0;
-    [SerializeField] TMP_Text totalVolume;
-    [SerializeField] ProgressBar volumePB;
-    [SerializeField] TMP_Text estimateCost;
     [Space(10)]
     [Header("Chest")]
-    [SerializeField] List<InventoryItem> chestInventoryItems = new();
+    [SerializeField] InventoryLayoutElement chestLayoutElement;
     int activeChestItemID = -1;
-    int chestOffset = 0;
-    [SerializeField] TMP_Text chestTotalItems;
-    [SerializeField] ProgressBar chestItemsPB;
-    [SerializeField] TMP_Text chestEstimateCost;
 
     string GetItemsString()
     {
@@ -46,135 +38,40 @@ public class ChestUIController : MonoBehaviour
 
     public void UpdateActiveItem()
     {
-        foreach (InventoryItem item in inventoryItems)
-        {
-            if (item.IsPointerOnItem() && item.IsActive())
-            {
-                activeItemID = item.GetID();
-                return;
-            }
-        }
-        activeItemID = -1;
+        inventoryLayoutElement.UpdateActiveItem();
+        activeItemID = inventoryLayoutElement.GetActiveItemID();
     }
 
     public void UpdateActiveChestItem()
     {
-        foreach (InventoryItem item in chestInventoryItems)
-        {
-            if (item.IsPointerOnItem() && item.IsActive())
-            {
-                activeChestItemID = item.GetID();
-                return;
-            }
-        }
-        activeChestItemID = -1;
+        chestLayoutElement.UpdateActiveItem();
+        activeChestItemID = chestLayoutElement.GetActiveItemID();
     }
 
     public void UpdateInventory()
     {
         items = InventorySystem.Instance.GetItems();
 
-        int inventoryItemIndex = inventoryItems.Count - 1 + offset;
-        foreach (int i in items.Keys)
-        {
-            LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
-
-            if (inventoryItemIndex < inventoryItems.Count)
-            {
-                inventoryItems[inventoryItemIndex].SetActive(true);
-
-                Sprite itemSprite = lc.sprite;
-                if (itemSprite == null) itemSprite = unknownSprite;
-
-                inventoryItems[inventoryItemIndex].Initialize(i, itemSprite, items[i]);
-                inventoryItems[inventoryItemIndex].UpdateTooltip(lc);
-            }
-
-            inventoryItemIndex--;
-
-            if (inventoryItemIndex < 0) break;
-        }
-
-        for (; inventoryItemIndex >= 0; inventoryItemIndex--)
-        {
-            inventoryItems[inventoryItemIndex].SetActive(false);
-        }
-
-        UpdateActiveItem();
-
-        float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
-        float maxVolume = InventorySystem.Instance.GetMaxVolume();
-        int totalCost = InventorySystem.Instance.GetTotalCost();
-
-        float ratio = currentVolume / maxVolume * 100;
-        string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
-
-        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
-        volumePB.SetMaxValue(maxVolume);
-        volumePB.SetProgress(currentVolume);
-        if (totalCost < 2_000_000_000)
-            estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
-        else
-            estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
+        inventoryLayoutElement.UpdateLayout(items);
     }
 
     public void UpdateChest()
     {
         chestItems = Chest.Instance.GetItems();
 
-        int chestItemIndex = chestInventoryItems.Count - 1 + chestOffset;
-        foreach (int i in chestItems.Keys)
-        {
-            LootCategory lc = Chest.Instance.GetLootCategoryById(i);
-
-            if (chestItemIndex < chestInventoryItems.Count)
-            {
-                chestInventoryItems[chestItemIndex].SetActive(true);
-
-                Sprite itemSprite = lc.sprite;
-                if (itemSprite == null) itemSprite = unknownSprite;
-
-                chestInventoryItems[chestItemIndex].Initialize(i, itemSprite, chestItems[i]);
-                chestInventoryItems[chestItemIndex].UpdateTooltip(lc);
-            }
-
-            chestItemIndex--;
-
-            if (chestItemIndex < 0) break;
-        }
-
-        for (; chestItemIndex >= 0; chestItemIndex--)
-        {
-            chestInventoryItems[chestItemIndex].SetActive(false);
-        }
-
-        UpdateActiveChestItem();
-
-        float currentItemsCount = Chest.Instance.GetTotalItemsAmount();
-        float maxItemsCount = Chest.Instance.GetMaxItemsAmount();
-        int totalCost = Chest.Instance.GetTotalCost();
-
-        float ratio = currentItemsCount / maxItemsCount * 100;
-        string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
-
-        chestTotalItems.text = $"{NumberFormatter.FormatNumber(currentItemsCount)} / {NumberFormatter.FormatNumber(maxItemsCount)} ({ratio.ToString(format)}%)";
-        chestItemsPB.SetMaxValue(maxItemsCount);
-        chestItemsPB.SetProgress(currentItemsCount);
-        
-        if (totalCost < 2_000_000_000)
-            chestEstimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
-        else
-            chestEstimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
+        chestLayoutElement.UpdateLayout(chestItems);
     }
 
     public void SetActiveItem(int id)
     {
         activeItemID = id;
+        inventoryLayoutElement.SetActiveItemID(id);
     }
 
     public void SetActiveChestItem(int id)
     {
         activeChestItemID = id;
+        chestLayoutElement.SetActiveItemID(id);
     }
 
     public void TransferActiveItem(bool all = false)
@@ -262,57 +159,33 @@ public class ChestUIController : MonoBehaviour
         UpdateChest();
     }
 
-    void ModifyOffset(int diff)
-    {
-        offset += diff;
-        if (offset < 0) offset = 0;
-        UpdateInventory();
-    }
-
     public void ScrollDown()
     {
-        Debug.Log($"inventory: item count={items.Count}, offset={offset}");
-        if (items.Count - offset > inventoryItems.Count)
-        {
-            ModifyOffset(3);
-        }
+        inventoryLayoutElement.ScrollDown();
     }
 
     public void ScrollUp()
     {
-        if (offset > 0)
-            ModifyOffset(-3);
+        inventoryLayoutElement.ScrollUp();
     }
 
     public void ClearOffset()
     {
-        offset = 0;
-    }
-
-    void ModifyChestOffset(int diff)
-    {
-        chestOffset += diff;
-        if (chestOffset < 0) chestOffset = 0;
-        UpdateChest();
+        inventoryLayoutElement.ClearOffset();
     }
 
     public void ChestScrollDown()
     {
-        Debug.Log($"chest: item count={chestItems.Count}, offset={chestOffset}");
-        if (chestItems.Count - chestOffset > chestInventoryItems.Count)
-        {
-            ModifyChestOffset(3);
-        }
+        chestLayoutElement.ScrollDown();
     }
 
     public void ChestScrollUp()
     {
-        if (chestOffset > 0)
-            ModifyChestOffset(-3);
+        chestLayoutElement.ScrollUp();
     }
 
     public void ClearChestOffset()
     {
-        chestOffset = 0;
+        chestLayoutElement.ClearOffset();
     }
 }

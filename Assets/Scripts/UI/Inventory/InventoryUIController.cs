@@ -5,77 +5,26 @@ using TMPro;
 public class InventoryUIController : MonoBehaviour
 {
     Dictionary<int, int> items;
-    [SerializeField] List<InventoryItem> inventoryItems = new();
+    [SerializeField] InventoryLayoutElement inventoryLayoutElement;
     int activeItemID = -1;
-    int offset = 0;
-    [SerializeField] TMP_Text totalVolume;
-    [SerializeField] ProgressBar volumePB;
-    [SerializeField] TMP_Text estimateCost;
-    [SerializeField] Sprite unknownSprite;
 
     public void UpdateActiveItem()
     {
-        foreach (InventoryItem item in inventoryItems)
-        {
-            if (item.IsPointerOnItem())
-            {
-                activeItemID = item.GetID();
-                break;
-            }
-        }
+        inventoryLayoutElement.UpdateActiveItem();
+        activeItemID = inventoryLayoutElement.GetActiveItemID();
     }
 
     public void UpdateInventory()
     {
         items = InventorySystem.Instance.GetItems();
 
-        int inventoryItemIndex = inventoryItems.Count - 1 + offset;
-        foreach(int i in items.Keys)
-        {
-            LootCategory lc = InventorySystem.Instance.GetLootCategoryById(i);
-
-            if (inventoryItemIndex < inventoryItems.Count)
-            {
-                inventoryItems[inventoryItemIndex].SetActive(true);
-
-                Sprite itemSprite = lc.sprite;
-                if (itemSprite == null) itemSprite = unknownSprite;
-
-                inventoryItems[inventoryItemIndex].Initialize(i, itemSprite, items[i]);
-                inventoryItems[inventoryItemIndex].UpdateTooltip(lc);
-            }
-
-            inventoryItemIndex--;
-
-            if (inventoryItemIndex < 0) break;
-        }
-
-        for (; inventoryItemIndex >= 0; inventoryItemIndex--)
-        {
-            inventoryItems[inventoryItemIndex].SetActive(false);
-        }
-
-        UpdateActiveItem();
-
-        float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
-        float maxVolume = InventorySystem.Instance.GetMaxVolume();
-        int totalCost = InventorySystem.Instance.GetTotalCost();
-
-        float ratio = currentVolume / maxVolume * 100;
-        string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
-
-        totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} л ({ratio.ToString(format)}%)";
-        volumePB.SetMaxValue(maxVolume);
-        volumePB.SetProgress(currentVolume);
-        if (totalCost < 2_000_000_000)
-            estimateCost.text = $"Оценочная стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
-        else
-            estimateCost.text = $"Оценочная стоимость вещей: более 2 млрд руб.";
+        inventoryLayoutElement.UpdateLayout(items);
     }
 
     public void SetActiveItem(int id)
     {
         activeItemID = id;
+        inventoryLayoutElement.SetActiveItemID(id);
     }
 
     public void DropActiveItem(Transform spawnPosition, bool all = false)
@@ -112,29 +61,18 @@ public class InventoryUIController : MonoBehaviour
         UpdateActiveItem();
     }
 
-    void ModifyOffset(int diff)
-    {
-        offset += diff;
-        if (offset < 0) offset = 0;
-        UpdateInventory();
-    }
-
     public void ScrollDown()
     {
-        if (items.Count - offset > inventoryItems.Count)
-        {
-            ModifyOffset(7);
-        }
+        inventoryLayoutElement.ScrollDown();
     }
 
     public void ScrollUp()
     {
-        if (offset > 0)
-            ModifyOffset(-7);
+        inventoryLayoutElement.ScrollUp();
     }
 
     public void ClearOffset()
     {
-        offset = 0;
+        inventoryLayoutElement.ClearOffset();
     }
 }

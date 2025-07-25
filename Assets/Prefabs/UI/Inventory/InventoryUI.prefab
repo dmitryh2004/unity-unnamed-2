@@ -713,6 +713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4335006729959693488}
   - component: {fileID: 7817704138995939968}
+  - component: {fileID: 7610293454448230472}
   m_Layer: 5
   m_Name: InventoryImages
   m_TagString: Untagged
@@ -791,6 +792,55 @@ MonoBehaviour:
   m_Spacing: {x: 21.5, y: 21.5}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &7610293454448230472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485304331633445411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f6d671875520145a7f41d2a1afd83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootCategoryManager: {fileID: 11400000, guid: c6410895e9f9eca4eb5d108f54ae1fb3, type: 2}
+  itemElements:
+  - {fileID: 8054528341010209142}
+  - {fileID: 6854843264809490645}
+  - {fileID: 9178528187469669562}
+  - {fileID: 3230312850621807835}
+  - {fileID: 1885570905501937980}
+  - {fileID: 5543537711597235463}
+  - {fileID: 1840072458810906482}
+  - {fileID: 1880229703279322412}
+  - {fileID: 988173620899394855}
+  - {fileID: 4723386572552840415}
+  - {fileID: 553984877888410011}
+  - {fileID: 4620397179500122569}
+  - {fileID: 7863817832374262745}
+  - {fileID: 2036973481312977734}
+  - {fileID: 8546897203408367400}
+  - {fileID: 8116184229502897511}
+  - {fileID: 7939901163606608707}
+  - {fileID: 5591665464618527156}
+  - {fileID: 22661092848123254}
+  - {fileID: 193688239814979470}
+  - {fileID: 6477640500189277432}
+  - {fileID: 5783035031226586217}
+  - {fileID: 3537889203764264131}
+  - {fileID: 8097145268539116686}
+  - {fileID: 994749732374318986}
+  - {fileID: 2777755753092530632}
+  - {fileID: 5501409259890302788}
+  - {fileID: 8063335875961149052}
+  offsetStep: 7
+  hasVolume: 1
+  totalVolume: {fileID: 1246970960940091474}
+  volumePB: {fileID: 1785790300234944440}
+  hasEstimateCost: 1
+  estimateCost: {fileID: 417871680568389063}
+  unknownSprite: {fileID: 21300000, guid: b2589198966f9e047bb9a9cd16ba9b8b, type: 3}
 --- !u!1 &3780932989571002669
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,39 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae3d1959d2a5cc640aef90499e58ea70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItems:
-  - {fileID: 8054528341010209142}
-  - {fileID: 6854843264809490645}
-  - {fileID: 9178528187469669562}
-  - {fileID: 3230312850621807835}
-  - {fileID: 1885570905501937980}
-  - {fileID: 5543537711597235463}
-  - {fileID: 1840072458810906482}
-  - {fileID: 1880229703279322412}
-  - {fileID: 988173620899394855}
-  - {fileID: 4723386572552840415}
-  - {fileID: 553984877888410011}
-  - {fileID: 4620397179500122569}
-  - {fileID: 7863817832374262745}
-  - {fileID: 2036973481312977734}
-  - {fileID: 8546897203408367400}
-  - {fileID: 8116184229502897511}
-  - {fileID: 7939901163606608707}
-  - {fileID: 5591665464618527156}
-  - {fileID: 22661092848123254}
-  - {fileID: 193688239814979470}
-  - {fileID: 6477640500189277432}
-  - {fileID: 5783035031226586217}
-  - {fileID: 3537889203764264131}
-  - {fileID: 8097145268539116686}
-  - {fileID: 994749732374318986}
-  - {fileID: 2777755753092530632}
-  - {fileID: 5501409259890302788}
-  - {fileID: 8063335875961149052}
-  totalVolume: {fileID: 1246970960940091474}
-  volumePB: {fileID: 1785790300234944440}
-  estimateCost: {fileID: 417871680568389063}
-  unknownSprite: {fileID: 21300000, guid: b2589198966f9e047bb9a9cd16ba9b8b, type: 3}
+  inventoryLayoutElement: {fileID: 7610293454448230472}
 --- !u!1 &4404663887962708373
 GameObject:
   m_ObjectHideFlags: 0

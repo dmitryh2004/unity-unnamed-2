@@ -17,11 +17,29 @@ public class InventoryLayoutElement : MonoBehaviour
     [SerializeField] TMP_Text estimateCost;
     [SerializeField] Sprite unknownSprite;
 
+    Dictionary<int, int> items;
     int activeItemID = -1;
     int offset = 0;
 
+    public int GetActiveItemID() => activeItemID;
+    public void SetActiveItemID(int activeItemID) => this.activeItemID = activeItemID;
+
+    public void UpdateActiveItem()
+    {
+        foreach (InventoryItem item in itemElements)
+        {
+            if (item.IsPointerOnItem())
+            {
+                activeItemID = item.GetID();
+                break;
+            }
+        }
+        Debug.Log($"inventory layout element: active item id = {activeItemID}");
+    }
+
     public void UpdateLayout(Dictionary<int, int> items)
     {
+        this.items = items;
         int itemIndex = itemElements.Count - 1 + offset;
         int totalCost = 0;
         foreach (int i in items.Keys)
@@ -49,7 +67,13 @@ public class InventoryLayoutElement : MonoBehaviour
             itemElements[itemIndex].SetActive(false);
         }
 
-        //UpdateActiveItem();
+        foreach (int i in items.Keys)
+        {
+            LootCategory lc = lootCategoryManager.lootCategories.FirstOrDefault((x) => x.id == i);
+            totalCost += lc.cost * items[i];
+        }
+
+        UpdateActiveItem();
 
         if (hasVolume)
         {
@@ -71,5 +95,31 @@ public class InventoryLayoutElement : MonoBehaviour
             else
                 estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
         }
+    }
+
+    void ModifyOffset(int diff)
+    {
+        offset += diff;
+        if (offset < 0) offset = 0;
+        UpdateLayout(items);
+    }
+
+    public void ScrollDown()
+    {
+        if (items.Count - offset > itemElements.Count)
+        {
+            ModifyOffset(offsetStep);
+        }
+    }
+
+    public void ScrollUp()
+    {
+        if (offset > 0)
+            ModifyOffset(-offsetStep);
+    }
+
+    public void ClearOffset()
+    {
+        offset = 0;
     }
 }

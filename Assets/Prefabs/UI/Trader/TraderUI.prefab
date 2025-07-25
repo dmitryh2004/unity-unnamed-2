@@ -2664,7 +2664,7 @@ MonoBehaviour:
   volumePB: {fileID: 0}
   hasEstimateCost: 0
   estimateCost: {fileID: 0}
-  unknownSprite: {fileID: 0}
+  unknownSprite: {fileID: 21300000, guid: b2589198966f9e047bb9a9cd16ba9b8b, type: 3}
 --- !u!1 &5427493331189365610
 GameObject:
   m_ObjectHideFlags: 0
@@ -5918,16 +5918,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6147,16 +6155,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6376,16 +6392,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6605,16 +6629,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6834,16 +6866,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7208,16 +7248,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7437,16 +7485,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7666,16 +7722,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -7895,16 +7959,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8269,16 +8341,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8498,16 +8578,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -8872,16 +8960,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9101,16 +9197,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9330,16 +9434,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9559,16 +9671,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -9788,16 +9908,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isChestItem
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: isInChestUI
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: isInTraderUI
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: traderUIQuotaController
+      value: 
+      objectReference: {fileID: 8405564597097003415}
     - target: {fileID: 3973987323146663462, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

@@ -12,8 +12,10 @@ public class TraderObject : Interactable
 {
     [SerializeField] int baseOrderSum = 100_000;
     [SerializeField] float multiplierStep = 0.8f;
+    [SerializeField] float multiplierRange = 0.25f;
     [SerializeField] TraderUIWindowController windowController;
     [SerializeField] List<ClientTypeOption> clientTypes;
+    float multiplier;
     Order order1, order2, order3;
     System.Random rand;
 
@@ -21,9 +23,9 @@ public class TraderObject : Interactable
     {
         rand = new();
     }
-
-    private void Start()
+    public void Init()
     {
+        multiplier = QuotaSystem.Instance.GetMultiplier();
         GenerateOrders();
     }
     public override void Interact()
@@ -58,11 +60,12 @@ public class TraderObject : Interactable
         return null;
     }
 
+    public void IncreaseMultiplier() => multiplier += multiplierStep;
+
     public void GenerateOrders()
     {
-        float multiplier = QuotaSystem.Instance.GetMultiplier();
         float minMultiplier = multiplier, maxMultiplier = multiplier;
-        CalculateMinMaxMultipliers(multiplier, multiplierStep, out minMultiplier, out maxMultiplier);
+        CalculateMinMaxMultipliers(multiplier, multiplierRange, out minMultiplier, out maxMultiplier);
 
         float[] muls = new float[3];
 

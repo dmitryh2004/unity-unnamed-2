@@ -19,6 +19,7 @@ public class InventoryUIController : MonoBehaviour
         items = InventorySystem.Instance.GetItems();
 
         inventoryLayoutElement.UpdateLayout(items);
+        UpdateActiveItem();
     }
 
     public void SetActiveItem(int id)

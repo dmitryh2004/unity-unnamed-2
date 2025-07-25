@@ -759,6 +759,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SellItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""04f6b23d-2855-4703-b611-39b760a2c0b4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -816,6 +825,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e1a0adb-0bd0-4bb5-8b65-634efe00f3ff"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SellItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -866,6 +886,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_TraderUI_Option2 = m_TraderUI.FindAction("Option2", throwIfNotFound: true);
         m_TraderUI_Option3 = m_TraderUI.FindAction("Option3", throwIfNotFound: true);
         m_TraderUI_Confirm = m_TraderUI.FindAction("Confirm", throwIfNotFound: true);
+        m_TraderUI_SellItem = m_TraderUI.FindAction("SellItem", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1678,6 +1699,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_TraderUI_Option2;
     private readonly InputAction m_TraderUI_Option3;
     private readonly InputAction m_TraderUI_Confirm;
+    private readonly InputAction m_TraderUI_SellItem;
     /// <summary>
     /// Provides access to input actions defined in input action map "TraderUI".
     /// </summary>
@@ -1709,6 +1731,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "TraderUI/Confirm".
         /// </summary>
         public InputAction @Confirm => m_Wrapper.m_TraderUI_Confirm;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/SellItem".
+        /// </summary>
+        public InputAction @SellItem => m_Wrapper.m_TraderUI_SellItem;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1750,6 +1776,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Confirm.started += instance.OnConfirm;
             @Confirm.performed += instance.OnConfirm;
             @Confirm.canceled += instance.OnConfirm;
+            @SellItem.started += instance.OnSellItem;
+            @SellItem.performed += instance.OnSellItem;
+            @SellItem.canceled += instance.OnSellItem;
         }
 
         /// <summary>
@@ -1776,6 +1805,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Confirm.started -= instance.OnConfirm;
             @Confirm.performed -= instance.OnConfirm;
             @Confirm.canceled -= instance.OnConfirm;
+            @SellItem.started -= instance.OnSellItem;
+            @SellItem.performed -= instance.OnSellItem;
+            @SellItem.canceled -= instance.OnSellItem;
         }
 
         /// <summary>
@@ -2080,5 +2112,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConfirm(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SellItem" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSellItem(InputAction.CallbackContext context);
     }
 }

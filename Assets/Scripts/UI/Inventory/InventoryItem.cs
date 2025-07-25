@@ -12,11 +12,13 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     bool active = false;
     [SerializeField] bool isInChestUI = false;
     [SerializeField] bool isChestItem = false;
+    [SerializeField] bool isInTraderUI = false;
     [SerializeField] Sprite emptySprite;
     [SerializeField] Image image;
     [SerializeField] TMP_Text itemCount;
     [SerializeField] InventoryUIController uiController;
     [SerializeField] ChestUIController chestUIController;
+    [SerializeField] TraderUIQuotaScreenController traderUIQuotaController;
     [SerializeField] Animator tooltipAnimator;
     [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost, tooltipActions;
 
@@ -84,12 +86,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} руб.";
         
         tooltipActions.text = "";
-        if (!isInChestUI)
+        if (isInTraderUI)
         {
-            string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{dropBind}] - выкинуть 1 шт. (+Shift - выкинуть всё)";
+            string sellBind = controls.TraderUI.SellItem.GetBindingDisplayString();
+            tooltipActions.text += $"\n[{sellBind}] - продать 1 шт. (+Shift - продать всё)";
         }
-        else
+        else if (isInChestUI)
         {
             string transferBind = controls.ChestUI.TransferItem.GetBindingDisplayString();
             if (isChestItem)
@@ -101,6 +103,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 tooltipActions.text += $"\n[{transferBind}] - положить в сундук (+Shift - положить всё)";
             }
         }
+        else
+        {
+            string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
+            tooltipActions.text += $"\n[{dropBind}] - выкинуть 1 шт. (+Shift - выкинуть всё)";
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -110,7 +117,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (active)
         {
             ShowTooltip();
-            if (isInChestUI)
+            if (isInTraderUI)
+            {
+                if (traderUIQuotaController != null)
+                {
+                    traderUIQuotaController.SetActiveItem(id);
+                }
+            }
+            else if (isInChestUI)
             {
                 if (isChestItem)
                 {
@@ -132,7 +146,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         pointerOnItem = false;
         HideTooltip();
-        if (isInChestUI)
+        if (isInTraderUI)
+        {
+            if (traderUIQuotaController != null)
+            {
+                traderUIQuotaController.SetActiveItem(-1);
+            }
+        }
+        else if (isInChestUI)
         {
             if (isChestItem)
             {

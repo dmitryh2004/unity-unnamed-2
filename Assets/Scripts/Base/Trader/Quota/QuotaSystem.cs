@@ -7,7 +7,7 @@ public class QuotaSystem : MonoBehaviour
     int required;
     int collected;
     int daysLeft;
-    float multiplier;
+    float multiplier = 1f;
     Order order;
 
     [Header("Links")]

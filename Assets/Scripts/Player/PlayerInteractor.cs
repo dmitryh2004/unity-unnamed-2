@@ -145,7 +145,7 @@ public class PlayerInteractor : MonoBehaviour
                     }
                     else if (interactable is SpaceshipLeverController spaceshipLeverController)
                     {
-                        if (QuotaSystem.Instance.HasOrder())
+                        if (QuotaSystem.Instance.HasOrder() && QuotaSystem.Instance.GetCollected() < QuotaSystem.Instance.GetRequired())
                             spaceshipLeverHintActive = true;
                         else
                             unavailableHintActive = true;

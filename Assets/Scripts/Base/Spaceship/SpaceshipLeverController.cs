@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 public class SpaceshipLeverController : Interactable
 {
     Animator animator;
+    bool playerDefeated;
 
     public override void Interact()
     {
-        if (QuotaSystem.Instance.HasOrder())
+        if (QuotaSystem.Instance.HasOrder() && QuotaSystem.Instance.GetCollected() < QuotaSystem.Instance.GetRequired())
             StartCoroutine(StartShipCoroutine());
     }
 
@@ -22,9 +23,20 @@ public class SpaceshipLeverController : Interactable
         InputActionMapSwitcher.Instance.DisableAllMaps();
         animator.SetTrigger("Start");
 
+        QuotaSystem.Instance.SetDaysLeft(QuotaSystem.Instance.GetDaysLeft() - 1);
+        playerDefeated = QuotaSystem.Instance.GetDaysLeft() < 0;
+
         LevelManager.Instance.BaseGameOver();
         yield return new WaitForSeconds(2f);
-
-        SceneManager.LoadScene(SpaceshipController.Instance.GetCurrentComplex().sceneName);
+        
+        if (!playerDefeated)
+        {
+            SceneManager.LoadScene(SpaceshipController.Instance.GetCurrentComplex().sceneName);
+        }
+        else
+        {
+            LevelManager.Instance.DeleteSave();
+            SceneManager.LoadScene("DefeatScene");
+        }
     }
 }

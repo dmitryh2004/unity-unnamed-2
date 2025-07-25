@@ -265,4 +265,9 @@ public class SaveManager : MonoBehaviour
             return null;
         }
     }
+
+    public void ClearSave()
+    {
+        File.Delete(Path.Combine(Application.persistentDataPath, saveName));
+    }
 }

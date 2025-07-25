@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] StartStatsController startStatsController;
     [SerializeField] GameOverScreenController gameOverScreenController;
     [SerializeField] GameObject inventoryUI, hackUI;
+    [SerializeField] TraderObject trader;
 
     [TextArea(5, 10)]
     [SerializeField] List<string> gameOverReasons = new();
@@ -84,6 +85,11 @@ public class LevelManager : MonoBehaviour
                 PlayerLootPredictor.Instance.SetLevel(0);
         }
 
+        if (trader != null)
+        {
+            trader.Init();
+        }
+
         if (isLevel)
         {
             generator.Generate();
@@ -123,5 +129,10 @@ public class LevelManager : MonoBehaviour
     {
         saveManager.SaveData();
         gameOverScreenController.ShowGameOverWindow(true, gameOverReasons[0], false);
+    }
+
+    public void DeleteSave()
+    {
+        saveManager.ClearSave();
     }
 }

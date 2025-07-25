@@ -53,6 +53,7 @@ public class ChestUIController : MonoBehaviour
         items = InventorySystem.Instance.GetItems();
 
         inventoryLayoutElement.UpdateLayout(items);
+        UpdateActiveItem();
     }
 
     public void UpdateChest()
@@ -60,6 +61,7 @@ public class ChestUIController : MonoBehaviour
         chestItems = Chest.Instance.GetItems();
 
         chestLayoutElement.UpdateLayout(chestItems);
+        UpdateActiveChestItem();
     }
 
     public void SetActiveItem(int id)

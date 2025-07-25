@@ -107,4 +107,18 @@ public class TraderUIWindowController : MonoBehaviour
             InputActionMapSwitcher.Instance.SwitchMap("Gameplay");
         }
     }
+
+    public void SellItem(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            var keyboard = Keyboard.current;
+            bool shiftPressed = keyboard != null && keyboard.leftShiftKey.isPressed;
+            if (currentScreen == 1)
+            {
+                ((TraderUIQuotaScreenController)quotaScreen).SellActiveItem(shiftPressed);
+            }
+        }
+    }
 }

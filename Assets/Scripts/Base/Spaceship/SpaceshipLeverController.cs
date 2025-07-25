@@ -8,8 +8,8 @@ public class SpaceshipLeverController : Interactable
 
     public override void Interact()
     {
-        // todo: add checking for quota order
-        StartCoroutine(StartShipCoroutine());
+        if (QuotaSystem.Instance.HasOrder())
+            StartCoroutine(StartShipCoroutine());
     }
 
     private void Awake()

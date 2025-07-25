@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class TaskCard : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     [SerializeField] TMP_Text required, days, client;
     Order order;
+    bool selected = false;
     
     public void UpdateText()
     {
@@ -17,5 +19,11 @@ public class TaskCard : MonoBehaviour
     {
         this.order = order;
         UpdateText();
+    }
+
+    public void SetSelected(bool selected)
+    {
+        this.selected = selected;
+        animator.SetBool("selected", selected);
     }
 }

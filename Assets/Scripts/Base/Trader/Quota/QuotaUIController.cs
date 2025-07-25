@@ -15,8 +15,8 @@ public class QuotaUIController : MonoBehaviour
 
         if (hasOrder)
         {
-            requiredText.text = $"{QuotaSystem.Instance.GetRequired()}";
-            collectedText.text = $"{QuotaSystem.Instance.GetCollected()}";
+            requiredText.text = $"{NumberFormatter.FormatNumberWithGrouping(QuotaSystem.Instance.GetRequired())}";
+            collectedText.text = $"{NumberFormatter.FormatNumberWithGrouping(QuotaSystem.Instance.GetCollected())}";
             daysLeftText.text = $"{QuotaSystem.Instance.GetDaysLeft()}";
         }
     }

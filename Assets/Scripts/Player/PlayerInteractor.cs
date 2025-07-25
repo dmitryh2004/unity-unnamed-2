@@ -67,7 +67,8 @@ public class PlayerInteractor : MonoBehaviour
         bool openDoorHintActive = false, closeDoorHintActive = false, pickUpHintActive = false,
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
             hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false,
-            spaceshipPanelHintActive = false, spaceshipLeverHintActive = false;
+            spaceshipPanelHintActive = false, spaceshipLeverHintActive = false, unavailableHintActive = false,
+            openTraderUIHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -144,7 +145,14 @@ public class PlayerInteractor : MonoBehaviour
                     }
                     else if (interactable is SpaceshipLeverController spaceshipLeverController)
                     {
-                        spaceshipLeverHintActive = true;
+                        if (QuotaSystem.Instance.HasOrder())
+                            spaceshipLeverHintActive = true;
+                        else
+                            unavailableHintActive = true;
+                    }
+                    else if (interactable is TraderObject trader)
+                    {
+                        openTraderUIHintActive = true;
                     }
                 }
                 else
@@ -164,5 +172,7 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenChestHint"), openChestHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SpaceshipPanelHint"), spaceshipPanelHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SpaceshipLeverHint"), spaceshipLeverHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UnavailableHint"), unavailableHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenTraderUIHint"), openTraderUIHintActive);
     }
 }

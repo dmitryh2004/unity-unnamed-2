@@ -50,18 +50,22 @@ public class LevelManager : MonoBehaviour
                 QuotaSystem.Instance.SetMultiplier(gameData.save.quotaData.multiplier);
 
                 ClientType ct = ClientTypeManager.Instance.GetClientType(gameData.save.quotaData.clientTypeID);
+                Debug.Log("Client type: " + ct);
 
                 if (ct != null)
                 {
                     Order order = new ();
                     order.SetClientType(ct);
                     order.SetRequired(gameData.save.quotaData.required);
+                    order.SetMultiplier(gameData.save.quotaData.multiplier);
                     QuotaSystem.Instance.SetOrder(order);
                 }
                 else
                 {
                     QuotaSystem.Instance.SetOrder(null);
                 }
+
+                QuotaSystem.Instance.UpdateUI();
             }
         }
         else

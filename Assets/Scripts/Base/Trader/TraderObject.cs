@@ -73,14 +73,17 @@ public class TraderObject : Interactable
 
         order1 = new Order();
         order1.SetRequired((int)(baseOrderSum * muls[0]));
+        order1.SetMultiplier(muls[0]);
         order1.SetClientType(SelectRandomClientType());
 
         order2 = new Order();
         order2.SetRequired((int)(baseOrderSum * muls[1]));
+        order2.SetMultiplier(muls[1]);
         order2.SetClientType(SelectRandomClientType());
 
         order3 = new Order();
         order3.SetRequired((int)(baseOrderSum * muls[2]));
+        order3.SetMultiplier(muls[2]);
         order3.SetClientType(SelectRandomClientType());
     }
 

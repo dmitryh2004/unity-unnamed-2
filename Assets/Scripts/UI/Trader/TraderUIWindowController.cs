@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TraderUIWindowController : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class TraderUIWindowController : MonoBehaviour
     [SerializeField] TraderUIBaseScreenController noQuotaScreen; // 2
     [SerializeField] TraderUIBaseScreenController sellItemsScreen; // 3
     [SerializeField] TraderUIBaseScreenController upgradeEquipmentScreen; // 4
+    [Header("Backgrounds")]
+    [SerializeField] Image background;
+    [SerializeField] Sprite mainMenuBackground;
+    [SerializeField] Sprite quotaBackground;
+    [SerializeField] Sprite noQuotaBackground;
+    [SerializeField] Sprite sellItemsBackground;
+    [SerializeField] Sprite upgradeEquipmentBackground;
 
     int currentScreen = 0;
     bool visible = false;
@@ -39,18 +47,23 @@ public class TraderUIWindowController : MonoBehaviour
         switch(currentScreen)
         {
             case 0:
+                background.sprite = mainMenuBackground;
                 mainMenuScreen.OnShow();
                 break;
             case 1:
+                background.sprite = quotaBackground;
                 quotaScreen.OnShow();
                 break;
             case 2:
+                background.sprite = noQuotaBackground;
                 noQuotaScreen.OnShow();
                 break;
             case 3:
+                background.sprite = sellItemsBackground;
                 sellItemsScreen.OnShow();
                 break;
             case 4:
+                background.sprite = upgradeEquipmentBackground;
                 upgradeEquipmentScreen.OnShow();
                 break;
         }

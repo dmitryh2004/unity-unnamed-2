@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TaskInfoElement : MonoBehaviour
 {
+    [SerializeField] bool taskAccepted = false;
     [SerializeField] LootCategoryManager lootCategories;
     [Space(10)]
     [SerializeField] ScrollRect taskInfoScrollRect;
@@ -20,8 +21,12 @@ public class TaskInfoElement : MonoBehaviour
     {
         ClientType currentClientType = order.GetClientType();
 
-        commonInfo.text = $"- Необходимо собрать: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}" +
-            $"\n- Количество вылетов: {order.GetClientType().days}";
+        commonInfo.text = $"- Необходимо собрать: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}";
+        if (taskAccepted)
+        {
+            commonInfo.text += $"\n- Собрано: {NumberFormatter.FormatNumberWithGrouping(QuotaSystem.Instance.GetCollected())}";
+        }
+        commonInfo.text += $"\n- Количество вылетов: {order.GetClientType().days}";
 
         if (currentClientType.hasEarlyCompletionBonus)
         {

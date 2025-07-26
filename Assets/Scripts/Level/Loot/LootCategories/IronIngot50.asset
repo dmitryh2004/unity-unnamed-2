@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: IronIngot50
   m_EditorClassIdentifier: 
   id: 9
+  sprite: {fileID: 21300000, guid: 814a1369d33482045891a57498186a6d, type: 3}
   lootName: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0441\u043B\u0438\u0442\u043E\u043A
     (50 \u043A\u0433)"
   lootDesc: "\u0416\u0435\u043B\u0435\u0437\u043D\u044B\u0439 \u0441\u043B\u0438\u0442\u043E\u043A
@@ -22,3 +23,5 @@ MonoBehaviour:
     \u0441\u0432\u043E\u0439 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u044C."
   volume: 0.012
   cost: 25000
+  lootPrefab: {fileID: 0}
+  dropRotation: {x: -90, y: 0, z: 0}

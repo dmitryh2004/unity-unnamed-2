@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: 
   id: 10
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 35c74bc374de8694f814834a2edc8358, type: 3}
   lootName: "\u0410\u043B\u043C\u0430\u0437"
   lootDesc: "\u0414\u043E\u0432\u043E\u043B\u044C\u043D\u043E \u043A\u0440\u0443\u043F\u043D\u044B\u0439
     \u0430\u043B\u043C\u0430\u0437. \u0410\u043B\u043C\u0430\u0437\u044B \u0446\u0435\u043D\u043D\u044B
@@ -24,3 +24,4 @@ MonoBehaviour:
   volume: 0.0005
   cost: 25000
   lootPrefab: {fileID: 3472194043839684932, guid: 0ad18ad87043a1e40a48bcbbfbc8e012, type: 3}
+  dropRotation: {x: -90, y: 0, z: 0}

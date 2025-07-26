@@ -15,6 +15,17 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
     Dictionary<int, int> items;
     int activeItemID = -1;
 
+    string GetItemsString()
+    {
+        string res = "";
+        foreach (var kvp in items)
+        {
+            if (res != "") res += "; ";
+            res += $"{kvp.Key} => {kvp.Value}";
+        }
+        return res;
+    }
+
     public override void OnShow()
     {
         base.OnShow();
@@ -56,6 +67,12 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
         if (activeItemID == -1)
         {
             Debug.Log("Sell item: no active item");
+            return;
+        }
+
+        if (!items.ContainsKey(activeItemID))
+        {
+            Debug.LogWarning($"Found an error while selling item: active item not present in dictionary ({GetItemsString()})");
             return;
         }
 

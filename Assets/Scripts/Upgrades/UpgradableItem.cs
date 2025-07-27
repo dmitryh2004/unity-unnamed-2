@@ -5,22 +5,23 @@ public class UpgradableItem : MonoBehaviour
 {
     protected int level;
     [SerializeField] int defaultLevel = 1;
-    [SerializeField] UpgradeCostManager upgradeCostManager;
+    [SerializeField] UpgradableItemData upgradableItemData;
 
     public int GetLevel() => level;
+    public int GetMaxLevel() => upgradableItemData.maxLevel;
     public void SetLevel(int level)
     {
-        if (upgradeCostManager.minLevel <= level && level <= upgradeCostManager.maxLevel)
+        if (upgradableItemData.minLevel <= level && level <= upgradableItemData.maxLevel)
         {
             this.level = level;
         }
-        else if (level < upgradeCostManager.minLevel)
+        else if (level < upgradableItemData.minLevel)
         {
-            this.level = upgradeCostManager.minLevel;
+            this.level = upgradableItemData.minLevel;
         }
         else
         {
-            this.level = upgradeCostManager.maxLevel;
+            this.level = upgradableItemData.maxLevel;
         }
         OnSetLevel();
     }
@@ -37,16 +38,23 @@ public class UpgradableItem : MonoBehaviour
 
     public float GetUpgradableValue1()
     {
-        return upgradeCostManager.upgradableValue1List.FirstOrDefault((x) => x.level == level).value;
+        return upgradableItemData.upgradableValue1List.FirstOrDefault((x) => x.level == level).value;
     }
 
     public float GetUpgradableValue2()
     {
-        return upgradeCostManager.upgradableValue2List.FirstOrDefault((x) => x.level == level).value;
+        return upgradableItemData.upgradableValue2List.FirstOrDefault((x) => x.level == level).value;
     }
 
     public float GetUpgradableValue3()
     {
-        return upgradeCostManager.upgradableValue3List.FirstOrDefault((x) => x.level == level).value;
+        return upgradableItemData.upgradableValue3List.FirstOrDefault((x) => x.level == level).value;
     }
+
+    public int GetCurrentUpgradeCost() => upgradableItemData.upgradeCosts.FirstOrDefault((x) => x.level == level).cost;
+    public string GetName() => upgradableItemData.itemName;
+    public string GetDesc() => upgradableItemData.description;
+    public string GetUV1Name() => upgradableItemData.uv1Name;
+    public string GetUV2Name() => upgradableItemData.uv2Name;
+    public string GetUV3Name() => upgradableItemData.uv3Name;
 }

@@ -15,8 +15,8 @@ public class UpgradableValue
     public int level;
     public float value;
 }
-[CreateAssetMenu(fileName = "UpgradeCostManager", menuName = "Scriptable Objects/UpgradeCostManager")]
-public class UpgradeCostManager : ScriptableObject
+[CreateAssetMenu(fileName = "UpgradableItemData", menuName = "Scriptable Objects/Upgradable Item Data")]
+public class UpgradableItemData : ScriptableObject
 {
     [Header("Min / Max Levels")]
     public int minLevel = 1;
@@ -32,4 +32,10 @@ public class UpgradeCostManager : ScriptableObject
     public List<UpgradableValue> upgradableValue3List;
     [Header("Upgrade costs")]
     public List<UpgradeCost> upgradeCosts;
+    [Space(20)]
+    [Header("Info")]
+    public string itemName;
+    [TextArea(5, 10)] public string description;
+    public string uv1Name, uv2Name, uv3Name;
+    [TextArea(5, 10)] public string additionalInfo;
 }

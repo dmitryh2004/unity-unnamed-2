@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] InventoryUIController uiController;
     [SerializeField] ChestUIController chestUIController;
     [SerializeField] TraderUIQuotaScreenController traderUIQuotaController;
+    [SerializeField] TraderUISellItemsController traderUISellItemsController;
     [SerializeField] Animator tooltipAnimator;
     [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost, tooltipActions;
 
@@ -83,7 +84,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         tooltipHeader.text = $"{lc.lootName}";
         tooltipText.text = lc.lootDesc;
-        tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} руб.";
+        tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} UMU";
         
         tooltipActions.text = "";
         if (isInTraderUI)
@@ -123,6 +124,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 {
                     traderUIQuotaController.SetActiveItem(id);
                 }
+                else if (traderUISellItemsController != null)
+                {
+                    traderUISellItemsController.SetActiveItem(id);
+                }
             }
             else if (isInChestUI)
             {
@@ -151,6 +156,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (traderUIQuotaController != null)
             {
                 traderUIQuotaController.SetActiveItem(-1);
+            }
+            else if (traderUISellItemsController != null)
+            {
+                traderUISellItemsController.SetActiveItem(-1);
             }
         }
         else if (isInChestUI)

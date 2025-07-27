@@ -16,12 +16,9 @@ public class InventoryItemData
     }
 }
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : UpgradableItem
 {
     public static InventorySystem Instance = null;
-
-    [SerializeField]
-    [Range(1, 4)] int level = 1;
 
     // Максимальный объем инвентаря
     float maxVolume = 0.01f;
@@ -42,6 +39,7 @@ public class InventorySystem : MonoBehaviour
         }
         Instance = this;
 
+        InitLevel();
         lootCategories = lootCategoryManager.lootCategories;
     }
 
@@ -51,33 +49,14 @@ public class InventorySystem : MonoBehaviour
     }
 
     public float GetMaxVolume() => maxVolume;
-    public int GetLevel() => level;
-    public void SetLevel(int level)
+    protected override void OnSetLevel()
     {
-        this.level = level;
         RecalculateMaxSize();
     }
 
     void RecalculateMaxSize()
     {
-        switch (level)
-        {
-            case 1:
-                maxVolume = 0.01f;
-                break;
-            case 2:
-                maxVolume = 0.02f;
-                break;
-            case 3:
-                maxVolume = 0.04f;
-                break;
-            case 4:
-                maxVolume = 0.08f;
-                break;
-            default:
-                maxVolume = 0.01f;
-                break;
-        }
+        maxVolume = GetUpgradableValue1();
     }
 
     /// <summary>

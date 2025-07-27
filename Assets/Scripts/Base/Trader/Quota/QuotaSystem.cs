@@ -29,6 +29,8 @@ public class QuotaSystem : MonoBehaviour
     }
 
     public bool HasOrder() => order != null;
+    public bool HasUncompletedOrder() => order != null && GetCollected() < GetRequired();
+    public bool HasCompletedOrder() => order != null && GetCollected() >= GetRequired();
     public Order GetOrder() => order;
     public int GetClientTypeID() => HasOrder() ? ClientTypeManager.Instance.GetID(order.GetClientType()) : -1;
     public int GetRequired() => required;

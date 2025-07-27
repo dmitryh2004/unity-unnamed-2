@@ -13,8 +13,13 @@ public class InventoryLayoutElement : MonoBehaviour
     [SerializeField] TMP_Text totalVolume;
     [SerializeField] ProgressBar volumePB;
     [Space()]
+    [SerializeField] bool hasCount;
+    [SerializeField] TMP_Text totalCount;
+    [SerializeField] ProgressBar countPB;
+    [Space()]
     [SerializeField] bool hasEstimateCost;
     [SerializeField] TMP_Text estimateCost;
+    [Space()]
     [SerializeField] Sprite unknownSprite;
 
     Dictionary<int, int> items;
@@ -75,7 +80,7 @@ public class InventoryLayoutElement : MonoBehaviour
 
         UpdateActiveItem();
 
-        if (hasVolume)
+        if (hasVolume) // inventory
         {
             float currentVolume = InventorySystem.Instance.GetOccupiedVolume();
             float maxVolume = InventorySystem.Instance.GetMaxVolume();
@@ -87,13 +92,26 @@ public class InventoryLayoutElement : MonoBehaviour
             volumePB.SetMaxValue(maxVolume);
             volumePB.SetProgress(currentVolume);
         }
-        
+
+        if (hasCount) // chest
+        {
+            float currentCount = Chest.Instance.GetTotalItemsAmount();
+            float maxCount = Chest.Instance.GetMaxItemsAmount();
+
+            float ratio = currentCount / maxCount * 100;
+            string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
+
+            totalCount.text = $"{NumberFormatter.FormatNumber(currentCount)} / {NumberFormatter.FormatNumber(maxCount)} ({ratio.ToString(format)}%)";
+            countPB.SetMaxValue(maxCount);
+            countPB.SetProgress(currentCount);
+        }
+
         if (hasEstimateCost)
         {
             if (totalCost < 2_000_000_000)
-                estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} руб.";
+                estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} UMU";
             else
-                estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд руб.";
+                estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд UMU";
         }
     }
 

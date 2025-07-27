@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VirusController : MonoBehaviour
+public class VirusController : UpgradableItem
 {
     public static VirusController Instance;
     int currentHP;
@@ -15,11 +15,6 @@ public class VirusController : MonoBehaviour
 
     [SerializeField] Image hpBar, attackBar;
     [SerializeField] TMP_Text hpText, attackText;
-
-    [SerializeField] int[] hpByLevel = new int[7];
-    [SerializeField] int[] attackByLevel = new int[7];
-    [Range(1, 7)][SerializeField] int level;
-    int minLevel = 1, maxLevel = 7;
 
     private void Awake()
     {
@@ -36,32 +31,16 @@ public class VirusController : MonoBehaviour
         ResetToStart();
     }
 
-    public int GetLevel()
+    protected override void OnSetLevel()
     {
-        return level;
-    }
-
-    public void SetLevel(int level)
-    {
-        if (level < minLevel)
-        {
-            this.level = minLevel;
-            Debug.LogWarning($"Virus controller: level clamped to {minLevel} ({level} < {minLevel})");
-        }
-        else if (level > maxLevel)
-        {
-            this.level = maxLevel;
-            Debug.LogWarning($"Virus controller: level clamped to {maxLevel} ({level} > {maxLevel})");
-        }
-        else
-            this.level = level;
+        base.OnSetLevel();
         ResetToStart();
     }
 
     public void ResetToStart()
     {
-        currentHP = hpByLevel[level - 1];
-        currentAttack = attackByLevel[level - 1];
+        currentHP = (int)GetUpgradableValue1();
+        currentAttack = (int)GetUpgradableValue2();
         alive = true;
         UpdateBars();
     }
@@ -108,7 +87,7 @@ public class VirusController : MonoBehaviour
 
     public void RecalculateAttack()
     {
-        currentAttack = attackByLevel[level - 1] - HackWindowController.Instance.GetGridController().GetPacifierDebuff();
+        currentAttack = (int)GetUpgradableValue2() - HackWindowController.Instance.GetGridController().GetPacifierDebuff();
         if (currentAttack <= 10) currentAttack = 10;
         UpdateBars();
     }

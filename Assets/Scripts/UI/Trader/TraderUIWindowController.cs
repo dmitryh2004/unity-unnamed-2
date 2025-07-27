@@ -132,6 +132,10 @@ public class TraderUIWindowController : MonoBehaviour
             {
                 ((TraderUIQuotaScreenController)quotaScreen).SellActiveItem(shiftPressed);
             }
+            else if (currentScreen == 3)
+            {
+                ((TraderUISellItemsController)sellItemsScreen).SellActiveItem(shiftPressed);
+            }
         }
     }
 }

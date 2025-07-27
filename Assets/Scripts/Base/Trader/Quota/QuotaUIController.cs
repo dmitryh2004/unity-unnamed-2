@@ -9,12 +9,14 @@ public class QuotaUIController : MonoBehaviour
     public void UpdateUI()
     {
         bool hasOrder = QuotaSystem.Instance.HasOrder();
+        bool hasUncompletedOrder = QuotaSystem.Instance.HasUncompletedOrder();
+        bool hasCompletedOrder = QuotaSystem.Instance.HasCompletedOrder();
         int collected = QuotaSystem.Instance.GetCollected();
         int required = QuotaSystem.Instance.GetRequired();
 
-        hasQuotaObject.SetActive(hasOrder && collected < required);
+        hasQuotaObject.SetActive(hasUncompletedOrder);
         noQuotaObject.SetActive(!hasOrder);
-        quotaCompletedObject.SetActive(hasOrder && collected >= required);
+        quotaCompletedObject.SetActive(hasCompletedOrder);
 
         if (hasOrder)
         {

@@ -7,7 +7,7 @@ public class TraderUIMainScreenController : TraderUIBaseScreenController
     
     public void ChangeToQuotaScreen()
     {
-        if (QuotaSystem.Instance.HasOrder())
+        if (QuotaSystem.Instance.HasUncompletedOrder())
         {
             windowController.SetScreen(1);
         }

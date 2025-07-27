@@ -45,6 +45,8 @@ public class StartStatsController : MonoBehaviour
             estimatedCostText += "[неизвестно]";
         }
 
+        estimatedCostText += " UMU";
+
         int protectedRooms = generator.GetProtectedRoomsCount();
         int securedRooms = generator.GetSecuredRoomsCount();
 

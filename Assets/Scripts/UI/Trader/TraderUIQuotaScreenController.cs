@@ -97,7 +97,7 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
             {
                 InventorySystem.Instance.RemoveItem(lc);
                 QuotaSystem.Instance.SetCollected(QuotaSystem.Instance.GetCollected() + costWithModifiers);
-                if (QuotaSystem.Instance.GetCollected() >= QuotaSystem.Instance.GetRequired())
+                if (QuotaSystem.Instance.HasCompletedOrder())
                 {
                     quotaCompleted = true;
                     break;
@@ -108,7 +108,7 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
         {
             InventorySystem.Instance.RemoveItem(lc);
             QuotaSystem.Instance.SetCollected(QuotaSystem.Instance.GetCollected() + costWithModifiers);
-            if (QuotaSystem.Instance.GetCollected() >= QuotaSystem.Instance.GetRequired())
+            if (QuotaSystem.Instance.HasCompletedOrder())
             {
                 quotaCompleted = true;
             }

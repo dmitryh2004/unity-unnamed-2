@@ -9,7 +9,7 @@ public class SpaceshipLeverController : Interactable
 
     public override void Interact()
     {
-        if (QuotaSystem.Instance.HasOrder() && QuotaSystem.Instance.GetCollected() < QuotaSystem.Instance.GetRequired())
+        if (QuotaSystem.Instance.HasUncompletedOrder())
             StartCoroutine(StartShipCoroutine());
     }
 

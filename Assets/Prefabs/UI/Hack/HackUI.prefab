@@ -672,13 +672,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5efaecc4caf72408b9df68e9633c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLevel: 1
+  upgradeCostManager: {fileID: 11400000, guid: 17723f686f2918d4aa65ee1b0acac5ba, type: 2}
   hpBar: {fileID: 7401538973177675787}
   attackBar: {fileID: 3311064068000044432}
   hpText: {fileID: 2052379716119978998}
   attackText: {fileID: 5624946905422445375}
-  hpByLevel: 46000000500000005a000000640000006e0000007800000087000000
-  attackByLevel: 140000001400000019000000190000001e000000280000002d000000
-  level: 1
 --- !u!1 &7629608639440350607
 GameObject:
   m_ObjectHideFlags: 0

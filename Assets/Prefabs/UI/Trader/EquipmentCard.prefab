@@ -231,6 +231,11 @@ MonoBehaviour:
   equipmentLevel: {fileID: 5307692729315165775}
   equipmentUpgradeCost: {fileID: 2753141951691137944}
   equipment: 0
+  background: {fileID: 5641707218872211276}
+  cantUpgradeColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.2}
+  canUpgradeColor: {r: 0, g: 1, b: 0, a: 0.2}
+  maxUpgradedColor: {r: 1, g: 1, b: 0, a: 0.2}
+  selectedColor: {r: 0, g: 1, b: 0, a: 0.5}
 --- !u!1 &4469533523551007034
 GameObject:
   m_ObjectHideFlags: 0

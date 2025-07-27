@@ -51,7 +51,15 @@ public class UpgradableItem : MonoBehaviour
         return upgradableItemData.upgradableValue3List.FirstOrDefault((x) => x.level == level).value;
     }
 
-    public int GetCurrentUpgradeCost() => upgradableItemData.upgradeCosts.FirstOrDefault((x) => x.level == level).cost;
+    public int GetUpgradeCost(int level)
+    {
+        UpgradeCost upgradeCost = upgradableItemData.upgradeCosts.FirstOrDefault((x) => x.level == level);
+        if (upgradeCost != null)
+        {
+            return upgradeCost.cost;
+        }
+        else return -1;
+    }
     public string GetName() => upgradableItemData.itemName;
     public string GetDesc() => upgradableItemData.description;
     public string GetUV1Name() => upgradableItemData.uv1Name;

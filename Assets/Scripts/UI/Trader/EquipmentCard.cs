@@ -31,21 +31,26 @@ public class EquipmentCard : MonoBehaviour
     public bool IsSelected() => selected;
     public void SetSelected(bool selected) => this.selected = selected;
 
-    public void UpdateCard()
+    public UpgradableItem GetEquipment()
     {
-        UpgradableItem equipmentObject = null;
         switch (equipment)
         {
             case Equipments.Inventory:
-                equipmentObject = InventorySystem.Instance;
-                break;
+                return InventorySystem.Instance;
             case Equipments.Virus:
-                equipmentObject = VirusController.Instance;
-                break;
+                return VirusController.Instance;
             case Equipments.LootPredictor:
-                equipmentObject = PlayerLootPredictor.Instance;
-                break;
+                return PlayerLootPredictor.Instance;
+            default:
+                return null;
         }
+    }
+
+    public void UpdateCard()
+    {
+        UpgradableItem equipmentObject = GetEquipment();
+
+        if (equipmentObject == null) return;
 
         equipmentName.text = equipmentObject.GetName();
 
@@ -65,7 +70,10 @@ public class EquipmentCard : MonoBehaviour
             equipmentUpgradeCost.text = $"Цена улучшения: {NumberFormatter.FormatNumberWithGrouping(upgradeCost)} UMU";
         }
         else
+        {
             equipmentLevel.text = "Максимально улучшено";
+            equipmentUpgradeCost.text = "";
+        }
 
         UpdateColor(maxUpgraded, canUpgrade);
     }

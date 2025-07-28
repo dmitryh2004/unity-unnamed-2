@@ -29,7 +29,7 @@ public class PlayerWallet : MonoBehaviour
         if (diff > 0)
         {
             if (CanAfford(diff))
-                AddMoney(-diff);
+                money -= diff;
             else
                 throw new ArgumentException($"Error: not enought funds in the wallet (has {money}, {money} - {diff} = {money - diff} < 0)");
         }

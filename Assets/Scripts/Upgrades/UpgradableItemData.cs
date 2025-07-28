@@ -23,13 +23,22 @@ public class UpgradableItemData : ScriptableObject
     public int maxLevel = 1;
     [Header("Upgradable Values")]
     public bool hasUpgradableValue1 = true;
+    public bool increaseIsPositive1 = true;
     public List<UpgradableValue> upgradableValue1List;
+    public float uv1ShowMultiplier = 1;
+    public string uv1Suffix = "";
     [Space()]
     public bool hasUpgradableValue2 = false;
+    public bool increaseIsPositive2 = true;
     public List<UpgradableValue> upgradableValue2List;
+    public float uv2ShowMultiplier = 1;
+    public string uv2Suffix = "";
     [Space()]
     public bool hasUpgradableValue3 = false;
+    public bool increaseIsPositive3 = true;
     public List<UpgradableValue> upgradableValue3List;
+    public float uv3ShowMultiplier = 1;
+    public string uv3Suffix = "";
     [Header("Upgrade costs")]
     public List<UpgradeCost> upgradeCosts;
     [Space(20)]

@@ -15,6 +15,7 @@ MonoBehaviour:
   minLevel: 1
   maxLevel: 4
   hasUpgradableValue1: 1
+  increaseIsPositive1: 1
   upgradableValue1List:
   - level: 1
     value: 0.01
@@ -24,10 +25,18 @@ MonoBehaviour:
     value: 0.04
   - level: 4
     value: 0.08
+  uv1ShowMultiplier: 1000
+  uv1Suffix: "\u043B"
   hasUpgradableValue2: 0
+  increaseIsPositive2: 1
   upgradableValue2List: []
+  uv2ShowMultiplier: 1
+  uv2Suffix: 
   hasUpgradableValue3: 0
+  increaseIsPositive3: 1
   upgradableValue3List: []
+  uv3ShowMultiplier: 1
+  uv3Suffix: 
   upgradeCosts:
   - level: 1
     cost: 0

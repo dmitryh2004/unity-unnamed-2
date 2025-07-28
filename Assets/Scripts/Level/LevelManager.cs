@@ -68,6 +68,8 @@ public class LevelManager : MonoBehaviour
 
                 QuotaSystem.Instance.UpdateUI();
             }
+
+            PlayerWallet.Instance.SetMoney(gameData.save.playerData.money);
         }
         else
         {

@@ -15,6 +15,7 @@ MonoBehaviour:
   minLevel: 1
   maxLevel: 7
   hasUpgradableValue1: 1
+  increaseIsPositive1: 1
   upgradableValue1List:
   - level: 1
     value: 70
@@ -30,7 +31,10 @@ MonoBehaviour:
     value: 120
   - level: 7
     value: 135
+  uv1ShowMultiplier: 1
+  uv1Suffix: "\u0435\u0434."
   hasUpgradableValue2: 1
+  increaseIsPositive2: 1
   upgradableValue2List:
   - level: 1
     value: 20
@@ -46,8 +50,13 @@ MonoBehaviour:
     value: 40
   - level: 7
     value: 45
+  uv2ShowMultiplier: 1
+  uv2Suffix: "\u0435\u0434."
   hasUpgradableValue3: 0
+  increaseIsPositive3: 1
   upgradableValue3List: []
+  uv3ShowMultiplier: 1
+  uv3Suffix: 
   upgradeCosts:
   - level: 1
     cost: 0

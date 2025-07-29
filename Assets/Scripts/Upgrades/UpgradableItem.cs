@@ -36,37 +36,46 @@ public class UpgradableItem : MonoBehaviour
         level = defaultLevel;
     }
 
-    public float GetUpgradableValue1()
+    public float? GetUpgradableValue1()
     {
-        return upgradableItemData.upgradableValue1List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue1List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
-    public float GetUpgradableValue2()
+    public float? GetUpgradableValue2()
     {
-        return upgradableItemData.upgradableValue2List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue2List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
-    public float GetUpgradableValue3()
+    public float? GetUpgradableValue3()
     {
-        return upgradableItemData.upgradableValue3List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue3List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
     public float? GetUpgradableValue1(int level)
     {
-        if (level < upgradableItemData.minLevel || level > upgradableItemData.maxLevel) return null;
-        return upgradableItemData.upgradableValue1List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue1List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
     public float? GetUpgradableValue2(int level)
     {
-        if (level < upgradableItemData.minLevel || level > upgradableItemData.maxLevel) return null;
-        return upgradableItemData.upgradableValue2List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue2List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
     public float? GetUpgradableValue3(int level)
     {
-        if (level < upgradableItemData.minLevel || level > upgradableItemData.maxLevel) return null;
-        return upgradableItemData.upgradableValue3List.FirstOrDefault((x) => x.level == level).value;
+        UpgradableValue uv = upgradableItemData.upgradableValue3List.Find((x) => x.level == level);
+        if (uv == null) return null;
+        return uv.value;
     }
 
     public int GetUpgradeCost(int level)

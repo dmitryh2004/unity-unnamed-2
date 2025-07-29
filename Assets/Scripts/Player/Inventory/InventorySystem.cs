@@ -56,7 +56,9 @@ public class InventorySystem : UpgradableItem
 
     void RecalculateMaxSize()
     {
-        maxVolume = GetUpgradableValue1();
+        float? uv = GetUpgradableValue1();
+        if (uv == null) maxVolume = 0.01f;
+        else maxVolume = (float)uv;
     }
 
     /// <summary>

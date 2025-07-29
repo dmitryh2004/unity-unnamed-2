@@ -14,12 +14,15 @@ public class StartStatsController : MonoBehaviour
 
     public void ShowStatsWindow()
     {
-        int precision = PlayerLootPredictor.Instance.GetPrecision();
-        StartCoroutine(MainCoroutine(1.5f, precision));
+        int lootPrecision = PlayerLootPredictor.Instance.GetLootPrecision();
+        int protectedRoomsPrecision = PlayerLootPredictor.Instance.GetProtectedRoomPrecision();
+        int securedRoomsPrecision = PlayerLootPredictor.Instance.GetSecuredRoomPrecision();
+        StartCoroutine(MainCoroutine(1.5f, lootPrecision, protectedRoomsPrecision, securedRoomsPrecision));
     }
 
-    private IEnumerator MainCoroutine(float startDelay, int precision)
+    private IEnumerator MainCoroutine(float startDelay, int lootPrecision, int prPrecision, int secPrecision)
     {
+        System.Random random = new ();
         yield return new WaitForSecondsRealtime(startDelay);
 
         int totalCost = generator.GetGeneratedLootSum();
@@ -27,15 +30,15 @@ public class StartStatsController : MonoBehaviour
         titleText = "Краткая сводка";
         estimatedCostText = $"Примерная стоимость вещей:\n";
 
-        if (precision != -1)
+        if (lootPrecision != -1)
         {
-            if (precision > 0)
+            if (lootPrecision > 0)
             {
-                int minCost = totalCost / precision * precision;
-                int maxCost = (totalCost / precision + 1) * precision;
+                int minCost = totalCost / lootPrecision * lootPrecision;
+                int maxCost = (totalCost / lootPrecision + 1) * lootPrecision;
                 estimatedCostText += $"{NumberFormatter.FormatNumberWithGrouping(minCost)} - {NumberFormatter.FormatNumberWithGrouping(maxCost)}";
             }
-            else if (precision == 0)
+            else if (lootPrecision == 0)
             {
                 estimatedCostText += $"{NumberFormatter.FormatNumberWithGrouping(totalCost)}";
             }
@@ -48,10 +51,50 @@ public class StartStatsController : MonoBehaviour
         estimatedCostText += " UMU";
 
         int protectedRooms = generator.GetProtectedRoomsCount();
-        int securedRooms = generator.GetSecuredRoomsCount();
+        protectedRoomCountText = $"Число защищенных комнат: ";
 
-        protectedRoomCountText = $"Число защищенных комнат: {protectedRooms}";
-        securedRoomCountText = $"Число комнат-тайников: {securedRooms}";
+        if (prPrecision != -1)
+        {
+            if (prPrecision > 0)
+            {
+                int prShift = random.Next(0, prPrecision + 1);
+                int prFalloffA = protectedRooms - prShift;
+                if (prFalloffA < 0) prFalloffA = 0;
+                int prFalloffB = prFalloffA + prPrecision;
+                protectedRoomCountText += $"{prFalloffA} - {prFalloffB}";
+            }
+            else if (prPrecision == 0)
+            {
+                protectedRoomCountText += $"{protectedRooms}";
+            }
+        }
+        else
+        {
+            protectedRoomCountText += $"[N/A]";
+        }
+        
+        int securedRooms = generator.GetSecuredRoomsCount();
+        securedRoomCountText = $"Число комнат-тайников: ";
+
+        if (secPrecision != -1)
+        {
+            if (secPrecision > 0)
+            {
+                int secShift = random.Next(0, secPrecision + 1);
+                int secFalloffA = securedRooms - secShift;
+                if (secFalloffA < 0) secFalloffA = 0;
+                int secFalloffB = secFalloffA + secPrecision;
+                securedRoomCountText += $"{secFalloffA} - {secFalloffB}";
+            }
+            else if (secPrecision == 0)
+            {
+                securedRoomCountText += $"{securedRooms}";
+            }
+        }
+        else
+        {
+            securedRoomCountText += $"[N/A]";
+        }
 
         animator.SetTrigger("show");
 

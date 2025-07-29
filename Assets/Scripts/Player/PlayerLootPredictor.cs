@@ -3,9 +3,25 @@ using UnityEngine;
 public class PlayerLootPredictor : UpgradableItem
 {
     public static PlayerLootPredictor Instance = null;
-    public int GetPrecision()
+    public int GetLootPrecision()
     {
-        return (int) GetUpgradableValue1();
+        float? uv = GetUpgradableValue1();
+        if (uv == null) return -1;
+        return (int)uv;
+    }
+
+    public int GetProtectedRoomPrecision()
+    {
+        float? uv = GetUpgradableValue2();
+        if (uv == null) return -1;
+        return (int)uv;
+    }
+
+    public int GetSecuredRoomPrecision()
+    {
+        float? uv = GetUpgradableValue3();
+        if (uv == null) return -1;
+        return (int)uv;
     }
 
     private void Awake()

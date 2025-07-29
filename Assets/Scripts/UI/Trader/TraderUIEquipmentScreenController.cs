@@ -78,17 +78,17 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
 
         string characteristics = "";
         List<string> chars = new();
-        if (equipment.HasUV1() && equipment.GetUpgradableValue1() >= 0)
+        if (equipment.HasUV1() && equipment.GetUpgradableValue1() != null)
         {
-            chars.Add($"{equipment.GetUV1Name()}: {NumberFormatter.FormatNumberWithGrouping(equipment.GetUpgradableValue1() * equipment.GetUV1ShowMultiplier())} {equipment.GetUV1Suffix()}");
+            chars.Add($"{equipment.GetUV1Name()}: {NumberFormatter.FormatNumberWithGrouping((float)equipment.GetUpgradableValue1() * equipment.GetUV1ShowMultiplier())} {equipment.GetUV1Suffix()}");
         }
-        if (equipment.HasUV2() && equipment.GetUpgradableValue2() >= 0)
+        if (equipment.HasUV2() && equipment.GetUpgradableValue2() != null)
         {
-            chars.Add($"{equipment.GetUV2Name()}: {NumberFormatter.FormatNumberWithGrouping(equipment.GetUpgradableValue2() * equipment.GetUV2ShowMultiplier())} {equipment.GetUV2Suffix()}");
+            chars.Add($"{equipment.GetUV2Name()}: {NumberFormatter.FormatNumberWithGrouping((float)equipment.GetUpgradableValue2() * equipment.GetUV2ShowMultiplier())} {equipment.GetUV2Suffix()}");
         }
-        if (equipment.HasUV3() && equipment.GetUpgradableValue3() >= 0)
+        if (equipment.HasUV3() && equipment.GetUpgradableValue3() != null)
         {
-            chars.Add($"{equipment.GetUV3Name()}: {NumberFormatter.FormatNumberWithGrouping(equipment.GetUpgradableValue3() * equipment.GetUV3ShowMultiplier())} {equipment.GetUV3Suffix()}");
+            chars.Add($"{equipment.GetUV3Name()}: {NumberFormatter.FormatNumberWithGrouping((float)equipment.GetUpgradableValue3() * equipment.GetUV3ShowMultiplier())} {equipment.GetUV3Suffix()}");
         }
 
         characteristics = (chars.Count > 0) ? string.Join("\n", chars) : "Данный предмет еще не куплен";
@@ -132,7 +132,8 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
 
     private void AddUpgradeEffectString(UpgradableItem equipment, List<string> ue, int uvNumber)
     {
-        float curUV, nextUV, showMultiplier;
+        float? curUV, nextUV;
+        float showMultiplier;
         string UVName, UVSuffix;
         bool increaseIsPositive;
 
@@ -140,7 +141,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
         {
             case 1:
                 curUV = equipment.GetUpgradableValue1();
-                nextUV = (float)equipment.GetUpgradableValue1(equipment.GetLevel() + 1);
+                nextUV = equipment.GetUpgradableValue1(equipment.GetLevel() + 1);
                 showMultiplier = equipment.GetUV1ShowMultiplier();
                 UVName = equipment.GetUV1Name();
                 UVSuffix = equipment.GetUV1Suffix();
@@ -148,7 +149,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
                 break;
             case 2:
                 curUV = equipment.GetUpgradableValue2();
-                nextUV = (float)equipment.GetUpgradableValue2(equipment.GetLevel() + 1);
+                nextUV = equipment.GetUpgradableValue2(equipment.GetLevel() + 1);
                 showMultiplier = equipment.GetUV2ShowMultiplier();
                 UVName = equipment.GetUV2Name();
                 UVSuffix = equipment.GetUV2Suffix();
@@ -156,7 +157,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
                 break;
             case 3:
                 curUV = equipment.GetUpgradableValue3();
-                nextUV = (float)equipment.GetUpgradableValue3(equipment.GetLevel() + 1);
+                nextUV = equipment.GetUpgradableValue3(equipment.GetLevel() + 1);
                 showMultiplier = equipment.GetUV3ShowMultiplier();
                 UVName = equipment.GetUV3Name();
                 UVSuffix = equipment.GetUV3Suffix();
@@ -166,7 +167,15 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
                 return;
         }
 
-        float diff = nextUV - curUV;
+        if (curUV == null)
+        {
+            if (nextUV != null)
+            {
+                ue.Add($"(Новое свойство) {UVName}: {NumberFormatter.FormatNumberWithGrouping((float)nextUV * showMultiplier)} {UVSuffix}</color>");
+            }
+            return;
+        }
+        float diff = (float)nextUV - (float)curUV;
 
         if (diff != 0)
         {

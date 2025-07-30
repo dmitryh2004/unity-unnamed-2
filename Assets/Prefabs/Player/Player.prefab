@@ -451,9 +451,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: CloseChest
-        m_Mode: 0
+        m_TargetAssemblyTypeName: PauseMenuController, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -462,184 +462,80 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+    m_ActionId: 9c4e37b2-468c-41a2-8a1d-8caf0f7e6063
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
     m_ActionId: 9e8e878e-5992-466a-bad0-10d71b984250
     m_ActionName: 'ChestUI/ChestExit[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: TransferItem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: d50694c9-e9fc-4cec-9bdc-4ebd93bd8900
     m_ActionName: 'ChestUI/TransferItem[/Keyboard/t]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: ScrollUpInventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: b85c4790-fd0f-43f7-9f15-316a14658864
     m_ActionName: 'ChestUI/ScrollUpInventory[/Keyboard/w]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: ScrollDownInventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: e1471963-07de-47b6-8994-8a57f871afca
     m_ActionName: 'ChestUI/ScrollDownInventory[/Keyboard/d]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: ScrollUpChest
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: 36759108-c9e1-4efe-bfc9-e03258d8766f
     m_ActionName: 'ChestUI/ScrollUpChest[/Keyboard/upArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChestController, Assembly-CSharp
-        m_MethodName: ScrollDownChest
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_ActionId: e71b98e1-4a8b-4281-abf3-7e36cbe3d8ce
     m_ActionName: 'ChestUI/ScrollDownChest[/Keyboard/downArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: de8d6c6a-3d45-48c3-9569-a226aa75e832
+    m_ActionName: 'SpaceshipPanelUI/Exit[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: 94a4680c-0907-4607-b945-0635af03e875
+    m_ActionName: 'SpaceshipPanelUI/ComplexList[/Keyboard/tab]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: 71112f23-37f2-4697-af55-3523cf7dafe2
+    m_ActionName: 'SpaceshipPanelUI/SelectComplex[/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: c74b84f8-a832-40a8-ba47-efb0b91ae9de
+    m_ActionName: 'SpaceshipPanelUI/Back[/Keyboard/backspace]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: 783d3c1e-8edd-4eb2-9036-37bdeed65da2
+    m_ActionName: 'SpaceshipPanelUI/NavigationUp[/Keyboard/upArrow]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7479945026821977042}
-        m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 3671ea06-1282-46bb-b684-60e8847aabbd
-    m_ActionName: 'InventoryUI/ScrollDown[/Keyboard/downArrow]'
+      m_Calls: []
+    m_ActionId: b80f4c2a-12f9-443b-ae13-da643f113676
+    m_ActionName: 'SpaceshipPanelUI/NavigationDown[/Keyboard/downArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d0025b4-47ba-41f2-b671-224de5a584d4
+    m_ActionName: 'TraderUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2d9d369-0feb-4f9a-b62a-9fcc5c43868c
+    m_ActionName: 'TraderUI/Option1[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fbe4b501-54af-44f7-a5e5-1ccee2a9da63
+    m_ActionName: 'TraderUI/Option2[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a5ca924-6a20-459d-b48b-375efd4775b7
+    m_ActionName: 'TraderUI/Option3[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82462628-64d6-4178-a9a3-b8c508ecf359
+    m_ActionName: 'TraderUI/Confirm[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04f6b23d-2855-4703-b611-39b760a2c0b4
+    m_ActionName: 'TraderUI/SellItem[/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

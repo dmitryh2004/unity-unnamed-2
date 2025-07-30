@@ -8,4 +8,21 @@ public class MainMenuController : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("BaseScene");
     }
+
+    public void ChangeScreen(int screen)
+    {
+        currentUI = screen;
+        UpdateWindow();
+    }
+
+    void UpdateWindow()
+    {
+        mainMenuUI.SetActive(currentUI == 0);
+        aboutUI.SetActive(currentUI == 1);
+    }
+
+    private void Start()
+    {
+        ChangeScreen(0);
+    }
 }

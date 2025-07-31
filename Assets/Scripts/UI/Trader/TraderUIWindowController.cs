@@ -15,6 +15,8 @@ public class TraderUIWindowController : MonoBehaviour
     [SerializeField] TraderUIBaseScreenController noQuotaScreen; // 2
     [SerializeField] TraderUIBaseScreenController sellItemsScreen; // 3
     [SerializeField] TraderUIBaseScreenController upgradeEquipmentScreen; // 4
+    [Space(10)]
+    [SerializeField] GameObject backButton;
     [Header("Backgrounds")]
     [SerializeField] Image background;
     [SerializeField] Sprite mainMenuBackground;
@@ -43,6 +45,8 @@ public class TraderUIWindowController : MonoBehaviour
             sellItemsScreen.gameObject.SetActive(currentScreen == 3);
         if (upgradeEquipmentScreen != null)
             upgradeEquipmentScreen.gameObject.SetActive(currentScreen == 4);
+
+        backButton.SetActive(currentScreen != 0);
 
         switch(currentScreen)
         {

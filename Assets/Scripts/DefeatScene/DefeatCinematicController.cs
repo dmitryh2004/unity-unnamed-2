@@ -158,6 +158,6 @@ public class DefeatCinematicController : MonoBehaviour
         uiDefeatScreenAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1.5f);
 
-        exitGame.Exit();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 }

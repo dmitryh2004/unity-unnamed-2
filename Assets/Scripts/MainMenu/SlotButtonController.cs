@@ -42,11 +42,11 @@ public class SlotButtonController : MonoBehaviour
         {
             if (hasQuota)
             {
-                quotaText.text = $"Требуется: {quota} UMU";
-                collectedText.text = $"Собрано: {collected} UMU";
+                quotaText.text = $"Требуется: {NumberFormatter.FormatNumberWithGrouping(quota)} UMU";
+                collectedText.text = $"Собрано: {NumberFormatter.FormatNumberWithGrouping(collected)} UMU";
                 daysLeftText.text = $"Осталось вылетов: {daysLeft}";
             }
-            balanceText.text = $"Баланс: {balance} UMU";
+            balanceText.text = $"Баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
         }
         
     }

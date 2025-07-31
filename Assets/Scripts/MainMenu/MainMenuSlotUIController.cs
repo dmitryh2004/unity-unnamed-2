@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenuSlotUIController : MonoBehaviour
 {
@@ -9,7 +8,8 @@ public class MainMenuSlotUIController : MonoBehaviour
     [SerializeField] SaveManager saveManager;
     [Space]
     [SerializeField] List<SlotButtonController> buttons = new();
-    [SerializeField] TMP_Text selectedSlotInfo;
+    [SerializeField] Button startGameButton;
+    [SerializeField] Image startGameButtonBackground;
     [Space(10)]
     [Header("Colors")]
     [SerializeField] Color slotButtonColor = new Color(.75f, .75f, .75f, .5f);
@@ -53,10 +53,15 @@ public class MainMenuSlotUIController : MonoBehaviour
     public void SelectSlot(int selected)
     {
         selectedSlot = selected;
-        PlayerPrefs.SetInt("saveSlot", buttons[selectedSlot].GetNumber());
-        PlayerPrefs.Save();
+        if (selectedSlot != -1)
+        {
+            PlayerPrefs.SetInt("saveSlot", buttons[selectedSlot].GetNumber());
+            PlayerPrefs.Save();
+        }
         UpdateUI();
     }
+
+    public int GetSelectedSlot() => selectedSlot;
 
     void UpdateUI()
     {
@@ -66,5 +71,7 @@ public class MainMenuSlotUIController : MonoBehaviour
             button.SetSelected(selectedSlot == i);
             button.UpdateUI();
         }
+
+        startGameButtonBackground.color = selectedSlot != -1 ? startGameColor: startGameNoSelectedSlotColor;
     }
 }

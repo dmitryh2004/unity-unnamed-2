@@ -541,15 +541,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0, g: 0.5, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 26ed8fa2f488262448b23b7d6a3c983c, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -838,6 +838,9 @@ MonoBehaviour:
   hasVolume: 1
   totalVolume: {fileID: 1246970960940091474}
   volumePB: {fileID: 1785790300234944440}
+  hasCount: 0
+  totalCount: {fileID: 0}
+  countPB: {fileID: 0}
   hasEstimateCost: 1
   estimateCost: {fileID: 417871680568389063}
   unknownSprite: {fileID: 21300000, guid: b2589198966f9e047bb9a9cd16ba9b8b, type: 3}

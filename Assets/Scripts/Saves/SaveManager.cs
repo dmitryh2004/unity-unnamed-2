@@ -119,14 +119,19 @@ public static class SaveChecksumCalculator
 
 public class SaveManager : MonoBehaviour
 {
-    [SerializeField] string saveName = "GameData.json";
+    [SerializeField] string saveName = "GameData";
 
-    public void SaveData()
+    string GetSaveName(int slot)
+    {
+        return $"{saveName}{slot}.json";
+    }
+
+    public void SaveData(int slot = 1)
     {
         bool validationResult = false;
         string inventoryJson = InventorySystem.Instance.GetInventoryDataJson();
 
-        GameData loadedData = LoadData(out validationResult, false);
+        GameData loadedData = LoadData(slot, out validationResult, false);
 
         string chestJson = "";
         if (Chest.Instance != null)
@@ -245,15 +250,15 @@ public class SaveManager : MonoBehaviour
         };
 
         string json = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, saveName);
+        string path = Path.Combine(Application.persistentDataPath, GetSaveName(slot));
         File.WriteAllText(path, json);
 
         Debug.Log($"Данные сохранены в {path}");
     }
 
-    public GameData LoadData(out bool checksumCorrect, bool validateChecksum = true)
+    public GameData LoadData(int slot, out bool checksumCorrect, bool validateChecksum = true)
     {
-        string path = Path.Combine(Application.persistentDataPath, saveName);
+        string path = Path.Combine(Application.persistentDataPath, GetSaveName(slot));
 
         if (!File.Exists(path))
         {
@@ -291,8 +296,8 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void ClearSave()
+    public void ClearSave(int slot)
     {
-        File.Delete(Path.Combine(Application.persistentDataPath, saveName));
+        File.Delete(Path.Combine(Application.persistentDataPath, GetSaveName(slot)));
     }
 }

@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 
     [TextArea(5, 10)]
     [SerializeField] List<string> gameOverReasons = new();
+    int slot = 1;
 
     private void Awake()
     {
@@ -23,12 +24,14 @@ public class LevelManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        slot = PlayerPrefs.HasKey("saveSlot") ? PlayerPrefs.GetInt("saveSlot") : 1;
     }
 
     private void Start()
     {
         bool validationResult = false;
-        GameData gameData = saveManager.LoadData(out validationResult);
+        GameData gameData = saveManager.LoadData(slot, out validationResult);
         if (gameData != null)
         {
             InventorySystem.Instance.SetLevel(gameData.save.playerData.inventoryLevel);
@@ -135,6 +138,6 @@ public class LevelManager : MonoBehaviour
 
     public void DeleteSave()
     {
-        saveManager.ClearSave();
+        saveManager.ClearSave(slot);
     }
 }

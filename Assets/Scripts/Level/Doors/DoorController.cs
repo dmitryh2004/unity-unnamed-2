@@ -15,12 +15,8 @@ public class DoorController : Lockable
         if (IsOpen())
         {
             anim.SetTrigger("Open");
-            if (navMeshLink != null) navMeshLink.activated = true;
         }
-        else
-        {
-            if (navMeshLink != null) navMeshLink.activated = false;
-        }
+        if (navMeshLink != null) navMeshLink.activated = !IsLocked();
     }
 
     public bool IsOpen()
@@ -34,11 +30,8 @@ public class DoorController : Lockable
         {
             opened = !opened;
             if (opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
-            if (navMeshLink != null)
-            {
-                navMeshLink.activated = opened;
-            }
         }
+        if (navMeshLink != null) navMeshLink.activated = !IsLocked();
     }
 
     private void OnTriggerEnter(Collider other)

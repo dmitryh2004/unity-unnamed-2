@@ -125,14 +125,14 @@ public class LevelManager : MonoBehaviour
         if (hackUI != null)
             hackUI.GetComponent<Animator>().SetBool("visible", false);
 
-        saveManager.SaveData();
+        saveManager.SaveData(slot);
 
         gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);
     }
 
     public void BaseGameOver()
     {
-        saveManager.SaveData();
+        saveManager.SaveData(slot);
         gameOverScreenController.ShowGameOverWindow(true, gameOverReasons[0], false);
     }
 

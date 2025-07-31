@@ -8,6 +8,7 @@ public class SlotButtonController : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] TMP_Text slotButtonText;
     [SerializeField] TMP_Text quotaText, collectedText, daysLeftText, balanceText;
+    [SerializeField] ClearSlotButton clearSlotButton;
     Color selectedColor, unselectedColor;
     int number;
     bool selected = false;
@@ -38,6 +39,9 @@ public class SlotButtonController : MonoBehaviour
         collectedText.gameObject.SetActive(hasSave && hasQuota);
         daysLeftText.gameObject.SetActive(hasSave && hasQuota);
         balanceText.gameObject.SetActive(hasSave);
+
+        clearSlotButton.gameObject.SetActive(hasSave);
+
         if (hasSave)
         {
             if (hasQuota)

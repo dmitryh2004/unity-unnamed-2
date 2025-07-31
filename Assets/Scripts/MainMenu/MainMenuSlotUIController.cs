@@ -21,6 +21,11 @@ public class MainMenuSlotUIController : MonoBehaviour
 
     private void Start()
     {
+        RefreshData();
+    }
+
+    public void RefreshData()
+    {
         for (int i = 0; i < buttons.Count; i++)
         {
             int slot = i + 1;

@@ -924,6 +924,10 @@ MonoBehaviour:
     weight: 4
   - possibleLoot:
     - prefab: {fileID: 1906785838874317257, guid: b43a5851d57532d4bbb94748a1ea871d, type: 3}
+      weight: 2
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 1906785838874317257, guid: fd3197ac2e9d38542a687c4eb272c93f, type: 3}
       weight: 1
       minCount: 1
       maxCount: 1

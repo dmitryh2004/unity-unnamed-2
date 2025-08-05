@@ -51,7 +51,11 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 3dd1408411ab49e4ebec15a3ae908b10, type: 2}
+      objectReference: {fileID: 2100000, guid: b7a03f2da240c70488306c56884fe6ed, type: 2}
+    - target: {fileID: -5754084199372789682, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8068972817046575654, guid: ab4acad2eff41b34189b35c7901d0335, type: 3}
     - target: {fileID: 919132149155446097, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
       propertyPath: m_Name
       value: emerald
@@ -127,7 +131,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -8068972817046575654, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
+  m_Mesh: {fileID: -8068972817046575654, guid: ab4acad2eff41b34189b35c7901d0335, type: 3}
 --- !u!114 &-3363124652992149907
 MonoBehaviour:
   m_ObjectHideFlags: 0

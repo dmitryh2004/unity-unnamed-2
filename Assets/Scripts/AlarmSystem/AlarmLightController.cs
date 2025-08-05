@@ -6,12 +6,12 @@ public class AlarmLightController : MonoBehaviour
 	[SerializeField] Light spotLightSource;
     [SerializeField] Animator animator;
     [SerializeField] MeshRenderer meshRenderer;
-    Material material;
+
+    [SerializeField] Material noEmissionMaterial, emissionMaterial;
     bool lightEnabled = false;
 
     private void Start()
     {
-        material = meshRenderer.material;
         UpdateAnimator();
     }
     public void ChangeState(bool state)
@@ -27,11 +27,11 @@ public class AlarmLightController : MonoBehaviour
 		spotLightSource.gameObject.SetActive(lightEnabled);
         if (lightEnabled)
         {
-            material.EnableKeyword("_EMISSION");
+            meshRenderer.material = emissionMaterial;
         }
         else
         {
-            material.DisableKeyword("_EMISSION");
+            meshRenderer.material = noEmissionMaterial;
         }
     }
 }

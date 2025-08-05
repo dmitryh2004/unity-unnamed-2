@@ -57,10 +57,19 @@ public class StartStatsController : MonoBehaviour
         {
             if (prPrecision > 0)
             {
-                int prShift = random.Next(0, prPrecision + 1);
-                int prFalloffA = protectedRooms - prShift;
-                if (prFalloffA < 0) prFalloffA = 0;
-                int prFalloffB = prFalloffA + prPrecision;
+                int prShift = random.Next(-prPrecision, prPrecision + 1), prFalloffA, prFalloffB;
+                if (prShift < 0)
+                {
+                    prFalloffA = protectedRooms + prShift;
+                    if (prFalloffA < 0) prFalloffA = 0;
+                    prFalloffB = prFalloffA + prPrecision;
+                }
+                else
+                {
+                    prFalloffB = protectedRooms + prShift;
+                    prFalloffA = prFalloffB - prPrecision;
+                    if (prFalloffA < 0) prFalloffA = 0;
+                }
                 protectedRoomCountText += $"{prFalloffA} - {prFalloffB}";
             }
             else if (prPrecision == 0)
@@ -80,10 +89,19 @@ public class StartStatsController : MonoBehaviour
         {
             if (secPrecision > 0)
             {
-                int secShift = random.Next(0, secPrecision + 1);
-                int secFalloffA = securedRooms - secShift;
-                if (secFalloffA < 0) secFalloffA = 0;
-                int secFalloffB = secFalloffA + secPrecision;
+                int secShift = random.Next(-secPrecision, secPrecision + 1), secFalloffA, secFalloffB;
+                if (secShift < 0)
+                {
+                    secFalloffA = securedRooms + secShift;
+                    if (secFalloffA < 0) secFalloffA = 0;
+                    secFalloffB = secFalloffA + secPrecision;
+                }
+                else
+                {
+                    secFalloffB = securedRooms + secShift;
+                    secFalloffA = secFalloffB - secPrecision;
+                    if (secFalloffA < 0) secFalloffA = 0;
+                }
                 securedRoomCountText += $"{secFalloffA} - {secFalloffB}";
             }
             else if (secPrecision == 0)

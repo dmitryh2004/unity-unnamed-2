@@ -22,6 +22,10 @@ public class GuardianController : MonoBehaviour
     float phase3Timer = 0f;
     float phase3TurnAroundTimer = 0f;
 
+    //Footsteps
+    float footstepTimer = 0f;
+    bool footstepTimerActive = true;
+
     [Header("Links")]
     [SerializeField] Transform eye;
     [SerializeField] Light fovLight;
@@ -104,17 +108,18 @@ public class GuardianController : MonoBehaviour
         {
             case 1:
                 agent.speed = speed;
+                footstepTimerActive = true;
                 SetNextWaypoint();
                 break;
             case 2:
                 agent.speed = runningSpeed;
-
+                footstepTimerActive = true;
                 if (raiseAlarm && !AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
                 agent.SetDestination(target.position);
                 break;
             case 3:
                 agent.speed = speed;
-
+                footstepTimerActive = false;
                 phase3Timer = 0f;
                 phase3TurnAroundTimer = 0f;
                 break;
@@ -126,6 +131,20 @@ public class GuardianController : MonoBehaviour
         agent.isStopped = !active;
         if (!active) return;
         phaseUpdateTimer += Time.deltaTime;
+        if (footstepTimerActive)
+        {
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer > 2f / agent.speed)
+            {
+                audioPlayer.PlayFootstepAudio();
+                footstepTimer = 0f;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
+        }
+        
         if (phase == 3)
         {
             phase3Timer += Time.deltaTime;
@@ -278,6 +297,7 @@ public class GuardianController : MonoBehaviour
     IEnumerator SmoothlyRotate(float angle)
     {
         float rotated = 0f;
+        audioPlayer.PlayRotateAudio();
         while (Mathf.Abs(rotated) < Mathf.Abs(angle))
         {
             float frameRotation = Mathf.Sign(angle) * agent.angularSpeed * Time.deltaTime;
@@ -285,6 +305,7 @@ public class GuardianController : MonoBehaviour
             rotated += frameRotation;
             yield return new WaitForEndOfFrame();
         }
+        audioPlayer.PlayRotateAudio();
     }
 
     public void SetTarget(Transform target)

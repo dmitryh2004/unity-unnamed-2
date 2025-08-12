@@ -171,7 +171,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
         {
             if (nextUV != null)
             {
-                ue.Add($"(Новое свойство) {UVName}: {NumberFormatter.FormatNumberWithGrouping((float)nextUV * showMultiplier)} {UVSuffix}</color>");
+                ue.Add($"<color=#ffff00>(Новое свойство)</color> {UVName}: {NumberFormatter.FormatNumberWithGrouping((float)nextUV * showMultiplier)} {UVSuffix}");
             }
             return;
         }

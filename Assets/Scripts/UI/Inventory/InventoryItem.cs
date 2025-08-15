@@ -22,6 +22,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] TraderUISellItemsController traderUISellItemsController;
     [SerializeField] Animator tooltipAnimator;
     [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost, tooltipActions;
+    [Space]
+    [SerializeField] ObjectPivotAdjuster tooltipParent;
 
     void Awake()
     {
@@ -72,6 +74,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void ShowTooltip()
     {
+        tooltipParent.RecalculateOffsets();
         tooltipAnimator.SetBool("visible", true);
     }
 

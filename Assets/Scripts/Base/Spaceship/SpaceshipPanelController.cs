@@ -14,6 +14,7 @@ public class SpaceshipPanelController : Interactable
     [SerializeField] Camera playerCamera;
     [SerializeField] Camera panelCamera;
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] GameObject gameplayCross;
     [Header("First screen")]
     [SerializeField] TMP_Text currentComplex;
     [SerializeField] TMP_Text currentComplexDifficulty;
@@ -60,6 +61,8 @@ public class SpaceshipPanelController : Interactable
     public override void Interact()
     {
         InputActionMapSwitcher.Instance.DisableAllMaps();
+
+        gameplayCross.SetActive(false);
 
         cameraLastPosition = playerCamera.transform.position;
         cameraLastRotation = playerCamera.transform.eulerAngles;
@@ -218,6 +221,8 @@ public class SpaceshipPanelController : Interactable
 
             StartCoroutine(TranslatePanelCamera(false, 1f, () =>
             {
+                gameplayCross.SetActive(true);
+
                 InputActionMapSwitcher.Instance.SwitchMap("Gameplay");
                 playerCamera.gameObject.SetActive(true);
                 panelCamera.gameObject.SetActive(false);

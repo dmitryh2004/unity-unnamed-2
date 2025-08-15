@@ -2600,8 +2600,8 @@ RectTransform:
   m_GameObject: {fileID: 1829656684406978709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.00038000004, y: 0.00038, z: 0.00038000004}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5439687312494240171}
   m_Father: {fileID: 0}
@@ -2620,7 +2620,7 @@ Canvas:
   m_GameObject: {fileID: 1829656684406978709}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2688,6 +2688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
   animator: {fileID: 1700870453933531600}
+  gameplayCross: {fileID: 0}
   mainMenuScreen: {fileID: 1999247166012035539}
   quotaScreen: {fileID: 8405564597097003415}
   noQuotaScreen: {fileID: 4438007366487309231}
@@ -2700,6 +2701,9 @@ MonoBehaviour:
   noQuotaBackground: {fileID: 21300000, guid: 98e5c53369545ca44bcbe5b0126869b9, type: 3}
   sellItemsBackground: {fileID: 21300000, guid: 5e68be353a85f0b49a40c827b5b92a23, type: 3}
   upgradeEquipmentBackground: {fileID: 21300000, guid: 98e5c53369545ca44bcbe5b0126869b9, type: 3}
+  playerCamera: {fileID: 0}
+  uiCamera: {fileID: 0}
+  cameraPosition: {fileID: 0}
 --- !u!95 &1700870453933531600
 Animator:
   serializedVersion: 7
@@ -11418,6 +11422,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11513,6 +11521,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -11659,6 +11671,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11754,6 +11770,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -11896,6 +11916,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11991,6 +12015,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -12137,6 +12165,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12232,6 +12264,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -12378,6 +12414,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12473,6 +12513,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -12807,6 +12851,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12902,6 +12950,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -13048,6 +13100,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13143,6 +13199,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -13289,6 +13349,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13384,6 +13448,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -13526,6 +13594,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13621,6 +13693,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -13763,6 +13839,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13858,6 +13938,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -14000,6 +14084,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14095,6 +14183,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -14386,6 +14478,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14481,6 +14577,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -14623,6 +14723,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14718,6 +14822,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -14860,6 +14968,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14955,6 +15067,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -15097,6 +15213,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15192,6 +15312,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -15479,6 +15603,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15574,6 +15702,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -15720,6 +15852,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -15815,6 +15951,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -15961,6 +16101,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16056,6 +16200,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -16394,6 +16542,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16489,6 +16641,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -16631,6 +16787,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16726,6 +16886,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -16872,6 +17036,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16967,6 +17135,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -17254,6 +17426,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17349,6 +17525,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -17491,6 +17671,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17586,6 +17770,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -17728,6 +17916,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17823,6 +18015,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -17965,6 +18161,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -18060,6 +18260,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -18206,6 +18410,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -18301,6 +18509,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -18447,6 +18659,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -18542,6 +18758,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -18688,6 +18908,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -18783,6 +19007,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -18925,6 +19153,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19020,6 +19252,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -19354,6 +19590,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19449,6 +19689,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -19595,6 +19839,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19690,6 +19938,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController
@@ -19832,6 +20084,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2618124867622471671, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: canvasRectTransform
+      value: 
+      objectReference: {fileID: 6771167742235925013}
     - target: {fileID: 2970658900499875038, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -19927,6 +20183,10 @@ PrefabInstance:
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: uiController
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
+      propertyPath: inverseXPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3855926044437022334, guid: 9eab9ec3a13cd4046942e1e9680e5b97, type: 3}
       propertyPath: traderUIQuotaController

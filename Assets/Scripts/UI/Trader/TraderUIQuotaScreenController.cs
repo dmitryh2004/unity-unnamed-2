@@ -135,6 +135,7 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
             trader.IncreaseMultiplier();
             trader.GenerateOrders();
             windowController.SetScreen(2);
+            LevelManager.Instance.SaveGame(true);
         }
         else 
         {

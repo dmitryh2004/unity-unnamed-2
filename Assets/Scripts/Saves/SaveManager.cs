@@ -120,13 +120,14 @@ public static class SaveChecksumCalculator
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] string saveName = "GameData";
+    [SerializeField] Animator saveMessageAnimator;
 
     string GetSaveName(int slot)
     {
         return $"{saveName}{slot}.json";
     }
 
-    public void SaveData(int slot = 1)
+    public void SaveData(int slot = 1, bool showMessage = false)
     {
         bool validationResult = false;
         string inventoryJson = InventorySystem.Instance.GetInventoryDataJson();
@@ -254,6 +255,9 @@ public class SaveManager : MonoBehaviour
         File.WriteAllText(path, json);
 
         Debug.Log($"Данные сохранены в {path}");
+
+        if (showMessage && saveMessageAnimator != null)
+            saveMessageAnimator.SetTrigger("show");
     }
 
     public GameData LoadData(int slot, out bool checksumCorrect, bool validateChecksum = true)

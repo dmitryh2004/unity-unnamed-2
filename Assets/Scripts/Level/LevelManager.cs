@@ -103,6 +103,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void SaveGame(bool showMessage = false)
+    {
+        saveManager.SaveData(slot: slot, showMessage: showMessage);
+    }
+
     public void GameOver(int reasonCode)
     {
         GuardianManager.Instance.StopGuardians(); //deactivate all guardians
@@ -125,7 +130,7 @@ public class LevelManager : MonoBehaviour
         if (hackUI != null)
             hackUI.GetComponent<Animator>().SetBool("visible", false);
 
-        saveManager.SaveData(slot);
+        saveManager.SaveData(slot, showMessage: true);
 
         gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);
     }

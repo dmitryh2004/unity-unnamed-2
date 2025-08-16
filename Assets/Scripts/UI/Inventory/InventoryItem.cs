@@ -10,6 +10,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     PlayerControls controls;
     bool pointerOnItem = false;
     bool active = false;
+    LootCategory lc;
     [SerializeField] bool isInChestUI = false;
     [SerializeField] bool isChestItem = false;
     [SerializeField] bool isInTraderUI = false;
@@ -20,10 +21,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] ChestUIController chestUIController;
     [SerializeField] TraderUIQuotaScreenController traderUIQuotaController;
     [SerializeField] TraderUISellItemsController traderUISellItemsController;
-    [SerializeField] Animator tooltipAnimator;
-    [SerializeField] TMP_Text tooltipHeader, tooltipText, tooltipCost, tooltipActions;
     [Space]
-    [SerializeField] ObjectPivotAdjuster tooltipParent;
+    [SerializeField] InventoryTooltipController tooltipController;
 
     void Awake()
     {
@@ -44,6 +43,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
 
     public bool IsActive() => active;
+    public bool IsInTraderUI() => isInTraderUI;
+    public bool IsInChestUI() => isInChestUI;
+    public bool IsChestItem() => isChestItem;
 
     public void SetActive(bool active)
     {
@@ -55,9 +57,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!active) HideTooltip();
     }
 
-    public void Initialize(int id, Sprite newSprite, int count)
+    public void Initialize(int id, Sprite newSprite, int count, LootCategory lc)
     {
         this.id = id;
+        this.lc = lc;
         UpdateImage(newSprite);
         UpdateCount(count);
     }
@@ -74,44 +77,19 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void ShowTooltip()
     {
-        tooltipParent.RecalculateOffsets();
-        tooltipAnimator.SetBool("visible", true);
+        tooltipController.SetCurrentInventoryItem(this);
+        tooltipController.UpdateTooltip(lc);
+        tooltipController.ShowTooltip();
     }
 
     public void HideTooltip()
     {
-        tooltipAnimator.SetBool("visible", false);
+        tooltipController.HideTooltip();
     }
 
-    public void UpdateTooltip(LootCategory lc)
+    public void UpdateTooltip()
     {
-        tooltipHeader.text = $"{lc.lootName}";
-        tooltipText.text = lc.lootDesc;
-        tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} UMU";
         
-        tooltipActions.text = "";
-        if (isInTraderUI)
-        {
-            string sellBind = controls.TraderUI.SellItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{sellBind}] - продать 1 шт. (+Shift - продать всё)";
-        }
-        else if (isInChestUI)
-        {
-            string transferBind = controls.ChestUI.TransferItem.GetBindingDisplayString();
-            if (isChestItem)
-            {
-                tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь (+Shift - взять всё)";
-            }
-            else
-            {
-                tooltipActions.text += $"\n[{transferBind}] - положить в сундук (+Shift - положить всё)";
-            }
-        }
-        else
-        {
-            string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{dropBind}] - выкинуть 1 шт. (+Shift - выкинуть всё)";
-        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

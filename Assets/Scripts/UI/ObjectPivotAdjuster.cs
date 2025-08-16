@@ -4,7 +4,8 @@ using UnityEngine;
 public class ObjectPivotAdjuster : MonoBehaviour
 {
     public RectTransform canvasRectTransform; // Assign Canvas RectTransform in Inspector
-    public RectTransform parentRectTransform; // Assign Parent RectTransform in Inspector
+    public RectTransform anchorRectTransform, anchorContainerRectTransform; // Assign Parent RectTransform in Inspector
+    public Camera camera;
     private RectTransform rectTransform;
 
     // Positions relative to parent: (pivot, localPosition)
@@ -28,15 +29,15 @@ public class ObjectPivotAdjuster : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (canvasRectTransform != null && parentRectTransform != null)
+        if (canvasRectTransform != null && anchorRectTransform != null)
             CheckAndChangePivot();
     }
 
     public void RecalculateOffsets()
     {
-        Debug.Log($"{gameObject.name}: parent width = {parentRectTransform.rect.width}, height = {parentRectTransform.rect.height}");
-        float offsetX = parentRectTransform.rect.width / 2,
-            offsetY = parentRectTransform.rect.height / 2;
+        Debug.Log($"{gameObject.name}: parent width = {anchorRectTransform.rect.width}, height = {anchorRectTransform.rect.height}");
+        float offsetX = anchorRectTransform.rect.width / 2,
+            offsetY = anchorRectTransform.rect.height / 2;
         offsets = new Vector2[] {
             new Vector2(offsetX, -offsetY), // Bottom-Right
             new Vector2(-offsetX, -offsetY), // Bottom-Left
@@ -49,40 +50,87 @@ public class ObjectPivotAdjuster : MonoBehaviour
     {
         try
         {
+            float minExcessX = float.MaxValue;
+            float minExcessY = float.MaxValue;
+            int bestIndex = -1;
+            Vector3 bestPosition = Vector3.zero;
+            Vector2 bestPivot = rectTransform.pivot;
+
             // Try all 4 pivots
             for (int i = 0; i < 4; i++)
             {
                 rectTransform.pivot = pivots[i];
-                rectTransform.localPosition = offsets[i];
+                rectTransform.localPosition = anchorContainerRectTransform.localPosition + anchorRectTransform.localPosition + (Vector3)offsets[i];
 
                 Vector3[] worldCorners = new Vector3[4];
                 rectTransform.GetWorldCorners(worldCorners);
 
-                Vector3[] canvasCorners = new Vector3[4];
-                canvasRectTransform.GetWorldCorners(canvasCorners);
-
                 bool inCanvas = true;
+                float excessX = 0f;
+                float excessY = 0f;
+
                 for (int c = 0; c < 4; c++)
                 {
-                    if (worldCorners[c].x < canvasCorners[0].x || worldCorners[c].x > canvasCorners[2].x ||
-                        worldCorners[c].y < canvasCorners[0].y || worldCorners[c].y > canvasCorners[2].y)
+                    Vector2 localPoint;
+                    RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                        canvasRectTransform,
+                        RectTransformUtility.WorldToScreenPoint(camera, worldCorners[c]),
+                        camera,
+                        out localPoint
+                    );
+
+                    if (!canvasRectTransform.rect.Contains(localPoint))
                     {
                         inCanvas = false;
-                        break;
+
+                        // Вычисляем, сколько заходит за границы canvas по X
+                        if (localPoint.x < canvasRectTransform.rect.xMin)
+                            excessX = Mathf.Max(excessX, canvasRectTransform.rect.xMin - localPoint.x);
+                        else if (localPoint.x > canvasRectTransform.rect.xMax)
+                            excessX = Mathf.Max(excessX, localPoint.x - canvasRectTransform.rect.xMax);
+
+                        // И по Y
+                        if (localPoint.y < canvasRectTransform.rect.yMin)
+                            excessY = Mathf.Max(excessY, canvasRectTransform.rect.yMin - localPoint.y);
+                        else if (localPoint.y > canvasRectTransform.rect.yMax)
+                            excessY = Mathf.Max(excessY, localPoint.y - canvasRectTransform.rect.yMax);
                     }
                 }
 
                 if (inCanvas)
                 {
                     Debug.Log($"{gameObject.name}: i = {i}");
-                    return; // Found a suitable pivot and position
+                    return; // Нашли подходящий вариант — возвращаемся
                 }
+                else
+                {
+                    // Сохраняем вариант с наименьшим выходом за границы
+                    // Сравним по суммарному избыточному выходу по X и Y
+                    float totalExcess = excessX + excessY;
+                    float bestTotalExcess = minExcessX + minExcessY;
+                    if (totalExcess < bestTotalExcess)
+                    {
+                        minExcessX = excessX;
+                        minExcessY = excessY;
+                        bestIndex = i;
+                        bestPosition = anchorContainerRectTransform.localPosition + anchorRectTransform.localPosition + (Vector3)offsets[i];
+                        bestPivot = pivots[i];
+                    }
+                }
+            }
+
+            // Если ни один вариант не поместился, применяем вариант с минимальным выходом за границы
+            if (bestIndex != -1)
+            {
+                rectTransform.pivot = bestPivot;
+                rectTransform.localPosition = bestPosition;
+                Debug.Log($"excess x,y: {minExcessX}, {minExcessY}");
             }
         }
         catch (NullReferenceException e)
         {
             return;
         }
-        // If none fit, keep the last tried pivot and position
     }
+
 }

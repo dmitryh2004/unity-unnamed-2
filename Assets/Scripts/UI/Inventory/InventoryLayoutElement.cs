@@ -45,29 +45,29 @@ public class InventoryLayoutElement : MonoBehaviour
     public void UpdateLayout(Dictionary<int, int> items)
     {
         this.items = items;
-        int itemIndex = itemElements.Count - 1 + offset;
+        int itemIndex = -offset;
         int totalCost = 0;
         foreach (int i in items.Keys)
         {
             LootCategory lc = lootCategoryManager.lootCategories.FirstOrDefault((x) => x.id == i);
 
-            if (itemIndex < itemElements.Count)
+            if (itemIndex >= 0)
             {
                 itemElements[itemIndex].SetActive(true);
 
                 Sprite itemSprite = lc.sprite;
                 if (itemSprite == null) itemSprite = unknownSprite;
 
-                itemElements[itemIndex].Initialize(i, itemSprite, items[i]);
-                itemElements[itemIndex].UpdateTooltip(lc);
+                itemElements[itemIndex].Initialize(i, itemSprite, items[i], lc);
+                //itemElements[itemIndex].UpdateTooltip();
             }
 
-            itemIndex--;
+            itemIndex++;
 
-            if (itemIndex < 0) break;
+            if (itemIndex == itemElements.Count) break;
         }
 
-        for (; itemIndex >= 0; itemIndex--)
+        for (; itemIndex < itemElements.Count; itemIndex++)
         {
             itemElements[itemIndex].SetActive(false);
         }

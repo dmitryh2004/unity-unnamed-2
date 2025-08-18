@@ -674,6 +674,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultLevel: 1
   upgradableItemData: {fileID: 11400000, guid: 17723f686f2918d4aa65ee1b0acac5ba, type: 2}
+  hoverAnimationDuration: 0.5
+  hoverAnimationHPBarMinAlpha: 0.5
+  NotEnoughHPColor1: {r: 0.75, g: 0, b: 0, a: 1}
+  NotEnoughHPColor2: {r: 0.75, g: 0, b: 0, a: 0}
+  hoverAnimationDelay: 0.5
+  lowHPMaxValue: 20
+  lowHPAnimationDuration: 0.5
+  lowHPColor1: {r: 0.75, g: 0.75, b: 0, a: 1}
+  lowHPColor2: {r: 0.75, g: 0.75, b: 0, a: 0}
   hpBar: {fileID: 7401538973177675787}
   attackBar: {fileID: 3311064068000044432}
   hpText: {fileID: 2052379716119978998}

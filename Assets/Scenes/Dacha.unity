@@ -3222,7 +3222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132762837}
   m_Layer: 0
-  m_Name: PP2
+  m_Name: G1 PP4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8478,7 +8478,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347942479}
   m_Layer: 0
-  m_Name: PP4
+  m_Name: G2 PP2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22672,7 +22672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 837039960}
   m_Layer: 0
-  m_Name: PP3
+  m_Name: G2 PP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25572,6 +25572,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1039074656}
+  - {fileID: 1711926474}
+  - {fileID: 2058989985}
   - {fileID: 132762837}
   - {fileID: 837039960}
   - {fileID: 347942479}
@@ -27528,7 +27530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1039074656}
   m_Layer: 0
-  m_Name: PP1
+  m_Name: G1 PP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42941,6 +42943,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2256212991077899660, guid: dacd28fcc5886ef44a53c9158436c399, type: 3}
   m_PrefabInstance: {fileID: 1710451167}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1711926473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1711926474}
+  m_Layer: 0
+  m_Name: G1 PP2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1711926474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711926473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18, y: 0, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 966913749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1712229928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49994,6 +50027,37 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
+--- !u!1 &2058989984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058989985}
+  m_Layer: 0
+  m_Name: G1 PP3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058989985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058989984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18, y: 0, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 966913749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2059650266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52282,7 +52346,7 @@ PrefabInstance:
       objectReference: {fileID: 966913749}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: patrolPoints.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
@@ -52291,11 +52355,15 @@ PrefabInstance:
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[1]'
       value: 
-      objectReference: {fileID: 132762837}
+      objectReference: {fileID: 1711926474}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'patrolPoints.Array.data[2]'
       value: 
-      objectReference: {fileID: 347942479}
+      objectReference: {fileID: 2058989985}
+    - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
+      propertyPath: 'patrolPoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 132762837}
     - target: {fileID: 727837114837951371, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
       propertyPath: 'trackedObjects.Array.data[0]'
       value: 

@@ -213,6 +213,8 @@ public class TraderUIWindowController : MonoBehaviour
 
             visible = false;
             animator.SetBool("visible", visible);
+
+            ChangeToMainMenu();
         }));
     }
 

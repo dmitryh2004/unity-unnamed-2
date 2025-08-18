@@ -143,6 +143,8 @@ public class HackWindowController : MonoBehaviour
     public void SetHoveredNode(Node node)
     {
         hoveredNode = node;
+        bool activateVirusHoverAnimation = false;
+        int hoveredNodeAttack = 0, hoveredNodeHP = 0;
         string aehTitle = UnvisitedNodeTitle, aehText = UnvisitedNodeText;
         
         // visited inactive node
@@ -174,6 +176,10 @@ public class HackWindowController : MonoBehaviour
                 {
                     int value1 = node.GetValue1();
                     aehText = nodeType.nodeDesc.Replace("X", $"{value1}");
+
+                    activateVirusHoverAnimation = true;
+                    hoveredNodeAttack = nodeType.attackByDifficulty[difficulty - 1];
+                    hoveredNodeHP = hoveredNode.GetCurrentHP();
                 }
             }
         }
@@ -181,12 +187,16 @@ public class HackWindowController : MonoBehaviour
         activeElementHintTitle.text = aehTitle;
         activeElementHintText.text = aehText;
         activeElementHintAnimator.SetBool("visible", true);
+
+        VirusController.Instance.SetHoverAnimation(activateVirusHoverAnimation, hoveredNodeAttack, hoveredNodeHP);
     }
 
     public void ClearHoveredNode()
     {
         hoveredNode = null;
         activeElementHintAnimator.SetBool("visible", false);
+
+        VirusController.Instance.SetHoverAnimation(false, 0, 0);
     }
 
     public void SetHoveredBonus(Bonus bonus)
@@ -220,10 +230,9 @@ public class HackWindowController : MonoBehaviour
 
         if (hoveredNode == null && hoveredBonus == null) return;
 
+        bool correctTarget = false;
         if (interactMode == 0)
         {
-            bool correctTarget = false;
-
             if (hoveredBonus != null)
             {
                 if (!hoveredBonus.IsActive())
@@ -273,7 +282,6 @@ public class HackWindowController : MonoBehaviour
         {
             Debug.Log("Interact mode = 1");
             //checking that target is correct
-            bool correctTarget = false;
             Debug.Log($"hovered node = {hoveredNode}");
             if (hoveredNode != null)
             {
@@ -300,6 +308,9 @@ public class HackWindowController : MonoBehaviour
             targetingBonus = null;
             interactMode = 0;
         }
+
+        if (hoveredNode != null) SetHoveredNode(hoveredNode);
+        if (hoveredBonus != null) SetHoveredBonus(hoveredBonus);
     }
 
     public GridController GetGridController()

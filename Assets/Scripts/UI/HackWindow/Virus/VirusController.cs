@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +10,35 @@ public class VirusController : UpgradableItem
     int currentAttack;
     bool alive = true;
 
+    [Header("Hover Animation")]
+    bool hoverAnimationActive = false;
+    int hoverAnimationHP = 0;
+    bool hoverAnimationNotEnoughHP = false;
+    float hoverAnimationTimer = 0f;
+    [SerializeField] float hoverAnimationDuration = 0.5f;
+    [Space]
+    [SerializeField] float hoverAnimationHPBarMinAlpha = .5f;
+    [Space]
+    [SerializeField] Color NotEnoughHPColor1, NotEnoughHPColor2;
+    [Space]
+    [Tooltip("Задержка в проигрывании анимации при изменении хп")]
+    [SerializeField] float hoverAnimationDelay = 0.5f;
+
+    Coroutine delayCoroutine = null;
+
+    [Header("Low HP Animation")]
+    [SerializeField] int lowHPMaxValue = 20;
+    [SerializeField] float lowHPAnimationDuration = .5f;
+    [SerializeField] Color lowHPColor1, lowHPColor2;
+    bool lowHPAnimationActive = false;
+    float lowHPAnimationTimer = 0f;
+
     float hpRatio, attackRatio;
     const int maxHP = 150, maxAttack = 45;
 
-    [SerializeField] Image hpBar, attackBar;
+    [Header("Links")]
+    [SerializeField] Image hpBar;
+    [SerializeField] Image attackBar;
     [SerializeField] TMP_Text hpText, attackText;
 
     private void Awake()
@@ -42,7 +67,25 @@ public class VirusController : UpgradableItem
         currentHP = (int)GetUpgradableValue1();
         currentAttack = (int)GetUpgradableValue2();
         alive = true;
+        hoverAnimationActive = false;
+        hoverAnimationHP = 0;
+        hoverAnimationNotEnoughHP = false;
+        hoverAnimationTimer = 0f;
+
+        lowHPAnimationActive = false;
+        lowHPAnimationTimer = 0f;
+
         UpdateBars();
+    }
+
+    public void SetHoverAnimation(bool active, int nodeAttack, int nodeHP)
+    {
+        hoverAnimationActive = active;
+        hoverAnimationHP = currentHP - nodeAttack;
+
+        bool canKill = nodeHP <= currentAttack;
+
+        hoverAnimationNotEnoughHP = hoverAnimationHP <= 0 && !canKill;
     }
 
     public void TakeDamage(int damage, bool ignoreEncryption = false)
@@ -104,13 +147,73 @@ public class VirusController : UpgradableItem
 
         hpText.text = $"{currentHP}";
         attackText.text = $"{currentAttack}";
+
+        lowHPAnimationActive = currentHP <= lowHPMaxValue;
+
+        delayCoroutine = StartCoroutine(DelayHoverAnimation());
+    }
+
+    IEnumerator DelayHoverAnimation()
+    {
+        hoverAnimationActive = false;
+        yield return new WaitForSeconds(hoverAnimationDelay);
+        hoverAnimationActive = true;
+        delayCoroutine = null;
     }
 
     private void Update()
     {
-        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, hpRatio, 0.2f);
+        if (hoverAnimationActive)
+        {
+            lowHPAnimationTimer = 0f;
+
+            //update timer
+            hoverAnimationTimer += Time.deltaTime;
+            if (hoverAnimationTimer > hoverAnimationDuration) hoverAnimationTimer = 0f;
+
+            //calculate mix value
+            float mixValue = Mathf.Abs(hoverAnimationTimer / hoverAnimationDuration * 2 - 1);
+
+            //calculate color
+            Color hpTextColor = (hoverAnimationNotEnoughHP) ? Color.Lerp(NotEnoughHPColor1, NotEnoughHPColor2, mixValue) : ((lowHPAnimationActive) ? Color.Lerp(lowHPColor1, lowHPColor2, mixValue) : Color.white);
+
+            //calculate hp bar
+            float fillAmountMin = (float)hoverAnimationHP / maxHP;
+
+            float currentFillAmount = fillAmountMin + mixValue * (hpRatio - fillAmountMin);
+            float hpBarAlpha = hoverAnimationHPBarMinAlpha + mixValue * (1f - hoverAnimationHPBarMinAlpha);
+            Color hpBarColor = hpBar.color;
+            hpBarColor.a = hpBarAlpha;
+
+            //apply values
+            hpText.color = hpTextColor;
+            hpBar.fillAmount = currentFillAmount;
+            hpBar.color = hpBarColor;
+        }
+        else
+        {
+            hoverAnimationTimer = 0f;
+            hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, hpRatio, 0.2f);
+
+            if (lowHPAnimationActive)
+            {
+                //update timer
+                lowHPAnimationTimer += Time.deltaTime;
+                if (lowHPAnimationTimer > lowHPAnimationDuration) lowHPAnimationTimer = 0f;
+
+                //calculate mix value
+                float mixValue = Mathf.Abs(lowHPAnimationTimer / lowHPAnimationDuration * 2 - 1);
+
+                hpText.color = Color.Lerp(lowHPColor1, lowHPColor2, mixValue);
+            }
+            else
+            {
+                lowHPAnimationTimer = 0f;
+                hpText.color = Color.white;
+            }
+            
+            hpBar.color = Color.white;
+        }
         attackBar.fillAmount = Mathf.Lerp(attackBar.fillAmount, attackRatio, 0.2f);
     }
-
-    
 }

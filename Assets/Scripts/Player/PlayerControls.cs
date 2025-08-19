@@ -788,6 +788,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""486f252c-7d9d-4d97-b7de-61aab17d9b4d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -856,6 +865,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""SellItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""423281eb-610b-424b-99ab-f9ab54993140"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -908,6 +928,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_TraderUI_Option3 = m_TraderUI.FindAction("Option3", throwIfNotFound: true);
         m_TraderUI_Confirm = m_TraderUI.FindAction("Confirm", throwIfNotFound: true);
         m_TraderUI_SellItem = m_TraderUI.FindAction("SellItem", throwIfNotFound: true);
+        m_TraderUI_Back = m_TraderUI.FindAction("Back", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1732,6 +1753,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_TraderUI_Option3;
     private readonly InputAction m_TraderUI_Confirm;
     private readonly InputAction m_TraderUI_SellItem;
+    private readonly InputAction m_TraderUI_Back;
     /// <summary>
     /// Provides access to input actions defined in input action map "TraderUI".
     /// </summary>
@@ -1767,6 +1789,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "TraderUI/SellItem".
         /// </summary>
         public InputAction @SellItem => m_Wrapper.m_TraderUI_SellItem;
+        /// <summary>
+        /// Provides access to the underlying input action "TraderUI/Back".
+        /// </summary>
+        public InputAction @Back => m_Wrapper.m_TraderUI_Back;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1811,6 +1837,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SellItem.started += instance.OnSellItem;
             @SellItem.performed += instance.OnSellItem;
             @SellItem.canceled += instance.OnSellItem;
+            @Back.started += instance.OnBack;
+            @Back.performed += instance.OnBack;
+            @Back.canceled += instance.OnBack;
         }
 
         /// <summary>
@@ -1840,6 +1869,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SellItem.started -= instance.OnSellItem;
             @SellItem.performed -= instance.OnSellItem;
             @SellItem.canceled -= instance.OnSellItem;
+            @Back.started -= instance.OnBack;
+            @Back.performed -= instance.OnBack;
+            @Back.canceled -= instance.OnBack;
         }
 
         /// <summary>
@@ -2158,5 +2190,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSellItem(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Back" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBack(InputAction.CallbackContext context);
     }
 }

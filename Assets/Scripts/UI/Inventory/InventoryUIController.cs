@@ -75,5 +75,7 @@ public class InventoryUIController : MonoBehaviour
     public void ClearOffset()
     {
         inventoryLayoutElement.ClearOffset();
+        UpdateInventory();
+        UpdateActiveItem();
     }
 }

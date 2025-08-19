@@ -181,6 +181,7 @@ public class HackWindowController : MonoBehaviour
                     hoveredNodeAttack = nodeType.attackByDifficulty[difficulty - 1];
                     hoveredNodeHP = hoveredNode.GetCurrentHP();
                 }
+                Debug.Log($"node type: {nodeType.nodeName}, activate hover animation: {activateVirusHoverAnimation}");
             }
         }
 

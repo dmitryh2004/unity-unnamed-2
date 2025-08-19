@@ -174,6 +174,7 @@ public class ChestUIController : MonoBehaviour
     public void ClearOffset()
     {
         inventoryLayoutElement.ClearOffset();
+        UpdateInventory();
     }
 
     public void ChestScrollDown()
@@ -189,5 +190,6 @@ public class ChestUIController : MonoBehaviour
     public void ClearChestOffset()
     {
         chestLayoutElement.ClearOffset();
+        UpdateChest();
     }
 }

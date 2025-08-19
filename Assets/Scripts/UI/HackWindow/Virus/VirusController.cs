@@ -81,11 +81,16 @@ public class VirusController : UpgradableItem
     public void SetHoverAnimation(bool active, int nodeAttack, int nodeHP)
     {
         hoverAnimationActive = active;
-        hoverAnimationHP = currentHP - nodeAttack;
+        if (!active && delayCoroutine != null)
+        {
+            StopCoroutine(delayCoroutine);
+            delayCoroutine = null;
+        }
+        hoverAnimationHP = hoverAnimationActive ? currentHP - nodeAttack : 0;
 
         bool canKill = nodeHP <= currentAttack;
 
-        hoverAnimationNotEnoughHP = hoverAnimationHP <= 0 && !canKill;
+        hoverAnimationNotEnoughHP = hoverAnimationActive && hoverAnimationHP <= 0 && !canKill;
     }
 
     public void TakeDamage(int damage, bool ignoreEncryption = false)
@@ -150,7 +155,8 @@ public class VirusController : UpgradableItem
 
         lowHPAnimationActive = currentHP <= lowHPMaxValue;
 
-        delayCoroutine = StartCoroutine(DelayHoverAnimation());
+        if (hoverAnimationActive)
+            delayCoroutine = StartCoroutine(DelayHoverAnimation());
     }
 
     IEnumerator DelayHoverAnimation()

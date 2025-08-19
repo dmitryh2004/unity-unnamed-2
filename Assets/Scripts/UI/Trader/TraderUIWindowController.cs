@@ -254,4 +254,89 @@ public class TraderUIWindowController : MonoBehaviour
             }
         }
     }
+
+    public void Number1Press(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            if (currentScreen == 0)
+            {
+                ((TraderUIMainScreenController)mainMenuScreen).ChangeToQuotaScreen();
+            }
+            else if (currentScreen == 2)
+            {
+                ((TraderUINoQuotaScreenController)noQuotaScreen).SelectTask(1);
+            }
+            else if (currentScreen == 4)
+            {
+                ((TraderUIEquipmentScreenController)upgradeEquipmentScreen).SetSelectedItem(0);
+            }
+        }
+    }
+
+    public void Number2Press(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            if (currentScreen == 0)
+            {
+                ((TraderUIMainScreenController)mainMenuScreen).ChangeToSellScreen();
+            }
+            else if (currentScreen == 2)
+            {
+                ((TraderUINoQuotaScreenController)noQuotaScreen).SelectTask(2);
+            }
+            else if (currentScreen == 4)
+            {
+                ((TraderUIEquipmentScreenController)upgradeEquipmentScreen).SetSelectedItem(1);
+            }
+        }
+    }
+
+    public void Number3Press(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            if (currentScreen == 0)
+            {
+                ((TraderUIMainScreenController)mainMenuScreen).ChangeToEquipmentScreen();
+            }
+            else if (currentScreen == 2)
+            {
+                ((TraderUINoQuotaScreenController)noQuotaScreen).SelectTask(3);
+            }
+            else if (currentScreen == 4)
+            {
+                ((TraderUIEquipmentScreenController)upgradeEquipmentScreen).SetSelectedItem(2);
+            }
+        }
+    }
+
+    public void BackPressed(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            ChangeToMainMenu();
+        }
+    }
+
+    public void EnterPressed(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "TraderUI")
+        {
+            if (currentScreen == 2)
+            {
+                ((TraderUINoQuotaScreenController)noQuotaScreen).AcceptTask();
+            }
+            else if (currentScreen == 4)
+            {
+                ((TraderUIEquipmentScreenController)upgradeEquipmentScreen).UpgradeEquipment();
+            }
+        }
+    }
 }

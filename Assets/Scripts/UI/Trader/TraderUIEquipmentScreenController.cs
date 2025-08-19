@@ -188,6 +188,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
 
     public void UpgradeEquipment()
     {
+        if (selectedItem < 0 || selectedItem > 3) return;
         UpgradableItem equipment = equipmentCards[selectedItem].GetEquipment();
         int upgradeCost = equipment.GetUpgradeCost(equipment.GetLevel() + 1);
         if (PlayerWallet.Instance.CanAfford(upgradeCost))

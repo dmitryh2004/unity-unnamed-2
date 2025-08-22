@@ -131,6 +131,12 @@ public class LevelGenerator : MonoBehaviour
                     break;
                 }
             }
+
+            if (extended == null)
+            {
+                Debug.Log("Level generator - nothing to extend");
+                return;
+            }
             
             RoomScriptable extendedType = extended.GetRoomType();
             int? direction = extended.SelectRandomUnusedDirection();

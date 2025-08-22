@@ -35,7 +35,6 @@ public class ObjectPivotAdjuster : MonoBehaviour
 
     public void RecalculateOffsets()
     {
-        Debug.Log($"{gameObject.name}: parent width = {anchorRectTransform.rect.width}, height = {anchorRectTransform.rect.height}");
         float offsetX = anchorRectTransform.rect.width / 2,
             offsetY = anchorRectTransform.rect.height / 2;
         offsets = new Vector2[] {
@@ -124,7 +123,6 @@ public class ObjectPivotAdjuster : MonoBehaviour
             {
                 rectTransform.pivot = bestPivot;
                 rectTransform.localPosition = bestPosition;
-                Debug.Log($"excess x,y: {minExcessX}, {minExcessY}");
             }
         }
         catch (NullReferenceException e)

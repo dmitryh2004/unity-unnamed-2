@@ -12,6 +12,10 @@ public class GuardianManager : MonoBehaviour
     [SerializeField] int minGuardians;
     [SerializeField] int maxGuardians;
 
+    [Header("Call Guardians Options")]
+    [SerializeField] bool checkDistance = false;
+    [SerializeField] float maxAggroDistance = 100f;
+
     private void Awake()
     {
         if (Instance != null) 
@@ -41,6 +45,9 @@ public class GuardianManager : MonoBehaviour
     {
         foreach (var guardian in guardians)
         {
+            bool call = !checkDistance || (checkDistance && (Vector3.Distance(player.position, guardian.transform.position) <= maxAggroDistance));
+            if (!call) continue;
+
             if (guardian.gameObject.activeInHierarchy)
                 guardian.CallGuardian(player, player.position);
         }

@@ -73,10 +73,10 @@ PrefabInstance:
       addedObject: {fileID: 4481224414451473396}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1252645489227763879}
+      addedObject: {fileID: -1323014176226686765}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1323014176226686765}
+      addedObject: {fileID: -9212479703225233043}
   m_SourcePrefab: {fileID: 100100000, guid: cb74b8f5baef43b438cf1f25237bae23, type: 3}
 --- !u!1 &3472194043839684932 stripped
 GameObject:
@@ -109,9 +109,23 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!64 &1252645489227763879
-MeshCollider:
+  m_CollisionDetection: 1
+--- !u!114 &-1323014176226686765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472194043839684932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bbc163a97d43246aebc83c40fe42b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1
+  lootCategory: {fileID: 11400000, guid: 213c2d6d7da4b9645b60557b77d78ba0, type: 2}
+--- !u!65 &-9212479703225233043
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,21 +142,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8068972817046575654, guid: ab4acad2eff41b34189b35c7901d0335, type: 3}
---- !u!114 &-1323014176226686765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3472194043839684932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5bbc163a97d43246aebc83c40fe42b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionRange: 1
-  lootCategory: {fileID: 11400000, guid: 213c2d6d7da4b9645b60557b77d78ba0, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 0.0009166668, y: 0.0009166668, z: 0.00022993826}
+  m_Center: {x: 0, y: 0, z: -0.000010030875}

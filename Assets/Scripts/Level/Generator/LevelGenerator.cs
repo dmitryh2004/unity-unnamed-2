@@ -104,6 +104,11 @@ public class LevelGenerator : MonoBehaviour
             {
                 generatedRooms.Add(room.transform.position, room);
                 extensionCandidates.Add(new KeyValuePair<RoomObject, int>(room, room.GetRoomType().extensionPriority));
+
+                RoomScriptable type = room.GetRoomType();
+
+                if (type.isProtectedRoom) protectedRoomsCount++;
+                if (type.isSecuredRoom) securedRoomsCount++;
             }
 
             UpdateNeighbours();

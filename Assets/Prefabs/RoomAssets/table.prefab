@@ -213,29 +213,39 @@ MonoBehaviour:
       maxCount: 1
     weight: 2
   - possibleLoot:
-    - prefab: {fileID: 3472194043839684932, guid: 0ad18ad87043a1e40a48bcbbfbc8e012, type: 3}
-      weight: 1
+    - prefab: {fileID: 5749776810664676133, guid: c3b4db520b5b9e348978130998a82708, type: 3}
+      weight: 50
       minCount: 1
-      maxCount: 1
-    weight: 2
-  - possibleLoot:
-    - prefab: {fileID: 4025742974930995176, guid: 6139743e48d414c40b03a49433306a93, type: 3}
-      weight: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 29eb1753311c88843b957cdd406a70d8, type: 3}
+      weight: 45
       minCount: 1
-      maxCount: 1
-    weight: 2
-  - possibleLoot:
-    - prefab: {fileID: 9035922684619723615, guid: 1fb84241d6ccede49b59e6752407625e, type: 3}
-      weight: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 20bf2cff704493c4292714aca812ba06, type: 3}
+      weight: 55
       minCount: 1
-      maxCount: 1
-    weight: 2
-  - possibleLoot:
-    - prefab: {fileID: 6132188716594901375, guid: d2d322acc74f651409e81552323876fa, type: 3}
-      weight: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 347cbf6285eedc74a86f6557a5191ffb, type: 3}
+      weight: 62
       minCount: 1
-      maxCount: 1
-    weight: 2
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 465568f85ca1e7143bb550ce6cc642dd, type: 3}
+      weight: 83
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 89d72f4a783f45748acff40cba81c332, type: 3}
+      weight: 38
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: fb9c7ee7d7c2ac64cbaae7ebde95af27, type: 3}
+      weight: 71
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 5749776810664676133, guid: 3a20cdfd6df3b744dbe0080c5029def1, type: 3}
+      weight: 100
+      minCount: 1
+      maxCount: 2
+    weight: 8
   lootChance: 50
   lootPointsParent: {fileID: 4913593033323707885}
   maxLootPointsUsed: -1

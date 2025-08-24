@@ -899,29 +899,301 @@ MonoBehaviour:
       maxCount: 1
     weight: 4
   - possibleLoot:
-    - prefab: {fileID: 3472194043839684932, guid: 0ad18ad87043a1e40a48bcbbfbc8e012, type: 3}
+    - prefab: {fileID: 4919065344591049517, guid: 904033512e6fd384e9d1248f2446a52a, type: 3}
       weight: 1
       minCount: 1
-      maxCount: 2
-    weight: 4
+      maxCount: 1
+    weight: 2
   - possibleLoot:
-    - prefab: {fileID: 4025742974930995176, guid: 6139743e48d414c40b03a49433306a93, type: 3}
-      weight: 1
+    - prefab: {fileID: 5749776810664676133, guid: 3a20cdfd6df3b744dbe0080c5029def1, type: 3}
+      weight: 5000
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: fb9c7ee7d7c2ac64cbaae7ebde95af27, type: 3}
+      weight: 3550
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: 89d72f4a783f45748acff40cba81c332, type: 3}
+      weight: 1900
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: 465568f85ca1e7143bb550ce6cc642dd, type: 3}
+      weight: 4150
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: 347cbf6285eedc74a86f6557a5191ffb, type: 3}
+      weight: 3100
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: 20bf2cff704493c4292714aca812ba06, type: 3}
+      weight: 2750
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: 29eb1753311c88843b957cdd406a70d8, type: 3}
+      weight: 2250
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 5749776810664676133, guid: c3b4db520b5b9e348978130998a82708, type: 3}
+      weight: 2250
+      minCount: 2
+      maxCount: 4
+    - prefab: {fileID: 9070918550130568142, guid: 724c427c538b4f544ac346cb81b5bccc, type: 3}
+      weight: 2000
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: b547de290bf9d9942bd571263db554ef, type: 3}
+      weight: 1420
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: 6f8f996c9162bc649b60c96bf35f393e, type: 3}
+      weight: 760
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: a07d56a643320c449ae0e529466ba330, type: 3}
+      weight: 1660
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: 667dfb0fdf9fbd2488b7951e9bfb7d44, type: 3}
+      weight: 1240
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: 2ada37f055728034993639a3db367659, type: 3}
+      weight: 1100
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: b156238cfec3ab14e8b8f5199e3413ce, type: 3}
+      weight: 900
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9070918550130568142, guid: 71fbd64f36bcc094db95638787aff9dc, type: 3}
+      weight: 1000
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: cc4108ab96cabf342b30ded7fc928ceb, type: 3}
+      weight: 1500
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: 92295d1fb038b0d4b9711f8c97f6eaa1, type: 3}
+      weight: 1065
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: b93cb466c8931c74e947438d304adda4, type: 3}
+      weight: 570
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: aaad3857d41e95e4a9992298d0179457, type: 3}
+      weight: 1245
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: 2258444e1c39fb14fa9280e090b5aeca, type: 3}
+      weight: 930
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: b370063d1d95d0d408edb0019b67b69e, type: 3}
+      weight: 825
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: dd7f064acb680ab45aa9742307a88095, type: 3}
+      weight: 675
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 7845411707002501445, guid: dfc8845cad8e6254eb4f5612f9bb9052, type: 3}
+      weight: 750
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: 70fdeb6f8bc13264d96254cd9362bb62, type: 3}
+      weight: 1200
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: c4f8336e1a9606f4baaee691b9f2deb2, type: 3}
+      weight: 852
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: c50fb686765d73c4dabf95d93e04f2dc, type: 3}
+      weight: 456
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: f318488bc587d694ea952a3f51dd9398, type: 3}
+      weight: 996
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: 13254e8e58bd79b45b7d73e2aae2926a, type: 3}
+      weight: 744
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: fd42c8b57c9a78345a8fc4b58650991d, type: 3}
+      weight: 660
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: 24eabe614ac65714993ccf3a69c82be7, type: 3}
+      weight: 540
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 9107143924662177264, guid: 76fc74fa95867f44e8b3bc0051a08a8f, type: 3}
+      weight: 600
+      minCount: 2
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: 49c668c97164748438eb0ea983a54284, type: 3}
+      weight: 1000
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: 15b6ba64b87bc1443819b62dd6f0f8b5, type: 3}
+      weight: 710
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: bc46eefb8a8958644b866bb8c42bf994, type: 3}
+      weight: 380
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: 6c06055d1d91c9141b5cb1f6d5546e4e, type: 3}
+      weight: 830
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: e3681c1227278f5478873d8d8cf29898, type: 3}
+      weight: 620
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: a30cc7149821916448cda9af08c0de0b, type: 3}
+      weight: 550
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: fafc5a20706f0f14d97d6bf95412b002, type: 3}
+      weight: 450
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 5024384680047509966, guid: 52e9489e4e3e67146b1d564da050cda0, type: 3}
+      weight: 500
+      minCount: 1
+      maxCount: 3
+    - prefab: {fileID: 7070165356929824710, guid: 490039cf8f4fa1c46aebda6f6291ac88, type: 3}
+      weight: 600
       minCount: 1
       maxCount: 2
-    weight: 4
-  - possibleLoot:
-    - prefab: {fileID: 9035922684619723615, guid: 1fb84241d6ccede49b59e6752407625e, type: 3}
-      weight: 1
+    - prefab: {fileID: 7070165356929824710, guid: c11e92222419c4d4a9cd8b5e77544212, type: 3}
+      weight: 426
       minCount: 1
       maxCount: 2
-    weight: 4
-  - possibleLoot:
+    - prefab: {fileID: 7070165356929824710, guid: ae1d2758f3080774ca4dee2263678b1b, type: 3}
+      weight: 228
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 7070165356929824710, guid: 82e26a03bad11b84fa30cfc0152d28ee, type: 3}
+      weight: 498
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 7070165356929824710, guid: abda4adfdfa4b454eb66ab73b4b62433, type: 3}
+      weight: 372
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 7070165356929824710, guid: b73f345db5325e64388cf7c04b559cad, type: 3}
+      weight: 330
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 7070165356929824710, guid: 35ab65000b348a740b5c5b98217783e8, type: 3}
+      weight: 270
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 7070165356929824710, guid: cd63a564ae572da4d9ce91aaaa527521, type: 3}
+      weight: 300
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 07dcdd5580057c84ba69f84aed1ce980, type: 3}
+      weight: 400
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 06dd0423246d7f146ac062f4907860a2, type: 3}
+      weight: 284
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 6117af60e7eef8d43bd527f08655a2fc, type: 3}
+      weight: 152
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 3cd0562f7aa90924f95bfb18c9551d23, type: 3}
+      weight: 332
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: c443d4d9cc098754b8cc0c5192f7a0e3, type: 3}
+      weight: 248
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 0dc2e416135b7cf49b79c7c60f993889, type: 3}
+      weight: 220
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: 400bb7d898f94d740bd676daabc93c43, type: 3}
+      weight: 180
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 1054307760147014033, guid: b7db30859d311274ba7733deb387f7e4, type: 3}
+      weight: 200
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3472194043839684932, guid: 9702660a65ed01f44a16f90d1f503542, type: 3}
+      weight: 200
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3472194043839684932, guid: c2168b8390137054c9c079efe5c0753d, type: 3}
+      weight: 142
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3472194043839684932, guid: aca1bffee23279945b3027f596a89245, type: 3}
+      weight: 76
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3472194043839684932, guid: d66fb05329824c6439fc180542801129, type: 3}
+      weight: 166
+      minCount: 1
+      maxCount: 2
     - prefab: {fileID: 6132188716594901375, guid: d2d322acc74f651409e81552323876fa, type: 3}
-      weight: 1
+      weight: 124
       minCount: 1
       maxCount: 2
-    weight: 4
+    - prefab: {fileID: 9035922684619723615, guid: 1fb84241d6ccede49b59e6752407625e, type: 3}
+      weight: 110
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 4025742974930995176, guid: 6139743e48d414c40b03a49433306a93, type: 3}
+      weight: 90
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3472194043839684932, guid: 0ad18ad87043a1e40a48bcbbfbc8e012, type: 3}
+      weight: 100
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: 6ecd77c7cf01bd6468ffd228a090171c, type: 3}
+      weight: 100
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: a292e20373e187047895847f40058049, type: 3}
+      weight: 71
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: dd41e58805fad154a80b3f2ca70721c7, type: 3}
+      weight: 38
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: a2afad58608290a41bbae31304e76610, type: 3}
+      weight: 83
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: 8dcca223047d3644d9f2cf8691d91275, type: 3}
+      weight: 62
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: 32b13d7c02ad08441ab25a205cf65f82, type: 3}
+      weight: 55
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: 6c491b4ff0c70604aafd86cb5b1ff730, type: 3}
+      weight: 45
+      minCount: 1
+      maxCount: 2
+    - prefab: {fileID: 3426893786094170546, guid: 3438c72646dc92342b3c727ec55f6fe1, type: 3}
+      weight: 50
+      minCount: 1
+      maxCount: 2
+    weight: 16
   - possibleLoot:
     - prefab: {fileID: 1906785838874317257, guid: b43a5851d57532d4bbb94748a1ea871d, type: 3}
       weight: 2

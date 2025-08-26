@@ -6,6 +6,8 @@ public class DoorController : Lockable
 {
     Animator anim;
     NavMeshLink navMeshLink = null;
+    [Tooltip("Ќазвание двери (дверь, €щик, сейф и т.д.) в винительном падеже (открыть что?)")]
+    [SerializeField] string doorName = "дверь";
     bool opened = false;
     private void Start()
     {
@@ -18,6 +20,8 @@ public class DoorController : Lockable
         }
         if (navMeshLink != null) navMeshLink.activated = !IsLocked();
     }
+
+    public string GetName() => doorName;
 
     public bool IsOpen()
     {

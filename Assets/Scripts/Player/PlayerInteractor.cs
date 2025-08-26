@@ -92,10 +92,20 @@ public class PlayerInteractor : MonoBehaviour
                             if (doorController.IsOpen())
                             {
                                 closeDoorHintActive = true;
+                                TMP_Text hintText = HintManager.Instance.GetHintText(HintManager.Instance.GetHintByName("CloseDoorHint"));
+                                if (hintText)
+                                {
+                                    hintText.text = $"[E]: закрыть {doorController.GetName()}";
+                                }
                             }
                             else
                             {
                                 openDoorHintActive = true;
+                                TMP_Text hintText = HintManager.Instance.GetHintText(HintManager.Instance.GetHintByName("OpenDoorHint"));
+                                if (hintText)
+                                {
+                                    hintText.text = $"[E]: открыть {doorController.GetName()}";
+                                }
                             }
                         }
                     }

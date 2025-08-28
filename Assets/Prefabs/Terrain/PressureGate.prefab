@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 650253797b40b1341992a0121b2208a1, type: 3}
       propertyPath: m_Name
-      value: Gate
+      value: PressureGate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 650253797b40b1341992a0121b2208a1, type: 3}
       propertyPath: m_Layer
@@ -148,6 +148,7 @@ MonoBehaviour:
   locked: 0
   locker: {fileID: 0}
   doorName: "\u0432\u043E\u0440\u043E\u0442\u0430"
+  canBeOpenedManually: 0
 --- !u!65 &1166126290568047520
 BoxCollider:
   m_ObjectHideFlags: 0

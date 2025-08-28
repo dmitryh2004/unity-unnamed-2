@@ -83,7 +83,14 @@ public class PlayerInteractor : MonoBehaviour
                 {
                     if (interactable is DoorController doorController)
                     {
-                        if (doorController.IsLocked())
+                        if (!doorController.CanBeOpenedManually())
+                        {
+                            if (!doorController.IsOpen())
+                            {
+                                unavailableHintActive = true;
+                            }
+                        }
+                        else if (doorController.IsLocked())
                         {
                             lockedHintActive = true;
                         }

@@ -8,6 +8,7 @@ public class DoorController : Lockable
     NavMeshLink navMeshLink = null;
     [Tooltip("Ќазвание двери (дверь, €щик, сейф и т.д.) в винительном падеже (открыть что?)")]
     [SerializeField] string doorName = "дверь";
+    [SerializeField] bool canBeOpenedManually = true;
     bool opened = false;
     private void Start()
     {
@@ -28,12 +29,22 @@ public class DoorController : Lockable
         return !IsLocked() && opened;
     }
 
+    public bool CanBeOpenedManually() => canBeOpenedManually;
+
     public override void Interact()
+    {
+        if (canBeOpenedManually)
+        {
+            ChangeDoorState(!opened);
+        }
+    }
+
+    public void ChangeDoorState(bool opened)
     {
         if (!IsLocked())
         {
-            opened = !opened;
-            if (opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
+            this.opened = opened;
+            if (this.opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
         }
         if (navMeshLink != null) navMeshLink.activated = !IsLocked();
     }

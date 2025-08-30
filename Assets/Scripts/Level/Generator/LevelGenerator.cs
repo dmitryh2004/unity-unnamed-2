@@ -369,11 +369,11 @@ public class LevelGenerator : MonoBehaviour
                 GameObject usingPrefab = null;
                 if (n.direction == Directions.north)
                 {
-                    usingPrefab = room.GetVerticalCoridorPrefab() ?? coridorVertical;
+                    usingPrefab = (room.GetVerticalCoridorPrefab() != null) ? room.GetVerticalCoridorPrefab() : coridorVertical;
                 }
                 else
                 {
-                    usingPrefab = room.GetHorizontalCoridorPrefab() ?? coridorHorizontal;
+                    usingPrefab = (room.GetHorizontalCoridorPrefab() != null) ? room.GetHorizontalCoridorPrefab() : coridorHorizontal;
                 }
 
                 RoomObject neighbour = room.GetNeighbour(i);

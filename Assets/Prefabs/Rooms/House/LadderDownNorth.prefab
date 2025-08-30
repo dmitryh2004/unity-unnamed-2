@@ -325,11 +325,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomType: {fileID: 11400000, guid: fbb067245f3f8be4ea82493009a00502, type: 2}
   dontExtend: 0
+  neighbours: []
   doorObjects:
   - {fileID: 7377434734068977377}
   - {fileID: 1054176012229714439}
   lootContainers: []
   lootChance: 100
+  coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
+  coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
 --- !u!1 &7377434734068977377
 GameObject:
   m_ObjectHideFlags: 0

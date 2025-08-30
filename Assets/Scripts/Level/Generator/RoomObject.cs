@@ -37,6 +37,8 @@ public class RoomObject : MonoBehaviour
     [SerializeField] List<LootContainer> lootContainers = new();
     [SerializeField] int lootChance = 100;
 
+    [SerializeField] GameObject coridorHorizontal, coridorVertical;
+
     private void Awake()
     {
         foreach (Neighbour n in roomType.neighbours)
@@ -107,6 +109,9 @@ public class RoomObject : MonoBehaviour
 
     public RoomScriptable GetRoomType() => roomType;
     public bool DontExtend() => dontExtend;
+
+    public GameObject GetHorizontalCoridorPrefab() => coridorHorizontal;
+    public GameObject GetVerticalCoridorPrefab() => coridorVertical;
 
     public bool HasNeighbour(int direction)
     {

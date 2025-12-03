@@ -68,7 +68,7 @@ public class PlayerInteractor : MonoBehaviour
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
             hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false,
             spaceshipPanelHintActive = false, spaceshipLeverHintActive = false, unavailableHintActive = false,
-            openTraderUIHintActive = false;
+            openTraderUIHintActive = false, useJewerlyTableHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -171,6 +171,10 @@ public class PlayerInteractor : MonoBehaviour
                     {
                         openTraderUIHintActive = true;
                     }
+                    else if (interactable is JewerlyTable jewerlyTable)
+                    {
+                        useJewerlyTableHintActive = true;
+                    }
                 }
                 else
                 {
@@ -191,5 +195,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SpaceshipLeverHint"), spaceshipLeverHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UnavailableHint"), unavailableHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenTraderUIHint"), openTraderUIHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseJewerlyTableHint"), useJewerlyTableHintActive);
     }
 }

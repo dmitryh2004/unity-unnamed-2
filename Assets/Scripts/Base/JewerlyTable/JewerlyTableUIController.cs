@@ -1,0 +1,159 @@
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+public class JewerlyTableUIController : UIWindowCameraTransitioning
+{
+    [Header("Input")]
+    [SerializeField] PlayerInput playerInput;
+    [Header("Stone types")]
+    [SerializeField] List<string> stoneTypes = new ();
+    [Header("UI elements")]
+    [SerializeField] TMP_Dropdown recipeDropdown;
+    [SerializeField] TMP_Dropdown stoneTypeDropdown;
+    [Space(10)]
+    [SerializeField] GameObject notFoundCraft;
+    [Space(10)]
+    [SerializeField] GameObject foundCraft;
+    [SerializeField] TMP_Text requiredMaterialsText;
+    [SerializeField] TMP_Text outputVariantsText;
+    [SerializeField] Button craftButton;
+    [Header("Links")]
+    [SerializeField] JewerlyTable jewerlyTable;
+
+    int currentRecipe = 1, currentStoneType = 0;
+
+    protected override void UpdateCurrentInputMap()
+    {
+        if (visible)
+        {
+            InputActionMapSwitcher.Instance.SwitchMap("JewerlyTableUI");
+        }
+        else
+        {
+            InputActionMapSwitcher.Instance.SwitchMap("Gameplay");
+        }
+    }
+
+    protected override void ChangeToMainMenu()
+    {
+        currentRecipe = 1;
+        currentStoneType = 0;
+
+        recipeDropdown.value = 0;
+        stoneTypeDropdown.value = 0;
+
+        UpdateCraft();
+    }
+
+    public void CloseWindow(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        if (playerInput.currentActionMap.name == "JewerlyTableUI")
+        {
+            HideWindow();
+        }   
+    }
+
+    public void UpdateCraft()
+    {
+        int recipe = currentRecipe;
+        int stoneType = currentStoneType;
+        string craftName = "";
+
+        if (recipe >= 1 && recipe <= 7)
+        {
+            craftName = $"{stoneTypes[stoneType]}{recipe}";
+        }
+        else if (recipe == 8)
+        {
+            craftName = "Rubik";
+        }
+
+        //update dropdowns
+        stoneTypeDropdown.interactable = recipe >= 1 && recipe <= 7;
+
+        Debug.Log(craftName);
+
+        JewerlyTableCraft jewerlyTableCraft = JewerlyTableCraftManager.Instance.GetCraftByName(craftName);
+
+        foundCraft.SetActive(jewerlyTableCraft != null);
+        notFoundCraft.SetActive(jewerlyTableCraft == null);
+
+        if (jewerlyTableCraft != null)
+        {
+            bool canCraft = true;
+            // build required materials
+            string reqMaterials = "";
+            List<string> reqMaterialsList = new ();
+            Dictionary<int, int> items = InventorySystem.Instance.GetItems();
+            for (int i = 0; i < jewerlyTableCraft.requiredItems.Count; i++)
+            {
+                LootCategory lc = jewerlyTableCraft.requiredItems[i];
+                int countInInventory = (items.ContainsKey(lc.id)) ? items[lc.id] : 0;
+                int requiredCount = jewerlyTableCraft.requiredItemsCount[i];
+
+                if (canCraft && countInInventory < requiredCount) canCraft = false;
+                string reqMaterialEntry = (countInInventory >= requiredCount) ? $"- {lc.lootName}: {countInInventory} / {requiredCount} шт." : $"- {lc.lootName}: <color=#ff0000>{countInInventory}</color> / {requiredCount} шт.";
+                reqMaterialsList.Add(reqMaterialEntry);
+            }
+
+            reqMaterials = string.Join("\n", reqMaterialsList);
+
+            requiredMaterialsText.text = reqMaterials;
+
+            //build output variants
+            string outputVariants = "";
+            List<string> outputVariantsList = new ();
+            // calculate total weight
+            int totalWeight = 0;
+            int tableLevel = jewerlyTable.GetLevel();
+
+            for (int i = 0; i < jewerlyTableCraft.outputVariants.Count; i++)
+            {
+                totalWeight += (int) jewerlyTableCraft.outputVariants[i].weight.FirstOrDefault((x) => { return x.level == tableLevel; }).value;
+            }
+
+            for (int i = 0; i < jewerlyTableCraft.outputVariants.Count; i++)
+            {
+                int weight = (int)jewerlyTableCraft.outputVariants[i].weight.FirstOrDefault((x) => { return x.level == tableLevel; }).value;
+                float ratio = (float)weight / totalWeight;
+
+                string chanceText = $"<color=#{((i == 0) ? "00ff00" : "ff0000")}>С вероятностью {(int)(ratio * 100)}%:</color>";
+
+                List<string> outputs = new ();
+
+                for (int j = 0; j < jewerlyTableCraft.outputVariants[i].outputItems.Count; j++)
+                {
+                    LootCategory lc = jewerlyTableCraft.outputVariants[i].outputItems[j];
+                    int min = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].min;
+                    int max = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].max;
+                    outputs.Add($"- {lc.lootName} - {((min != max) ? $"{min}-{max}" : $"{min}")} шт.");
+                }
+
+                outputVariantsList.Add($"{chanceText}\n{((outputs.Count > 0) ? string.Join("\n", outputs) : "ничего")}");
+            }
+
+            outputVariants = string.Join("\n\n", outputVariantsList);
+
+            outputVariantsText.text = outputVariants;
+
+            craftButton.interactable = canCraft;
+        }
+    }
+
+    public void OnRecipeChanged(int newRecipe)
+    {
+        currentRecipe = newRecipe + 1;
+        UpdateCraft();
+    }
+
+    public void OnStoneTypeChanged(int newStoneType)
+    {
+        currentStoneType = newStoneType;
+        UpdateCraft();
+    }
+}

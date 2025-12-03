@@ -792,6 +792,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "JewerlyTableUI",
+            "id": "58e55a45-1a21-43cb-aecb-a13cbad953ac",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "a6c3c7ce-090b-43d8-99c0-45a7c09e10a5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1117badc-b839-4e49-9b03-8c415811f899",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8017e56423dd40140a269f000d8c52ac, type: 3}
   m_Name: Jewerly Table Craft Rubik
   m_EditorClassIdentifier: 
-  craftName: Emerald2
+  craftName: Rubik
   requiredItems:
-  - {fileID: 11400000, guid: f5d593a708188ac45bb2dccf3efab01f, type: 2}
-  - {fileID: 11400000, guid: f991d9a408a49ef4c92ef85231d65192, type: 2}
-  requiredItemsCount: 0100000002000000
+  - {fileID: 11400000, guid: cd132b9fa1c01ba4bb0a7c363b505590, type: 2}
+  - {fileID: 11400000, guid: d275a28d1a27fe44bbdc2399aa396025, type: 2}
+  - {fileID: 11400000, guid: f90e04e60280e794cb60fe564704268e, type: 2}
+  - {fileID: 11400000, guid: 51f2053f4eabeb348b0270ee071c71aa, type: 2}
+  - {fileID: 11400000, guid: cf51fc056330d7743b7184a8591299de, type: 2}
+  - {fileID: 11400000, guid: 08b12f01100d2d64b8e414f1a072e61b, type: 2}
+  - {fileID: 11400000, guid: 7933b3db3a16d3940a219826bffbe8e6, type: 2}
+  - {fileID: 11400000, guid: 9bec841a025c28a4494d98635d419cea, type: 2}
+  requiredItemsCount: 0900000009000000090000000900000009000000090000000100000001000000
   outputVariants:
   - weight:
     - level: 1
@@ -24,57 +30,34 @@ MonoBehaviour:
     - level: 2
       value: 1
     - level: 3
-      value: 2
+      value: 1
     - level: 4
+      value: 1
+    - level: 5
+      value: 1
+    - level: 6
+      value: 1
+    - level: 7
+      value: 1
+    outputItems:
+    - {fileID: 11400000, guid: 69f89b372da23bc4482f93fc0ae4326b, type: 2}
+    outputItemsAmount:
+    - min: 1
+      max: 1
+  - weight:
+    - level: 1
+      value: 99
+    - level: 2
+      value: 49
+    - level: 3
+      value: 24
+    - level: 4
+      value: 11
+    - level: 5
+      value: 7
+    - level: 6
+      value: 4
+    - level: 7
       value: 3
-    - level: 5
-      value: 6
-    - level: 6
-      value: 8
-    - level: 7
-      value: 17
-    outputItems:
-    - {fileID: 11400000, guid: 51f2053f4eabeb348b0270ee071c71aa, type: 2}
-    outputItemsAmount:
-    - min: 1
-      max: 1
-  - weight:
-    - level: 1
-      value: 1
-    - level: 2
-      value: 1
-    - level: 3
-      value: 1
-    - level: 4
-      value: 1
-    - level: 5
-      value: 1
-    - level: 6
-      value: 1
-    - level: 7
-      value: 2
-    outputItems:
-    - {fileID: 11400000, guid: 4bc7a37d7d63f0c4f8475b98de702a7e, type: 2}
-    outputItemsAmount:
-    - min: 1
-      max: 1
-  - weight:
-    - level: 1
-      value: 2
-    - level: 2
-      value: 1
-    - level: 3
-      value: 1
-    - level: 4
-      value: 1
-    - level: 5
-      value: 1
-    - level: 6
-      value: 1
-    - level: 7
-      value: 1
-    outputItems:
-    - {fileID: 11400000, guid: f991d9a408a49ef4c92ef85231d65192, type: 2}
-    outputItemsAmount:
-    - min: 2
-      max: 4
+    outputItems: []
+    outputItemsAmount: []

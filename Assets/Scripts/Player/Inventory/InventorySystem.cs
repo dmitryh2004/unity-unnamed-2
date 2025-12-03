@@ -169,6 +169,36 @@ public class InventorySystem : UpgradableItem
         return true;
     }
 
+    /// <summary>
+    /// Удалить несколько предметов заданного типа из инвентаря
+    /// </summary>
+    /// <param name="lootCategory">Тип предмета</param>
+    /// <param name="amount">Количество предметов</param>
+    /// <returns>True, если предмет успешно удалён, иначе false</returns>
+    public bool RemoveItem(LootCategory lootCategory, int amount, bool all=false)
+    {
+        if (lootCategory == null)
+            return false;
+
+        if (!items.ContainsKey(lootCategory.id))
+            return false;
+
+        if (all)
+        {
+            items.Remove(lootCategory.id);
+        }
+        else
+        {
+            items[lootCategory.id] -= amount;
+
+            if (items[lootCategory.id] <= 0)
+            {
+                items.Remove(lootCategory.id);
+            }
+        }
+        return true;
+    }
+
     public void RemoveAllItems()
     {
         items.Clear();

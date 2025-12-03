@@ -14,6 +14,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
     [Header("UI elements")]
     [SerializeField] TMP_Dropdown recipeDropdown;
     [SerializeField] TMP_Dropdown stoneTypeDropdown;
+    [SerializeField] GameObject stoneTypeHint;
     [Space(10)]
     [SerializeField] GameObject notFoundCraft;
     [Space(10)]
@@ -25,6 +26,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
     [SerializeField] JewerlyTable jewerlyTable;
 
     int currentRecipe = 1, currentStoneType = 0;
+    JewerlyTableCraft jewerlyTableCraft;
 
     protected override void UpdateCurrentInputMap()
     {
@@ -63,8 +65,9 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         int recipe = currentRecipe;
         int stoneType = currentStoneType;
         string craftName = "";
+        bool showStoneType = recipe >= 1 && recipe <= 7;
 
-        if (recipe >= 1 && recipe <= 7)
+        if (showStoneType)
         {
             craftName = $"{stoneTypes[stoneType]}{recipe}";
         }
@@ -74,11 +77,13 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         }
 
         //update dropdowns
-        stoneTypeDropdown.interactable = recipe >= 1 && recipe <= 7;
+        stoneTypeDropdown.interactable = showStoneType;
+        stoneTypeDropdown.gameObject.SetActive(showStoneType);
+        stoneTypeHint.SetActive(showStoneType);
 
         Debug.Log(craftName);
 
-        JewerlyTableCraft jewerlyTableCraft = JewerlyTableCraftManager.Instance.GetCraftByName(craftName);
+        jewerlyTableCraft = JewerlyTableCraftManager.Instance.GetCraftByName(craftName);
 
         foundCraft.SetActive(jewerlyTableCraft != null);
         notFoundCraft.SetActive(jewerlyTableCraft == null);
@@ -155,5 +160,11 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
     {
         currentStoneType = newStoneType;
         UpdateCraft();
+    }
+
+    public void OnCreateButtonPressed()
+    {
+        if (jewerlyTableCraft != null)
+            jewerlyTable.ExecuteCraft(jewerlyTableCraft);
     }
 }

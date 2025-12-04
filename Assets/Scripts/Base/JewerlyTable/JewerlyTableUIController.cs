@@ -21,7 +21,10 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
     [SerializeField] GameObject foundCraft;
     [SerializeField] TMP_Text requiredMaterialsText;
     [SerializeField] TMP_Text outputVariantsText;
+    [Space(10)]
     [SerializeField] Button craftButton;
+    [SerializeField] TMP_Text craftResultText;
+    [SerializeField] Animator craftResultAnimator;
     [Header("Links")]
     [SerializeField] JewerlyTable jewerlyTable;
 
@@ -127,7 +130,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                 int weight = (int)jewerlyTableCraft.outputVariants[i].weight.FirstOrDefault((x) => { return x.level == tableLevel; }).value;
                 float ratio = (float)weight / totalWeight;
 
-                string chanceText = $"<color=#{((i == 0) ? "00ff00" : "ff0000")}>С вероятностью {(int)(ratio * 100)}%:</color>";
+                string chanceText = $"{i+1}. <color=#{((i == 0) ? "00ff00" : "ff0000")}>С вероятностью {(int)(ratio * 100)}%:</color>";
 
                 List<string> outputs = new ();
 
@@ -166,5 +169,11 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
     {
         if (jewerlyTableCraft != null)
             jewerlyTable.ExecuteCraft(jewerlyTableCraft);
+    }
+
+    public void ShowCraftResult(int result)
+    {
+        craftResultText.text = $"Результат: №{result+1}";
+        craftResultAnimator.SetTrigger("Show");
     }
 }

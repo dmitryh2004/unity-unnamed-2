@@ -59,5 +59,6 @@ public class JewerlyTable : Interactable
         }
 
         jewerlyTableUIController.UpdateCraft();
+        jewerlyTableUIController.ShowCraftResult(choice);
     }
 }

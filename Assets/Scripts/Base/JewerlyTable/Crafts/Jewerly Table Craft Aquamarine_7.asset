@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8017e56423dd40140a269f000d8c52ac, type: 3}
+  m_Name: Jewerly Table Craft Aquamarine_7
+  m_EditorClassIdentifier: 
+  craftName: Aquamarine7
+  requiredItems:
+  - {fileID: 11400000, guid: 47d0aedfcdc0d3c4d8fb9cc65e4bed9d, type: 2}
+  requiredItemsCount: 0100000001000000
+  outputVariants:
+  - weight:
+    - level: 1
+      value: 1
+    - level: 2
+      value: 1
+    - level: 3
+      value: 1
+    - level: 4
+      value: 1
+    - level: 5
+      value: 2
+    - level: 6
+      value: 2
+    - level: 7
+      value: 2
+    outputItems:
+    - {fileID: 11400000, guid: a646ed0782cd80548b868313c7f5546c, type: 2}
+    outputItemsAmount:
+    - min: 1
+      max: 1
+  - weight:
+    - level: 1
+      value: 10
+    - level: 2
+      value: 20
+    - level: 3
+      value: 9
+    - level: 4
+      value: 4
+    - level: 5
+      value: 3
+    - level: 6
+      value: 2
+    - level: 7
+      value: 1
+    outputItems:
+    - {fileID: 11400000, guid: 1622482cc48b6b3488cc4f6a14f9c143, type: 2}
+    - {fileID: 11400000, guid: e8cf5f5ee8da70b4285fb18340679439, type: 2}
+    outputItemsAmount:
+    - min: 1
+      max: 1
+    - min: 0
+      max: 1
+  - weight:
+    - level: 1
+      value: 30
+    - level: 2
+      value: 40
+    - level: 3
+      value: 12
+    - level: 4
+      value: 4
+    - level: 5
+      value: 3
+    - level: 6
+      value: 2
+    - level: 7
+      value: 1
+    outputItems:
+    - {fileID: 11400000, guid: e8cf5f5ee8da70b4285fb18340679439, type: 2}
+    outputItemsAmount:
+    - min: 2
+      max: 4

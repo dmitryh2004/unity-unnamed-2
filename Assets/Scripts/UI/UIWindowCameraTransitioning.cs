@@ -131,13 +131,18 @@ public class UIWindowCameraTransitioning : MonoBehaviour
             visible = false;
             animator.SetBool("visible", visible);
 
-            ChangeToMainMenu();
+            OnClosed();
         }));
     }
 
     protected virtual void UpdateCurrentInputMap()
     {
 
+    }
+
+    protected virtual void OnClosed()
+    {
+        ChangeToMainMenu();
     }
 
     protected virtual void ChangeToMainMenu()

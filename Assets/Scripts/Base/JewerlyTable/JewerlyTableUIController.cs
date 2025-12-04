@@ -45,13 +45,21 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
 
     protected override void ChangeToMainMenu()
     {
+        /*
         currentRecipe = 1;
         currentStoneType = 0;
 
         recipeDropdown.value = 0;
         stoneTypeDropdown.value = 0;
+        */
 
         UpdateCraft();
+    }
+
+    protected override void OnClosed()
+    {
+        recipeDropdown.interactable = true;
+        stoneTypeDropdown.interactable = true;
     }
 
     public void CloseWindow(InputAction.CallbackContext context)
@@ -59,6 +67,8 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         if (!context.performed) return;
         if (playerInput.currentActionMap.name == "JewerlyTableUI")
         {
+            recipeDropdown.interactable = false;
+            stoneTypeDropdown.interactable = false;
             HideWindow();
         }   
     }

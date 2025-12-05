@@ -7,6 +7,24 @@ public static class NumberFormatter
         return number.ToString("0.##00", CultureInfo.InvariantCulture).TrimEnd('0').TrimEnd('.');
     }
 
+    public static string FormatNumber(float number, int minDigits = 1, int maxDigits = 1)
+    {
+        string template = "0.";
+        for (int i = 0; i < maxDigits; i++)
+        {
+            template += (i < minDigits) ? "#" : "0";
+        }
+
+        string res = number.ToString(template, CultureInfo.InvariantCulture);
+
+        if (res.Contains("."))
+        {
+            res = res.TrimEnd('0').TrimEnd('.');
+        }
+
+        return res;
+    }
+
     public static string FormatNumberWithGrouping(float value)
     {
         // —начала форматируем число с нужным количеством знаков после зап€той (через FormatNumber)

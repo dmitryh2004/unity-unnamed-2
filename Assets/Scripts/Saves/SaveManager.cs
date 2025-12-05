@@ -14,6 +14,7 @@ public class GameData
 [System.Serializable]
 public class Save
 {
+    public string version = "n/a";
     public Player playerData;
     public Base baseData;
     public Quota quotaData;
@@ -41,6 +42,7 @@ public class Base
 {
     public string chest = "";
     public int currentComplexIndex = 0;
+    public int jewerlyTableLevel = 1;
 }
 
 [System.Serializable]
@@ -110,6 +112,10 @@ public static class SaveChecksumCalculator
 
         string calculatedChecksum = CalculateChecksum(save);
 
+#if UNITY_EDITOR
+        Debug.LogWarning($"Correct checksum: {calculatedChecksum}");
+#endif
+
         // Сравниваем вычисленный хеш с переданным.
         // Используем StringComparison.OrdinalIgnoreCase для нечувствительного к регистру сравнения,
         // так как хеши обычно не чувствительны к регистру, но CalculateChecksum возвращает в нижнем.
@@ -120,6 +126,15 @@ public static class SaveChecksumCalculator
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] string saveName = "GameData";
+    [SerializeField] string saveVersion = "beta2";
+    public string SaveVersion
+    {
+        get
+        {
+            return saveVersion;
+        }
+    }
+
     [SerializeField] Animator saveMessageAnimator;
 
     string GetSaveName(int slot)
@@ -129,10 +144,10 @@ public class SaveManager : MonoBehaviour
 
     public void SaveData(int slot = 1, bool showMessage = false)
     {
-        bool validationResult = false;
+        bool hasFile = false, validationResult = false, version = false;
         string inventoryJson = InventorySystem.Instance.GetInventoryDataJson();
 
-        GameData loadedData = LoadData(slot, out validationResult, false);
+        GameData loadedData = LoadData(slot, out hasFile, out validationResult, out version, false);
 
         string chestJson = "";
         if (Chest.Instance != null)
@@ -199,6 +214,19 @@ public class SaveManager : MonoBehaviour
             }
         }
 
+        int jewerlyTableLevel = 1;
+        if (JewerlyTable.Instance != null)
+        {
+            jewerlyTableLevel = JewerlyTable.Instance.GetLevel();
+        }
+        else
+        {
+            if (loadedData != null)
+            {
+                jewerlyTableLevel = loadedData.save.baseData.jewerlyTableLevel;
+            }
+        }
+
         int money = 0;
         if (PlayerWallet.Instance != null)
         {
@@ -224,7 +252,8 @@ public class SaveManager : MonoBehaviour
         Base baseData = new Base
         {
             chest = chestJson,
-            currentComplexIndex = currentComplexIndex
+            currentComplexIndex = currentComplexIndex,
+            jewerlyTableLevel = jewerlyTableLevel
         };
 
         Quota quotaData = new Quota {
@@ -239,7 +268,8 @@ public class SaveManager : MonoBehaviour
         {
             playerData = playerData,
             baseData = baseData,
-            quotaData = quotaData
+            quotaData = quotaData,
+            version = saveVersion
         };
 
         string checksum = SaveChecksumCalculator.CalculateChecksum(save);
@@ -260,16 +290,20 @@ public class SaveManager : MonoBehaviour
             saveMessageAnimator.SetTrigger("show");
     }
 
-    public GameData LoadData(int slot, out bool checksumCorrect, bool validateChecksum = true)
+    public GameData LoadData(int slot, out bool hasFile, out bool checksumCorrect, out bool versionCorrect, bool validateChecksum = true, bool checkVersion = true)
     {
         string path = Path.Combine(Application.persistentDataPath, GetSaveName(slot));
 
         if (!File.Exists(path))
         {
             Debug.LogWarning($"Файл сохранения не найден по пути: {path}");
+            hasFile = false;
             checksumCorrect = true;
+            versionCorrect = true;
             return null;
         }
+
+        hasFile = true;
 
         try
         {
@@ -277,25 +311,42 @@ public class SaveManager : MonoBehaviour
             GameData data = JsonUtility.FromJson<GameData>(json);
             Debug.Log($"Данные загружены из {path}");
 
+            if (checkVersion)
+            {
+                versionCorrect = saveVersion == data.save.version;
+                if (!versionCorrect)
+                {
+                    Debug.LogWarning($"Validation error: versions are not equal");
+                }
+            }
+            else
+            {
+                versionCorrect = true;
+            }
+
             if (validateChecksum)
             {
                 checksumCorrect = SaveChecksumCalculator.Validate(data.save, data.checksum);
-                if (checksumCorrect == false)
+                if (!checksumCorrect)
                 {
                     Debug.LogWarning($"Validation error: checksums are not equal");
-                    return null;
                 }
             }
             else
             {
                 checksumCorrect = true;
             }
+
+            if (!(versionCorrect && checksumCorrect))
+                return null;
+            
             return data;
         }
         catch (Exception e)
         {
             Debug.LogError($"Ошибка при загрузке данных: {e.Message}");
             checksumCorrect = false;
+            versionCorrect = false;
             return null;
         }
     }

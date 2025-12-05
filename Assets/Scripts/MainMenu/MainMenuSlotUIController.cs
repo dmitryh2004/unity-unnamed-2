@@ -29,13 +29,16 @@ public class MainMenuSlotUIController : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
         {
             int slot = i + 1;
-            bool checksum;
-            GameData data = saveManager.LoadData(slot, out checksum);
+            bool hasFile, checksum, version;
+            GameData data = saveManager.LoadData(slot, out hasFile, out checksum, out version);
+            Debug.Log($"{data}, {checksum}, {version}");
             int quota = 0, collected = 0, daysLeft = 0, balance = 0;
-            bool hasSave = false, hasQuota = false;
+            bool hasSave = false, isValid = false, hasQuota = false;
             if (data != null)
             {
                 hasSave = true;
+                isValid = checksum && version;
+
                 if (data.save.quotaData.clientTypeID != -1)
                 {
                     quota = data.save.quotaData.required;
@@ -49,7 +52,20 @@ public class MainMenuSlotUIController : MonoBehaviour
                     balance = data.save.playerData.money;
                 }
             }
+            else
+            {
+                hasSave = hasFile;
+                if (!checksum)
+                {
+                    buttons[i].invalidSaveReasonText = "Файл поврежден";
+                }
+                else if (!version)
+                {
+                    buttons[i].invalidSaveReasonText = "Несовместимая версия игры";
+                }
+            }
             buttons[i].hasSave = hasSave;
+            buttons[i].saveIsValid = isValid;
             buttons[i].hasQuota = hasQuota;
             buttons[i].Init(slot, selectedSlotButtonColor, slotButtonColor,
                 quota, collected, daysLeft, balance);

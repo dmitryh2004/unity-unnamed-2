@@ -30,8 +30,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        bool validationResult = false;
-        GameData gameData = saveManager.LoadData(slot, out validationResult);
+        bool hasFile = false, validationResult = false, version = false;
+        GameData gameData = saveManager.LoadData(slot, out hasFile, out validationResult, out version);
         if (gameData != null)
         {
             InventorySystem.Instance.SetLevel(gameData.save.playerData.inventoryLevel);
@@ -45,6 +45,8 @@ public class LevelManager : MonoBehaviour
                 Chest.Instance.SetItemsFromJson(gameData.save.baseData.chest);
             if (SpaceshipController.Instance != null)
                 SpaceshipController.Instance.GetPanelController().SetCurrentComplexIndex(gameData.save.baseData.currentComplexIndex);
+            if (JewerlyTable.Instance != null)
+                JewerlyTable.Instance.SetLevel(Mathf.Clamp(gameData.save.baseData.jewerlyTableLevel, 1, JewerlyTable.Instance.GetMaxLevel()));
 
             if (QuotaSystem.Instance != null)
             {
@@ -76,7 +78,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            if (validationResult == false)
+            if (!(hasFile && validationResult && version))
             {
                 Debug.LogWarning("Validation failed: applying default values");
                 // add message box for the player

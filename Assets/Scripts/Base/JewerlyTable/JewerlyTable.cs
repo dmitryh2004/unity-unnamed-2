@@ -5,20 +5,50 @@ using UnityEngine.InputSystem;
 
 public class JewerlyTable : Interactable
 {
+    public static JewerlyTable Instance = null;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] JewerlyTableUIController jewerlyTableUIController;
     [SerializeField] Transform spawnPoint;
     [Range(1, 7)]
     [SerializeField] int level = 1;
+    [SerializeField] int maxLevel = 7;
+    [SerializeField] List<UpgradeCost> upgradeCosts = new();
     System.Random random = new();
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     public override void Interact()
     {
         jewerlyTableUIController.ShowWindow();
     }
 
+    public int GetMaxLevel() => maxLevel;
     public int GetLevel() => level;
     public void SetLevel(int level) => this.level = level;
+    public int GetUpgradeCost(int level) => upgradeCosts.FirstOrDefault((x) => x.level == level).cost;
+
+    public void Upgrade()
+    {
+        if (level == maxLevel) return;
+        int upgradeCost = GetUpgradeCost(GetLevel() + 1);
+        int balance = PlayerWallet.Instance.GetMoney();
+
+        if (upgradeCost <= balance)
+        {
+            level += 1;
+            PlayerWallet.Instance.SubtractMoney(upgradeCost);
+        }
+
+        jewerlyTableUIController.UpdateLayout();
+    }
 
     public void ExecuteCraft(JewerlyTableCraft craft)
     {
@@ -58,7 +88,7 @@ public class JewerlyTable : Interactable
             }
         }
 
-        jewerlyTableUIController.UpdateCraft();
+        jewerlyTableUIController.UpdateLayout();
         jewerlyTableUIController.ShowCraftResult(choice);
     }
 }

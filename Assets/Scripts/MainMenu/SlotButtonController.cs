@@ -4,15 +4,20 @@ using UnityEngine.UI;
 
 public class SlotButtonController : MonoBehaviour
 {
+    [SerializeField] Button button;
     [SerializeField] MainMenuSlotUIController slotUIController;
     [SerializeField] Image background;
     [SerializeField] TMP_Text slotButtonText;
     [SerializeField] TMP_Text quotaText, collectedText, daysLeftText, balanceText;
     [SerializeField] ClearSlotButton clearSlotButton;
+
+    [SerializeField] GameObject validSave, invalidSave;
+    [SerializeField] TMP_Text invalidSaveReason;
     Color selectedColor, unselectedColor;
     int number;
     bool selected = false;
-    [HideInInspector] public bool hasSave = false, hasQuota = false;
+    [HideInInspector] public bool hasSave = false, saveIsValid = false, hasQuota = false;
+    [HideInInspector] public string invalidSaveReasonText;
     int quota, collected, daysLeft, balance;
     public void Init(int number, Color selected, Color unselected, int quota, int collected, int daysLeft, int balance)
     {
@@ -42,16 +47,31 @@ public class SlotButtonController : MonoBehaviour
 
         clearSlotButton.gameObject.SetActive(hasSave);
 
+        button.interactable = !hasSave || (hasSave && saveIsValid);
+
         if (hasSave)
         {
-            if (hasQuota)
+            validSave.SetActive(saveIsValid);
+            invalidSave.SetActive(!saveIsValid);
+            if (saveIsValid)
             {
-                quotaText.text = $"Требуется: {NumberFormatter.FormatNumberWithGrouping(quota)} UMU";
-                collectedText.text = $"Собрано: {NumberFormatter.FormatNumberWithGrouping(collected)} UMU";
-                daysLeftText.text = $"Осталось вылетов: {daysLeft}";
+                if (hasQuota)
+                {
+                    quotaText.text = $"Требуется: {NumberFormatter.FormatNumberWithGrouping(quota)} UMU";
+                    collectedText.text = $"Собрано: {NumberFormatter.FormatNumberWithGrouping(collected)} UMU";
+                    daysLeftText.text = $"Осталось вылетов: {daysLeft}";
+                }
+                balanceText.text = $"Баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
             }
-            balanceText.text = $"Баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
+            else
+            {
+                invalidSaveReason.text = invalidSaveReasonText;
+            }
         }
-        
+        else
+        {
+            validSave.SetActive(false);
+            invalidSave.SetActive(false);
+        }
     }
 }

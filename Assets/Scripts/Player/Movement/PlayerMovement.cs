@@ -53,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
         if (context.started) return;
 
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log($"{gameObject.name}: move input={moveInput}");
     }
 
 

@@ -5,7 +5,7 @@ public class ObjectPivotAdjuster : MonoBehaviour
 {
     public RectTransform canvasRectTransform; // Assign Canvas RectTransform in Inspector
     public RectTransform anchorRectTransform, anchorContainerRectTransform; // Assign Parent RectTransform in Inspector
-    public Camera camera;
+    public Camera viewportCamera;
     private RectTransform rectTransform;
 
     // Positions relative to parent: (pivot, localPosition)
@@ -73,8 +73,8 @@ public class ObjectPivotAdjuster : MonoBehaviour
                     Vector2 localPoint;
                     RectTransformUtility.ScreenPointToLocalPointInRectangle(
                         canvasRectTransform,
-                        RectTransformUtility.WorldToScreenPoint(camera, worldCorners[c]),
-                        camera,
+                        RectTransformUtility.WorldToScreenPoint(viewportCamera, worldCorners[c]),
+                        viewportCamera,
                         out localPoint
                     );
 
@@ -98,7 +98,7 @@ public class ObjectPivotAdjuster : MonoBehaviour
 
                 if (inCanvas)
                 {
-                    Debug.Log($"{gameObject.name}: i = {i}");
+                    // Debug.Log($"{gameObject.name}: i = {i}");
                     return; // Нашли подходящий вариант — возвращаемся
                 }
                 else
@@ -125,7 +125,7 @@ public class ObjectPivotAdjuster : MonoBehaviour
                 rectTransform.localPosition = bestPosition;
             }
         }
-        catch (NullReferenceException e)
+        catch (NullReferenceException)
         {
             return;
         }

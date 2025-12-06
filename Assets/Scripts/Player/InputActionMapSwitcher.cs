@@ -15,13 +15,13 @@ public class InputActionMapSwitcher : MonoBehaviour
 
     public void SwitchMap(string mapName)
     {
-        Debug.Log($"Попытка переключения на карту: {mapName}");
+        // Debug.Log($"Попытка переключения на карту: {mapName}");
         playerInput.currentActionMap?.Disable();
         playerInput.SwitchCurrentActionMap(mapName);
         Cursor.visible = cursorVisibility[mapName];
         Cursor.lockState = cursorVisibility[mapName] ? CursorLockMode.None : CursorLockMode.Locked;
         playerInput.currentActionMap.Enable();
-        Debug.Log($"Текущая карта: {playerInput.currentActionMap?.name}");
+        // Debug.Log($"Текущая карта: {playerInput.currentActionMap?.name}");
     }
 
     public void DisableAllMaps()
@@ -71,7 +71,7 @@ public class InputActionMapSwitcher : MonoBehaviour
     {
         foreach (InputActionMap map in playerInput.actions.actionMaps)
         {
-            Debug.Log($"Map '{map.name}': {(map.enabled ? "Active" : "Inactive")}");
+            // Debug.Log($"Map '{map.name}': {(map.enabled ? "Active" : "Inactive")}");
         }
     }
 }

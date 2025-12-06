@@ -49,7 +49,7 @@ public class PlayerInteractor : MonoBehaviour
             //Debug.Log($"player: found {hit.collider.gameObject.name}");
             if (hit.collider.TryGetComponent(out Interactable interactable))
             {
-                Debug.Log($"{hit.collider.gameObject.name} is interactable");
+                // Debug.Log($"{hit.collider.gameObject.name} is interactable");
                 if (hit.distance < interactable.GetInteractionRange())
                 {
                     interactable.Interact();
@@ -68,7 +68,7 @@ public class PlayerInteractor : MonoBehaviour
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
             hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false,
             spaceshipPanelHintActive = false, spaceshipLeverHintActive = false, unavailableHintActive = false,
-            openTraderUIHintActive = false, useJewerlyTableHintActive = false;
+            openTraderUIHintActive = false, useJewerlyTableHintActive = false, saveGameHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -175,6 +175,10 @@ public class PlayerInteractor : MonoBehaviour
                     {
                         useJewerlyTableHintActive = true;
                     }
+                    else if (interactable is ArchiveSaveButton saveButton)
+                    {
+                        saveGameHintActive = true;
+                    }
                 }
                 else
                 {
@@ -196,5 +200,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UnavailableHint"), unavailableHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenTraderUIHint"), openTraderUIHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseJewerlyTableHint"), useJewerlyTableHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SaveGameHint"), saveGameHintActive);
     }
 }

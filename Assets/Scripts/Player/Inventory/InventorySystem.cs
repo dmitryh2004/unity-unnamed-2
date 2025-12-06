@@ -112,7 +112,7 @@ public class InventorySystem : UpgradableItem
         float newVolume = MathF.Round(currentVolume + itemVolume * amount, 6);
         float roundedMaxVolume = MathF.Round(maxVolume, 6);
 
-        Debug.Log($"volume: current - {currentVolume}, diff - {itemVolume}, new - {newVolume} (max = {roundedMaxVolume})");
+        // Debug.Log($"volume: current - {currentVolume}, diff - {itemVolume}, new - {newVolume} (max = {roundedMaxVolume})");
         return newVolume <= roundedMaxVolume;
     }
 

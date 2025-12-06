@@ -122,7 +122,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         stoneTypeDropdown.gameObject.SetActive(showStoneType);
         stoneTypeHint.SetActive(showStoneType);
 
-        Debug.Log(craftName);
+        // Debug.Log(craftName);
 
         jewerlyTableCraft = JewerlyTableCraftManager.Instance.GetCraftByName(craftName);
 

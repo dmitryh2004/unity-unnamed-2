@@ -39,7 +39,7 @@ public class PlayerInventoryController : MonoBehaviour
     public void CloseInventory(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        Debug.Log("Esc pressed");
+        // Debug.Log("Esc pressed");
         if (playerInput.currentActionMap.name == "InventoryUI")
             CloseInventory();
     }
@@ -68,14 +68,14 @@ public class PlayerInventoryController : MonoBehaviour
 
     void OpenInventory()
     {
-        Debug.Log("ToggleInventory called");
+        // Debug.Log("ToggleInventory called");
         visible = !visible;
 
         UpdateCurrentInputMap();
 
         inventoryUIController.ClearOffset();
         UpdateAnimator();
-        Debug.Log($"Current inventory: {InventorySystem.Instance.GetInventoryDataJson()}");
+        // Debug.Log($"Current inventory: {InventorySystem.Instance.GetInventoryDataJson()}");
     }
 
     public void CloseInventory()

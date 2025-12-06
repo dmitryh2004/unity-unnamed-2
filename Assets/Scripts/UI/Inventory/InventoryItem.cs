@@ -94,7 +94,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"cursor on the inventory item {gameObject.name} (active={active})");
+        // Debug.Log($"cursor on the inventory item {gameObject.name} (active={active})");
         pointerOnItem = true;
         if (active)
         {

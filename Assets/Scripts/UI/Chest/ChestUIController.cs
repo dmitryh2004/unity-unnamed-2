@@ -80,7 +80,7 @@ public class ChestUIController : MonoBehaviour
     {
         if (activeItemID == -1 && activeChestItemID == -1)
         {
-            Debug.Log($"Transfer item: no active item");
+            // Debug.Log($"Transfer item: no active item");
             return;
         }
 
@@ -117,7 +117,7 @@ public class ChestUIController : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Unable to transfer item: not enough space in chest");
+                // Debug.Log($"Unable to transfer item: not enough space in chest");
             }
         }
         else if (activeChestItemID != -1)
@@ -153,7 +153,7 @@ public class ChestUIController : MonoBehaviour
             }
             else
             {
-                Debug.Log($"Unable to transfer item: not enough space in inventory");
+                // Debug.Log($"Unable to transfer item: not enough space in inventory");
             }
         }
 

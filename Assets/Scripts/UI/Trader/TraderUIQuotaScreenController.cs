@@ -66,7 +66,7 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
     {
         if (activeItemID == -1)
         {
-            Debug.Log("Sell item: no active item");
+            // Debug.Log("Sell item: no active item");
             return;
         }
 

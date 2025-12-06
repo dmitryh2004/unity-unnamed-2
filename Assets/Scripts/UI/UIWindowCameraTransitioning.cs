@@ -61,7 +61,7 @@ public class UIWindowCameraTransitioning : MonoBehaviour
         Vector3 moveDirection = cameraPosition.position - cameraLastPosition;
         Vector3 rotateAngles = cameraPosition.eulerAngles - cameraLastRotation;
 
-        Debug.Log(rotateAngles);
+        // Debug.Log(rotateAngles);
 
         rotateAngles = Clamp(rotateAngles, 180f);
 

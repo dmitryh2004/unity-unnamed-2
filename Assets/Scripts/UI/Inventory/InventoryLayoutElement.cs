@@ -39,7 +39,7 @@ public class InventoryLayoutElement : MonoBehaviour
                 break;
             }
         }
-        Debug.Log($"inventory layout element: active item id = {activeItemID}");
+        // Debug.Log($"inventory layout element: active item id = {activeItemID}");
     }
 
     public void UpdateLayout(Dictionary<int, int> items)

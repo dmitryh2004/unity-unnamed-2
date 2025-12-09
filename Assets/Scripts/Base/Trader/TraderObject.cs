@@ -60,7 +60,11 @@ public class TraderObject : Interactable
         return null;
     }
 
-    public void IncreaseMultiplier() => multiplier += multiplierStep;
+    public void IncreaseMultiplier() 
+    { 
+        multiplier += multiplierStep;
+        QuotaSystem.Instance.SetMultiplier(multiplier);
+    }
 
     public void GenerateOrders()
     {

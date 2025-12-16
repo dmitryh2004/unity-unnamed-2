@@ -764,6 +764,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ec18826df3570d48bee27d3c68c610f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2571106101039274969}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5ec18826df3570d48bee27d3c68c610f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4259792077514065273}
   m_SourcePrefab: {fileID: 100100000, guid: 5ec18826df3570d48bee27d3c68c610f, type: 3}
 --- !u!1 &8127493034462831669 stripped
 GameObject:
@@ -829,6 +832,7 @@ MonoBehaviour:
   locked: 1
   locker: {fileID: 3840356198238765478}
   doorName: "\u0441\u0435\u0439\u0444"
+  canBeOpenedManually: 1
 --- !u!114 &4558882771716350210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1273,32 @@ MonoBehaviour:
   - {fileID: 3840356198238765478}
   minDifficulty: 1
   maxDifficulty: 10
+--- !u!205 &4259792077514065273
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8127493034462831669}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.4
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8839711247411309938}
+    - renderer: {fileID: 3423004842555635525}
+    - renderer: {fileID: 6696238428445485939}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3423004842555635525}
+    - renderer: {fileID: 8839711247411309938}
+  m_Enabled: 1
 --- !u!4 &8899525687806672527 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5ec18826df3570d48bee27d3c68c610f, type: 3}

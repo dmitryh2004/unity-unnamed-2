@@ -609,6 +609,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7c10baddc13bff4db02bcdf43fc014d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3019622900879074110}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c7c10baddc13bff4db02bcdf43fc014d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8894788371489631183}
   m_SourcePrefab: {fileID: 100100000, guid: c7c10baddc13bff4db02bcdf43fc014d, type: 3}
 --- !u!1 &480222829496103460 stripped
 GameObject:
@@ -742,6 +745,26 @@ MonoBehaviour:
   lootPointsParent: {fileID: 7286287043406820782}
   maxLootPointsUsed: 4
   hideIfNoLoot: 1
+--- !u!205 &8894788371489631183
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480222829496103460}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3255904624856353121}
+    - renderer: {fileID: 7618512240102931641}
+  m_Enabled: 1
 --- !u!4 &1000301262968039582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c7c10baddc13bff4db02bcdf43fc014d, type: 3}

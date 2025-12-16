@@ -134,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3105955291916002348}
   - component: {fileID: 5462308823734271435}
+  - component: {fileID: 7380712419596555463}
   m_Layer: 0
   m_Name: table
   m_TagString: Untagged
@@ -250,6 +251,37 @@ MonoBehaviour:
   lootPointsParent: {fileID: 4913593033323707885}
   maxLootPointsUsed: -1
   hideIfNoLoot: 0
+--- !u!205 &7380712419596555463
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2328714282844667542}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.4
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8158524806554010375}
+    - renderer: {fileID: 7768057983046680180}
+    - renderer: {fileID: 6700583718919930160}
+    - renderer: {fileID: 3470556540384168366}
+    - renderer: {fileID: 5206393165444242254}
+    - renderer: {fileID: 6579338086489079200}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 8158524806554010375}
+    - renderer: {fileID: 7768057983046680180}
+    - renderer: {fileID: 6700583718919930160}
+    - renderer: {fileID: 3470556540384168366}
+  m_Enabled: 1
 --- !u!1 &3521354286508363964
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,6 +721,7 @@ MonoBehaviour:
   locked: 0
   locker: {fileID: 0}
   doorName: "\u044F\u0449\u0438\u043A"
+  canBeOpenedManually: 1
 --- !u!114 &8499953718215879237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,6 +1037,7 @@ MonoBehaviour:
   locked: 0
   locker: {fileID: 0}
   doorName: "\u0434\u0432\u0435\u0440\u0446\u0443"
+  canBeOpenedManually: 1
 --- !u!65 &5076197879915354446
 BoxCollider:
   m_ObjectHideFlags: 0

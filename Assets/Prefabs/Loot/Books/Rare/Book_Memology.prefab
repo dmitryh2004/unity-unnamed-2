@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 6057346031473849674}
   - component: {fileID: 8271005546734586716}
   - component: {fileID: 5224813505283542220}
+  - component: {fileID: 2851707587900879857}
   m_Layer: 6
   m_Name: Book_Memology
   m_TagString: Untagged
@@ -270,3 +271,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: 7b2f6476e9133ba4382078dc5022c230, type: 2}
+--- !u!205 &2851707587900879857
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8442839069217029793}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1670572516609294137}
+    - renderer: {fileID: 1319384947177368693}
+  m_Enabled: 1

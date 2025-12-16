@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 3835156085808800156}
   - component: {fileID: 254657584161086329}
   - component: {fileID: 5166607461472661559}
+  - component: {fileID: -1152769206147897714}
   m_Layer: 6
   m_Name: Book_TrollingSelfGuide
   m_TagString: Untagged
@@ -270,3 +271,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: 5e153a730e3fec4449714ad622adfc84, type: 2}
+--- !u!205 &-1152769206147897714
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653931958672697890}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2393944936189092197}
+    - renderer: {fileID: 5446360169501409898}
+  m_Enabled: 1

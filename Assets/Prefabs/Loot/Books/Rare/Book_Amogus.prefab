@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5108824207819359664}
   - component: {fileID: 2072743631379955296}
   - component: {fileID: 2724632590721734443}
+  - component: {fileID: 7894081584273821689}
   m_Layer: 6
   m_Name: Book_Amogus
   m_TagString: Untagged
@@ -98,6 +99,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: af56eafd5d258e94b8744d57f7f10cd9, type: 2}
+--- !u!205 &7894081584273821689
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161695717644652126}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1265203990739210179}
+    - renderer: {fileID: 2659064823322904531}
+  m_Enabled: 1
 --- !u!1 &3921116737171152357
 GameObject:
   m_ObjectHideFlags: 0

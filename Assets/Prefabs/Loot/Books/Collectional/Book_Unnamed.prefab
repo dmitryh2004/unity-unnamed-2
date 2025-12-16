@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 325140858347000543}
   - component: {fileID: 8397440993319879430}
   - component: {fileID: 1779808575168967771}
+  - component: {fileID: 209056799360552862}
   m_Layer: 6
   m_Name: Book_Unnamed
   m_TagString: Untagged
@@ -270,3 +271,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: 2fa51c0107d3ec54392302ad9d24fa80, type: 2}
+--- !u!205 &209056799360552862
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7058251095457327862}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4075270906251326007}
+    - renderer: {fileID: 1534920826589595967}
+  m_Enabled: 1

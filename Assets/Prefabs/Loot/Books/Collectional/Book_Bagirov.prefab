@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4138782860547814256}
   - component: {fileID: 7102402428853830129}
   - component: {fileID: 4131270162577177338}
+  - component: {fileID: 8551972570280795590}
   m_Layer: 6
   m_Name: Book_Bagirov
   m_TagString: Untagged
@@ -98,6 +99,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: d68e488dd220c3941be29a835a3ae8aa, type: 2}
+--- !u!205 &8551972570280795590
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240339648953676579}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1329961312515295762}
+    - renderer: {fileID: 4411860486777772940}
+  m_Enabled: 1
 --- !u!1 &5756011467233040907
 GameObject:
   m_ObjectHideFlags: 0

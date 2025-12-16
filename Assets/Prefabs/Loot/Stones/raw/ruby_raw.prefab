@@ -73,7 +73,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 807c4d946dc49ac4e8892ce0a8d9ccd8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1491450918086336905}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 807c4d946dc49ac4e8892ce0a8d9ccd8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2068534646590826733}
   m_SourcePrefab: {fileID: 100100000, guid: 807c4d946dc49ac4e8892ce0a8d9ccd8, type: 3}
+--- !u!23 &7413659652512483867 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 807c4d946dc49ac4e8892ce0a8d9ccd8, type: 3}
+  m_PrefabInstance: {fileID: 8152370253461296799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9070918550130568142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 807c4d946dc49ac4e8892ce0a8d9ccd8, type: 3}
@@ -141,3 +149,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: 2322519fcaef0a742808c42f071cfc8f, type: 2}
+--- !u!205 &-2068534646590826733
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9070918550130568142}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -1.7462298e-10, y: 1.7462298e-10, z: 0}
+  m_Size: 0.001
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7413659652512483867}
+  m_Enabled: 1

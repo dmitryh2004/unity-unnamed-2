@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5858720202858182750}
   - component: {fileID: 3397850024242754543}
   - component: {fileID: 878392656043340391}
+  - component: {fileID: -2246614399208066051}
   m_Layer: 6
   m_Name: Book_Retarget
   m_TagString: Untagged
@@ -98,6 +99,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: fd90482cc90ed9c4e9490ce0a8d76736, type: 2}
+--- !u!205 &-2246614399208066051
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202529332237238910}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1338498190821853490}
+    - renderer: {fileID: 3749729322376384531}
+  m_Enabled: 1
 --- !u!1 &2384275537138267899
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,9 +28,8 @@ public class BatchLODAdder : EditorWindow
             if (renderers.Length == 0) continue;
 
             // Настраиваем LOD уровни: LOD0 (полный), LOD1 (culling <10% экрана)
-            LOD[] lods = new LOD[2];
-            lods[0] = new LOD(0.9f, renderers);  // LOD0 до 90%
-            lods[1] = new LOD(0.0f, renderers);  // LOD1 cull ниже 10%
+            LOD[] lods = new LOD[1];
+            lods[0] = new LOD(0.05f, renderers);     // LOD0: 100-10% экрана
 
             lodGroup.SetLODs(lods);
             lodGroup.RecalculateBounds();

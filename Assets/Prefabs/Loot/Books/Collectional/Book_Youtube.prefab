@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 8829082197970684113}
   - component: {fileID: 7452272044822392360}
   - component: {fileID: 2515688780519244562}
+  - component: {fileID: 1612422971661328064}
   m_Layer: 6
   m_Name: Book_Youtube
   m_TagString: Untagged
@@ -270,3 +271,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: b4d407d261ba3594cac055f500666e55, type: 2}
+--- !u!205 &1612422971661328064
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4619236124192150497}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7222726524764436032}
+    - renderer: {fileID: 4750320324824733167}
+  m_Enabled: 1

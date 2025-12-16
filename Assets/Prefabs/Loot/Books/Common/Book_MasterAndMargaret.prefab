@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3115393524247443229}
   - component: {fileID: 3661824891984440097}
   - component: {fileID: 5139355300860892482}
+  - component: {fileID: 8055099459336042548}
   m_Layer: 6
   m_Name: Book_MasterAndMargaret
   m_TagString: Untagged
@@ -184,6 +185,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 1
   lootCategory: {fileID: 11400000, guid: d974e15e50227544db432577ef330d7d, type: 2}
+--- !u!205 &8055099459336042548
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3556230184912787856}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0037500262, y: 0, z: 0}
+  m_Size: 0.25000003
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4604836625838445464}
+    - renderer: {fileID: 3751491457863097804}
+  m_Enabled: 1
 --- !u!1 &4939207518712507219
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6787649594800400133}
   - component: {fileID: 2163080490702968545}
   - component: {fileID: 2742534357128017276}
+  - component: {fileID: 17624658811812591}
   m_Layer: 0
   m_Name: Dacha_Bricks
   m_TagString: Untagged
@@ -110,6 +111,26 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!205 &17624658811812591
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088137089062596851}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2163080490702968545}
+    - renderer: {fileID: 2739960877686040660}
+  m_Enabled: 1
 --- !u!1 &2388137483764013852
 GameObject:
   m_ObjectHideFlags: 0

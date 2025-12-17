@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 3940722144476227436}
   - component: {fileID: 863354992851208339}
   - component: {fileID: 1981420618363847049}
+  - component: {fileID: 2540400299133349778}
   m_Layer: 0
   m_Name: Dacha_Roof
   m_TagString: Untagged
@@ -219,3 +220,23 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!205 &2540400299133349778
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4282419634376183612}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 863354992851208339}
+    - renderer: {fileID: 5536307697886890190}
+  m_Enabled: 1

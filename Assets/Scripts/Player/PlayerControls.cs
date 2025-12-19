@@ -164,7 +164,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CheckFOV"",
+                    ""name"": ""UseScanner"",
                     ""type"": ""Button"",
                     ""id"": ""469c2d50-bb1a-4504-9ae3-3bcdf700eb5a"",
                     ""expectedControlType"": """",
@@ -322,7 +322,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CheckFOV"",
+                    ""action"": ""UseScanner"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -920,7 +920,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Flashlight = m_Gameplay.FindAction("Flashlight", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
-        m_Gameplay_CheckFOV = m_Gameplay.FindAction("CheckFOV", throwIfNotFound: true);
+        m_Gameplay_UseScanner = m_Gameplay.FindAction("UseScanner", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // InventoryUI
         m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
@@ -1054,7 +1054,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Flashlight;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Inventory;
-    private readonly InputAction m_Gameplay_CheckFOV;
+    private readonly InputAction m_Gameplay_UseScanner;
     private readonly InputAction m_Gameplay_Pause;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
@@ -1100,9 +1100,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Inventory => m_Wrapper.m_Gameplay_Inventory;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/CheckFOV".
+        /// Provides access to the underlying input action "Gameplay/UseScanner".
         /// </summary>
-        public InputAction @CheckFOV => m_Wrapper.m_Gameplay_CheckFOV;
+        public InputAction @UseScanner => m_Wrapper.m_Gameplay_UseScanner;
         /// <summary>
         /// Provides access to the underlying input action "Gameplay/Pause".
         /// </summary>
@@ -1157,9 +1157,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
-            @CheckFOV.started += instance.OnCheckFOV;
-            @CheckFOV.performed += instance.OnCheckFOV;
-            @CheckFOV.canceled += instance.OnCheckFOV;
+            @UseScanner.started += instance.OnUseScanner;
+            @UseScanner.performed += instance.OnUseScanner;
+            @UseScanner.canceled += instance.OnUseScanner;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -1198,9 +1198,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
-            @CheckFOV.started -= instance.OnCheckFOV;
-            @CheckFOV.performed -= instance.OnCheckFOV;
-            @CheckFOV.canceled -= instance.OnCheckFOV;
+            @UseScanner.started -= instance.OnUseScanner;
+            @UseScanner.performed -= instance.OnUseScanner;
+            @UseScanner.canceled -= instance.OnUseScanner;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -2097,12 +2097,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInventory(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "CheckFOV" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "UseScanner" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCheckFOV(InputAction.CallbackContext context);
+        void OnUseScanner(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

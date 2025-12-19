@@ -436,8 +436,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7479945026821977042}
         m_TargetAssemblyTypeName: PlayerInventoryController, Assembly-CSharp
-        m_MethodName: ScrollDown
-        m_Mode: 0
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -536,6 +536,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 04f6b23d-2855-4703-b611-39b760a2c0b4
     m_ActionName: 'TraderUI/SellItem[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 486f252c-7d9d-4d97-b7de-61aab17d9b4d
+    m_ActionName: 'TraderUI/Back[/Keyboard/backspace]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6c3c7ce-090b-43d8-99c0-45a7c09e10a5
+    m_ActionName: 'JewerlyTableUI/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -689,7 +697,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3001975501328665053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a50b9dd71da7275419ff317c46cfbac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 06af09008d0c13041be4e88b2a21fd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultLevel: 0

@@ -3,14 +3,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerVisibilityManager : MonoBehaviour
+public class PlayerScannerController : MonoBehaviour
 {
     [SerializeField] List<GameObject> hideables = new();
     [SerializeField] Camera playerCamera;
     [SerializeField] string hiddenLayerName = "HiddenFromCamera";
     [SerializeField] string hiddenTag = "HiddenFromCamera";
     PlayerControls controls;
-    InputAction checkFOV;
+    InputAction useScanner;
 
     List<KeyValuePair<GameObject, int>> _hideables = new();
     bool currentVisible = false;
@@ -29,7 +29,7 @@ public class PlayerVisibilityManager : MonoBehaviour
     private void Awake()
     {
         controls = new();
-        checkFOV = controls.Gameplay.CheckFOV;
+        useScanner = controls.Gameplay.UseScanner;
         hiddenLayer = LayerMask.NameToLayer(hiddenLayerName);
 
         if (playerCamera == null) playerCamera = Camera.main;
@@ -57,7 +57,7 @@ public class PlayerVisibilityManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isPressed = checkFOV.ReadValue<float>() > 0.5f;
+        bool isPressed = useScanner.ReadValue<float>() > 0.5f;
 
         if (currentVisible != isPressed)
         {

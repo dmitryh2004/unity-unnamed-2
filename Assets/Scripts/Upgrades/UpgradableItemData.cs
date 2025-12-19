@@ -15,6 +15,16 @@ public class UpgradableValue
     public int level;
     public float value;
 }
+
+[Serializable]
+public class UpgradableValueData {
+    public string name;
+    public bool increaseIsPositive = true;
+    public List<UpgradableValue> upgradableValueList;
+    public float uvShowMultiplier = 1;
+    public string uvSuffix = "";
+}
+
 [CreateAssetMenu(fileName = "UpgradableItemData", menuName = "Scriptable Objects/Upgradable Item Data")]
 public class UpgradableItemData : ScriptableObject
 {
@@ -22,29 +32,13 @@ public class UpgradableItemData : ScriptableObject
     public int minLevel = 1;
     public int maxLevel = 1;
     [Header("Upgradable Values")]
-    public bool hasUpgradableValue1 = true;
-    public bool increaseIsPositive1 = true;
-    public List<UpgradableValue> upgradableValue1List;
-    public float uv1ShowMultiplier = 1;
-    public string uv1Suffix = "";
-    [Space()]
-    public bool hasUpgradableValue2 = false;
-    public bool increaseIsPositive2 = true;
-    public List<UpgradableValue> upgradableValue2List;
-    public float uv2ShowMultiplier = 1;
-    public string uv2Suffix = "";
-    [Space()]
-    public bool hasUpgradableValue3 = false;
-    public bool increaseIsPositive3 = true;
-    public List<UpgradableValue> upgradableValue3List;
-    public float uv3ShowMultiplier = 1;
-    public string uv3Suffix = "";
+    public List<UpgradableValueData> upgradableValues = new();
+
     [Header("Upgrade costs")]
     public List<UpgradeCost> upgradeCosts;
     [Space(20)]
     [Header("Info")]
     public string itemName;
     [TextArea(5, 10)] public string description;
-    public string uv1Name, uv2Name, uv3Name;
     [TextArea(5, 10)] public string additionalInfo;
 }

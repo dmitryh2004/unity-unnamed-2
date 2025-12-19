@@ -14,6 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minLevel: 1
   maxLevel: 4
+  upgradableValues:
+  - name: "\u041E\u0431\u044A\u0435\u043C \u0440\u044E\u043A\u0437\u0430\u043A\u0430"
+    increaseIsPositive: 1
+    upgradableValueList:
+    - level: 1
+      value: 0.01
+    - level: 2
+      value: 0.02
+    - level: 3
+      value: 0.04
+    - level: 4
+      value: 0.08
+    uvShowMultiplier: 1000
+    uvSuffix: "\u043B"
   hasUpgradableValue1: 1
   increaseIsPositive1: 1
   upgradableValue1List:
@@ -37,6 +51,21 @@ MonoBehaviour:
   upgradableValue3List: []
   uv3ShowMultiplier: 1
   uv3Suffix: 
+  hasUpgradableValue4: 0
+  increaseIsPositive4: 1
+  upgradableValue4List: []
+  uv4ShowMultiplier: 1
+  uv4Suffix: 
+  hasUpgradableValue5: 0
+  increaseIsPositive5: 1
+  upgradableValue5List: []
+  uv5ShowMultiplier: 1
+  uv5Suffix: 
+  hasUpgradableValue6: 0
+  increaseIsPositive6: 1
+  upgradableValue6List: []
+  uv6ShowMultiplier: 1
+  uv6Suffix: 
   upgradeCosts:
   - level: 1
     cost: 0
@@ -60,6 +89,9 @@ MonoBehaviour:
   uv1Name: "\u041E\u0431\u044A\u0435\u043C \u0440\u044E\u043A\u0437\u0430\u043A\u0430"
   uv2Name: 
   uv3Name: 
+  uv4Name: 
+  uv5Name: 
+  uv6Name: 
   additionalInfo: "--- --- ---\n\u041F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435
     Unnamed-B-322-1\n\n\u041F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0430\u044F
     \u043C\u043E\u0434\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u044F, Unnamed-B-252.2,

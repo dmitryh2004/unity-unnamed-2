@@ -1,25 +1,25 @@
 using UnityEngine;
 
-public class PlayerLootPredictor : UpgradableItem
+public class PlayerScanner : UpgradableItem
 {
-    public static PlayerLootPredictor Instance = null;
+    public static PlayerScanner Instance = null;
     public int GetLootPrecision()
     {
-        float? uv = GetUpgradableValue1();
+        float? uv = GetUpgradableValue(0);
         if (uv == null) return -1;
         return (int)uv;
     }
 
     public int GetProtectedRoomPrecision()
     {
-        float? uv = GetUpgradableValue2();
+        float? uv = GetUpgradableValue(1);
         if (uv == null) return -1;
         return (int)uv;
     }
 
     public int GetSecuredRoomPrecision()
     {
-        float? uv = GetUpgradableValue3();
+        float? uv = GetUpgradableValue(2);
         if (uv == null) return -1;
         return (int)uv;
     }

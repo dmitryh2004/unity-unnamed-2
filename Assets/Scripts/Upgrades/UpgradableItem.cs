@@ -36,46 +36,46 @@ public class UpgradableItem : MonoBehaviour
         level = defaultLevel;
     }
 
-    public float? GetUpgradableValue1()
+    public int GetUpgradableValuesCount() => upgradableItemData.upgradableValues.Count;
+
+    public float? GetUpgradableValue(int index)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue1List.Find((x) => x.level == level);
+        if (index < 0 || index > GetUpgradableValuesCount()) return null;
+        UpgradableValue uv = upgradableItemData.upgradableValues[index].upgradableValueList.Find((x) => x.level == level);
         if (uv == null) return null;
         return uv.value;
     }
 
-    public float? GetUpgradableValue2()
+    public float? GetUpgradableValue(int index, int level)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue2List.Find((x) => x.level == level);
+        if (index < 0 || index > upgradableItemData.upgradableValues.Count) return null;
+        UpgradableValue uv = upgradableItemData.upgradableValues[index].upgradableValueList.Find((x) => x.level == level);
         if (uv == null) return null;
         return uv.value;
     }
 
-    public float? GetUpgradableValue3()
+    public bool? UpgradableValueIncreaseIsPositive(int index)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue3List.Find((x) => x.level == level);
-        if (uv == null) return null;
-        return uv.value;
+        if (index < 0 || index > upgradableItemData.upgradableValues.Count) return null;
+        return upgradableItemData.upgradableValues[index].increaseIsPositive;
     }
 
-    public float? GetUpgradableValue1(int level)
+    public string? GetUpgradableValueName(int index)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue1List.Find((x) => x.level == level);
-        if (uv == null) return null;
-        return uv.value;
+        if (index < 0 || index > upgradableItemData.upgradableValues.Count) return null;
+        return upgradableItemData.upgradableValues[index].name;
     }
 
-    public float? GetUpgradableValue2(int level)
+    public string? GetUpgradableValueSuffix(int index)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue2List.Find((x) => x.level == level);
-        if (uv == null) return null;
-        return uv.value;
+        if (index < 0 || index > upgradableItemData.upgradableValues.Count) return null;
+        return upgradableItemData.upgradableValues[index].uvSuffix;
     }
 
-    public float? GetUpgradableValue3(int level)
+    public float? GetUpgradableValueShowMultiplier(int index)
     {
-        UpgradableValue uv = upgradableItemData.upgradableValue3List.Find((x) => x.level == level);
-        if (uv == null) return null;
-        return uv.value;
+        if (index < 0 || index > upgradableItemData.upgradableValues.Count) return null;
+        return upgradableItemData.upgradableValues[index].uvShowMultiplier;
     }
 
     public int GetUpgradeCost(int level)
@@ -89,22 +89,5 @@ public class UpgradableItem : MonoBehaviour
     }
     public string GetName() => upgradableItemData.itemName;
     public string GetDesc() => upgradableItemData.description;
-    public bool HasUV1() => upgradableItemData.hasUpgradableValue1;
-    public bool HasUV2() => upgradableItemData.hasUpgradableValue2;
-    public bool HasUV3() => upgradableItemData.hasUpgradableValue3;
-    public bool UV1IncreaseIsPositive() => upgradableItemData.increaseIsPositive1;
-    public bool UV2IncreaseIsPositive() => upgradableItemData.increaseIsPositive2;
-    public bool UV3IncreaseIsPositive() => upgradableItemData.increaseIsPositive3;
-    public string GetUV1Name() => upgradableItemData.uv1Name;
-    public string GetUV2Name() => upgradableItemData.uv2Name;
-    public string GetUV3Name() => upgradableItemData.uv3Name;
-
-    public float GetUV1ShowMultiplier() => upgradableItemData.uv1ShowMultiplier;
-    public float GetUV2ShowMultiplier() => upgradableItemData.uv2ShowMultiplier;
-    public float GetUV3ShowMultiplier() => upgradableItemData.uv3ShowMultiplier;
-    public string GetUV1Suffix() => upgradableItemData.uv1Suffix;
-    public string GetUV2Suffix() => upgradableItemData.uv2Suffix;
-    public string GetUV3Suffix() => upgradableItemData.uv3Suffix;
-
     public string GetAdditionalInfo() => upgradableItemData.additionalInfo;
 }

@@ -14,9 +14,9 @@ public class StartStatsController : MonoBehaviour
 
     public void ShowStatsWindow()
     {
-        int lootPrecision = PlayerLootPredictor.Instance.GetLootPrecision();
-        int protectedRoomsPrecision = PlayerLootPredictor.Instance.GetProtectedRoomPrecision();
-        int securedRoomsPrecision = PlayerLootPredictor.Instance.GetSecuredRoomPrecision();
+        int lootPrecision = PlayerScanner.Instance.GetLootPrecision();
+        int protectedRoomsPrecision = PlayerScanner.Instance.GetProtectedRoomPrecision();
+        int securedRoomsPrecision = PlayerScanner.Instance.GetSecuredRoomPrecision();
         StartCoroutine(MainCoroutine(1.5f, lootPrecision, protectedRoomsPrecision, securedRoomsPrecision));
     }
 

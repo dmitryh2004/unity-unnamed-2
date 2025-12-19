@@ -64,8 +64,8 @@ public class VirusController : UpgradableItem
 
     public void ResetToStart()
     {
-        currentHP = (int)GetUpgradableValue1();
-        currentAttack = (int)GetUpgradableValue2();
+        currentHP = (int)GetUpgradableValue(0);
+        currentAttack = (int)GetUpgradableValue(1);
         alive = true;
         hoverAnimationActive = false;
         hoverAnimationHP = 0;
@@ -135,7 +135,7 @@ public class VirusController : UpgradableItem
 
     public void RecalculateAttack()
     {
-        currentAttack = (int)GetUpgradableValue2() - HackWindowController.Instance.GetGridController().GetPacifierDebuff();
+        currentAttack = (int)GetUpgradableValue(1) - HackWindowController.Instance.GetGridController().GetPacifierDebuff();
         if (currentAttack <= 10) currentAttack = 10;
         UpdateBars();
     }

@@ -189,9 +189,9 @@ public class SaveManager : MonoBehaviour
         }
         
         int predictorLevel = 0;
-        if (PlayerLootPredictor.Instance != null)
+        if (PlayerScanner.Instance != null)
         {
-            predictorLevel = PlayerLootPredictor.Instance.GetLevel();
+            predictorLevel = PlayerScanner.Instance.GetLevel();
         }
         else
         {

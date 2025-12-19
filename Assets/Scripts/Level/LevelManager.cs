@@ -39,8 +39,8 @@ public class LevelManager : MonoBehaviour
 
             if (VirusController.Instance != null)
                 VirusController.Instance.SetLevel(gameData.save.playerData.virusLevel);
-            if (PlayerLootPredictor.Instance != null)
-                PlayerLootPredictor.Instance.SetLevel(gameData.save.playerData.predictorLevel);
+            if (PlayerScanner.Instance != null)
+                PlayerScanner.Instance.SetLevel(gameData.save.playerData.predictorLevel);
             if (Chest.Instance != null)
                 Chest.Instance.SetItemsFromJson(gameData.save.baseData.chest);
             if (SpaceshipController.Instance != null)
@@ -88,8 +88,8 @@ public class LevelManager : MonoBehaviour
 
             if (VirusController.Instance != null)
                 VirusController.Instance.SetLevel(1);
-            if (PlayerLootPredictor.Instance != null)
-                PlayerLootPredictor.Instance.SetLevel(0);
+            if (PlayerScanner.Instance != null)
+                PlayerScanner.Instance.SetLevel(0);
         }
 
         if (trader != null)

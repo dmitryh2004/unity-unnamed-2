@@ -30,7 +30,10 @@ public class PlayerFlashlightController : MonoBehaviour
     public void UpdateFlashlight(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
+        if ((!PlayerFlashlight.Instance.InUse()) && PlayerFlashlight.Instance.GetCurrentCharge() <= 0f) {
+            return;
+        }
         _active = !_active;
-        flashlightLight.SetActive(_active);
+        PlayerFlashlight.Instance.SetInUse(_active);
     }
 }

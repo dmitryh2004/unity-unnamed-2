@@ -33,6 +33,7 @@ public class Player
     public string inventory = "";
     public int inventoryLevel = 1;
     public int virusLevel = 1;
+    public int flashlightLevel = 1;
     public int predictorLevel = 0;
     public int money = 0;
 }
@@ -187,7 +188,20 @@ public class SaveManager : MonoBehaviour
                 virusLevel = loadedData.save.playerData.virusLevel;
             }
         }
-        
+
+        int flashlightLevel = 1;
+        if (PlayerFlashlight.Instance != null)
+        {
+            flashlightLevel = PlayerFlashlight.Instance.GetLevel();
+        }
+        else
+        {
+            if (loadedData != null)
+            {
+                flashlightLevel = loadedData.save.playerData.flashlightLevel;
+            }
+        }
+
         int predictorLevel = 0;
         if (PlayerScanner.Instance != null)
         {
@@ -246,6 +260,7 @@ public class SaveManager : MonoBehaviour
             inventoryLevel = inventoryLevel,
             virusLevel = virusLevel,
             predictorLevel = predictorLevel,
+            flashlightLevel = flashlightLevel,
             money = money
         };
 

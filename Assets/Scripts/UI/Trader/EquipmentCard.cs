@@ -8,7 +8,8 @@ public enum Equipments
 {
     Inventory = 0,
     Virus = 1,
-    Scanner = 2
+    Scanner = 2,
+    Flashlight = 3
 }
 public class EquipmentCard : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class EquipmentCard : MonoBehaviour
                 return VirusController.Instance;
             case Equipments.Scanner:
                 return PlayerScanner.Instance;
+            case Equipments.Flashlight:
+                return PlayerFlashlight.Instance;
             default:
                 return null;
         }

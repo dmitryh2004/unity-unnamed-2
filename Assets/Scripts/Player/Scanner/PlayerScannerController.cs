@@ -13,7 +13,6 @@ public class PlayerScannerController : MonoBehaviour
     InputAction useScanner;
 
     List<KeyValuePair<GameObject, int>> _hideables = new();
-    bool currentVisible = false;
     int hiddenLayer = 0;
 
     private void OnEnable()
@@ -59,11 +58,13 @@ public class PlayerScannerController : MonoBehaviour
     {
         bool isPressed = useScanner.ReadValue<float>() > 0.5f;
 
-        if (currentVisible != isPressed)
+        if (PlayerScanner.Instance.InUse() != isPressed)
         {
-            currentVisible = isPressed;
-            if (currentVisible) ShowObjects(); else HideObjects();
+            PlayerScanner.Instance.SetInUse(isPressed);
         }
+
+        bool isActive = PlayerScanner.Instance.IsActive();
+        if (isActive) ShowObjects(); else HideObjects();
     }
 
     void HideObjects()

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 9095680672409685429}
   - component: {fileID: 6067334545579185054}
   - component: {fileID: 3344384484649247653}
+  - component: {fileID: 2659495387709038994}
   - component: {fileID: 5267577150279294020}
   - component: {fileID: 3236858057187582836}
   - component: {fileID: 4222850720681407689}
@@ -589,6 +590,22 @@ MonoBehaviour:
   mouseSensitivity: 8
   cameraPitchMin: -70
   cameraPitchMax: 70
+--- !u!114 &2659495387709038994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a74a411ec2da44bbad36706354d7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultLevel: 1
+  upgradableItemData: {fileID: 11400000, guid: 7bfc522f18b75e7419784d2296ec0a4c, type: 2}
+  uiController: {fileID: 0}
+  flashlight: {fileID: 8180043337165310038}
 --- !u!114 &5267577150279294020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,6 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultLevel: 0
   upgradableItemData: {fileID: 11400000, guid: 20c9f2e7189f2ae4b9ac2c6df3211e59, type: 2}
+  uiController: {fileID: 0}
 --- !u!114 &863148354003604142
 MonoBehaviour:
   m_ObjectHideFlags: 0

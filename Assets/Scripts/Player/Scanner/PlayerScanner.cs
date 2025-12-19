@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerScanner : UpgradableItem
 {
     public static PlayerScanner Instance = null;
+    [SerializeField] ProgressBarUIController uiController;
     float currentCharge = 0f;
     float chargeRegenSpeed = 0f;
     float chargeUseSpeed = 1f;
@@ -38,12 +39,16 @@ public class PlayerScanner : UpgradableItem
 
     public void SetInUse(bool inUse) => this.inUse = inUse;
 
+    public bool IsActive() => InUse() && GetCurrentCharge() > 0f;
+
     protected override void OnSetLevel()
     {
         base.OnSetLevel();
         maxCharge = GetUpgradableValue(3) ?? 0;
         chargeRegenSpeed = GetUpgradableValue(4) ?? 0;
         chargeUseSpeed = GetUpgradableValue(5) ?? 0;
+
+        uiController.gameObject.SetActive(maxCharge != 0);
     }
 
     private void Awake()
@@ -54,13 +59,18 @@ public class PlayerScanner : UpgradableItem
             return;
         }
         Instance = this;
+
+        if (uiController == null)
+        {
+            uiController = GameObject.FindGameObjectWithTag("ScannerUI").GetComponent<ProgressBarUIController>();
+        }
     }
 
     private void Update()
     {
-        float diff = (inUse) ? -chargeUseSpeed : chargeRegenSpeed;
+        float diff = (inUse ? -chargeUseSpeed : chargeRegenSpeed) * Time.deltaTime;
         currentCharge = Mathf.Clamp(currentCharge + diff, 0, maxCharge);
 
-        // update ui
+        uiController.UpdateUI(currentCharge, maxCharge);
     }
 }

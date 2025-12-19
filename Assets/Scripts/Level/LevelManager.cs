@@ -39,6 +39,8 @@ public class LevelManager : MonoBehaviour
 
             if (VirusController.Instance != null)
                 VirusController.Instance.SetLevel(gameData.save.playerData.virusLevel);
+            if (PlayerFlashlight.Instance != null)
+                PlayerFlashlight.Instance.SetLevel(gameData.save.playerData.flashlightLevel);
             if (PlayerScanner.Instance != null)
                 PlayerScanner.Instance.SetLevel(gameData.save.playerData.predictorLevel);
             if (Chest.Instance != null)
@@ -88,6 +90,8 @@ public class LevelManager : MonoBehaviour
 
             if (VirusController.Instance != null)
                 VirusController.Instance.SetLevel(1);
+            if (PlayerFlashlight.Instance != null)
+                PlayerFlashlight.Instance.SetLevel(1);
             if (PlayerScanner.Instance != null)
                 PlayerScanner.Instance.SetLevel(0);
         }

@@ -9,6 +9,10 @@ public class PlayerScannerController : MonoBehaviour
     [SerializeField] Camera playerCamera;
     [SerializeField] string hiddenLayerName = "HiddenFromCamera";
     [SerializeField] string hiddenTag = "HiddenFromCamera";
+    [Space]
+    [Header("Loot cost hints")]
+    [SerializeField] Camera playerHintCamera;
+    List<LootHintController> lootHintControllers = new();
     PlayerControls controls;
     InputAction useScanner;
 
@@ -67,6 +71,11 @@ public class PlayerScannerController : MonoBehaviour
         if (isActive) ShowObjects(); else HideObjects();
     }
 
+    public void FindLootCostHints()
+    {
+        lootHintControllers = FindObjectsByType<LootHintController>(FindObjectsSortMode.None).ToList();
+    }
+
     void HideObjects()
     {
         foreach(var hideable in _hideables)
@@ -74,6 +83,12 @@ public class PlayerScannerController : MonoBehaviour
             hideable.Key.layer = hiddenLayer;
             Light light;
             if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(false);
+        }
+
+        playerHintCamera.gameObject.SetActive(false);
+        foreach (var l in lootHintControllers)
+        {
+            l.gameObject.SetActive(false);
         }
     }
 
@@ -84,6 +99,13 @@ public class PlayerScannerController : MonoBehaviour
             hideable.Key.layer = hideable.Value;
             Light light;
             if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(true);
+        }
+
+        playerHintCamera.gameObject.SetActive(true);
+        foreach (var l in lootHintControllers)
+        {
+            l.gameObject.SetActive(true);
+            l.UpdateLootSum();
         }
     }
 }

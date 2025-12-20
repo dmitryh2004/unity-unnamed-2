@@ -403,6 +403,8 @@ public class LevelGenerator : MonoBehaviour
         generatedLootSum = lootSum;
 
         Debug.Log($"Generated loot with total cost = {generatedLootSum}");
+
+        FindFirstObjectByType<PlayerScannerController>()?.FindLootCostHints();
     }
 
     private void BakeNavMesh()

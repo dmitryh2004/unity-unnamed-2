@@ -119,6 +119,24 @@ public class LootContainer : MonoBehaviour
                 lootPointsUsed++;
             }
         }
+        return lootSum;
+    }
+
+    public int GetSpawnedLootSum()
+    {
+        int lootSum = 0;
+        foreach(Transform t in lootPoints)
+        {
+            int childCount = t.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                LootableItem li = t.GetChild(i).GetComponent<LootableItem>();
+                if (li != null)
+                {
+                    lootSum += li.GetLootCategory().cost;
+                }
+            }
+        }
 
         return lootSum;
     }

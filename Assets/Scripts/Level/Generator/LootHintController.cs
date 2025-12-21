@@ -19,26 +19,22 @@ public class ColorByValueComparer : IComparer<ColorByValue>
 public class LootHintController : MonoBehaviour
 {
     [SerializeField] LootContainer lootContainer;
-    [SerializeField] Material material;
     [SerializeField] List<ColorByValue> colors = new();
     [SerializeField] Transform player;
     [SerializeField] float maxRenderDistance = 5f;
 
-    private Renderer objectRenderer;
-    private Material instanceMaterial;  // Instance материала
+    [SerializeField] Renderer[] objectRenderers = new Renderer[0];
+    private Material[] instanceMaterials;  // Instance материала
+    private Color currentColor;
+    private bool emitting = false;
 
     private void Start()
     {
-        objectRenderer = GetComponent<Renderer>();
-        if (objectRenderer == null)
+        instanceMaterials = new Material[objectRenderers.Length];
+        for (int i = 0; i < objectRenderers.Length; i++)
         {
-            Debug.LogError("Renderer component not found!");
-            return;
+            instanceMaterials[i] = objectRenderers[i].material;
         }
-
-        // Создаем instance материала и присваиваем его Renderer'у
-        if (material == null) material = objectRenderer.sharedMaterial;
-        instanceMaterial = objectRenderer.material;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -46,11 +42,16 @@ public class LootHintController : MonoBehaviour
         colors.Sort(comparer);
     }
 
+    public void SetActive(bool active)
+    {
+        emitting = active;
+    }
+
     public void UpdateLootSum()
     {
         int lootSum = lootContainer.GetSpawnedLootSum();
 
-        instanceMaterial.color = colors[colors.Count - 1].color; // по умолчанию считаем, что стоимость лута максимальна
+        Color resultColor = colors[colors.Count - 1].color; // по умолчанию считаем, что стоимость лута максимальна
 
         for (int i = 0; i < colors.Count; i++)
         {
@@ -58,7 +59,7 @@ public class LootHintController : MonoBehaviour
             else if (lootSum == colors[i].value)
             {
                 Color color = colors[i].color;
-                instanceMaterial.color = color;
+                resultColor = color;
                 break;
             }
             else
@@ -68,32 +69,36 @@ public class LootHintController : MonoBehaviour
                 {
                     Color colorGreater = colors[i - 1].color;
                     float ratio = ((float)lootSum - colors[i - 1].value) / (colors[i].value - colors[i - 1].value);
-                    Color resultColor = Color.Lerp(colorGreater, colorLess, ratio);
-                    instanceMaterial.color = resultColor;
+                    resultColor = Color.Lerp(colorGreater, colorLess, ratio);
                 }
                 else
                 {
-                    instanceMaterial.color = colors[0].color;
+                    resultColor = colors[0].color;
                 }
                 break;
             }
         }
+        currentColor = resultColor;
 
-        UpdateColor();
+        UpdateColors();
     }
 
-    void UpdateColor()
+    void UpdateColors()
     {
-        Color color = instanceMaterial.color;
-        color.a = Mathf.Clamp01(1 - Vector3.Distance(transform.position, player.position) / maxRenderDistance);
-        instanceMaterial.color = color;
-
+        Color color = Color.black;
+        if (emitting)
+        {
+            color = currentColor;
+            float intensity = Mathf.Clamp(1 - Vector3.Distance(transform.position, player.position) / maxRenderDistance, 0, 0.5f);
+            color = color * intensity;
+        }
         //emission
-        instanceMaterial.SetColor("_EmissionColor", color);
+        for (int i = 0; i < instanceMaterials.Length; i++)
+            instanceMaterials[i].SetColor("_EmissionColor", color);
     }
 
     private void Update()
     {
-        UpdateColor();
+        UpdateColors();
     }
 }

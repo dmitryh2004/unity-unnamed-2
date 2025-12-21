@@ -85,10 +85,9 @@ public class PlayerScannerController : MonoBehaviour
             if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(false);
         }
 
-        playerHintCamera.gameObject.SetActive(false);
         foreach (var l in lootHintControllers)
         {
-            l.gameObject.SetActive(false);
+            l.SetActive(false);
         }
     }
 
@@ -101,10 +100,9 @@ public class PlayerScannerController : MonoBehaviour
             if (hideable.Key.TryGetComponent<Light>(out light)) hideable.Key.SetActive(true);
         }
 
-        playerHintCamera.gameObject.SetActive(true);
         foreach (var l in lootHintControllers)
         {
-            l.gameObject.SetActive(true);
+            l.SetActive(true);
             l.UpdateLootSum();
         }
     }

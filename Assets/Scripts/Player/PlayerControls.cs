@@ -906,6 +906,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ArchiveUI"",
+            ""id"": ""153a91e1-548a-46bb-8b5d-d46430f45b11"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""536d3f43-4793-4501-b09c-27ad58a0eae1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f1010a85-0835-4851-8f92-4e6348469d12"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -960,6 +988,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // JewerlyTableUI
         m_JewerlyTableUI = asset.FindActionMap("JewerlyTableUI", throwIfNotFound: true);
         m_JewerlyTableUI_Exit = m_JewerlyTableUI.FindAction("Exit", throwIfNotFound: true);
+        // ArchiveUI
+        m_ArchiveUI = asset.FindActionMap("ArchiveUI", throwIfNotFound: true);
+        m_ArchiveUI_Exit = m_ArchiveUI.FindAction("Exit", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -971,6 +1002,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_SpaceshipPanelUI.enabled, "This will cause a leak and performance issues, PlayerControls.SpaceshipPanelUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_TraderUI.enabled, "This will cause a leak and performance issues, PlayerControls.TraderUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_JewerlyTableUI.enabled, "This will cause a leak and performance issues, PlayerControls.JewerlyTableUI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ArchiveUI.enabled, "This will cause a leak and performance issues, PlayerControls.ArchiveUI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -2033,6 +2065,102 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="JewerlyTableUIActions" /> instance referencing this action map.
     /// </summary>
     public JewerlyTableUIActions @JewerlyTableUI => new JewerlyTableUIActions(this);
+
+    // ArchiveUI
+    private readonly InputActionMap m_ArchiveUI;
+    private List<IArchiveUIActions> m_ArchiveUIActionsCallbackInterfaces = new List<IArchiveUIActions>();
+    private readonly InputAction m_ArchiveUI_Exit;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ArchiveUI".
+    /// </summary>
+    public struct ArchiveUIActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public ArchiveUIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ArchiveUI/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_ArchiveUI_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ArchiveUI; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="ArchiveUIActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(ArchiveUIActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="ArchiveUIActions" />
+        public void AddCallbacks(IArchiveUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ArchiveUIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ArchiveUIActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="ArchiveUIActions" />
+        private void UnregisterCallbacks(IArchiveUIActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ArchiveUIActions.UnregisterCallbacks(IArchiveUIActions)" />.
+        /// </summary>
+        /// <seealso cref="ArchiveUIActions.UnregisterCallbacks(IArchiveUIActions)" />
+        public void RemoveCallbacks(IArchiveUIActions instance)
+        {
+            if (m_Wrapper.m_ArchiveUIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="ArchiveUIActions.AddCallbacks(IArchiveUIActions)" />
+        /// <seealso cref="ArchiveUIActions.RemoveCallbacks(IArchiveUIActions)" />
+        /// <seealso cref="ArchiveUIActions.UnregisterCallbacks(IArchiveUIActions)" />
+        public void SetCallbacks(IArchiveUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ArchiveUIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ArchiveUIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="ArchiveUIActions" /> instance referencing this action map.
+    /// </summary>
+    public ArchiveUIActions @ArchiveUI => new ArchiveUIActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Gameplay" which allows adding and removing callbacks.
     /// </summary>
@@ -2332,6 +2460,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// <seealso cref="JewerlyTableUIActions.AddCallbacks(IJewerlyTableUIActions)" />
     /// <seealso cref="JewerlyTableUIActions.RemoveCallbacks(IJewerlyTableUIActions)" />
     public interface IJewerlyTableUIActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ArchiveUI" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="ArchiveUIActions.AddCallbacks(IArchiveUIActions)" />
+    /// <seealso cref="ArchiveUIActions.RemoveCallbacks(IArchiveUIActions)" />
+    public interface IArchiveUIActions
     {
         /// <summary>
         /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

@@ -15,6 +15,7 @@ MonoBehaviour:
   header: "\u0423\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u043E \u0430\u0440\u0445\u0438\u0432\u0430\u0446\u0438\u0438"
   articleParts:
   - rid: 3891813161579315268
+  - rid: 3891813206905585726
   references:
     version: 2
     RefIds:
@@ -30,3 +31,8 @@ MonoBehaviour:
         italic: 0
         underline: 0
         textAlignment: 0
+    - rid: 3891813206905585726
+      type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u041E\u0431\u0449\u0438\u0435 \u0441\u0432\u0435\u0434\u0435\u043D\u0438\u044F"
+        article: {fileID: 11400000, guid: e16db72b1b4bfd343b155fefddb3a3d9, type: 2}

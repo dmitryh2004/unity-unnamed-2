@@ -10,7 +10,7 @@ public class ArticlePart
 [System.Serializable]
 public class ArticlePartText : ArticlePart
 {
-    [TextArea(5, 10)] public string text;
+    [TextArea(8, 10)] public string text;
     public int fontSize = 18;
     public bool bold;
     public bool italic;

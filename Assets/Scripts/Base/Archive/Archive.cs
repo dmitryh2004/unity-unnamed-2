@@ -1,8 +1,13 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Archive : MonoBehaviour
 {
     [SerializeField] float saveCooldown = 5f;
+    [SerializeField] Animator animator;
+    [SerializeField] ArchiveUIController uiController;
+    [SerializeField] List<Article> articles = new();
     float timer = 0f;
     public void SaveGame()
     {
@@ -11,6 +16,25 @@ public class Archive : MonoBehaviour
             timer = saveCooldown;
             LevelManager.Instance.SaveGame(showMessage: true);
         }
+    }
+
+    public void OpenArchive()
+    {
+        uiController.ShowWindow();
+        uiController.SetArticle(articles[0]);
+        animator.SetTrigger("activate");
+    }
+
+    public void CloseArchive(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        CloseArchive();
+    }
+
+    public void CloseArchive()
+    {
+        uiController.HideWindow();
+        animator.SetTrigger("deactivate");
     }
 
     private void Update()

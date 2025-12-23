@@ -68,7 +68,8 @@ public class PlayerInteractor : MonoBehaviour
             inventoryFullActive = false, lockedHintActive = false, hackHintActive = false,
             hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false,
             spaceshipPanelHintActive = false, spaceshipLeverHintActive = false, unavailableHintActive = false,
-            openTraderUIHintActive = false, useJewerlyTableHintActive = false, saveGameHintActive = false;
+            openTraderUIHintActive = false, useJewerlyTableHintActive = false, saveGameHintActive = false,
+            useArchiveHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -179,6 +180,10 @@ public class PlayerInteractor : MonoBehaviour
                     {
                         saveGameHintActive = true;
                     }
+                    else if (interactable is ArchiveActivateButton activateButton)
+                    {
+                        useArchiveHintActive = true;
+                    }
                 }
                 else
                 {
@@ -201,5 +206,6 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("OpenTraderUIHint"), openTraderUIHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseJewerlyTableHint"), useJewerlyTableHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SaveGameHint"), saveGameHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseArchiveHint"), useArchiveHintActive);
     }
 }

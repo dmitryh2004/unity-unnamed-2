@@ -820,6 +820,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ArchiveUI",
+            "id": "153a91e1-548a-46bb-8b5d-d46430f45b11",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "536d3f43-4793-4501-b09c-27ad58a0eae1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f1010a85-0835-4851-8f92-4e6348469d12",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

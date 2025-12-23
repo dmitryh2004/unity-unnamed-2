@@ -545,6 +545,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: a6c3c7ce-090b-43d8-99c0-45a7c09e10a5
     m_ActionName: 'JewerlyTableUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 536d3f43-4793-4501-b09c-27ad58a0eae1
+    m_ActionName: 'ArchiveUI/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -687,7 +691,8 @@ MonoBehaviour:
   - SpaceshipPanelUI
   - TraderUI
   - JewerlyTableUI
-  cursorVisibleOnMap: 00010101000101
+  - ArchiveUI
+  cursorVisibleOnMap: 0001010100010101
   startMap: Gameplay
 --- !u!114 &486206194635256262
 MonoBehaviour:

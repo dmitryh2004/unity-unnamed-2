@@ -89,7 +89,7 @@ public class LootHintController : MonoBehaviour
         if (emitting)
         {
             color = currentColor;
-            float intensity = Mathf.Clamp(1 - Vector3.Distance(transform.position, player.position) / maxRenderDistance, 0, 0.5f);
+            float intensity = Mathf.Clamp(1 - Vector3.Distance(transform.position, player.position) / maxRenderDistance, 0, 1f);
             color = color * intensity;
         }
         //emission

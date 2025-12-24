@@ -40,7 +40,6 @@ public class ChestController : Interactable
     public void CloseChest(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        Debug.Log("Esc pressed");
         if (playerInput.currentActionMap.name == "ChestUI")
             CloseChest();
     }

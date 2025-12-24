@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Archive : MonoBehaviour
 {
+    [SerializeField] PlayerInput playerInput;
     [SerializeField] float saveCooldown = 5f;
     [SerializeField] Animator animator;
     [SerializeField] ArchiveUIController uiController;
@@ -28,7 +29,8 @@ public class Archive : MonoBehaviour
     public void CloseArchive(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        CloseArchive();
+        if (playerInput.currentActionMap.name == "ArchiveUI")
+            CloseArchive();
     }
 
     public void CloseArchive()

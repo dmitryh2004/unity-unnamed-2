@@ -86,7 +86,7 @@ public class VirusController : UpgradableItem
             StopCoroutine(delayCoroutine);
             delayCoroutine = null;
         }
-        hoverAnimationHP = hoverAnimationActive ? currentHP - nodeAttack : 0;
+        hoverAnimationHP = hoverAnimationActive ? currentHP - nodeAttack : currentHP;
 
         bool canKill = nodeHP <= currentAttack;
 

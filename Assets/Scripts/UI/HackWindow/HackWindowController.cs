@@ -243,12 +243,17 @@ public class HackWindowController : MonoBehaviour
             }
             else
             {
-                correctTarget = !(!hoveredNode.IsActive() && hoveredNode.IsVisited());
+                if (hoveredNode.IsBonus() && hoveredNode.IsActive() && hoveredNode.IsVisited())
+                {
+                    correctTarget = BonusController.Instance.CanAddBonus();
+                }
+                else
+                    correctTarget = !(!hoveredNode.IsActive() && hoveredNode.IsVisited());
             }
 
             if (correctTarget)
             {
-                if (hoveredNode != null) 
+                if (hoveredNode != null)
                 {
                     gridController.MakeStepPre();
                     hoveredNode.Interact();
@@ -278,6 +283,7 @@ public class HackWindowController : MonoBehaviour
                     }
                 }
             }
+            else return;
         }
         else
         {

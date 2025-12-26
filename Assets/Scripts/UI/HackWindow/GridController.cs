@@ -584,17 +584,17 @@ public class GridController : MonoBehaviour
 
             target.Repair(repair.GetValue1());
         }
-        
+    }
+    public void MakeStepPost()
+    {
+        VirusController.Instance.RecalculateAttack();
+
         //antivirus
         foreach (Node antivirus in antivirusNodes)
         {
             if (!antivirus.IsActive()) continue;
             VirusController.Instance.TakeDamage(antivirus.GetValue1(), ignoreEncryption: true);
         }
-    }
-    public void MakeStepPost()
-    {
-        VirusController.Instance.RecalculateAttack();
     }
 
     public int GetPacifierDebuff()

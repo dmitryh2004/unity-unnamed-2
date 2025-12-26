@@ -45,6 +45,8 @@ public class BonusController : MonoBehaviour
         return null;
     }
 
+    public bool CanAddBonus() => FindEmptyBonusSlot() != null;
+
     public bool AddBonus(BonusType bonusType)
     {
         BonusSlot slot = FindEmptyBonusSlot();

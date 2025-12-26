@@ -282,6 +282,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     void OnDeath()
     {
         active = false;
+        HackWindowController.Instance.ClearHoveredNode();
         foreach (Node n in neighbours)
         {
             n.UpdateIcon();

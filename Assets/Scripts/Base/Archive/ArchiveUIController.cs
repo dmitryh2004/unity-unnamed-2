@@ -78,7 +78,7 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         var textMesh = textObj.AddComponent<TextMeshProUGUI>();
         textMesh.text = textPart.text;
         textMesh.fontSize = textPart.fontSize;
-        textMesh.color = Color.green * 0.5f;
+        textMesh.color = textPart.color;
         textMesh.font = fontAsset;
 
         // ForceMeshUpdate для корректного preferredHeight

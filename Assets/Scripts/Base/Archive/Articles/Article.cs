@@ -15,6 +15,7 @@ public class ArticlePartText : ArticlePart
     public bool bold;
     public bool italic;
     public bool underline;
+    public Color color = new Color(0f, 0.5f, 0f, 1f);
     public TextAlignment textAlignment;
 }
 

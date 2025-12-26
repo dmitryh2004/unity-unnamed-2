@@ -19,6 +19,8 @@ MonoBehaviour:
   - rid: 3026835165033791560
   - rid: 3026835165033791561
   - rid: 3026835165033791562
+  - rid: 3026835168771440723
+  - rid: 3026835168771440724
   - rid: 3026835165033791563
   - rid: 3026835165033791565
   - rid: 3891813206905585726
@@ -55,6 +57,7 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3026835165033791560
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -77,6 +80,7 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3026835165033791561
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -106,6 +110,7 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3026835165033791562
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -113,18 +118,12 @@ MonoBehaviour:
         text: "\u0420\u0430\u0441\u0448\u0438\u0444\u0440\u043E\u0432\u043A\u0430
           \u0446\u0432\u0435\u0442\u043E\u0432 \u0442\u043E\u0447\u0435\u0447\u043D\u043E\u0433\u043E
           \u0443\u0437\u043E\u0440\u0430 \u043F\u0440\u0438\u0432\u0435\u0434\u0435\u043D\u0430
-          \u043D\u0438\u0436\u0435.\n\u0426\u0432\u0435\u0442      | \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C\n\u041A\u0440\u0430\u0441\u043D\u044B\u0439  
-          | 0 UMU\n\u041E\u0440\u0430\u043D\u0436\u0435\u0432\u044B\u0439 | 1 UMU\n\u0416\u0435\u043B\u0442\u044B\u0439   
-          | 100 000 UMU\n\u0417\u0435\u043B\u0435\u043D\u044B\u0439   | 500 000 UMU\n\u0413\u043E\u043B\u0443\u0431\u043E\u0439  
-          | 1 000 000 UMU+\n\n\u041F\u0440\u043E\u043C\u0435\u0436\u0443\u0442\u043E\u0447\u043D\u044B\u0435
-          \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043C\u0435\u0436\u0434\u0443
-          \"\u0447\u0438\u0441\u0442\u044B\u043C\u0438\" \u0446\u0432\u0435\u0442\u0430\u043C\u0438
-          \u043F\u0435\u0440\u0435\u0434\u0430\u044E\u0442\u0441\u044F \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
-          \u043E\u0442\u0442\u0435\u043D\u043A\u043E\u0432 \u0446\u0432\u0435\u0442\u043E\u0432."
+          \u043D\u0438\u0436\u0435."
         fontSize: 18
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3026835165033791563
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -146,6 +145,7 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3026835165033791565
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -167,6 +167,34 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
+        textAlignment: 0
+    - rid: 3026835168771440723
+      type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
+      data:
+        text: "<u>\u0426\u0432\u0435\u0442      | \u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C</u>\n\u041A\u0440\u0430\u0441\u043D\u044B\u0439  
+          | 0 UMU\n\u041E\u0440\u0430\u043D\u0436\u0435\u0432\u044B\u0439 | 1 UMU\n\u0416\u0435\u043B\u0442\u044B\u0439   
+          | 100 000 UMU\n\u0417\u0435\u043B\u0435\u043D\u044B\u0439   | 500 000 UMU\n\u0413\u043E\u043B\u0443\u0431\u043E\u0439  
+          | 1 000 000 UMU+"
+        fontSize: 18
+        bold: 0
+        italic: 0
+        underline: 0
+        color: {r: 0, g: 0.75, b: 0, a: 1}
+        textAlignment: 0
+    - rid: 3026835168771440724
+      type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u041F\u0440\u043E\u043C\u0435\u0436\u0443\u0442\u043E\u0447\u043D\u044B\u0435
+          \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u044F \u043C\u0435\u0436\u0434\u0443
+          \"\u0447\u0438\u0441\u0442\u044B\u043C\u0438\" \u0446\u0432\u0435\u0442\u0430\u043C\u0438
+          \u043F\u0435\u0440\u0435\u0434\u0430\u044E\u0442\u0441\u044F \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+          \u043E\u0442\u0442\u0435\u043D\u043A\u043E\u0432 \u0446\u0432\u0435\u0442\u043E\u0432."
+        fontSize: 18
+        bold: 0
+        italic: 0
+        underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3891813161579315268
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
@@ -184,6 +212,7 @@ MonoBehaviour:
         bold: 0
         italic: 0
         underline: 0
+        color: {r: 0, g: 0.5, b: 0, a: 1}
         textAlignment: 0
     - rid: 3891813206905585726
       type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}

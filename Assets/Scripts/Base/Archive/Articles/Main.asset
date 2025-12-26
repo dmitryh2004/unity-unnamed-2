@@ -16,9 +16,32 @@ MonoBehaviour:
   articleParts:
   - rid: 3891813161579315268
   - rid: 3891813206905585726
+  - rid: 3026835165033791567
+  - rid: 3026835165033791564
+  - rid: 3026835165033791568
   references:
     version: 2
     RefIds:
+    - rid: 3026835165033791564
+      type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\"\u0421\u043A\u0430\u043D\u0438\u0440\u043E\u0432\u0449\u0438\u043A\""
+        article: {fileID: 11400000, guid: 6e3f72047765b314db0b466aeab5108f, type: 2}
+    - rid: 3026835165033791567
+      type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u041E\u0431 \u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442\u0430\u0445
+          \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u043A\u043E\u0432"
+        fontSize: 18
+        bold: 0
+        italic: 0
+        underline: 0
+        textAlignment: 0
+    - rid: 3026835165033791568
+      type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\"\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0430\u0442\u043E\u0440\""
+        article: {fileID: 11400000, guid: c357b118b5b78b94a91236961ce2b6ca, type: 2}
     - rid: 3891813161579315268
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
       data:

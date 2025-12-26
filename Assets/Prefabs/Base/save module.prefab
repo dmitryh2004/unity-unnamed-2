@@ -53,7 +53,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -265,7 +265,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0.000029802326, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7438730385615510266
 CanvasRenderer:
@@ -779,6 +779,7 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   uiCamera: {fileID: 7235298094611642365}
   cameraPosition: {fileID: 678276459251731909}
+  canvas: {fileID: 1317881506853727527}
   playerInput: {fileID: 0}
   contentParent: {fileID: 1001054098685357328}
   articleHeader: {fileID: 819973301012333966}
@@ -1611,6 +1612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a354fbe62af3f8242a152986a4705ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   saveCooldown: 5
   animator: {fileID: 2475132788858528557}
   uiController: {fileID: 8304523102850023246}

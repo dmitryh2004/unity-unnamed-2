@@ -6,7 +6,9 @@ public class PlayerScanner : UpgradableItem
     [SerializeField] ProgressBarUIController uiController;
     float currentCharge = 0f;
     float chargeRegenSpeed = 0f;
+    float chargeRegenDelay = 2f;
     float chargeUseSpeed = 1f;
+    float regenDelayTimer = 0f;
     float maxCharge;
     bool inUse = false;
 
@@ -35,6 +37,8 @@ public class PlayerScanner : UpgradableItem
 
     public float GetCurrentCharge() => currentCharge;
 
+    public float GetChargeRegenDelay() => chargeRegenDelay;
+
     public bool InUse() => inUse;
 
     public void SetInUse(bool inUse) => this.inUse = inUse;
@@ -47,6 +51,7 @@ public class PlayerScanner : UpgradableItem
         maxCharge = GetUpgradableValue(3) ?? 0;
         chargeRegenSpeed = GetUpgradableValue(4) ?? 0;
         chargeUseSpeed = GetUpgradableValue(5) ?? 0;
+        chargeRegenDelay = GetUpgradableValue(6) ?? 0;
 
         uiController.gameObject.SetActive(maxCharge != 0);
     }
@@ -68,9 +73,35 @@ public class PlayerScanner : UpgradableItem
 
     private void Update()
     {
-        float diff = (inUse ? -chargeUseSpeed : chargeRegenSpeed) * Time.deltaTime;
-        currentCharge = Mathf.Clamp(currentCharge + diff, 0, maxCharge);
-
+        UpdateDelayTimer();
+        UpdateCurrentCharge();
         uiController.UpdateUI(currentCharge, maxCharge);
+    }
+
+    void UpdateDelayTimer()
+    {
+        if (!inUse)
+        {
+            regenDelayTimer -= Time.deltaTime;
+            if (regenDelayTimer < 0f) regenDelayTimer = 0f;
+        }
+        else
+        {
+            regenDelayTimer = chargeRegenDelay;
+        }
+    }
+
+    void UpdateCurrentCharge()
+    {
+        float diff = 0f;
+        if (inUse) diff = -chargeUseSpeed * Time.deltaTime;
+        else
+        {
+            if (regenDelayTimer <= 0f)
+            {
+                diff = chargeRegenSpeed * Time.deltaTime;
+            }
+        }
+        currentCharge = Mathf.Clamp(currentCharge + diff, 0, maxCharge);
     }
 }

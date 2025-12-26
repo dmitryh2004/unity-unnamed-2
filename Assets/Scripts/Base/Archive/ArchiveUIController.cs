@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ArchiveUIController : UIWindowCameraTransitioning
 {
+    [SerializeField] Canvas canvas;
     [Header("Input")]
     [SerializeField] PlayerInput playerInput;
     [Header("Article render")]
@@ -14,7 +15,12 @@ public class ArchiveUIController : UIWindowCameraTransitioning
     [SerializeField] TMP_FontAsset fontAsset;
     Article currentArticle = null;
     [SerializeField] Article mainArticle;
+    float canvasWidth = 785f;
 
+    private void Start()
+    {
+        canvasWidth = canvas.GetComponent<RectTransform>().rect.width;
+    }
     public void SetArticle(Article article)
     {
         currentArticle = article;
@@ -69,19 +75,20 @@ public class ArchiveUIController : UIWindowCameraTransitioning
     {
         GameObject textObj = new GameObject("TextPart");
 
-        // TextMeshPro
         var textMesh = textObj.AddComponent<TextMeshProUGUI>();
         textMesh.text = textPart.text;
         textMesh.fontSize = textPart.fontSize;
         textMesh.color = Color.green * 0.5f;
         textMesh.font = fontAsset;
 
-        // Стилизация текста
+        // ForceMeshUpdate для корректного preferredHeight
+        textMesh.ForceMeshUpdate();
+
+        // Стилизация и выравнивание (без изменений)
         if (textPart.bold) textMesh.fontStyle |= FontStyles.Bold;
         if (textPart.italic) textMesh.fontStyle |= FontStyles.Italic;
         if (textPart.underline) textMesh.fontStyle |= FontStyles.Underline;
 
-        // Выравнивание (нужен enum TextAlignment)
         switch (textPart.textAlignment)
         {
             case TextAlignment.Left: textMesh.alignment = TextAlignmentOptions.Left; break;
@@ -89,9 +96,13 @@ public class ArchiveUIController : UIWindowCameraTransitioning
             case TextAlignment.Right: textMesh.alignment = TextAlignmentOptions.Right; break;
         }
 
-        // RectTransform настройки
         RectTransform rect = textObj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0, textMesh.preferredHeight);
+        rect.sizeDelta = new Vector2(canvasWidth, textMesh.preferredHeight);
+
+        // Layout Element для текста (важно!)
+        var layoutElement = textObj.AddComponent<LayoutElement>();
+        layoutElement.preferredHeight = textMesh.preferredHeight;
+        layoutElement.flexibleHeight = 0; // Фиксированная высота
 
         return textObj;
     }
@@ -102,9 +113,19 @@ public class ArchiveUIController : UIWindowCameraTransitioning
 
         var image = imageObj.AddComponent<Image>();
         image.sprite = imagePart.sprite;
+        image.preserveAspect = true; // Сохраняет пропорции спрайта
 
         RectTransform rect = imageObj.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(imagePart.width, imagePart.height);
+
+        // LayoutElement с фиксированными размерами (КРИТИЧНО!)
+        var layoutElement = imageObj.AddComponent<LayoutElement>();
+        layoutElement.preferredWidth = imagePart.width;
+        layoutElement.preferredHeight = imagePart.height;
+        layoutElement.minWidth = imagePart.width;
+        layoutElement.minHeight = imagePart.height;
+        layoutElement.flexibleWidth = 0;
+        layoutElement.flexibleHeight = 0;
 
         return imageObj;
     }
@@ -125,7 +146,7 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         button.onClick.AddListener(() => SetArticle(linkPart.article));
 
         RectTransform rect = linkObj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(0, textMesh.preferredHeight);
+        rect.sizeDelta = new Vector2(canvasWidth, textMesh.preferredHeight);
 
         return linkObj;
     }

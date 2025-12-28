@@ -8,6 +8,7 @@ public class PlayerFlashlight : UpgradableItem
     float currentCharge = 0f;
     float chargeUseSpeed = 1f;
     float maxCharge = 0f;
+    float intensity = 3f;
     bool inUse = false;
 
     private void Awake()
@@ -46,6 +47,9 @@ public class PlayerFlashlight : UpgradableItem
         base.OnSetLevel();
         currentCharge = maxCharge = GetUpgradableValue(0) ?? 0;
         chargeUseSpeed = GetUpgradableValue(1) ?? 0;
+        intensity = GetUpgradableValue(2) ?? 3;
+
+        flashlight.intensity = intensity;
     }
 
     private void Update()

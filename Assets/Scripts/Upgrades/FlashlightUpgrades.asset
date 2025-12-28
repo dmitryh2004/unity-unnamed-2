@@ -46,6 +46,21 @@ MonoBehaviour:
       value: 0.8
     uvShowMultiplier: 1
     uvSuffix: "\u0435\u0434./\u0441"
+  - name: "\u041C\u043E\u0449\u043D\u043E\u0441\u0442\u044C \u0444\u043E\u043D\u0430\u0440\u044F"
+    increaseIsPositive: 1
+    upgradableValueList:
+    - level: 1
+      value: 3
+    - level: 2
+      value: 3
+    - level: 3
+      value: 3
+    - level: 4
+      value: 6
+    - level: 5
+      value: 10
+    uvShowMultiplier: 10
+    uvSuffix: "\u0412\u0442"
   upgradeCosts:
   - level: 1
     cost: 0

@@ -97,7 +97,9 @@ public class GuardianController : MonoBehaviour
     void UpdateFovLight()
     {
         fovLight.range = maxSpotDistance;
-        fovLight.spotAngle = GetCurrentFov() * 2;
+        float angle = GetCurrentFov();
+        fovLight.spotAngle = angle;
+        fovLight.innerSpotAngle = angle;
     } 
 
     public void SwitchPhase(int newPhase, bool raiseAlarm = false)

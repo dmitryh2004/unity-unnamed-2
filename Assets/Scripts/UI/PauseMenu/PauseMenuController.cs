@@ -6,17 +6,25 @@ public class PauseMenuController : MonoBehaviour
     [Space]
     [SerializeField] GameObject exitMainMenuConfirmation;
     [SerializeField] GameObject exitGameConfirmation;
+    [SerializeField] GameObject settingsWindow;
+    SettingsController settingsController;
     [Space]
     [SerializeField] ExitGame exitGameController;
     bool visible = false;
     bool exitMainMenuConfirmationVisible = false;
     bool exitGameConfirmationVisible = false;
+    bool settingsWindowVisible = false;
 
+    private void Start()
+    {
+        settingsController = settingsWindow.GetComponent<SettingsController>();
+    }
     void UpdateWindow()
     {
         pauseMenu.SetActive(visible);
         exitMainMenuConfirmation.SetActive(exitMainMenuConfirmationVisible);
         exitGameConfirmation.SetActive(exitGameConfirmationVisible);
+        settingsWindow.SetActive(settingsWindowVisible);
     }
 
     public void Pause()
@@ -79,6 +87,20 @@ public class PauseMenuController : MonoBehaviour
     public void HideExitGameConfirmation()
     {
         exitGameConfirmationVisible = false;
+        UpdateWindow();
+    }
+
+    public void ShowSettings()
+    {
+        settingsWindowVisible = true;
+        settingsController.ApplySavedValues();
+        UpdateWindow();
+    }
+
+    public void HideSettings()
+    {
+        settingsWindowVisible = false;
+        settingsController.ApplySavedValues();
         UpdateWindow();
     }
 }

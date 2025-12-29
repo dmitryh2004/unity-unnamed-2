@@ -64,17 +64,7 @@ public class LootHintController : MonoBehaviour
             }
             else
             {
-                Color colorLess = colors[i].color;
-                if (i > 0)
-                {
-                    Color colorGreater = colors[i - 1].color;
-                    float ratio = ((float)lootSum - colors[i - 1].value) / (colors[i].value - colors[i - 1].value);
-                    resultColor = Color.Lerp(colorGreater, colorLess, ratio);
-                }
-                else
-                {
-                    resultColor = colors[0].color;
-                }
+                resultColor = colors[(i > 0) ? i - 1 : 0].color;
                 break;
             }
         }

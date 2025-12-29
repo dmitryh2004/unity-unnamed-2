@@ -78,20 +78,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 0.5
   baseOrderSum: 200000
-  multiplierStep: 1.25
-  multiplierRange: 0.25
+  multiplierStep: 1.5
+  multiplierRange: 0.5
   windowController: {fileID: 8942783246424667691}
   clientTypes:
   - clientTypeID: 0
-    weight: 12
+    weight: 18
   - clientTypeID: 1
     weight: 1
   - clientTypeID: 2
-    weight: 1
+    weight: 4
   - clientTypeID: 3
-    weight: 1
+    weight: 4
   - clientTypeID: 4
-    weight: 1
+    weight: 2
 --- !u!65 &4997680060635617361
 BoxCollider:
   m_ObjectHideFlags: 0

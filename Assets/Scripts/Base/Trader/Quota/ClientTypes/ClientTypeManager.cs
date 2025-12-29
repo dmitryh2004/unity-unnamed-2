@@ -14,6 +14,7 @@ public class ClientTypeManager : MonoBehaviour
             return;
         }
         Instance = this;
+        print(name);
     }
     public ClientType GetClientType(int id) => (0 <= id && id < clientTypes.Count) ? clientTypes[id] : null;
     public int GetID(ClientType clientType)

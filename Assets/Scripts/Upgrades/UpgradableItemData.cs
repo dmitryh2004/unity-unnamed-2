@@ -33,6 +33,7 @@ public class UpgradableItemData : ScriptableObject
     public int maxLevel = 1;
     [Header("Upgradable Values")]
     public List<UpgradableValueData> upgradableValues = new();
+    public List<UpgradableValue> quotaMultiplierStepBonus = new();
 
     [Header("Upgrade costs")]
     public List<UpgradeCost> upgradeCosts;

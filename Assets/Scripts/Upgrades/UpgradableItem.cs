@@ -36,6 +36,20 @@ public class UpgradableItem : MonoBehaviour
         level = defaultLevel;
     }
 
+    public float? GetQuotaMultiplierStepBoost()
+    {
+        UpgradableValue quotaMultiplier = upgradableItemData.quotaMultiplierStepBonus.Find((x) => x.level == level);
+        if (quotaMultiplier == null) return null;
+        return quotaMultiplier.value;
+    }
+
+    public float? GetQuotaMultiplierBoost(int level)
+    {
+        UpgradableValue quotaMultiplier = upgradableItemData.quotaMultiplierStepBonus.Find((x) => x.level == level);
+        if (quotaMultiplier == null) return null;
+        return quotaMultiplier.value;
+    }
+
     public int GetUpgradableValuesCount() => upgradableItemData.upgradableValues.Count;
 
     public float? GetUpgradableValue(int index)

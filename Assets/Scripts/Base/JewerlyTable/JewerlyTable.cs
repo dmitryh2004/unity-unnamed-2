@@ -13,6 +13,7 @@ public class JewerlyTable : Interactable
     [SerializeField] int level = 1;
     [SerializeField] int maxLevel = 7;
     [SerializeField] List<UpgradeCost> upgradeCosts = new();
+    [SerializeField] List<UpgradableValue> quotaMultiplierStepBonus = new ();
     System.Random random = new();
 
     private void Awake()
@@ -34,6 +35,8 @@ public class JewerlyTable : Interactable
     public int GetLevel() => level;
     public void SetLevel(int level) => this.level = level;
     public int GetUpgradeCost(int level) => upgradeCosts.FirstOrDefault((x) => x.level == level).cost;
+    public float GetQuotaMultiplierStepBoost() => quotaMultiplierStepBonus.FirstOrDefault((x) => x.level == level).value;
+    public float GetQuotaMultiplierBoost(int level) => quotaMultiplierStepBonus.FirstOrDefault((x) => x.level == level).value;
 
     public void Upgrade()
     {

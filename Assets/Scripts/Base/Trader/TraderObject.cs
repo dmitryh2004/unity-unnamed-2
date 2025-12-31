@@ -61,7 +61,15 @@ public class TraderObject : Interactable
     }
 
     public void IncreaseMultiplier() 
-    { 
+    {
+        float multiplierStep = this.multiplierStep;
+        multiplierStep += (float)VirusController.Instance.GetQuotaMultiplierStepBoost();
+        multiplierStep += (float)InventorySystem.Instance.GetQuotaMultiplierStepBoost();
+        multiplierStep += (float)PlayerScanner.Instance.GetQuotaMultiplierStepBoost();
+        multiplierStep += (float)PlayerFlashlight.Instance.GetQuotaMultiplierStepBoost();
+        multiplierStep += (float)JewerlyTable.Instance.GetQuotaMultiplierStepBoost();
+        print($"multiplier step: {multiplierStep}");
+
         multiplier += multiplierStep;
         QuotaSystem.Instance.SetMultiplier(multiplier);
     }

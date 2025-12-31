@@ -50,17 +50,28 @@ MonoBehaviour:
     increaseIsPositive: 1
     upgradableValueList:
     - level: 1
-      value: 3
+      value: 1
     - level: 2
-      value: 3
+      value: 1
     - level: 3
-      value: 3
+      value: 1
     - level: 4
-      value: 6
+      value: 2
     - level: 5
-      value: 10
-    uvShowMultiplier: 10
+      value: 3
+    uvShowMultiplier: 30
     uvSuffix: "\u0412\u0442"
+  quotaMultiplierStepBonus:
+  - level: 1
+    value: 0
+  - level: 2
+    value: 0.05
+  - level: 3
+    value: 0.1
+  - level: 4
+    value: 0.15
+  - level: 5
+    value: 0.2
   upgradeCosts:
   - level: 1
     cost: 0

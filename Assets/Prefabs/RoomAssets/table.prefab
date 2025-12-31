@@ -311,8 +311,6 @@ MonoBehaviour:
   maxRenderDistance: 4
   objectRenderers:
   - {fileID: 8158524806554010375}
-  - {fileID: 3470556540384168366}
-  - {fileID: 5206393165444242254}
   - {fileID: 6700583718919930160}
   - {fileID: 6579338086489079200}
 --- !u!1 &3521354286508363964
@@ -672,6 +670,7 @@ GameObject:
   - component: {fileID: 65012003738508995}
   - component: {fileID: 7956689774532034042}
   - component: {fileID: 8499953718215879237}
+  - component: {fileID: 6231108059449119728}
   m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
@@ -854,6 +853,35 @@ MonoBehaviour:
   lootPointsParent: {fileID: 8544603752450563514}
   maxLootPointsUsed: 1
   hideIfNoLoot: 0
+--- !u!114 &6231108059449119728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5437354132940076256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4791fbc530c924f418b45da408f96882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootContainer: {fileID: 8499953718215879237}
+  colors:
+  - value: 0
+    color: {r: 1, g: 0, b: 0, a: 1}
+  - value: 1
+    color: {r: 1, g: 0.25, b: 0, a: 1}
+  - value: 100000
+    color: {r: 1, g: 1, b: 0, a: 1}
+  - value: 500000
+    color: {r: 0, g: 1, b: 0, a: 1}
+  - value: 1000000
+    color: {r: 0, g: 1, b: 1, a: 1}
+  player: {fileID: 0}
+  maxRenderDistance: 4
+  objectRenderers:
+  - {fileID: 3470556540384168366}
+  - {fileID: 5206393165444242254}
 --- !u!1 &5860341416500003168
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +910,7 @@ Transform:
   m_GameObject: {fileID: 5860341416500003168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.015, z: -0.475}
+  m_LocalPosition: {x: 0, y: 0.0199, z: -0.475}
   m_LocalScale: {x: 0.78, y: 0.01, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

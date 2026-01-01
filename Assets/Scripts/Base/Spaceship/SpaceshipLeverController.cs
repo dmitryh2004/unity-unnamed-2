@@ -31,6 +31,11 @@ public class SpaceshipLeverController : Interactable
         InputActionMapSwitcher.Instance.DisableAllMaps();
         animator.SetTrigger("Start");
 
+        int cost = SpaceshipController.Instance.GetCurrentComplex().cost;
+        if (cost > 0)
+        {
+            PlayerWallet.Instance.SubtractMoney(cost);
+        }
         QuotaSystem.Instance.SetDaysLeft(QuotaSystem.Instance.GetDaysLeft() - 1);
         playerDefeated = QuotaSystem.Instance.GetDaysLeft() < 0;
 

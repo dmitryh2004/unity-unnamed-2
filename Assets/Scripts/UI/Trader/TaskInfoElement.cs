@@ -70,7 +70,7 @@ public class TaskInfoElement : MonoBehaviour
 
                 int modifiedCost = (int)(lc.cost * modifier);
 
-                lootCostModifiersPositive.text += $"\n- {lootName} (x{NumberFormatter.FormatNumberWithGrouping(modifier)})\n" +
+                lootCostModifiersPositive.text += $"\n- {lootName} <color=#00ff00>(x{NumberFormatter.FormatNumberWithGrouping(modifier)})</color>\n" +
                     $"  ÷ена за 1 шт.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
             }
         }
@@ -86,7 +86,7 @@ public class TaskInfoElement : MonoBehaviour
 
                 int modifiedCost = (int)(lc.cost * modifier);
 
-                lootCostModifiersNegative.text += $"\n- {lootName} (x{NumberFormatter.FormatNumberWithGrouping(modifier)})\n" +
+                lootCostModifiersNegative.text += $"\n- {lootName} <color=#ff0000>(x{NumberFormatter.FormatNumberWithGrouping(modifier)})</color>\n" +
                     $"  ÷ена за 1 шт.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
             }
         }

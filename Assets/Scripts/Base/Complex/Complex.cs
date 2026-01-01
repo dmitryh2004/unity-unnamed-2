@@ -14,6 +14,7 @@ public class Complex : ScriptableObject
     public int guardiansMinCount;
     public int guardiansMaxCount;
     public string reinforcementTimer;
+    public int cost;
     [Space(10)]
     public string sceneName;
 }

@@ -22,9 +22,11 @@ public class SpaceshipPanelController : Interactable
     [SerializeField] TMP_Text currentComplexGuardiansAmount;
     [SerializeField] TMP_Text currentComplexReinforcementTimer;
     [SerializeField] TMP_Text currentComplexDescription;
+    [SerializeField] TMP_Text currentComplexCost;
 
-    [SerializeField] string currentComplexTemplate, currentComplexDifficultyTemplate, currentComplexRoomsAmountTemplate,
-        currentComplexGuardiansAmountTemplate, currentComplexReinforcementTimerTemplate, currentComplexDescriptionTemplate;
+    [SerializeField][TextArea(2, 5)] string currentComplexTemplate, currentComplexDifficultyTemplate, currentComplexRoomsAmountTemplate,
+        currentComplexGuardiansAmountTemplate, currentComplexReinforcementTimerTemplate, currentComplexDescriptionTemplate,
+        currentComplexCostTemplate;
     [Header("Second screen")]
     [SerializeField] List<Complex> complexList = new();
     [SerializeField] List<TMP_Text> complexTextsList = new();
@@ -115,6 +117,10 @@ public class SpaceshipPanelController : Interactable
         
         currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", complexList[currentComplexIndex].reinforcementTimer);
         currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", complexList[currentComplexIndex].description);
+        if (complexList[currentComplexIndex].cost > 0)
+            currentComplexCost.text = currentComplexCostTemplate.Replace("A", $"{NumberFormatter.FormatNumberWithGrouping(complexList[currentComplexIndex].cost)}");
+        else
+            currentComplexCost.text = "";
 
         //update spaceship
         SpaceshipController.Instance.SetCurrentComplex(complexList[currentComplexIndex]);

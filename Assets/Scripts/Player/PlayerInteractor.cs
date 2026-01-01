@@ -69,7 +69,7 @@ public class PlayerInteractor : MonoBehaviour
             hackNotPossibleHintActive = false, exitHintActive = false, openChestHintActive = false,
             spaceshipPanelHintActive = false, spaceshipLeverHintActive = false, unavailableHintActive = false,
             openTraderUIHintActive = false, useJewerlyTableHintActive = false, saveGameHintActive = false,
-            useArchiveHintActive = false;
+            useArchiveHintActive = false, noActiveOrderHintActive = false, notEnoughMoneyHintActive = false;
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (Physics.Raycast(ray, out RaycastHit hit,
             10f,
@@ -163,10 +163,15 @@ public class PlayerInteractor : MonoBehaviour
                     }
                     else if (interactable is SpaceshipLeverController spaceshipLeverController)
                     {
-                        if (QuotaSystem.Instance.HasOrder() && QuotaSystem.Instance.GetCollected() < QuotaSystem.Instance.GetRequired())
+                        if (spaceshipLeverController.CheckTakeOffConditions())
                             spaceshipLeverHintActive = true;
                         else
-                            unavailableHintActive = true;
+                        {
+                            if (!spaceshipLeverController.HasUncompletedOrder())
+                                noActiveOrderHintActive = true;
+                            else if (!spaceshipLeverController.IsEnoughMoney())
+                                notEnoughMoneyHintActive = true;
+                        }
                     }
                     else if (interactable is TraderObject trader)
                     {
@@ -207,5 +212,7 @@ public class PlayerInteractor : MonoBehaviour
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseJewerlyTableHint"), useJewerlyTableHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("SaveGameHint"), saveGameHintActive);
         HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("UseArchiveHint"), useArchiveHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("NoActiveOrderHint"), noActiveOrderHintActive);
+        HintManager.Instance.ActivateHint(HintManager.Instance.GetHintByName("NotEnoughMoneyHint"), notEnoughMoneyHintActive);
     }
 }

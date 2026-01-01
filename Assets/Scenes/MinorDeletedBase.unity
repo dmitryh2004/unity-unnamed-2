@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: e135256022fc02548a6cc1b3492f67e2, type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 4d11639a844faa740ae7121ba9d51d81, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -53042,13 +53042,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868576095}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.016692424, y: 0.9230003, z: -0.040299077, w: 0.3823192}
+  m_LocalRotation: {x: 0.04995019, y: 0.9159757, z: -0.12059043, w: 0.37940952}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 5, y: 135, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 135, z: 0}
 --- !u!114 &868576098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53086,7 +53086,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1253419798}
   lightComponent: {fileID: 868576096}
-  minYPosition: -0.1
+  terrain: {fileID: 126087481}
+  minYPosition: 0
+  useTerrain: 1
 --- !u!1001 &869194888
 PrefabInstance:
   m_ObjectHideFlags: 0

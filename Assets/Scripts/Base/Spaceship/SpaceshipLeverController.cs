@@ -7,9 +7,17 @@ public class SpaceshipLeverController : Interactable
     Animator animator;
     bool playerDefeated;
 
+    public bool CheckTakeOffConditions()
+    {
+        return HasUncompletedOrder() && IsEnoughMoney();
+    }
+
+    public bool HasUncompletedOrder() => QuotaSystem.Instance.HasUncompletedOrder();
+    public bool IsEnoughMoney() => PlayerWallet.Instance.CanAfford(SpaceshipController.Instance.GetCurrentComplex().cost);
+
     public override void Interact()
     {
-        if (QuotaSystem.Instance.HasUncompletedOrder())
+        if (CheckTakeOffConditions())
             StartCoroutine(StartShipCoroutine());
     }
 

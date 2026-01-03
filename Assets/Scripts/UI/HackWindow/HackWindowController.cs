@@ -7,6 +7,7 @@ public class HackWindowController : MonoBehaviour
     private PlayerControls controls;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] Animator hackUIAnimator;
+    public HackWindowAudioPlayer audioPlayer;
 
     public static HackWindowController Instance = null;
 
@@ -60,6 +61,8 @@ public class HackWindowController : MonoBehaviour
         hackUIAnimator.SetBool("visible", visible);
     }
 
+    public bool IsHacking() => visible;
+
     public void OpenHackWindow(LockController lockController)
     {
         subject = lockController;
@@ -74,6 +77,8 @@ public class HackWindowController : MonoBehaviour
         UpdateCurrentInputMap();
 
         UpdateAnimator();
+
+        audioPlayer.PlayStartHackAudio();
     }
 
     public void CloseHackWindow(InputAction.CallbackContext context)
@@ -87,6 +92,7 @@ public class HackWindowController : MonoBehaviour
 
     public void FailLock()
     {
+        audioPlayer.PlayHackFailedAudio();
         subject.IncreaseDifficulty(1);
         CloseHackWindow();
     }
@@ -94,6 +100,7 @@ public class HackWindowController : MonoBehaviour
     public void SuccessLock()
     {
         hacked = true;
+        audioPlayer.PlayHackSuccessfulAudio();
         StatisticCollector.Instance.LocksHacked++;
         subject.DisableLock();
         CloseHackWindow();
@@ -283,7 +290,11 @@ public class HackWindowController : MonoBehaviour
                     }
                 }
             }
-            else return;
+            else
+            {
+                audioPlayer?.PlayNotAllowedAudio();
+                return;
+            }
         }
         else
         {
@@ -311,6 +322,10 @@ public class HackWindowController : MonoBehaviour
                     gridController.MakeStepPost();
                     bonusController.MakeStepPost();
                 }
+            }
+            else
+            {
+                audioPlayer?.PlayNotAllowedAudio();
             }
             targetingBonus = null;
             interactMode = 0;

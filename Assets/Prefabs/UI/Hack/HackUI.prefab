@@ -333,6 +333,8 @@ GameObject:
   - component: {fileID: 1047816821119067197}
   - component: {fileID: 4950088453799532796}
   - component: {fileID: 978866186231101151}
+  - component: {fileID: 7260979224647286379}
+  - component: {fileID: 2523639791586153429}
   m_Layer: 5
   m_Name: HackUI
   m_TagString: Untagged
@@ -459,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
   hackUIAnimator: {fileID: 4230397354405220621}
+  audioPlayer: {fileID: 2523639791586153429}
   emptyVisitedNodeTitle: "\u041E\u0431\u0435\u0437\u0432\u0440\u0435\u0436\u0435\u043D\u043D\u044B\u0439
     \u0443\u0437\u0435\u043B"
   UnvisitedNodeTitle: "\u041D\u0435\u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u043D\u044B\u0439
@@ -542,6 +545,144 @@ MonoBehaviour:
   Divider: {fileID: 11400000, guid: 42578b42a0bf76040a738fc30dece291, type: 2}
   AdditionalEncryption: {fileID: 11400000, guid: 6963465e62ecadc4a81366558bffb3a6, type: 2}
   AdditionalAttack: {fileID: 11400000, guid: 1363e3b29c9a9a74caf025c1970370b4, type: 2}
+--- !u!82 &7260979224647286379
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135495624461785173}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2523639791586153429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135495624461785173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fe4b65f3550fd43a357618dc3df4b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHackAudios:
+  - clip: {fileID: 8300000, guid: 7d1152c0aba34b04eb798de9aafabfcb, type: 3}
+    weight: 1
+    volume: 1
+  hackSuccessfulAudios:
+  - clip: {fileID: 8300000, guid: 8c7d33d2fff23ef4dbebb70f21ff70e5, type: 3}
+    weight: 1
+    volume: 1
+  hackFailedAudios:
+  - clip: {fileID: 8300000, guid: d85ebebc78392084baec19c3785e29e0, type: 3}
+    weight: 1
+    volume: 1
+  openNodeAudios:
+  - clip: {fileID: 8300000, guid: 4de73167eb4181b4d9ef72751a492e93, type: 3}
+    weight: 1
+    volume: 1
+  centralCoreFoundAudios: []
+  doDamageAudios:
+  - clip: {fileID: 8300000, guid: 3addd8aa644b14a4999dad92474cdb10, type: 3}
+    weight: 1
+    volume: 1
+  takeDamageAudios:
+  - clip: {fileID: 8300000, guid: 0cfb62d2f47f5f249a745178869be105, type: 3}
+    weight: 1
+    volume: 1
+  notAllowedAudios:
+  - clip: {fileID: 8300000, guid: 455be5785c1c7f8439211dee7d3f21a8, type: 3}
+    weight: 1
+    volume: 1
 --- !u!1 &7344390255456881791
 GameObject:
   m_ObjectHideFlags: 0

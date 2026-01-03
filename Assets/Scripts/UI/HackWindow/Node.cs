@@ -150,6 +150,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 else
                 {
                     active = true;
+                    HackWindowController.Instance.audioPlayer.PlayOpenNodeAudio();
                 }
             }
             else if (IsBonus())
@@ -166,6 +167,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 else
                 {
                     active = true;
+                    HackWindowController.Instance.audioPlayer.PlayOpenNodeAudio();
                 }
             }
             else
@@ -179,6 +181,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
             if (!rangeShown && !active)
             {
+                HackWindowController.Instance.GetGridController().UpdateBonusRanges();
                 anim.SetTrigger("ShowRange");
                 rangeShown = true;
             }
@@ -188,6 +191,10 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             {
                 n.UpdateIcon();
             }
+        }
+        else
+        {
+            HackWindowController.Instance.audioPlayer.PlayNotAllowedAudio();
         }
     }
 
@@ -272,6 +279,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void TakeDamage(int damage)
     {
+        HackWindowController.Instance.audioPlayer.PlayDoDamageAudio();
         currentHP -= damage;
         if (currentHP <= 0)
         {

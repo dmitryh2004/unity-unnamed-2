@@ -120,6 +120,7 @@ public class VirusController : UpgradableItem
         }
         else
         {
+            HackWindowController.Instance.audioPlayer.PlayTakeDamageAudio();
             currentHP -= damage;
             if (currentHP <= 0) currentHP = 0;
             UpdateBars();
@@ -169,6 +170,8 @@ public class VirusController : UpgradableItem
 
     private void Update()
     {
+        if (HackWindowController.Instance == null) return;
+        if (!HackWindowController.Instance.IsHacking()) return;
         if (hoverAnimationActive)
         {
             lowHPAnimationTimer = 0f;
@@ -205,7 +208,11 @@ public class VirusController : UpgradableItem
             {
                 //update timer
                 lowHPAnimationTimer += Time.deltaTime;
-                if (lowHPAnimationTimer > lowHPAnimationDuration) lowHPAnimationTimer = 0f;
+                if (lowHPAnimationTimer > lowHPAnimationDuration) 
+                {
+                    lowHPAnimationTimer = 0f;
+                    HackWindowController.Instance.audioPlayer.PlayTakeDamageAudio();
+                }
 
                 //calculate mix value
                 float mixValue = Mathf.Abs(lowHPAnimationTimer / lowHPAnimationDuration * 2 - 1);

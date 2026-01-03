@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerControls controls;
     PlayerInventoryController inventoryController;
+    [SerializeField] PlayerAudioPlayer audioPlayer;
+    private float footstepTimer = 0f;
 
     void Awake()
     {
@@ -73,7 +75,28 @@ public class PlayerMovement : MonoBehaviour
         isJumpPressed = (context.performed) ? true : false;
     }
 
-    void Update()
+    private void Update()
+    {
+        UpdateSpeed();
+        UpdateFootstepTimer();
+    }
+
+    void UpdateFootstepTimer()
+    {
+        if (moveInput != Vector2.zero && isGrounded && !isCrouching)
+        {
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer >= 2f / currentSpeed)
+            {
+                footstepTimer = 0f;
+                audioPlayer.PlayFootstepAudio();
+            }
+        }
+        else
+            footstepTimer = 0f;
+    }
+
+    void UpdateSpeed()
     {
         // Определяем скорость
         currentSpeed = moveSpeed;

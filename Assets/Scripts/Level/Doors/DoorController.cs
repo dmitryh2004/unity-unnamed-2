@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.AI.Navigation;
+using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class DoorController : Lockable
@@ -10,6 +11,14 @@ public class DoorController : Lockable
     [SerializeField] string doorName = "дверь";
     [SerializeField] bool canBeOpenedManually = true;
     bool opened = false;
+
+    [Space]
+    [SerializeField] float openDoorDuration = 1f;
+    [SerializeField] float closeDoorDuration = 1f;
+
+    [Space]
+    [SerializeField] DoorAudioPlayer audioPlayer;
+    [SerializeField] bool playCreakAudio = true;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -44,9 +53,35 @@ public class DoorController : Lockable
         if (!IsLocked())
         {
             this.opened = opened;
-            if (this.opened) anim.SetTrigger("Open"); else anim.SetTrigger("Close");
+            if (this.opened)
+            {
+                anim.SetTrigger("Open");
+                if (audioPlayer != null)
+                    StartCoroutine(PlayOpenAudios());
+            }
+            else
+            {
+                anim.SetTrigger("Close");
+                if (audioPlayer != null)
+                    StartCoroutine(PlayCloseAudios());
+            }
         }
         if (navMeshLink != null) navMeshLink.activated = !IsLocked();
+    }
+
+    IEnumerator PlayOpenAudios()
+    {
+        audioPlayer.PlayOpenAudio();
+        yield return new WaitForSeconds(openDoorDuration);
+        if (playCreakAudio)
+            audioPlayer.PlayCreakAudio();
+    }
+    IEnumerator PlayCloseAudios()
+    {
+        if (playCreakAudio)
+            audioPlayer.PlayCreakAudio();
+        yield return new WaitForSeconds(closeDoorDuration);
+        audioPlayer.PlayCloseAudio();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -161,6 +161,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                     {
                         type = null;
                         active = false;
+                        HackWindowController.Instance.audioPlayer.PlayPickupBonusAudio();
                         HackWindowController.Instance.GetGridController().RemoveNodeFromLists(this);
                     }
                 }

@@ -7,7 +7,9 @@ public class HackWindowAudioPlayer : RandomAudioPlayer
     [SerializeField] List<WeightedAudioClip> hackSuccessfulAudios;
     [SerializeField] List<WeightedAudioClip> hackFailedAudios;
     [SerializeField] List<WeightedAudioClip> openNodeAudios;
-    [SerializeField] List<WeightedAudioClip> centralCoreFoundAudios;
+    [SerializeField] List<WeightedAudioClip> pickupBonusAudios;
+    [SerializeField] List<WeightedAudioClip> useBonusAudios;
+    [SerializeField] List<WeightedAudioClip> shieldBlockDamageAudios;
     [SerializeField] List<WeightedAudioClip> doDamageAudios;
     [SerializeField] List<WeightedAudioClip> takeDamageAudios;
     [SerializeField] List<WeightedAudioClip> notAllowedAudios;
@@ -27,6 +29,18 @@ public class HackWindowAudioPlayer : RandomAudioPlayer
     public float PlayOpenNodeAudio()
     {
         return PlayRandomAudio(openNodeAudios);
+    }
+    public float PlayPickupBonusAudio()
+    {
+        return PlayRandomAudio(pickupBonusAudios);
+    }
+    public float PlayUseBonusAudio()
+    {
+        return PlayRandomAudio(useBonusAudios);
+    }
+    public float PlayShieldBlockDamageAudio()
+    {
+        return PlayRandomAudio(shieldBlockDamageAudios);
     }
     public float PlayDoDamageAudio()
     {

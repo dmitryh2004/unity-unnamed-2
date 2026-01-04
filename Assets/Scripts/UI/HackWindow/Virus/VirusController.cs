@@ -78,6 +78,48 @@ public class VirusController : UpgradableItem
         UpdateBars();
     }
 
+    bool HasActiveEncryptionBonus()
+    {
+        Bonus additionalEncryptionBonus = null;
+
+        for (int i = 1; i < 4; i++)
+        {
+            additionalEncryptionBonus = BonusController.Instance.GetBonus(i);
+            if (additionalEncryptionBonus != null)
+            {
+                if (additionalEncryptionBonus is AdditionalEncryption ae)
+                {
+                    if (ae.IsActive())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    Bonus GetActiveEncryptionBonus()
+    {
+        Bonus additionalEncryptionBonus = null;
+
+        for (int i = 1; i < 4; i++)
+        {
+            additionalEncryptionBonus = BonusController.Instance.GetBonus(i);
+            if (additionalEncryptionBonus != null)
+            {
+                if (additionalEncryptionBonus is AdditionalEncryption ae)
+                {
+                    if (ae.IsActive())
+                    {
+                        return ae;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public void SetHoverAnimation(bool active, int nodeAttack, int nodeHP)
     {
         hoverAnimationActive = active;
@@ -88,35 +130,19 @@ public class VirusController : UpgradableItem
         }
         hoverAnimationHP = hoverAnimationActive ? currentHP - nodeAttack : currentHP;
 
-        bool canKill = nodeHP <= currentAttack;
+        bool canKill = nodeHP <= currentAttack && !HasActiveEncryptionBonus();
 
         hoverAnimationNotEnoughHP = hoverAnimationActive && hoverAnimationHP <= 0 && !canKill;
     }
 
     public void TakeDamage(int damage, bool ignoreEncryption = false)
     {
-        bool useAEBonus = false;
-        Bonus additionalEncryptionBonus = null;
-        for (int i = 1; i < 4; i++)
-        {
-            additionalEncryptionBonus = BonusController.Instance.GetBonus(i);
-            if (additionalEncryptionBonus != null && !ignoreEncryption)
-            {
-                if (additionalEncryptionBonus is AdditionalEncryption ae)
-                {
-                    if (ae.IsActive())
-                    {
-                        useAEBonus = true;
-                        break;
-                    }
-                }
-            }
-        }
-        
+        bool useAEBonus = HasActiveEncryptionBonus();
 
         if (useAEBonus)
         {
-            ((AdditionalEncryption)additionalEncryptionBonus).BlockAttack();
+            HackWindowController.Instance.audioPlayer.PlayShieldBlockDamageAudio();
+            ((AdditionalEncryption)GetActiveEncryptionBonus()).BlockAttack();
         }
         else
         {

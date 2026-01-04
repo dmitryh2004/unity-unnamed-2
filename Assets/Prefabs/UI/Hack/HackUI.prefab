@@ -665,12 +665,23 @@ MonoBehaviour:
   hackFailedAudios:
   - clip: {fileID: 8300000, guid: d85ebebc78392084baec19c3785e29e0, type: 3}
     weight: 1
-    volume: 1
+    volume: 3
   openNodeAudios:
   - clip: {fileID: 8300000, guid: 4de73167eb4181b4d9ef72751a492e93, type: 3}
     weight: 1
     volume: 1
-  centralCoreFoundAudios: []
+  pickupBonusAudios:
+  - clip: {fileID: 8300000, guid: 3b1b81e504d94b4479b74e9f346f480d, type: 3}
+    weight: 1
+    volume: 1
+  useBonusAudios:
+  - clip: {fileID: 8300000, guid: 3b1b81e504d94b4479b74e9f346f480d, type: 3}
+    weight: 1
+    volume: 1
+  shieldBlockDamageAudios:
+  - clip: {fileID: 8300000, guid: 29db615132793fc4a89595011439fce1, type: 3}
+    weight: 1
+    volume: 1
   doDamageAudios:
   - clip: {fileID: 8300000, guid: 3addd8aa644b14a4999dad92474cdb10, type: 3}
     weight: 1
@@ -682,7 +693,7 @@ MonoBehaviour:
   notAllowedAudios:
   - clip: {fileID: 8300000, guid: 455be5785c1c7f8439211dee7d3f21a8, type: 3}
     weight: 1
-    volume: 1
+    volume: 2
 --- !u!1 &7344390255456881791
 GameObject:
   m_ObjectHideFlags: 0

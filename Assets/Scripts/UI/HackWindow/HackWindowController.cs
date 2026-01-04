@@ -276,6 +276,7 @@ public class HackWindowController : MonoBehaviour
                     {
                         gridController.MakeStepPre();
                         hoveredBonus.Use();
+                        audioPlayer.PlayUseBonusAudio();
                         if (!hacked)
                         {
                             gridController.MakeStepPost();

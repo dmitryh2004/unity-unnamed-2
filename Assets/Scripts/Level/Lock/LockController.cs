@@ -160,7 +160,10 @@ public class LockController : Interactable
     {
         active = false;
         if (rb != null)
+        {
             rb.useGravity = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        }
         if (updateScreen)
             UpdateDifficultyScreen();
         if (updateLinked)

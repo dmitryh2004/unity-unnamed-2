@@ -7,6 +7,12 @@ public class WeightedAudioClip
     public AudioClip clip;
     public int weight;
     public float volume = 1f;
+
+    WeightedAudioClip()
+    {
+        this.weight = 1;
+        this.volume = 1f;
+    }
 }
 [RequireComponent(typeof(AudioSource))]
 public class RandomAudioPlayer : MonoBehaviour
@@ -45,9 +51,8 @@ public class RandomAudioPlayer : MonoBehaviour
             temp += audios[index].weight;
             if (value <= temp) break;
         }
-
-        audioSource.volume = audios[index].volume;
-        audioSource.PlayOneShot(audios[index].clip);
+        
+        audioSource.PlayOneShot(audios[index].clip, audios[index].volume);
         return audios[index].clip.length;
     }
 }

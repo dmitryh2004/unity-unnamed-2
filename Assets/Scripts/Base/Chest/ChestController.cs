@@ -6,6 +6,7 @@ public class ChestController : Interactable
     private PlayerControls controls;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] Animator animator;
+    [SerializeField] ChestAudioPlayer audioPlayer;
     [Header("Inventory")]
     [SerializeField] Canvas chestUI;
     [SerializeField] ChestUIController chestUIController;
@@ -97,6 +98,7 @@ public class ChestController : Interactable
         chestUIController.ClearOffset();
         chestUIController.ClearChestOffset();
         UpdateAnimator();
+        audioPlayer.PlayOpenChestAudio();
     }
 
     public void CloseChest()
@@ -106,6 +108,7 @@ public class ChestController : Interactable
         UpdateCurrentInputMap();
 
         UpdateAnimator();
+        audioPlayer.PlayCloseChestAudio();
     }
 
     void UpdateCurrentInputMap()

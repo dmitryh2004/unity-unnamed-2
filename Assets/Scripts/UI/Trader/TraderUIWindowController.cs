@@ -23,8 +23,13 @@ public class TraderUIWindowController : UIWindowCameraTransitioning
     [SerializeField] Sprite noQuotaBackground;
     [SerializeField] Sprite sellItemsBackground;
     [SerializeField] Sprite upgradeEquipmentBackground;
+    [Space(10)]
+    [Header("Audio")]
+    [SerializeField] TraderAudioPlayer audioPlayer;
 
     int currentScreen = 0;
+
+    public TraderAudioPlayer GetAudioPlayer() => audioPlayer;
 
     void UpdateScreen()
     {
@@ -71,10 +76,19 @@ public class TraderUIWindowController : UIWindowCameraTransitioning
         }
     }
 
-    public void SetScreen(int screen)
+    public void SetScreenBtn(int screen)
+    {
+        SetScreen(screen);
+    }
+
+    public void SetScreen(int screen, bool playActionSound = true)
     {
         currentScreen = screen;
         UpdateScreen();
+        if (playActionSound)
+        {
+            audioPlayer.PlayActionAudio();
+        }
     }
 
     public int GetCurrentScreen() => currentScreen;
@@ -86,7 +100,7 @@ public class TraderUIWindowController : UIWindowCameraTransitioning
 
     private void Start()
     {
-        ChangeToMainMenu();
+        SetScreen(0, playActionSound: false);
     }
 
     public void CloseWindow(InputAction.CallbackContext context)
@@ -209,5 +223,17 @@ public class TraderUIWindowController : UIWindowCameraTransitioning
                 ((TraderUIEquipmentScreenController)upgradeEquipmentScreen).UpgradeEquipment();
             }
         }
+    }
+
+    protected override void OnClosed()
+    {
+        SetScreen(0, playActionSound: false);
+        audioPlayer.PlayCloseWindowAudio();
+    }
+
+    protected override void OnOpened()
+    {
+        SetScreen(0, playActionSound: false);
+        audioPlayer.PlayOpenWindowAudio();
     }
 }

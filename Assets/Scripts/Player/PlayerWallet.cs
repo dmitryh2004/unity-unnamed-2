@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerWallet : MonoBehaviour
 {
     public static PlayerWallet Instance = null;
+    [SerializeField] PlayerAudioPlayer audioPlayer;
     int money = 0;
 
     private void Awake()
@@ -21,7 +22,11 @@ public class PlayerWallet : MonoBehaviour
     public bool CanAfford(int cost) => money >= cost;
     public void AddMoney(int diff)
     {
-        if (diff > 0) money += diff;
+        if (diff > 0)
+        {
+            money += diff;
+            audioPlayer?.PlayBalanceChangedAudio();
+        }
         else throw new ArgumentException($"Error: diff must be > 0 (given {diff})");
     }
     public void SubtractMoney(int diff)
@@ -29,7 +34,10 @@ public class PlayerWallet : MonoBehaviour
         if (diff > 0)
         {
             if (CanAfford(diff))
+            {
                 money -= diff;
+                audioPlayer?.PlayBalanceChangedAudio();
+            }
             else
                 throw new ArgumentException($"Error: not enought funds in the wallet (has {money}, {money} - {diff} = {money - diff} < 0)");
         }

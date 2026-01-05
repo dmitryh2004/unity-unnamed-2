@@ -136,6 +136,8 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
             trader.GenerateOrders();
             windowController.SetScreen(2);
             LevelManager.Instance.SaveGame(true);
+
+            windowController.GetAudioPlayer().PlayQuotaCompletedAudio();
         }
         else 
         {

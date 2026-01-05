@@ -5,6 +5,7 @@ public class PlayerFlashlight : UpgradableItem
     public static PlayerFlashlight Instance = null;
     [SerializeField] ProgressBarUIController uiController;
     [SerializeField] Light flashlight;
+    [SerializeField] PlayerAudioPlayer audioPlayer;
     float currentCharge = 0f;
     float chargeUseSpeed = 1f;
     float maxCharge = 0f;
@@ -38,6 +39,10 @@ public class PlayerFlashlight : UpgradableItem
     {
         this.inUse = inUse;
         flashlight.gameObject.SetActive(inUse);
+        if (inUse)
+            audioPlayer.PlayFlashlightOnAudio();
+        else
+            audioPlayer.PlayFlashlightOffAudio();
     }
 
     public bool IsActive() => InUse() && GetCurrentCharge() > 0f;

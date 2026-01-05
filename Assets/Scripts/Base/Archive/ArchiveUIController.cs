@@ -16,6 +16,8 @@ public class ArchiveUIController : UIWindowCameraTransitioning
     Article currentArticle = null;
     [SerializeField] Article mainArticle;
     float canvasWidth = 785f;
+    [Header("Audio")]
+    [SerializeField] SaveModuleAudioPlayer audioPlayer;
 
     private void Start()
     {
@@ -156,9 +158,16 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         SetArticle(mainArticle);
     }
 
+    protected override void OnOpened()
+    {
+        base.OnOpened();
+        audioPlayer.PlayOpenWindowAudio();
+    }
+
     protected override void OnClosed()
     {
         SetArticle(mainArticle);
+        audioPlayer.PlayCloseWindowAudio();
     }
 
     protected override void UpdateCurrentInputMap()

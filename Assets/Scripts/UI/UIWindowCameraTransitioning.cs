@@ -112,7 +112,7 @@ public class UIWindowCameraTransitioning : MonoBehaviour
         animator.SetBool("visible", visible);
         StartCoroutine(TranslateUiCamera(true, 1f, () => {
             UpdateCurrentInputMap();
-            ChangeToMainMenu();
+            OnOpened();
         }));
     }
 
@@ -141,6 +141,11 @@ public class UIWindowCameraTransitioning : MonoBehaviour
     }
 
     protected virtual void OnClosed()
+    {
+        ChangeToMainMenu();
+    }
+
+    protected virtual void OnOpened()
     {
         ChangeToMainMenu();
     }

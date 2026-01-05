@@ -2704,6 +2704,7 @@ MonoBehaviour:
   noQuotaBackground: {fileID: 21300000, guid: 98e5c53369545ca44bcbe5b0126869b9, type: 3}
   sellItemsBackground: {fileID: 21300000, guid: 5e68be353a85f0b49a40c827b5b92a23, type: 3}
   upgradeEquipmentBackground: {fileID: 21300000, guid: 98e5c53369545ca44bcbe5b0126869b9, type: 3}
+  audioPlayer: {fileID: 0}
 --- !u!95 &1700870453933531600
 Animator:
   serializedVersion: 7
@@ -3342,7 +3343,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4250313105451655847}
         m_TargetAssemblyTypeName: TraderUIWindowController, Assembly-CSharp
-        m_MethodName: SetScreen
+        m_MethodName: SetScreenBtn
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -741,6 +741,7 @@ MonoBehaviour:
   upgradableItemData: {fileID: 11400000, guid: 7bfc522f18b75e7419784d2296ec0a4c, type: 2}
   uiController: {fileID: 0}
   flashlight: {fileID: 8180043337165310038}
+  audioPlayer: {fileID: 7662763813534142577}
 --- !u!114 &5267577150279294020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6b7e963a5b27243a67ec2d746410c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioPlayer: {fileID: 7662763813534142577}
 --- !u!114 &7662763813534142577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +887,21 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 1a3483916b01e2a4b9617f32febae50b, type: 3}
     weight: 1
     volume: 0.5
+  balanceChangedAudios:
+  - clip: {fileID: 8300000, guid: 2af54c605cbb5f7409041456bef8c264, type: 3}
+    weight: 1
+    volume: 1
+  - clip: {fileID: 8300000, guid: 4ce0839c25e282b41ad04f7d050eb585, type: 3}
+    weight: 1
+    volume: 1
+  flashlightOnAudios:
+  - clip: {fileID: 8300000, guid: 1f5a1f2ca289d644dab398c42f08d550, type: 3}
+    weight: 1
+    volume: 1
+  flashlightOffAudios:
+  - clip: {fileID: 8300000, guid: 79899f77f11166c47b28d4df315675f2, type: 3}
+    weight: 1
+    volume: 1
 --- !u!82 &6702621504603471115
 AudioSource:
   m_ObjectHideFlags: 0

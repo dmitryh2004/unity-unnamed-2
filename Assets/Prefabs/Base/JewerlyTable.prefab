@@ -1166,6 +1166,8 @@ GameObject:
   - component: {fileID: 1266473579198423827}
   - component: {fileID: 6584573781118403888}
   - component: {fileID: 3854821083638163006}
+  - component: {fileID: 6166902132665389070}
+  - component: {fileID: 5320822983686872062}
   m_Layer: 6
   m_Name: JewerlyTable
   m_TagString: Untagged
@@ -1260,6 +1262,7 @@ MonoBehaviour:
     value: 0.85
   - level: 7
     value: 1.1
+  audioPlayer: {fileID: 5320822983686872062}
 --- !u!114 &3854821083638163006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,6 +1333,119 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a62834c305587b64fae47375b12d1797, type: 2}
   - {fileID: 11400000, guid: 6842759093cbea546829dd82f168d021, type: 2}
   - {fileID: 11400000, guid: 0df54b61e7f50da4b818279a4d343c5f, type: 2}
+--- !u!82 &6166902132665389070
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062278826174786214}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5320822983686872062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062278826174786214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c3588ea479d604293a78b29b4d96fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAudios:
+  - clip: {fileID: 8300000, guid: 1ceddbf1bfc18ae4b8578cbbf87fa37c, type: 3}
+    weight: 1
+    volume: 1
 --- !u!1 &1105682207968402425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145, y: -0}
+  m_AnchoredPosition: {x: 145, y: -40.79}
   m_SizeDelta: {x: 290, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &265269451512677880
@@ -4635,7 +4751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 145, y: -44}
+  m_AnchoredPosition: {x: 145, y: -57.6}
   m_SizeDelta: {x: 290, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3878495364088420694
@@ -5961,6 +6077,10 @@ MonoBehaviour:
   locker: {fileID: 0}
   doorName: "\u044F\u0449\u0438\u043A"
   canBeOpenedManually: 1
+  openDoorDuration: 1
+  closeDoorDuration: 1
+  audioPlayer: {fileID: 0}
+  playCreakAudio: 1
 --- !u!65 &6883145973687902234
 BoxCollider:
   m_ObjectHideFlags: 0

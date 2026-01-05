@@ -14,6 +14,8 @@ public class JewerlyTable : Interactable
     [SerializeField] int maxLevel = 7;
     [SerializeField] List<UpgradeCost> upgradeCosts = new();
     [SerializeField] List<UpgradableValue> quotaMultiplierStepBonus = new ();
+
+    [SerializeField] JewerlyTableAudioPlayer audioPlayer;
     System.Random random = new();
 
     private void Awake()
@@ -93,5 +95,6 @@ public class JewerlyTable : Interactable
 
         jewerlyTableUIController.UpdateLayout();
         jewerlyTableUIController.ShowCraftResult(choice);
+        audioPlayer.PlayUseAudio();
     }
 }

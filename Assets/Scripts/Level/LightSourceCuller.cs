@@ -49,6 +49,7 @@ public class LightSourceCuller : MonoBehaviour
         Collider col = GetComponent<Collider>();
         if (col != null)
         {
+            print($"light {name} - planes: {planes}, bounds: {col.bounds}");
             return GeometryUtility.TestPlanesAABB(planes, col.bounds);
         }
         else
@@ -80,6 +81,7 @@ public class LightSourceCuller : MonoBehaviour
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(playerCamera);
         foreach (Renderer rend in candidates)
         {
+            print($"light {name} - planes: {planes}, bounds: {rend.bounds}");
             if (GeometryUtility.TestPlanesAABB(planes, rend.bounds))
             {
                 return true;

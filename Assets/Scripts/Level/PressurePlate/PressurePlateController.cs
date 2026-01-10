@@ -14,14 +14,35 @@ public class PressurePlateController : MonoBehaviour
     [SerializeField] List<LootCategory> acceptableLootCategories = new ();
     [SerializeField] int requiredCountOfAcceptedItems = 1;
 
+    [Space(10)]
+    [SerializeField] float checkItemsTime = 1f;
+
     [Header("Links")]
     [SerializeField] Animator animator;
     [SerializeField] List<DoorController> controlledDoors = new ();
     [SerializeField] PressurePlateTooltip tooltip;
+    [SerializeField] PressurePlateEmissionController emissionController;
 
     private void Start()
     {
         tooltip.UpdateText();
+        InvokeRepeating(nameof(CheckItems), 0f, checkItemsTime);
+    }
+
+    void CheckItems()
+    {
+        List<LootableItem> newList = new ();
+
+        foreach (var item in items)
+        {
+            if (item != null && item.gameObject != null)
+            {
+                newList.Add(item);
+            }
+        }
+
+        items = newList;
+        UpdatePlateState();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -96,6 +117,7 @@ public class PressurePlateController : MonoBehaviour
         pressed = CheckPressConditions();
 
         animator.SetBool("pressed", pressed);
+        emissionController.SetEmitting(pressed);
 
         UpdateDoors();
     }

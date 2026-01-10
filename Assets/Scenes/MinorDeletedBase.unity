@@ -46637,6 +46637,7 @@ Transform:
   - {fileID: 1872168608}
   - {fileID: 387864859}
   - {fileID: 869194889}
+  - {fileID: 1238015842}
   - {fileID: 1629351553}
   - {fileID: 33910421}
   - {fileID: 572433545}
@@ -55915,6 +55916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912134796}
   - component: {fileID: 912134795}
+  - component: {fileID: 912134797}
   m_Layer: 0
   m_Name: Directional Light - Level Design
   m_TagString: Untagged
@@ -56002,6 +56004,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!114 &912134797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912134794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &912572760
 GameObject:
   m_ObjectHideFlags: 0
@@ -69718,7 +69743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350811146570919976, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.85
+      value: 4.278
       objectReference: {fileID: 0}
     - target: {fileID: 350811146570919976, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69759,6 +69784,18 @@ PrefabInstance:
     - target: {fileID: 1810845179765868942, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_Name
       value: PressurePlate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key2.b
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5419733035643433221, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: 'controlledDoors.Array.data[0]'
@@ -73597,6 +73634,80 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7944255041334782159, guid: c8f0f242ca17c3c4db855b6b764f76ad, type: 3}
   m_PrefabInstance: {fileID: 1235301477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1238015841
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 753274812}
+    m_Modifications:
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.50008726
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.49991274
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.50008726
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49991274
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562138970189494476, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304990256638989421, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_Name
+      value: Grid wall 9.6m x 3.2m (150)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304990256638989421, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304990256638989421, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+--- !u!4 &1238015842 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3527925414323048151, guid: 35bf15b48cf924349adc90f5a329c8a6, type: 3}
+  m_PrefabInstance: {fileID: 1238015841}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1238845488
 GameObject:
@@ -121744,7 +121855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 350811146570919976, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 3.908
       objectReference: {fileID: 0}
     - target: {fileID: 350811146570919976, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -121785,6 +121896,38 @@ PrefabInstance:
     - target: {fileID: 1810845179765868942, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: m_Name
       value: PressurePlate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key2.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key2.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2573537870699361308, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
+      propertyPath: activeEmissionGradient.key2.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5419733035643433221, guid: d9cdcf06a954c8d4f998af31a4ec8b1a, type: 3}
       propertyPath: 'controlledDoors.Array.data[0]'

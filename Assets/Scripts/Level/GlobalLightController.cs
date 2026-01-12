@@ -17,9 +17,16 @@ public class GlobalLightController : MonoBehaviour
 
     private void Update()
     {
-        float height = (useTerrain) ? terrain.SampleHeight(player.position) + terrain.transform.position.y : minYPosition;
+        Vector3 playerPos = player.position;
+        float height = (useTerrain) ? terrain.SampleHeight(playerPos) + terrain.transform.position.y : minYPosition;
         bool cond = player.position.y >= height;
         
+        if (useTerrain && !cond)
+        {
+            bool hasHole = terrain.terrainData.IsHole((int)(playerPos.x - terrain.transform.position.x), (int)(playerPos.z - terrain.transform.position.z));
+            cond = cond || hasHole;
+        }
+
         if (cond != lightEnabled)
         {
             lightEnabled = cond;

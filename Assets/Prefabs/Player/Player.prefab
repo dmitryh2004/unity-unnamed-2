@@ -884,7 +884,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepAudios:
-  - clip: {fileID: 8300000, guid: 1a3483916b01e2a4b9617f32febae50b, type: 3}
+  - clip: {fileID: 8300000, guid: 92dc89a8d882d564da2560704ffffff4, type: 3}
+    weight: 1
+    volume: 0.5
+  - clip: {fileID: 8300000, guid: c530a46426bea2145bf263b755f0b34c, type: 3}
+    weight: 1
+    volume: 0.5
+  - clip: {fileID: 8300000, guid: a78834a4ec41c7e4ea1e9c02de609b7c, type: 3}
+    weight: 1
+    volume: 0.5
+  - clip: {fileID: 8300000, guid: 557f23c510efaa54d9aedc99c0f16195, type: 3}
+    weight: 1
+    volume: 0.5
+  - clip: {fileID: 8300000, guid: dd2fa5e39e4eccc4cb00551282327403, type: 3}
     weight: 1
     volume: 0.5
   balanceChangedAudios:
@@ -892,11 +904,15 @@ MonoBehaviour:
     weight: 1
     volume: 1
   flashlightOnAudios:
-  - clip: {fileID: 8300000, guid: 1f5a1f2ca289d644dab398c42f08d550, type: 3}
+  - clip: {fileID: 8300000, guid: 887eb3b9db078fd4cb91acdcc0aa02ba, type: 3}
     weight: 1
     volume: 1
   flashlightOffAudios:
-  - clip: {fileID: 8300000, guid: 79899f77f11166c47b28d4df315675f2, type: 3}
+  - clip: {fileID: 8300000, guid: 887eb3b9db078fd4cb91acdcc0aa02ba, type: 3}
+    weight: 1
+    volume: 1
+  flashlightOutOfBatteryAudios:
+  - clip: {fileID: 8300000, guid: 096a200525ad7f240bcde50a8af4f4c4, type: 3}
     weight: 1
     volume: 1
 --- !u!82 &6702621504603471115

@@ -65,6 +65,7 @@ public class PlayerFlashlight : UpgradableItem
         if (currentCharge <= 0f && InUse())
         {
             SetInUse(false);
+            audioPlayer.PlayFlashlightOutOfBatteryAudio();
         }
 
         uiController.UpdateUI(currentCharge, maxCharge);

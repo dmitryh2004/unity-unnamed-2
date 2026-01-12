@@ -7,6 +7,7 @@ public class PlayerAudioPlayer : RandomAudioPlayer
     [SerializeField] List<WeightedAudioClip> balanceChangedAudios;
     [SerializeField] List<WeightedAudioClip> flashlightOnAudios;
     [SerializeField] List<WeightedAudioClip> flashlightOffAudios;
+    [SerializeField] List<WeightedAudioClip> flashlightOutOfBatteryAudios;
 
     public float PlayFootstepAudio()
     {
@@ -25,5 +26,9 @@ public class PlayerAudioPlayer : RandomAudioPlayer
     public float PlayFlashlightOffAudio()
     {
         return PlayRandomAudio(flashlightOffAudios);
+    }
+    public float PlayFlashlightOutOfBatteryAudio()
+    {
+        return PlayRandomAudio(flashlightOutOfBatteryAudios);
     }
 }

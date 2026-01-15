@@ -137,7 +137,7 @@ public class VirusController : UpgradableItem
 
     public void TakeDamage(int damage, bool ignoreEncryption = false)
     {
-        bool useAEBonus = HasActiveEncryptionBonus();
+        bool useAEBonus = !ignoreEncryption && HasActiveEncryptionBonus();
 
         if (useAEBonus)
         {

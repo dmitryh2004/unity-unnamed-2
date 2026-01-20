@@ -411,5 +411,11 @@ public class LevelGenerator : MonoBehaviour
     {
         NavMeshSurface surface = GetComponent<NavMeshSurface>();
         surface.BuildNavMesh();
+
+        GuardianController[] guardianControllers = FindObjectsByType<GuardianController>(FindObjectsSortMode.None);
+        foreach (var guardian in guardianControllers)
+        {
+            guardian.Init();
+        }
     }
 }

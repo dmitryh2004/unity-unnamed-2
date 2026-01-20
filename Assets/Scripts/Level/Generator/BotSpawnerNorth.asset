@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
+  m_Name: BotSpawnerNorth
+  m_EditorClassIdentifier: 
+  id: 0
+  length: 3
+  width: 3
+  height: 3
+  extensionPriority: 0
+  spawnHeightOffset: 0
+  neighbours:
+  - direction: 0
+    spawnOffset: {x: 0, y: 0, z: 0.5}
+  useInputDirection: 0
+  inputDirection: 0
+  minNeighbours: 1
+  maxNeighbours: 1
+  hasDoors: 0
+  canLockDoors: 0
+  lockChance: 100
+  lockStartDifficultyMin: 1
+  lockStartDifficultyMax: 3
+  isProtectedRoom: 0
+  isSecuredRoom: 0

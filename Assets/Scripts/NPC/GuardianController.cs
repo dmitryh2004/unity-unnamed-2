@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class GuardianController : MonoBehaviour
 {
-    System.Random random = new();
+    System.Random random = new ();
 
     int phase = 1;
     float phaseUpdateTimer = 0f;
-    bool active = true;
+    bool active = false;
+    [SerializeField] bool isActiveOnStart = true;
 
     //Phase 1
     bool goForward = true;
@@ -31,7 +32,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] Light fovLight;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GuardianAudioPlayer audioPlayer;
-    [SerializeField] List<Transform> trackedObjects = new();
+    [SerializeField] List<Transform> trackedObjects = new ();
     [SerializeField] GameObject patrolPointPrefab;
     [SerializeField] Transform levelPatrolPoints;
 
@@ -45,7 +46,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] bool addDestinationsToPatrolPoints = false;
 
     [Header("Phase 1 Settings")]
-    [SerializeField] List<Transform> patrolPoints = new();
+    [SerializeField] List<Transform> patrolPoints = new ();
     [SerializeField] bool enterPhase3OnPoints = true;
 
     [Header("Phase 2 Settings")]
@@ -58,7 +59,16 @@ public class GuardianController : MonoBehaviour
 
     public bool CanOpenClosedDoors() => openClosedDoors;
 
-    public void SetActive(bool active) => this.active = active;
+    public void SetActive(bool active)
+    {
+        this.active = active;
+
+        if (active)
+        {
+            SwitchPhase(1);
+            PickFirstWaypoint();
+        }
+    }
 
     public bool IsPointVisible(Transform point)
     {
@@ -84,9 +94,11 @@ public class GuardianController : MonoBehaviour
         return false;
     }
 
-    private void Start()
+    public void Init()
     {
         UpdateFovLight();
+
+        SetActive(isActiveOnStart);
     }
 
     float GetCurrentFov()
@@ -104,6 +116,7 @@ public class GuardianController : MonoBehaviour
 
     public void SwitchPhase(int newPhase, bool raiseAlarm = false)
     {
+        //Debug.Log($"{gameObject.name}: switching to phase {newPhase}");
         phase = newPhase; //change phase
         UpdateFovLight();
         switch (phase) //update npc
@@ -178,6 +191,13 @@ public class GuardianController : MonoBehaviour
         agent.SetDestination(patrolPoints[currentPoint].position);
     }
 
+    private void PickFirstWaypoint()
+    {
+        agent.SetDestination(patrolPoints[0].position);
+        currentPoint = 0;
+        goForward = true;
+    }
+
     private void CheckForTrackedObjects()
     {
         // check for tracked objects
@@ -194,11 +214,13 @@ public class GuardianController : MonoBehaviour
 
     private void Phase1Update()
     {
+        //Debug.Log($"{gameObject.name}: phase 1 update");
         // update npc movement
         if (agent.destination != null)
         {
             if (agent.remainingDistance < 0.5f)
             {
+                //Debug.Log($"{gameObject.name}: dest={agent.destination}, dist={agent.remainingDistance}, pos={transform.position}");
                 if (enterPhase3OnPoints)
                 {
                     SwitchPhase(3);
@@ -211,9 +233,8 @@ public class GuardianController : MonoBehaviour
         }
         else
         {
-            agent.SetDestination(patrolPoints[0].position);
-            currentPoint = 0;
-            goForward = true;
+            //Debug.Log($"{gameObject.name}: dest=null");
+            PickFirstWaypoint();
         }
 
         CheckForTrackedObjects();

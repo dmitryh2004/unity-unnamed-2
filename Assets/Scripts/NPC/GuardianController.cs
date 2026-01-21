@@ -59,6 +59,8 @@ public class GuardianController : MonoBehaviour
 
     public bool CanOpenClosedDoors() => openClosedDoors;
 
+    public Light FovLight => fovLight;
+
     public void SetActive(bool active)
     {
         this.active = active;
@@ -335,6 +337,9 @@ public class GuardianController : MonoBehaviour
     {
         this.target = target;
     }
+
+    public void SetTrackedObjects(List<Transform> trackedObjects) => this.trackedObjects = trackedObjects;
+    public void SetPatrolPoints(List<Transform> patrolPoints) => this.patrolPoints = patrolPoints;
 
     public void CallGuardian(Transform target, Vector3 position)
     {

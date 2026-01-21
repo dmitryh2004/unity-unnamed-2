@@ -15,6 +15,8 @@ public class DoorController : Lockable
     [Space]
     [SerializeField] float openDoorDuration = 1f;
     [SerializeField] float closeDoorDuration = 1f;
+    public float OpenDoorDuration => openDoorDuration;
+    public float CloseDoorDuration => closeDoorDuration;
 
     [Space]
     [SerializeField] DoorAudioPlayer audioPlayer;

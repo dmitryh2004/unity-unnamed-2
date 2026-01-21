@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &88907684 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7811389390406138299, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
-  m_PrefabInstance: {fileID: 2086283680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &93453529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4303,9 +4292,11 @@ MonoBehaviour:
   guardians:
   - {fileID: 678139963}
   - {fileID: 787358372}
-  removeRedundantGuardians: 0
-  minGuardians: 2
-  maxGuardians: 2
+  guardianSpawnTimerController: {fileID: 0}
+  doInitialSpawn: 1
+  guardianSpawners: []
+  guardianPatrolPoints: []
+  guardianSpawnDelay: 120
   checkDistance: 0
   maxAggroDistance: 100
 --- !u!4 &542123432
@@ -5605,35 +5596,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1430076202 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1432137284620194915, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
-  m_PrefabInstance: {fileID: 2086283680}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1430076206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430076202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d91187ccb438594e81cbb524e796062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 88907684}
-  startSeconds: 300
-  colors:
-  - minSeconds: 0
-    maxSeconds: 60
-    color: {r: 1, g: 0, b: 0, a: 1}
-  - minSeconds: 60
-    maxSeconds: 120
-    color: {r: 1, g: 0.5, b: 0, a: 1}
-  - minSeconds: 120
-    maxSeconds: 300
-    color: {r: 1, g: 1, b: 0, a: 1}
 --- !u!1001 &1457870095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6824,15 +6786,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8927698323725471615, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
+      propertyPath: startSeconds
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6438342862805421849, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
     - {fileID: 3444357973576110927, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1432137284620194915, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1430076206}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb9b6c534862e4429ccd09a92c23691, type: 3}
 --- !u!95 &2086283681 stripped
 Animator:
@@ -6996,7 +6959,7 @@ PrefabInstance:
     - target: {fileID: 1863774356167066865, guid: 02f44a31946a1834d8aee70f2566cfe8, type: 3}
       propertyPath: timerController
       value: 
-      objectReference: {fileID: 1430076206}
+      objectReference: {fileID: 0}
     - target: {fileID: 1863774356167066865, guid: 02f44a31946a1834d8aee70f2566cfe8, type: 3}
       propertyPath: alarmSoundSource
       value: 

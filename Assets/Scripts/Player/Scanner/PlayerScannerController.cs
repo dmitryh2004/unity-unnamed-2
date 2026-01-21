@@ -29,6 +29,11 @@ public class PlayerScannerController : MonoBehaviour
         controls.Disable();
     }
 
+    public void AddHideable(GameObject hideable)
+    {
+        _hideables.Add(new(hideable, hideable.layer));
+    }
+
     private void Awake()
     {
         controls = new();

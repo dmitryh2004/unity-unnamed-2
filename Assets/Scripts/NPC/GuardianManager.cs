@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GuardianPatrolPoints
+public class GuardianPatrolData
 {
     public List<Transform> patrolPoints = new();
+    public bool enterPhase3OnPoints = false;
+    public bool addDestinationsToPatrolPoints = false;
 }
 public class GuardianManager : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class GuardianManager : MonoBehaviour
     [Header("Guardians initial spawn")]
     [SerializeField] bool doInitialSpawn = true;
     [SerializeField] List<GuardianSpawnerController> guardianSpawners = new();
-    [SerializeField] List<GuardianPatrolPoints> guardianPatrolPoints = new ();
+    [SerializeField] List<GuardianPatrolData> guardianPatrolData = new ();
     [SerializeField] float guardianSpawnDelay = 120f;
     float guardianSpawnTimer = 0f;
     bool waitForSpawnTimer = true;
@@ -71,7 +73,7 @@ public class GuardianManager : MonoBehaviour
                 return;
             }
 
-            foreach(var guardianPP in guardianPatrolPoints)
+            foreach(var guardianData in guardianPatrolData)
             {
                 //find the least busied spawner
                 GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
@@ -80,7 +82,7 @@ public class GuardianManager : MonoBehaviour
                     if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
                 }
 
-                leastBusiedSpawner.AddToSpawnQueue(guardianPP.patrolPoints);
+                leastBusiedSpawner.AddToSpawnQueue(guardianData);
             }
         }
     }
@@ -91,6 +93,12 @@ public class GuardianManager : MonoBehaviour
         {
             UpdateSpawnTimer();
         }
+    }
+
+    public void ExpireSpawnTimer()
+    {
+        if (waitForSpawnTimer)
+            guardianSpawnTimer = 0f;
     }
 
     public void AddGuardian(GuardianController guardian)

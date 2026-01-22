@@ -8119,18 +8119,23 @@ MonoBehaviour:
   player: {fileID: 1253419798}
   guardians: []
   guardianSpawnTimerController: {fileID: 980402151}
+  doInitialSpawn: 1
   guardianSpawners:
   - {fileID: 8995836987797590114}
   - {fileID: 679875446}
-  guardianPatrolPoints:
+  guardianPatrolData:
   - patrolPoints:
     - {fileID: 1039074656}
     - {fileID: 1711926474}
     - {fileID: 2058989985}
     - {fileID: 132762837}
+    enterPhase3OnPoints: 0
+    addDestinationsToPatrolPoints: 0
   - patrolPoints:
     - {fileID: 837039960}
     - {fileID: 347942479}
+    enterPhase3OnPoints: 1
+    addDestinationsToPatrolPoints: 0
   guardianSpawnDelay: 60
   checkDistance: 0
   maxAggroDistance: 100

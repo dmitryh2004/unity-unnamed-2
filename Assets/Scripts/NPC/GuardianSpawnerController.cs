@@ -12,17 +12,20 @@ public class GuardianSpawnerController : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     [SerializeField] PlayerScannerController playerScannerController;
 
-    Queue<List<Transform>> spawnQueue = new();
+    Queue<GuardianPatrolData> spawnQueue = new();
     bool isSpawning = false;
     [SerializeField] float spawnQueueInterval = 1f, spawnDelay = 2f;
 
-    public IEnumerator SpawnGuardian(List<Transform> patrolPoints)
+    public IEnumerator SpawnGuardian(GuardianPatrolData guardianData)
     {
         isSpawning = true;
 
         GuardianController gc = Instantiate(guardianPrefab, spawnPoint.position, Quaternion.Euler(0, 0, 0), guardianManager.transform).GetComponent<GuardianController>();
         gc.SetTrackedObjects(trackedObjects);
-        gc.SetPatrolPoints(patrolPoints);
+        gc.SetPatrolPoints(guardianData.patrolPoints);
+        gc.SetAddDestinationsToPatrolPoints(guardianData.addDestinationsToPatrolPoints);
+        gc.SetEnterPhase3OnPoints(guardianData.enterPhase3OnPoints);
+
         playerScannerController.AddHideable(gc.FovLight.gameObject);
 
         doorController.ChangeDoorState(true);
@@ -40,9 +43,9 @@ public class GuardianSpawnerController : MonoBehaviour
         isSpawning = false;
     }
 
-    public void AddToSpawnQueue(List<Transform> patrolPoints)
+    public void AddToSpawnQueue(GuardianPatrolData guardianData)
     {
-        spawnQueue.Enqueue(patrolPoints);
+        spawnQueue.Enqueue(guardianData);
     }
 
     public int GetQueueLength() => spawnQueue.Count;

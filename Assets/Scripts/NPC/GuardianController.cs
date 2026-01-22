@@ -340,6 +340,8 @@ public class GuardianController : MonoBehaviour
 
     public void SetTrackedObjects(List<Transform> trackedObjects) => this.trackedObjects = trackedObjects;
     public void SetPatrolPoints(List<Transform> patrolPoints) => this.patrolPoints = patrolPoints;
+    public void SetAddDestinationsToPatrolPoints(bool value) => addDestinationsToPatrolPoints = value;
+    public void SetEnterPhase3OnPoints(bool value) => enterPhase3OnPoints = value;
 
     public void CallGuardian(Transform target, Vector3 position)
     {

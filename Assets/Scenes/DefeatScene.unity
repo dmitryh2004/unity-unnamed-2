@@ -5895,6 +5895,99 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &580487822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 580487825}
+  - component: {fileID: 580487824}
+  - component: {fileID: 580487823}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!154 &580487823
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580487822}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: a1b412084f9410942892237cf981ccb7, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &580487824
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580487822}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: a1b412084f9410942892237cf981ccb7, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!4 &580487825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580487822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -128, y: -5000, z: -128}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628210317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6162562371213855107, guid: e47642e8f980a0a42a2d655066712634, type: 3}
@@ -5968,12 +6061,16 @@ MonoBehaviour:
   typewriterAudios:
   - clip: {fileID: 8300000, guid: bda0d885e90d0b84fad6f079ddbb10af, type: 3}
     weight: 1
+    volume: 1
   - clip: {fileID: 8300000, guid: 5afcbee834c37714985191166efd7fe6, type: 3}
     weight: 1
+    volume: 1
   - clip: {fileID: 8300000, guid: 7d78328026a42eb439bccfb54397e925, type: 3}
     weight: 1
+    volume: 1
   - clip: {fileID: 8300000, guid: 3896e09dbe8ee774a9d1ccc10a5a5eb7, type: 3}
     weight: 1
+    volume: 1
 --- !u!82 &708900417
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6339,6 +6436,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000777005448109392, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2728164716705107592, guid: e47642e8f980a0a42a2d655066712634, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -7514,13 +7635,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1920229274}
   - component: {fileID: 1920229273}
+  - component: {fileID: 1920229275}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1920229273
 Light:
   m_ObjectHideFlags: 0
@@ -7601,6 +7723,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1920229275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920229272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1954788649
 GameObject:
   m_ObjectHideFlags: 0
@@ -12884,6 +13029,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b80f4c2a-12f9-443b-ae13-da643f113676
     m_ActionName: 'SpaceshipPanelUI/NavigationDown[/Keyboard/downArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c4e37b2-468c-41a2-8a1d-8caf0f7e6063
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d0025b4-47ba-41f2-b671-224de5a584d4
+    m_ActionName: 'TraderUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c2d9d369-0feb-4f9a-b62a-9fcc5c43868c
+    m_ActionName: 'TraderUI/Option1[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fbe4b501-54af-44f7-a5e5-1ccee2a9da63
+    m_ActionName: 'TraderUI/Option2[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a5ca924-6a20-459d-b48b-375efd4775b7
+    m_ActionName: 'TraderUI/Option3[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 82462628-64d6-4178-a9a3-b8c508ecf359
+    m_ActionName: 'TraderUI/Confirm[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04f6b23d-2855-4703-b611-39b760a2c0b4
+    m_ActionName: 'TraderUI/SellItem[/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 486f252c-7d9d-4d97-b7de-61aab17d9b4d
+    m_ActionName: 'TraderUI/Back[/Keyboard/backspace]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6c3c7ce-090b-43d8-99c0-45a7c09e10a5
+    m_ActionName: 'JewerlyTableUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 536d3f43-4793-4501-b09c-27ad58a0eae1
+    m_ActionName: 'ArchiveUI/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -13164,3 +13349,4 @@ SceneRoots:
   - {fileID: 708900418}
   - {fileID: 550982781}
   - {fileID: 534125854}
+  - {fileID: 580487825}

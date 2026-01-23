@@ -22,7 +22,7 @@ public class GameOverScreenController : MonoBehaviour
     {
         if (fill)
         {
-            header = (victory) ? "Победа" : "Поражение";
+            header = (victory) ? "Вылет завершен" : "Неудачный вылет";
             headerText.text = "";
 
             desc = reason;

@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
-  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
-  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientSkyColor: {r: 0.106, g: 0.1135, b: 0.1295, a: 1}
+  m_AmbientEquatorColor: {r: 0.057, g: 0.0625, b: 0.0665, a: 1}
+  m_AmbientGroundColor: {r: 0.0235, g: 0.0215, b: 0.0175, a: 1}
   m_AmbientIntensity: 0.25
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 09091478ee47efa4390f84733e18f7b6, type: 2}
   m_HaloStrength: 0.5
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: f7feb631f364d7846820e0dbd7631556, type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 55954c65c9fef4245b9c833654dedd18, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -8136,7 +8136,7 @@ MonoBehaviour:
     - {fileID: 347942479}
     enterPhase3OnPoints: 1
     addDestinationsToPatrolPoints: 0
-  guardianSpawnDelay: 60
+  guardianSpawnDelay: 10
   checkDistance: 0
   maxAggroDistance: 100
 --- !u!4 &542123432
@@ -12773,7 +12773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1009073443
 Transform:
   m_ObjectHideFlags: 0
@@ -18054,7 +18054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eb38a1625418db248b3837b52f6fb46c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eb38a1625418db248b3837b52f6fb46c, type: 3}
       propertyPath: m_StaticEditorFlags

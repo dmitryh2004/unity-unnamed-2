@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 
     [TextArea(5, 10)]
     [SerializeField] List<string> gameOverReasons = new();
+    bool isGameOver = false;
     int slot = 1;
 
     private void Awake()
@@ -116,6 +117,8 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver(int reasonCode)
     {
+        if (isGameOver) return;
+        isGameOver = true;
         GuardianManager.Instance.StopGuardians(); //deactivate all guardians
 
         InputActionMapSwitcher.Instance.DisableAllMaps(); // disable input

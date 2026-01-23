@@ -25,6 +25,7 @@ public class GuardianSpawnerController : MonoBehaviour
         gc.SetPatrolPoints(guardianData.patrolPoints);
         gc.SetAddDestinationsToPatrolPoints(guardianData.addDestinationsToPatrolPoints);
         gc.SetEnterPhase3OnPoints(guardianData.enterPhase3OnPoints);
+        guardianManager.AddGuardian(gc);
 
         playerScannerController.AddHideable(gc.FovLight.gameObject);
 

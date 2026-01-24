@@ -44,10 +44,11 @@ public class InventoryLayoutElement : MonoBehaviour
 
     public void UpdateLayout(Dictionary<int, int> items)
     {
-        this.items = items;
+        this.items = items.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+        print(this.items);
         int itemIndex = -offset;
         int totalCost = 0;
-        foreach (int i in items.Keys)
+        foreach (int i in this.items.Keys)
         {
             LootCategory lc = lootCategoryManager.lootCategories.FirstOrDefault((x) => x.id == i);
 
@@ -72,7 +73,7 @@ public class InventoryLayoutElement : MonoBehaviour
             itemElements[itemIndex].SetActive(false);
         }
 
-        foreach (int i in items.Keys)
+        foreach (int i in this.items.Keys)
         {
             LootCategory lc = lootCategoryManager.lootCategories.FirstOrDefault((x) => x.id == i);
             totalCost += lc.cost * items[i];

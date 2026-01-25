@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Guardian_attack
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/leg joint.l
+    m_Weight: 1
+  - m_Path: Armature/leg joint.l/leg 1.l
+    m_Weight: 1
+  - m_Path: Armature/leg joint.l/leg 1.l/leg 2.l
+    m_Weight: 1
+  - m_Path: Armature/leg joint.l/leg 1.l/leg 2.l/foot.l
+    m_Weight: 1
+  - m_Path: Armature/leg joint.l/leg 1.l/leg 2.l/foot.l/foot.l_end
+    m_Weight: 1
+  - m_Path: Armature/leg joint.r
+    m_Weight: 1
+  - m_Path: Armature/leg joint.r/leg 1.r
+    m_Weight: 1
+  - m_Path: Armature/leg joint.r/leg 1.r/leg 2.r
+    m_Weight: 1
+  - m_Path: Armature/leg joint.r/leg 1.r/leg 2.r/foot.r
+    m_Weight: 1
+  - m_Path: Armature/leg joint.r/leg 1.r/leg 2.r/foot.r/foot.r_end
+    m_Weight: 1
+  - m_Path: Armature/root
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.l
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.l/hand 1.l
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.l/hand 1.l/hand 2.l
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.l/hand 1.l/hand 2.l/hand 2.l_end
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.r
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.r/hand 1.r
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.r/hand 1.r/hand 2.r
+    m_Weight: 1
+  - m_Path: Armature/root/hand joint.r/hand 1.r/hand 2.r/hand 2.r_end
+    m_Weight: 1
+  - m_Path: Armature/root/head
+    m_Weight: 1
+  - m_Path: Armature/root/head/head_end
+    m_Weight: 1
+  - m_Path: hand joint left
+    m_Weight: 1
+  - m_Path: hand joint right
+    m_Weight: 1
+  - m_Path: hand left
+    m_Weight: 1
+  - m_Path: hand right
+    m_Weight: 1
+  - m_Path: head
+    m_Weight: 1
+  - m_Path: leg left
+    m_Weight: 1
+  - m_Path: leg right
+    m_Weight: 1
+  - m_Path: torso
+    m_Weight: 1

@@ -71,10 +71,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6882694263fd5540ae9709ac3aba1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guardianPrefab: {fileID: 2330765057951083374, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
+  guardianPrefab: {fileID: 2095509030869734565, guid: c109e5e560eed9540a749a15635829c3, type: 3}
   guardianManager: {fileID: 0}
   doorController: {fileID: 5724411501154595635}
-  trackedObjects: []
+  trackedObjects:
+  - {fileID: 0}
   levelPatrolPoints: {fileID: 0}
   spawnPoint: {fileID: 7709481976005165684}
   playerScannerController: {fileID: 0}

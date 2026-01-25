@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable] public enum FaceDirection
+{
+    forward = 0, back = 1, right = 2, left = 3, up = 4, down = 5
+}
+
 public class GuardianController : MonoBehaviour
 {
     System.Random random = new ();
@@ -27,16 +32,21 @@ public class GuardianController : MonoBehaviour
     float footstepTimer = 0f;
     bool footstepTimerActive = true;
 
+    //Animator
+    float animatorPhase1MovingSpeed = 0f, animatorPhase2MovingSpeed = 0f;
+
     [Header("Links")]
-    [SerializeField] Transform eye;
+    [SerializeField] Transform headObj;
     [SerializeField] Light fovLight;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GuardianAudioPlayer audioPlayer;
     [SerializeField] List<Transform> trackedObjects = new ();
     [SerializeField] GameObject patrolPointPrefab;
     [SerializeField] Transform levelPatrolPoints;
+    [SerializeField] Animator animator;
 
     [Header("Common Settings")]
+    [SerializeField] FaceDirection headFaceDirection;
     [SerializeField] float speed = 2f;
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float xraySpotDistance = 1f;
@@ -44,6 +54,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] float fov = 60f;
     [SerializeField] float phaseUpdateInterval = .5f;
     [SerializeField] bool addDestinationsToPatrolPoints = false;
+    [SerializeField] float destStopDistance = .5f, attackDistance = 1f;
 
     [Header("Phase 1 Settings")]
     [SerializeField] List<Transform> patrolPoints = new ();
@@ -70,17 +81,25 @@ public class GuardianController : MonoBehaviour
             SwitchPhase(1);
             PickFirstWaypoint();
         }
+        else
+        {
+            if (animator != null)
+            {
+                animator.SetBool("moving", false);
+                animator.SetFloat("moveSpeed", 1f);
+            }
+        }
     }
 
     public bool IsPointVisible(Transform point)
     {
-        Vector3 direction = point.position - eye.position;
+        Vector3 direction = point.position - headObj.position;
         //Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
         if (direction.magnitude < xraySpotDistance) return true;
 
         if (direction.magnitude > maxSpotDistance) return false;
 
-        Vector3 facingDirection = eye.forward;
+        Vector3 facingDirection = GetHeadFacingDirection();
         //Debug.Log($"face: {facingDirection}");
         float dot = Vector3.Dot(facingDirection.normalized, direction.normalized);
 
@@ -89,11 +108,38 @@ public class GuardianController : MonoBehaviour
         if (dot < Mathf.Cos(minDot)) return false;
         
         RaycastHit hit;
-        if (Physics.Raycast(eye.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(headObj.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
         {
             if (hit.collider.transform == point) return true;
         }
         return false;
+    }
+
+    Vector3 GetHeadFacingDirection()
+    {
+        switch (headFaceDirection)
+        {
+            case FaceDirection.forward:
+                return headObj.forward;
+            case FaceDirection.back:
+                return -headObj.forward;
+            case FaceDirection.right:
+                return headObj.right;
+            case FaceDirection.left:
+                return -headObj.right;
+            case FaceDirection.up:
+                return headObj.up;
+            case FaceDirection.down:
+                return -headObj.up;
+            default:
+                return headObj.forward;
+        }
+    }
+
+    private void Start()
+    {
+        animatorPhase1MovingSpeed = 1f;
+        animatorPhase2MovingSpeed = runningSpeed / speed;
     }
 
     public void Init()
@@ -125,17 +171,35 @@ public class GuardianController : MonoBehaviour
         {
             case 1:
                 agent.speed = speed;
+                if (animator != null)
+                {
+                    animator.SetBool("moving", true);
+                    animator.SetFloat("moveSpeed", animatorPhase1MovingSpeed);
+                }
+
                 footstepTimerActive = true;
                 SetNextWaypoint();
                 break;
             case 2:
                 agent.speed = runningSpeed;
+                if (animator != null)
+                {
+                    animator.SetBool("moving", true);
+                    animator.SetFloat("moveSpeed", animatorPhase2MovingSpeed);
+                }
+
                 footstepTimerActive = true;
                 if (raiseAlarm && !AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
                 agent.SetDestination(target.position);
                 break;
             case 3:
                 agent.speed = speed;
+
+                if (animator != null)
+                {
+                    animator.SetBool("moving", false);
+                    animator.SetFloat("moveSpeed", animatorPhase1MovingSpeed);
+                }
                 footstepTimerActive = false;
                 phase3Timer = 0f;
                 phase3TurnAroundTimer = 0f;
@@ -220,7 +284,7 @@ public class GuardianController : MonoBehaviour
         // update npc movement
         if (agent.destination != null)
         {
-            if (agent.remainingDistance < 0.5f)
+            if (agent.remainingDistance < destStopDistance)
             {
                 //Debug.Log($"{gameObject.name}: dest={agent.destination}, dist={agent.remainingDistance}, pos={transform.position}");
                 if (enterPhase3OnPoints)
@@ -247,10 +311,12 @@ public class GuardianController : MonoBehaviour
         // check for player in range 1m
         if (target != null)
         {
-            if (Vector3.Distance(target.position, transform.position) < 1f)
+            if (Vector3.Distance(target.position, transform.position) < attackDistance)
             {
-                active = false;
+                SetActive(false);
                 audioPlayer.PlayAttackAudio();
+                if (animator != null)
+                    animator.SetTrigger("attack");
 
                 LevelManager.Instance.GameOver(1);
             }
@@ -259,7 +325,7 @@ public class GuardianController : MonoBehaviour
         // update npc movement
         if (agent.destination != null)
         {
-            if (agent.remainingDistance < 0.5f) // if npc is near the dest point, switch phase to 3
+            if (agent.remainingDistance < destStopDistance) // if npc is near the dest point, switch phase to 3
             {
                 if (addDestinationsToPatrolPoints)
                 {
@@ -305,6 +371,7 @@ public class GuardianController : MonoBehaviour
         if (phase3Timer >= delay) // exit to phase 1
         {
             SwitchPhase(1);
+            StartCoroutine(SmoothlyRotate(0f));
             return;
         }
 
@@ -326,7 +393,7 @@ public class GuardianController : MonoBehaviour
         while (Mathf.Abs(rotated) < Mathf.Abs(angle))
         {
             float frameRotation = Mathf.Sign(angle) * agent.angularSpeed * Time.deltaTime;
-            transform.Rotate(new Vector3(0f, frameRotation, 0f));
+            headObj.Rotate(new Vector3(0f, frameRotation, 0f));
             rotated += frameRotation;
             yield return new WaitForEndOfFrame();
         }

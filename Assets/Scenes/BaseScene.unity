@@ -2853,6 +2853,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2572866099166617093, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
+      propertyPath: viewportCamera
+      value: 
+      objectReference: {fileID: 621065991}
     - target: {fileID: 2577775235422174448, guid: 47c3f96908b8f6d4287a7a69eed552a0, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -11649,6 +11653,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6099736928003696483, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
+      propertyPath: viewportCamera
+      value: 
+      objectReference: {fileID: 981198663307632905}
     - target: {fileID: 6173134871695347384, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -11697,6 +11705,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6477583017763948564, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
+      propertyPath: viewportCamera
+      value: 
+      objectReference: {fileID: 981198663307632905}
     - target: {fileID: 6798203249662702837, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -11938,6 +11950,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
+--- !u!20 &981198663307632905 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5677605452333254529, guid: 965637f794e7d3141b3998cafc647a8c, type: 3}
+  m_PrefabInstance: {fileID: 981198663307632904}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1213114140794973948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16104,6 +16121,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2246220869355004853, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
+      propertyPath: viewportCamera
+      value: 
+      objectReference: {fileID: 621065991}
     - target: {fileID: 2270382266046873304, guid: 7f2706aaf53bf464ca4fd64d56348e71, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -27,6 +27,7 @@ public class GuardianController : MonoBehaviour
     //Phase 3
     float phase3Timer = 0f;
     float phase3TurnAroundTimer = 0f;
+    float currentRotationAngle = 0f;
 
     //Footsteps
     float footstepTimer = 0f;
@@ -34,6 +35,7 @@ public class GuardianController : MonoBehaviour
 
     //Animator
     float animatorPhase1MovingSpeed = 0f, animatorPhase2MovingSpeed = 0f;
+    Material instanceMaterial;
 
     [Header("Links")]
     [SerializeField] Transform headObj;
@@ -44,6 +46,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] GameObject patrolPointPrefab;
     [SerializeField] Transform levelPatrolPoints;
     [SerializeField] Animator animator;
+    [SerializeField] Renderer headRenderer;
 
     [Header("Common Settings")]
     [SerializeField] FaceDirection headFaceDirection;
@@ -67,6 +70,12 @@ public class GuardianController : MonoBehaviour
     [Header("Phase 3 Settings")]
     [SerializeField] float delay = 7.5f;
     [SerializeField] float turnAroundInterval = 2.5f;
+    [SerializeField] float baseRotationAngle = 180f;
+
+    [Header("Phase Emission Colors")]
+    [SerializeField] Color phase1EmissionColor = Color.blue;
+    [SerializeField] Color phase2EmissionColor = Color.red;
+    [SerializeField] Color phase3EmissionColor = Color.yellow;
 
     public bool CanOpenClosedDoors() => openClosedDoors;
 
@@ -136,10 +145,30 @@ public class GuardianController : MonoBehaviour
         }
     }
 
+    Color GetPhaseEmissionColor()
+    {
+        if (!active) return Color.black;
+        switch (phase)
+        {
+            case 1:
+                return phase1EmissionColor;
+            case 2:
+                return phase2EmissionColor;
+            case 3:
+                return phase3EmissionColor;
+            default:
+                return Color.black;
+        }
+    }
+
     private void Start()
     {
         animatorPhase1MovingSpeed = 1f;
         animatorPhase2MovingSpeed = runningSpeed / speed;
+
+        currentRotationAngle = baseRotationAngle;
+
+        instanceMaterial = headRenderer.material;
     }
 
     public void Init()
@@ -167,6 +196,9 @@ public class GuardianController : MonoBehaviour
         //Debug.Log($"{gameObject.name}: switching to phase {newPhase}");
         phase = newPhase; //change phase
         UpdateFovLight();
+        StartCoroutine(SmoothlyRotate(baseRotationAngle - currentRotationAngle, playSounds: false));
+
+        instanceMaterial.SetColor("_EmissionColor", GetPhaseEmissionColor());
         switch (phase) //update npc
         {
             case 1:
@@ -371,7 +403,6 @@ public class GuardianController : MonoBehaviour
         if (phase3Timer >= delay) // exit to phase 1
         {
             SwitchPhase(1);
-            StartCoroutine(SmoothlyRotate(0f));
             return;
         }
 
@@ -380,24 +411,29 @@ public class GuardianController : MonoBehaviour
         {
             phase3TurnAroundTimer = 0f;
             float randomAngle = 4 * fov * (float)(random.NextDouble() - 0.5);
+            //print($"{name}: rotate head by {randomAngle}");
             StartCoroutine(SmoothlyRotate(randomAngle));
         }
 
         CheckForTrackedObjects();
     }
 
-    IEnumerator SmoothlyRotate(float angle)
+    IEnumerator SmoothlyRotate(float angle, bool playSounds = true)
     {
         float rotated = 0f;
-        audioPlayer.PlayRotateAudio();
+        if (playSounds)
+            audioPlayer.PlayRotateAudio();
         while (Mathf.Abs(rotated) < Mathf.Abs(angle))
         {
             float frameRotation = Mathf.Sign(angle) * agent.angularSpeed * Time.deltaTime;
             headObj.Rotate(new Vector3(0f, frameRotation, 0f));
             rotated += frameRotation;
-            yield return new WaitForEndOfFrame();
+            currentRotationAngle += frameRotation;
+            //print($"{name}: rotated {Mathf.Abs(rotated)}/{Mathf.Abs(angle)}");
+            yield return null;
         }
-        audioPlayer.PlayRotateAudio();
+        if (playSounds)
+            audioPlayer.PlayRotateAudio();
     }
 
     public void SetTarget(Transform target)

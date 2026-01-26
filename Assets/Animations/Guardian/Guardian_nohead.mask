@@ -6,7 +6,7 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Guardian_attack
+  m_Name: Guardian_nohead
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
@@ -52,9 +52,9 @@ AvatarMask:
   - m_Path: Armature/root/hand joint.r/hand 1.r/hand 2.r/hand 2.r_end
     m_Weight: 1
   - m_Path: Armature/root/head
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: Armature/root/head/head_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: hand joint left
     m_Weight: 1
   - m_Path: hand joint right
@@ -64,7 +64,7 @@ AvatarMask:
   - m_Path: hand right
     m_Weight: 1
   - m_Path: head
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: leg left
     m_Weight: 1
   - m_Path: leg right

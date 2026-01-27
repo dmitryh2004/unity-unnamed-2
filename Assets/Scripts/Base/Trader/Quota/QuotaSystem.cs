@@ -8,7 +8,7 @@ public class QuotaSystem : MonoBehaviour
     int collected;
     int daysLeft;
     float multiplier = 1f;
-    Order order;
+    Order order = null;
 
     [Header("Links")]
     [SerializeField] QuotaUIController uiController;
@@ -41,7 +41,14 @@ public class QuotaSystem : MonoBehaviour
     public void SetCollected(int collected) => this.collected = collected;
     public void SetDaysLeft(int daysLeft) => this.daysLeft = daysLeft;
     public void SetMultiplier(float multiplier) => this.multiplier = multiplier;
-    public void SetOrder(Order order) => this.order = order;
+    public void SetOrder(Order order)
+    {
+        this.order = order;
+        string log = $"Quota system - order changed to ";
+        if (order == null) log += "null";
+        else log += $"[mul: {order.GetMultiplier()}, req: {order.GetRequired()}, ct: {order.GetClientType()}]";
+        Debug.Log(log);
+    }
     public void UpdateUI()
     {
         if (uiController != null)

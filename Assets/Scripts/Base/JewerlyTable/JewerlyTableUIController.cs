@@ -106,13 +106,13 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         int recipe = currentRecipe;
         int stoneType = currentStoneType;
         string craftName = "";
-        bool showStoneType = recipe >= 1 && recipe <= 7;
+        bool showStoneType = recipe >= 1 && recipe <= 8;
 
         if (showStoneType)
         {
             craftName = $"{stoneTypes[stoneType]}{recipe}";
         }
-        else if (recipe == 8)
+        else if (recipe == 9)
         {
             craftName = "Rubik";
         }

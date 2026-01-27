@@ -39,9 +39,9 @@ public class MainMenuSlotUIController : MonoBehaviour
                 hasSave = true;
                 isValid = checksum && version;
 
-                if (data.save.quotaData.clientTypeID != -1)
+                if (data.save.quotaData.currentOrder.hasValue && data.save.quotaData.currentOrder.value.clientTypeID != -1)
                 {
-                    quota = data.save.quotaData.required;
+                    quota = data.save.quotaData.currentOrder.value.required;
                     collected = data.save.quotaData.collected;
                     if (collected < quota)
                     {

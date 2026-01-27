@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         bool hasFile = false, validationResult = false, version = false;
+        bool traderGenerateOrders = false;
         GameData gameData = saveManager.LoadData(slot, out hasFile, out validationResult, out version);
         if (gameData != null)
         {
@@ -50,23 +51,27 @@ public class LevelManager : MonoBehaviour
                 SpaceshipController.Instance.GetPanelController().SetCurrentComplexIndex(gameData.save.baseData.currentComplexIndex);
             if (JewerlyTable.Instance != null)
                 JewerlyTable.Instance.SetLevel(Mathf.Clamp(gameData.save.baseData.jewerlyTableLevel, 1, JewerlyTable.Instance.GetMaxLevel()));
+            if (trader != null)
+                traderGenerateOrders = gameData.save.generatedOrders == null;
 
             if (QuotaSystem.Instance != null)
             {
-                QuotaSystem.Instance.SetRequired(gameData.save.quotaData.required);
                 QuotaSystem.Instance.SetCollected(gameData.save.quotaData.collected);
                 QuotaSystem.Instance.SetDaysLeft(gameData.save.quotaData.daysLeft);
-                QuotaSystem.Instance.SetMultiplier(gameData.save.quotaData.multiplier);
 
-                ClientType ct = ClientTypeManager.Instance.GetClientType(gameData.save.quotaData.clientTypeID);
-                Debug.Log("Client type: " + ct);
-
-                if (ct != null)
+                NullableOrderData orderData = gameData.save.quotaData.currentOrder;
+                if (orderData.hasValue)
                 {
+                    ClientType ct = ClientTypeManager.Instance.GetClientType(orderData.value.clientTypeID);
+                    Debug.Log("Client type: " + ct);
+
                     Order order = new ();
                     order.SetClientType(ct);
-                    order.SetRequired(gameData.save.quotaData.required);
-                    order.SetMultiplier(gameData.save.quotaData.multiplier);
+                    order.SetRequired(orderData.value.required);
+                    order.SetMultiplier(orderData.value.multiplier);
+
+                    QuotaSystem.Instance.SetRequired(orderData.value.required);
+                    QuotaSystem.Instance.SetMultiplier(orderData.value.multiplier);
                     QuotaSystem.Instance.SetOrder(order);
                 }
                 else
@@ -95,11 +100,21 @@ public class LevelManager : MonoBehaviour
                 PlayerFlashlight.Instance.SetLevel(1);
             if (PlayerScanner.Instance != null)
                 PlayerScanner.Instance.SetLevel(0);
+            if (QuotaSystem.Instance != null)
+            {
+                QuotaSystem.Instance.SetOrder(null);
+                QuotaSystem.Instance.UpdateUI();
+            }
+            traderGenerateOrders = true;
         }
 
         if (trader != null)
         {
             trader.Init();
+            if (traderGenerateOrders)
+                trader.GenerateOrders();
+            else
+                trader.SetGeneratedOrders(new OrderData[] {gameData.save.generatedOrders.order1, gameData.save.generatedOrders.order2, gameData.save.generatedOrders.order3});
         }
 
         if (isLevel)

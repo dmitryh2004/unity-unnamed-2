@@ -10,6 +10,7 @@ public class ClientTypeOption
 
 public class TraderObject : Interactable
 {
+    public static TraderObject Instance = null;
     [SerializeField] int baseOrderSum = 100_000;
     [SerializeField] float multiplierStep = 0.8f;
     [SerializeField] float multiplierRange = 0.25f;
@@ -21,6 +22,12 @@ public class TraderObject : Interactable
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         rand = new();
     }
     public void Init()
@@ -105,4 +112,47 @@ public class TraderObject : Interactable
     public Order GetOrder1() => order1;
     public Order GetOrder2() => order2;
     public Order GetOrder3() => order3;
+
+    public OrderData[] GetGeneratedOrdersData()
+    {
+        OrderData[] res = new OrderData[3];
+        Order order1 = GetOrder1(), order2 = GetOrder2(), order3 = GetOrder3();
+        res[0] = (order1 == null) ? null : new OrderData
+        {
+            clientTypeID = ClientTypeManager.Instance.GetID(order1.GetClientType()),
+            multiplier = order1.GetMultiplier(),
+            required = order1.GetRequired()
+        };
+        res[1] = (order2 == null) ? null : new OrderData
+        {
+            clientTypeID = ClientTypeManager.Instance.GetID(order2.GetClientType()),
+            multiplier = order2.GetMultiplier(),
+            required = order2.GetRequired()
+        };
+        res[2] = (order3 == null) ? null : new OrderData
+        {
+            clientTypeID = ClientTypeManager.Instance.GetID(order3.GetClientType()),
+            multiplier = order3.GetMultiplier(),
+            required = order3.GetRequired()
+        };
+        return res;
+    }
+
+    public void SetGeneratedOrders(OrderData[] orders)
+    {
+        order1 = new Order();
+        order1.SetRequired(orders[0].required);
+        order1.SetMultiplier(orders[0].multiplier);
+        order1.SetClientType(ClientTypeManager.Instance.GetClientType(orders[0].clientTypeID));
+
+        order2 = new Order();
+        order2.SetRequired(orders[1].required);
+        order2.SetMultiplier(orders[1].multiplier);
+        order2.SetClientType(ClientTypeManager.Instance.GetClientType(orders[1].clientTypeID));
+
+        order3 = new Order();
+        order3.SetRequired(orders[2].required);
+        order3.SetMultiplier(orders[2].multiplier);
+        order3.SetClientType(ClientTypeManager.Instance.GetClientType(orders[2].clientTypeID));
+    }
 }

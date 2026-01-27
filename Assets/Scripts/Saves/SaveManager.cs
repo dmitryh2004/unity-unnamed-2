@@ -18,12 +18,14 @@ public class Save
     public Player playerData;
     public Base baseData;
     public Quota quotaData;
+    public GeneratedOrders generatedOrders;
 
     public Save()
     {
         playerData = new Player();
         baseData = new Base();
         quotaData = new Quota();
+        generatedOrders = new GeneratedOrders();
     }
 }
 
@@ -49,11 +51,46 @@ public class Base
 [System.Serializable]
 public class Quota
 {
-    public float multiplier = 1.0f;
-    public int required = 100000;
+    public NullableOrderData currentOrder;
     public int collected = 0;
     public int daysLeft = 3;
+    public Quota()
+    {
+        currentOrder = new NullableOrderData(null);
+        collected = 0;
+        daysLeft = 3;
+    }
+}
+
+[System.Serializable]
+public class NullableOrderData
+{
+    public OrderData value;
+    public bool hasValue;   // Флаг наличия значения
+
+    public NullableOrderData(OrderData data)
+    {
+        value = data;
+        hasValue = data != null;
+    }
+
+    public OrderData GetValueOrDefault()
+    {
+        return hasValue ? value : null;
+    }
+}
+[System.Serializable]
+public class OrderData
+{
+    public float multiplier = 1.0f;
+    public int required = 100000;
     public int clientTypeID = 0;
+}
+
+[System.Serializable]
+public class GeneratedOrders
+{
+    public OrderData order1, order2, order3;
 }
 
 public static class SaveChecksumCalculator
@@ -271,12 +308,29 @@ public class SaveManager : MonoBehaviour
             jewerlyTableLevel = jewerlyTableLevel
         };
 
-        Quota quotaData = new Quota {
+        NullableOrderData currentOrder = QuotaSystem.Instance.HasOrder()
+        ? new NullableOrderData(new OrderData
+        {
             multiplier = QuotaSystem.Instance.GetMultiplier(),
             required = QuotaSystem.Instance.GetRequired(),
+            clientTypeID = QuotaSystem.Instance.GetClientTypeID()
+        })
+        : new NullableOrderData(null);
+
+        Debug.Log($"Save manager: currentOrder = {(!currentOrder.hasValue ? "null" : $"mul={currentOrder.value?.multiplier}, req={currentOrder.value?.required}, ct={currentOrder.value?.clientTypeID}")}");
+
+        Quota quotaData = new Quota {
+            currentOrder = currentOrder,
             collected = QuotaSystem.Instance.GetCollected(),
             daysLeft = QuotaSystem.Instance.GetDaysLeft(),
-            clientTypeID = QuotaSystem.Instance.GetClientTypeID()
+        };
+
+        OrderData[] generatedOrdersData = TraderObject.Instance.GetGeneratedOrdersData();
+        GeneratedOrders generatedOrders = new GeneratedOrders
+        {
+            order1 = generatedOrdersData[0],
+            order2 = generatedOrdersData[1],
+            order3 = generatedOrdersData[2]
         };
 
         Save save = new Save
@@ -284,7 +338,8 @@ public class SaveManager : MonoBehaviour
             playerData = playerData,
             baseData = baseData,
             quotaData = quotaData,
-            version = saveVersion
+            version = saveVersion,
+            generatedOrders = generatedOrders
         };
 
         string checksum = SaveChecksumCalculator.CalculateChecksum(save);

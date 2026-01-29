@@ -46,6 +46,10 @@ public class InventoryLayoutElement : MonoBehaviour
     {
         this.items = items.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
         print(this.items);
+        while (items.Count - offset + offsetStep <= itemElements.Count && offset > 0)
+        {
+            ScrollUp(update: false);
+        }
         int itemIndex = -offset;
         int totalCost = 0;
         foreach (int i in this.items.Keys)
@@ -116,25 +120,26 @@ public class InventoryLayoutElement : MonoBehaviour
         }
     }
 
-    void ModifyOffset(int diff)
+    void ModifyOffset(int diff, bool update = true)
     {
         offset += diff;
         if (offset < 0) offset = 0;
-        UpdateLayout(items);
+        if (update)
+            UpdateLayout(items);
     }
 
-    public void ScrollDown()
+    public void ScrollDown(bool update = true)
     {
         if (items.Count - offset > itemElements.Count)
         {
-            ModifyOffset(offsetStep);
+            ModifyOffset(offsetStep, update);
         }
     }
 
-    public void ScrollUp()
+    public void ScrollUp(bool update = true)
     {
         if (offset > 0)
-            ModifyOffset(-offsetStep);
+            ModifyOffset(-offsetStep, update);
     }
 
     public void ClearOffset()

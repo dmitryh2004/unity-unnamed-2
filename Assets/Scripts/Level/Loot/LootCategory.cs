@@ -4,6 +4,7 @@ using UnityEngine;
 public class LootCategory : ScriptableObject
 {
     public int id;
+    public int sortGroup = 0;
     public Sprite sprite;
     public string lootName;
     [TextArea(5, 10)] public string lootDesc;

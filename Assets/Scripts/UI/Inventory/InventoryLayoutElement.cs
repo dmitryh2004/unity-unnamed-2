@@ -44,7 +44,11 @@ public class InventoryLayoutElement : MonoBehaviour
 
     public void UpdateLayout(Dictionary<int, int> items)
     {
-        this.items = items.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
+        this.items = items
+        .OrderBy(x => lootCategoryManager.lootCategories.FirstOrDefault(lc => lc.id == x.Key)?.sortGroup ?? int.MaxValue)
+        .ThenBy(x => x.Key)
+        .ToDictionary(x => x.Key, x => x.Value);
+
         print(this.items);
         while (items.Count - offset + offsetStep <= itemElements.Count && offset > 0)
         {

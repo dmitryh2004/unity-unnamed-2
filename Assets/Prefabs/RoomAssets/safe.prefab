@@ -900,23 +900,41 @@ MonoBehaviour:
     weight: 32
   - possibleLoot:
     - prefab: {fileID: 389698285437269760, guid: 486670b6ec4f4a4428be02223d2bbb9e, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 2
-    weight: 16
-  - possibleLoot:
+    - prefab: {fileID: 389698285437269760, guid: b9561fa6ede228740b33dbcc5882b368, type: 3}
+      weight: 2
+      minCount: 1
+      maxCount: 2
     - prefab: {fileID: 2486860697149790109, guid: e61d3f78c55da2d4ca85c0da860cf892, type: 3}
       weight: 1
       minCount: 1
       maxCount: 1
-    weight: 12
+    weight: 16
   - possibleLoot:
     - prefab: {fileID: 389698285437269760, guid: e07880e8f8c7c2b4f88c07338eb9a697, type: 3}
+      weight: 4
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 389698285437269760, guid: 54c214d7a63583944ae8c179611a3b50, type: 3}
+      weight: 2
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 2486860697149790109, guid: 4e0e53734d316f34f84f04faa7b1f2c2, type: 3}
       weight: 1
       minCount: 1
       maxCount: 1
     weight: 8
   - possibleLoot:
+    - prefab: {fileID: 389698285437269760, guid: 0c561da46933f484aa5d43895c8ae7d1, type: 3}
+      weight: 4
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 389698285437269760, guid: 7ca42a979deb81d4fb6b3073e55e319a, type: 3}
+      weight: 2
+      minCount: 1
+      maxCount: 1
     - prefab: {fileID: 4919065344591049517, guid: 904033512e6fd384e9d1248f2446a52a, type: 3}
       weight: 1
       minCount: 1

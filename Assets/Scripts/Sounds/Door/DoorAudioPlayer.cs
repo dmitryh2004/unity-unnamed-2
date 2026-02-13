@@ -5,7 +5,7 @@ public class DoorAudioPlayer : RandomAudioPlayer
 {
     [SerializeField] List<WeightedAudioClip> openAudios;
     [SerializeField] List<WeightedAudioClip> closeAudios;
-    [SerializeField] List<WeightedAudioClip> creakAudios;
+    [SerializeField] List<WeightedAudioClip> openStartAudios, openEndAudios, closeStartAudios, closeEndAudios;
 
     public float PlayOpenAudio()
     {
@@ -15,8 +15,20 @@ public class DoorAudioPlayer : RandomAudioPlayer
     {
         return PlayRandomAudio(closeAudios);
     }
-    public float PlayCreakAudio()
+    public float PlayOpenStartAudio()
     {
-        return PlayRandomAudio(creakAudios);
+        return PlayRandomAudio(openStartAudios);
+    }
+    public float PlayCloseStartAudio()
+    {
+        return PlayRandomAudio(closeStartAudios);
+    }
+    public float PlayOpenEndAudio()
+    {
+        return PlayRandomAudio(openEndAudios);
+    }
+    public float PlayCloseEndAudio()
+    {
+        return PlayRandomAudio(closeEndAudios);
     }
 }

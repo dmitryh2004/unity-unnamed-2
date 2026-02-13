@@ -36,6 +36,7 @@ public class RandomAudioPlayer : MonoBehaviour
      * **/
     public float PlayRandomAudio(List<WeightedAudioClip> audios)
     {
+        if (audios.Count == 0) return 0f;
         int totalWeight = 0;
         foreach (WeightedAudioClip clip in audios)
         {

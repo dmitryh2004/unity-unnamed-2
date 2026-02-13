@@ -73,17 +73,21 @@ public class DoorController : Lockable
 
     IEnumerator PlayOpenAudios()
     {
+        audioPlayer.PlayOpenStartAudio();
         audioPlayer.PlayOpenAudio();
         yield return new WaitForSeconds(openDoorDuration);
         if (playCreakAudio)
-            audioPlayer.PlayCreakAudio();
+            audioPlayer.PlayOpenEndAudio();
     }
     IEnumerator PlayCloseAudios()
     {
         if (playCreakAudio)
-            audioPlayer.PlayCreakAudio();
+        {
+            audioPlayer.PlayCloseStartAudio();
+            audioPlayer.PlayCloseAudio();
+        }
         yield return new WaitForSeconds(closeDoorDuration);
-        audioPlayer.PlayCloseAudio();
+        audioPlayer.PlayCloseEndAudio();
     }
 
     private void OnTriggerEnter(Collider other)

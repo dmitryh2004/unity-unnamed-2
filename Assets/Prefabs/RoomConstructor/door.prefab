@@ -719,14 +719,20 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 9320059877a134f40b27540be3e9a2d7, type: 3}
     weight: 1
     volume: 1
-  closeAudios:
+  closeAudios: []
+  openStartAudios: []
+  openEndAudios:
+  - clip: {fileID: 8300000, guid: e73f7f09af8293344a5b85aa1638d105, type: 3}
+    weight: 1
+    volume: 1
+  closeStartAudios:
+  - clip: {fileID: 8300000, guid: e73f7f09af8293344a5b85aa1638d105, type: 3}
+    weight: 1
+    volume: 1
+  closeEndAudios:
   - clip: {fileID: 8300000, guid: 69ad2dbbb26e02b4698e71b7fd367cfa, type: 3}
     weight: 1
     volume: 1
   - clip: {fileID: 8300000, guid: 0992175ebd6eec6459326ca02a8e9604, type: 3}
     weight: 1
     volume: 1
-  creakAudios:
-  - clip: {fileID: 8300000, guid: e73f7f09af8293344a5b85aa1638d105, type: 3}
-    weight: 1
-    volume: 0.6

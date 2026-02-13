@@ -904,11 +904,11 @@ MonoBehaviour:
       minCount: 1
       maxCount: 2
     - prefab: {fileID: 389698285437269760, guid: b9561fa6ede228740b33dbcc5882b368, type: 3}
-      weight: 2
+      weight: 3
       minCount: 1
       maxCount: 2
     - prefab: {fileID: 2486860697149790109, guid: e61d3f78c55da2d4ca85c0da860cf892, type: 3}
-      weight: 1
+      weight: 2
       minCount: 1
       maxCount: 1
     weight: 16
@@ -918,28 +918,28 @@ MonoBehaviour:
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 389698285437269760, guid: 54c214d7a63583944ae8c179611a3b50, type: 3}
-      weight: 2
+      weight: 3
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 2486860697149790109, guid: 4e0e53734d316f34f84f04faa7b1f2c2, type: 3}
-      weight: 1
+      weight: 2
       minCount: 1
       maxCount: 1
-    weight: 8
+    weight: 12
   - possibleLoot:
     - prefab: {fileID: 389698285437269760, guid: 0c561da46933f484aa5d43895c8ae7d1, type: 3}
       weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 389698285437269760, guid: 7ca42a979deb81d4fb6b3073e55e319a, type: 3}
-      weight: 2
+      weight: 3
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 4919065344591049517, guid: 904033512e6fd384e9d1248f2446a52a, type: 3}
-      weight: 1
+      weight: 2
       minCount: 1
       maxCount: 1
-    weight: 4
+    weight: 6
   - possibleLoot:
     - prefab: {fileID: 5749776810664676133, guid: 3a20cdfd6df3b744dbe0080c5029def1, type: 3}
       weight: 5000
@@ -1529,11 +1529,14 @@ MonoBehaviour:
     weight: 1
     volume: 1
   closeAudios:
-  - clip: {fileID: 8300000, guid: 6a3a455c4ff7deb4085b642a11a4d29a, type: 3}
+  - clip: {fileID: 8300000, guid: c598b343d96d53b4bbad6dc452a0f45d, type: 3}
     weight: 1
     volume: 1
-  creakAudios:
-  - clip: {fileID: 8300000, guid: c598b343d96d53b4bbad6dc452a0f45d, type: 3}
+  openStartAudios: []
+  openEndAudios: []
+  closeStartAudios: []
+  closeEndAudios:
+  - clip: {fileID: 8300000, guid: 6a3a455c4ff7deb4085b642a11a4d29a, type: 3}
     weight: 1
     volume: 1
 --- !u!4 &8899525687806672527 stripped

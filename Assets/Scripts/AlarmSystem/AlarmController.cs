@@ -19,6 +19,14 @@ public class AlarmController : MonoBehaviour
         }
         Instance = this;
         alarmLights = new List<AlarmLightController>(FindObjectsByType<AlarmLightController>(FindObjectsSortMode.None));
+
+        if (AdaptiveDifficultyManager.Instance != null)
+        {
+            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+            float adjustedRemainingTime = timerController.GetRemainingTime();
+            adjustedRemainingTime *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("ReinforcementTimerMultiplier", alertnessDegree) ?? 1f);
+            timerController.SetRemainingTime(adjustedRemainingTime);
+        }
     }
 
     public AlarmTimerController GetTimerController() => timerController;

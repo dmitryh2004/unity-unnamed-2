@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
             if (JewerlyTable.Instance != null)
                 JewerlyTable.Instance.SetLevel(Mathf.Clamp(gameData.save.baseData.jewerlyTableLevel, 1, JewerlyTable.Instance.GetMaxLevel()));
             if (trader != null)
-                traderGenerateOrders = gameData.save.generatedOrders == null;
+                traderGenerateOrders = !(gameData.save.generatedOrders.order1.hasValue && gameData.save.generatedOrders.order2.hasValue || gameData.save.generatedOrders.order3.hasValue);
 
             if (QuotaSystem.Instance != null)
             {
@@ -114,7 +114,7 @@ public class LevelManager : MonoBehaviour
             if (traderGenerateOrders)
                 trader.GenerateOrders();
             else
-                trader.SetGeneratedOrders(new OrderData[] {gameData.save.generatedOrders.order1, gameData.save.generatedOrders.order2, gameData.save.generatedOrders.order3});
+                trader.SetGeneratedOrders(new OrderData[] {gameData.save.generatedOrders.order1.value, gameData.save.generatedOrders.order2.value, gameData.save.generatedOrders.order3.value});
         }
 
         if (isLevel)

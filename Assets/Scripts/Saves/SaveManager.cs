@@ -90,7 +90,7 @@ public class OrderData
 [System.Serializable]
 public class GeneratedOrders
 {
-    public OrderData order1, order2, order3;
+    public NullableOrderData order1, order2, order3;
 }
 
 public static class SaveChecksumCalculator
@@ -317,7 +317,7 @@ public class SaveManager : MonoBehaviour
         })
         : new NullableOrderData(null);
 
-        Debug.Log($"Save manager: currentOrder = {(!currentOrder.hasValue ? "null" : $"mul={currentOrder.value?.multiplier}, req={currentOrder.value?.required}, ct={currentOrder.value?.clientTypeID}")}");
+        Debug.Log($"Save manager: currentOrder = {(!currentOrder.hasValue ? "null" : $"[mul={currentOrder.value?.multiplier}, req={currentOrder.value?.required}, ct={currentOrder.value?.clientTypeID}")}]");
 
         Quota quotaData = new Quota {
             currentOrder = currentOrder,
@@ -325,13 +325,22 @@ public class SaveManager : MonoBehaviour
             daysLeft = QuotaSystem.Instance.GetDaysLeft(),
         };
 
-        OrderData[] generatedOrdersData = TraderObject.Instance.GetGeneratedOrdersData();
-        GeneratedOrders generatedOrders = new GeneratedOrders
-        {
-            order1 = generatedOrdersData[0],
-            order2 = generatedOrdersData[1],
-            order3 = generatedOrdersData[2]
+        GeneratedOrders generatedOrders = new GeneratedOrders {
+            order1 = new NullableOrderData(null),
+            order2 = new NullableOrderData(null),
+            order3 = new NullableOrderData(null)
         };
+
+        if (TraderObject.Instance != null)
+        {
+            OrderData[] generatedOrdersData = TraderObject.Instance.GetGeneratedOrdersData();
+            generatedOrders = new GeneratedOrders
+            {
+                order1 = new NullableOrderData(generatedOrdersData[0]),
+                order2 = new NullableOrderData(generatedOrdersData[1]),
+                order3 = new NullableOrderData(generatedOrdersData[2])
+            };
+        }
 
         Save save = new Save
         {

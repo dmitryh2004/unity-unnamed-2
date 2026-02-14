@@ -37,6 +37,12 @@ public class GuardianController : MonoBehaviour
     float animatorPhase1MovingSpeed = 0f, animatorPhase2MovingSpeed = 0f;
     Material instanceMaterial;
 
+    //Adaptive Difficulty
+    float AD_movingSpeedMultiplier = 1f;
+    float AD_xrayRangeMultiplier = 1f;
+    float AD_sightRangeMultiplier = 1f;
+    float AD_phase3DurationMultiplier = 1f;
+
     [Header("Links")]
     [SerializeField] Transform headObj;
     [SerializeField] Light fovLight;
@@ -104,9 +110,9 @@ public class GuardianController : MonoBehaviour
     {
         Vector3 direction = point.position - headObj.position;
         //Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
-        if (direction.magnitude < xraySpotDistance) return true;
+        if (direction.magnitude < xraySpotDistance * AD_xrayRangeMultiplier) return true;
 
-        if (direction.magnitude > maxSpotDistance) return false;
+        if (direction.magnitude > maxSpotDistance * AD_sightRangeMultiplier) return false;
 
         Vector3 facingDirection = GetHeadFacingDirection();
         //Debug.Log($"face: {facingDirection}");
@@ -117,7 +123,7 @@ public class GuardianController : MonoBehaviour
         if (dot < Mathf.Cos(minDot)) return false;
         
         RaycastHit hit;
-        if (Physics.Raycast(headObj.position, direction, out hit, maxSpotDistance, 457, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(headObj.position, direction, out hit, maxSpotDistance * AD_sightRangeMultiplier, 457, QueryTriggerInteraction.Ignore))
         {
             if (hit.collider.transform == point) return true;
         }
@@ -161,10 +167,25 @@ public class GuardianController : MonoBehaviour
         }
     }
 
+    private void AdjustToAdaptiveDifficulty()
+    {
+        if (AdaptiveDifficultyManager.Instance != null)
+        {
+            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+
+            AD_movingSpeedMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianSpeedMultiplier", alertnessDegree) ?? AD_movingSpeedMultiplier;
+            AD_sightRangeMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianSightRangeMultiplier", alertnessDegree) ?? AD_sightRangeMultiplier;
+            AD_xrayRangeMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianXrayRangeMultiplier", alertnessDegree) ?? AD_xrayRangeMultiplier;
+            AD_phase3DurationMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckPointTimeMultiplier", alertnessDegree) ?? AD_phase3DurationMultiplier;
+        }
+    }
+
     private void Start()
     {
-        animatorPhase1MovingSpeed = 1f;
-        animatorPhase2MovingSpeed = runningSpeed / speed;
+        AdjustToAdaptiveDifficulty();
+
+        animatorPhase1MovingSpeed = AD_movingSpeedMultiplier;
+        animatorPhase2MovingSpeed = runningSpeed / speed * AD_movingSpeedMultiplier;
 
         currentRotationAngle = baseRotationAngle;
 
@@ -202,7 +223,7 @@ public class GuardianController : MonoBehaviour
         switch (phase) //update npc
         {
             case 1:
-                agent.speed = speed;
+                agent.speed = speed * AD_movingSpeedMultiplier;
                 if (animator != null)
                 {
                     animator.SetBool("moving", true);
@@ -213,7 +234,7 @@ public class GuardianController : MonoBehaviour
                 SetNextWaypoint();
                 break;
             case 2:
-                agent.speed = runningSpeed;
+                agent.speed = runningSpeed * AD_movingSpeedMultiplier;
                 if (animator != null)
                 {
                     animator.SetBool("moving", true);
@@ -225,7 +246,7 @@ public class GuardianController : MonoBehaviour
                 agent.SetDestination(target.position);
                 break;
             case 3:
-                agent.speed = speed;
+                agent.speed = speed * AD_movingSpeedMultiplier;
 
                 if (animator != null)
                 {
@@ -400,7 +421,7 @@ public class GuardianController : MonoBehaviour
 
     private void Phase3Update()
     {
-        if (phase3Timer >= delay) // exit to phase 1
+        if (phase3Timer >= delay * AD_phase3DurationMultiplier) // exit to phase 1
         {
             SwitchPhase(1);
             return;
@@ -451,5 +472,14 @@ public class GuardianController : MonoBehaviour
         SetTarget(target);
         SwitchPhase(2);
         agent.SetDestination(position);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(headObj.position, xraySpotDistance * AD_xrayRangeMultiplier);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(headObj.position, GetHeadFacingDirection() * maxSpotDistance * AD_sightRangeMultiplier);
     }
 }

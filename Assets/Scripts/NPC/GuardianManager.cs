@@ -36,13 +36,19 @@ public class GuardianManager : MonoBehaviour
             return; 
         }
         Instance = this;
+    }
 
+    private void Start()
+    {
         if (doInitialSpawn)
         {
             // todo: get spawn delay
+            float calculatedSpawnDelay = guardianSpawnDelay;
+            if (AdaptiveDifficultyManager.Instance != null)
+                calculatedSpawnDelay *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 1);
 
-            guardianSpawnTimer = guardianSpawnDelay;
-            guardianSpawnTimerController.SetRemainingTime(guardianSpawnDelay);
+            guardianSpawnTimer = calculatedSpawnDelay;
+            guardianSpawnTimerController.SetRemainingTime(calculatedSpawnDelay);
             guardianSpawnTimerController.StartTimer();
         }
         else

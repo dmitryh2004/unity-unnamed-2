@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,12 +15,17 @@ public class GuardianController : MonoBehaviour
 
     int phase = 1;
     float phaseUpdateTimer = 0f;
+    float findInteractablesTimer = 0f;
     bool active = false;
     [SerializeField] bool isActiveOnStart = true;
 
     //Phase 1
     bool goForward = true;
     int currentPoint = 0;
+    public List<Interactable> checkedInteractables = new();
+    Dictionary<int, bool> checkedDoorsStates = new();
+    Dictionary<int, bool> checkedLocksStates = new();
+    Dictionary<int, int> checkedLocksDifficulties = new();
 
     //Phase 2
     Transform target = null;
@@ -42,13 +48,17 @@ public class GuardianController : MonoBehaviour
     float AD_xrayRangeMultiplier = 1f;
     float AD_sightRangeMultiplier = 1f;
     float AD_phase3DurationMultiplier = 1f;
+    bool AD_checkDoors = false;
+    bool AD_checkFloorItems = false;
+    bool AD_checkLockActivity = false;
+    bool AD_checkLockDifficulty = false;
 
     [Header("Links")]
     [SerializeField] Transform headObj;
     [SerializeField] Light fovLight;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GuardianAudioPlayer audioPlayer;
-    [SerializeField] List<Transform> trackedObjects = new ();
+    [SerializeField] List<Transform> possibleTargetObjects = new ();
     [SerializeField] GameObject patrolPointPrefab;
     [SerializeField] Transform levelPatrolPoints;
     [SerializeField] Animator animator;
@@ -56,12 +66,14 @@ public class GuardianController : MonoBehaviour
 
     [Header("Common Settings")]
     [SerializeField] FaceDirection headFaceDirection;
+    [SerializeField] LayerMask pointVisibilityCheckMask;
     [SerializeField] float speed = 2f;
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float xraySpotDistance = 1f;
     [SerializeField] float maxSpotDistance = 10f;
     [SerializeField] float fov = 60f;
     [SerializeField] float phaseUpdateInterval = .5f;
+    [SerializeField] float findInteractablesInterval = 5f;
     [SerializeField] bool addDestinationsToPatrolPoints = false;
     [SerializeField] float destStopDistance = .5f, attackDistance = 1f;
 
@@ -84,6 +96,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] Color phase3EmissionColor = Color.yellow;
 
     public bool CanOpenClosedDoors() => openClosedDoors;
+    bool RunAdaptiveDifficultyFunctional() => AD_checkDoors || AD_checkFloorItems || AD_checkLockActivity || AD_checkLockDifficulty;
 
     public Light FovLight => fovLight;
 
@@ -109,7 +122,7 @@ public class GuardianController : MonoBehaviour
     public bool IsPointVisible(Transform point)
     {
         Vector3 direction = point.position - headObj.position;
-        //Debug.Log($"dir: {point.position} - {eye.position} = {direction}");
+        //Debug.Log($"dir: {point.position} - {headObj.position} = {direction}");
         if (direction.magnitude < xraySpotDistance * AD_xrayRangeMultiplier) return true;
 
         if (direction.magnitude > maxSpotDistance * AD_sightRangeMultiplier) return false;
@@ -123,11 +136,27 @@ public class GuardianController : MonoBehaviour
         if (dot < Mathf.Cos(minDot)) return false;
         
         RaycastHit hit;
-        if (Physics.Raycast(headObj.position, direction, out hit, maxSpotDistance * AD_sightRangeMultiplier, 457, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(headObj.position, direction, out hit, maxSpotDistance * AD_sightRangeMultiplier, pointVisibilityCheckMask.value, QueryTriggerInteraction.Ignore))
         {
+            //Debug.Log($"{hit.collider.gameObject.name} (pos: {hit.collider.transform.position})");
             if (hit.collider.transform == point) return true;
         }
         return false;
+    }
+
+    void FindInteractables()
+    {
+        //Debug.Log($"Searching for interactables... (currently found: {checkedInteractables.Count})");
+        List<Collider> possibleTargets = Physics.OverlapSphere(transform.position, maxSpotDistance * AD_sightRangeMultiplier, 64).ToList();
+        foreach (Collider col in possibleTargets)
+        {
+            Interactable interactable;
+            if (col.TryGetComponent(out interactable))
+            {
+                if (checkedInteractables.Contains(interactable)) continue;
+                checkedInteractables.Add(interactable);
+            }
+        }
     }
 
     Vector3 GetHeadFacingDirection()
@@ -177,6 +206,11 @@ public class GuardianController : MonoBehaviour
             AD_sightRangeMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianSightRangeMultiplier", alertnessDegree) ?? AD_sightRangeMultiplier;
             AD_xrayRangeMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianXrayRangeMultiplier", alertnessDegree) ?? AD_xrayRangeMultiplier;
             AD_phase3DurationMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckPointTimeMultiplier", alertnessDegree) ?? AD_phase3DurationMultiplier;
+            AD_checkDoors = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckDoors", alertnessDegree) > 0;
+            AD_checkFloorItems = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckFloorItems", alertnessDegree) > 0;
+            AD_checkLockActivity = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckLockActivity", alertnessDegree) > 0;
+            AD_checkLockDifficulty = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianCheckLockDifficulty", alertnessDegree) > 0;
+            //Debug.Log($"Adaptive difficulty\nCheck doors: {AD_checkDoors}, Check floor items: {AD_checkFloorItems}, Check lock activity: {AD_checkLockActivity}, Check lock difficulty: {AD_checkLockDifficulty}");
         }
     }
 
@@ -206,7 +240,7 @@ public class GuardianController : MonoBehaviour
 
     void UpdateFovLight()
     {
-        fovLight.range = maxSpotDistance;
+        fovLight.range = maxSpotDistance * AD_sightRangeMultiplier;
         float angle = GetCurrentFov();
         fovLight.spotAngle = angle;
         fovLight.innerSpotAngle = angle;
@@ -264,7 +298,18 @@ public class GuardianController : MonoBehaviour
     {
         agent.isStopped = !active;
         if (!active) return;
-        phaseUpdateTimer += Time.deltaTime;
+        // find interactables
+        if (RunAdaptiveDifficultyFunctional())
+        {
+            findInteractablesTimer += Time.deltaTime;
+            if (findInteractablesTimer > findInteractablesInterval)
+            {
+                FindInteractables();
+                findInteractablesTimer = 0f;
+            }
+        }
+
+        // footsteps
         if (footstepTimerActive)
         {
             footstepTimer += Time.deltaTime;
@@ -278,7 +323,9 @@ public class GuardianController : MonoBehaviour
         {
             footstepTimer = 0f;
         }
-        
+
+        // phase update
+        phaseUpdateTimer += Time.deltaTime;
         if (phase == 3)
         {
             phase3Timer += Time.deltaTime;
@@ -320,13 +367,89 @@ public class GuardianController : MonoBehaviour
     private void CheckForTrackedObjects()
     {
         // check for tracked objects
-        foreach (var tracked in trackedObjects)
+        foreach (var possibleTarget in possibleTargetObjects)
         {
-            if (IsPointVisible(tracked))
+            if (IsPointVisible(possibleTarget))
             {
-                target = tracked;
+                target = possibleTarget;
                 SwitchPhase(2, true);
                 break;
+            }
+        }
+
+        // adaptive difficulty check
+        if (RunAdaptiveDifficultyFunctional())
+        {
+            for (int i = 0; i < checkedInteractables.Count; i++)
+            {
+                Interactable interactable = checkedInteractables[i];
+                if (interactable == null) continue;
+                if (!IsPointVisible(interactable.transform)) // if guardian can not see the interactable, skip it
+                {
+                    //Debug.Log($"interactable #{i} is not visible - skip (pos: {interactable.transform.position})");
+                    continue;
+                }
+
+                if (AD_checkDoors && interactable is DoorController door) // door
+                {
+                    //Debug.Log($"interactable #{i} is a door");
+                    if (checkedDoorsStates.ContainsKey(i)) // door was checked earlier
+                    {
+                        bool lastDoorState = checkedDoorsStates[i];
+                        bool currentDoorState = door.IsOpen();
+                        //Debug.Log($"door #{i} last state: {lastDoorState}, current state: {currentDoorState}");
+
+                        if (lastDoorState != currentDoorState) // if door states don't equal, raise alarm
+                        {
+                            if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
+                        }
+                    }
+                    else // door was seen first time
+                    {
+                        bool doorState = door.IsOpen();
+                        //Debug.Log($"add door #{i} to the dict (state: {doorState})");
+                        checkedDoorsStates[i] = doorState;
+                    }
+                }
+                else if ((AD_checkLockActivity || AD_checkLockDifficulty) && interactable is LockController _lock) // lock
+                {
+                    if (AD_checkLockActivity) // check lock activity
+                    {
+                        if (checkedLocksStates.ContainsKey(i)) // lock was checked earlier
+                        {
+                            bool lastLockActivity = checkedLocksStates[i];
+                            bool currentLockActivity = _lock.IsActive();
+
+                            if (lastLockActivity != currentLockActivity) // if lock states don't equal, raise alarm
+                            {
+                                if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
+                            }
+                        }
+                        else // lock was seen first time
+                        {
+                            bool lockActivity = _lock.IsActive();
+                            checkedLocksStates[i] = lockActivity;
+                        }
+                    }
+                    if (AD_checkLockDifficulty) // check lock difficulty
+                    {
+                        if (checkedLocksDifficulties.ContainsKey(i)) // lock was checked earlier
+                        {
+                            int lastLockDifficulty = checkedLocksDifficulties[i];
+                            int currentLockDifficulty = _lock.GetDifficulty();
+
+                            if (lastLockDifficulty != currentLockDifficulty) // if lock difficulties don't equal, raise alarm
+                            {
+                                if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
+                            }
+                        }
+                        else // lock was seen first time
+                        {
+                            int lockDifficulty = _lock.GetDifficulty();
+                            checkedLocksDifficulties[i] = lockDifficulty;
+                        }
+                    }
+                }
             }
         }
     }
@@ -462,7 +585,7 @@ public class GuardianController : MonoBehaviour
         this.target = target;
     }
 
-    public void SetTrackedObjects(List<Transform> trackedObjects) => this.trackedObjects = trackedObjects;
+    public void SetPossibleTargetObjects(List<Transform> possibleTargetObjects) => this.possibleTargetObjects = possibleTargetObjects;
     public void SetPatrolPoints(List<Transform> patrolPoints) => this.patrolPoints = patrolPoints;
     public void SetAddDestinationsToPatrolPoints(bool value) => addDestinationsToPatrolPoints = value;
     public void SetEnterPhase3OnPoints(bool value) => enterPhase3OnPoints = value;
@@ -472,6 +595,20 @@ public class GuardianController : MonoBehaviour
         SetTarget(target);
         SwitchPhase(2);
         agent.SetDestination(position);
+    }
+
+    public void UpdateInteractableState(Interactable interactable, bool newState)
+    {
+        for (int i = 0; i < checkedInteractables.Count; i++)
+        {
+            if (checkedInteractables[i] == interactable)
+            {
+                if (interactable is DoorController)
+                {
+                    checkedDoorsStates[i] = newState;
+                }
+            }
+        }
     }
 
     private void OnDrawGizmos()

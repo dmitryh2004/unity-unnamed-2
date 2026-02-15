@@ -101,6 +101,7 @@ public class DoorController : Lockable
                 if (!IsLocked() && !IsOpen())
                 {
                     Interact();
+                    GuardianManager.Instance.UpdateInteractableState(this, IsOpen());
                 }
             }
         }

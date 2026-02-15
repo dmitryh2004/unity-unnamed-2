@@ -21,7 +21,7 @@ public class GuardianSpawnerController : MonoBehaviour
         isSpawning = true;
 
         GuardianController gc = Instantiate(guardianPrefab, spawnPoint.position, Quaternion.Euler(0, 0, 0), guardianManager.transform).GetComponent<GuardianController>();
-        gc.SetTrackedObjects(trackedObjects);
+        gc.SetPossibleTargetObjects(trackedObjects);
         gc.SetPatrolPoints(guardianData.patrolPoints);
         gc.SetAddDestinationsToPatrolPoints(guardianData.addDestinationsToPatrolPoints);
         gc.SetEnterPhase3OnPoints(guardianData.enterPhase3OnPoints);

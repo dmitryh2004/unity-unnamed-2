@@ -132,4 +132,12 @@ public class GuardianManager : MonoBehaviour
                 guardian.SetActive(false);
         }
     }
+
+    public void UpdateInteractableState(Interactable interactable, bool newState)
+    {
+        foreach (var guardian in guardians)
+        {
+            guardian.UpdateInteractableState(interactable, newState);
+        }
+    }
 }

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
@@ -19,6 +21,7 @@ public class Save
     public Base baseData;
     public Quota quotaData;
     public GeneratedOrders generatedOrders;
+    public AD_Locations adaptiveDifficulty;
 
     public Save()
     {
@@ -26,6 +29,7 @@ public class Save
         baseData = new Base();
         quotaData = new Quota();
         generatedOrders = new GeneratedOrders();
+        adaptiveDifficulty = new AD_Locations();
     }
 }
 
@@ -91,6 +95,28 @@ public class OrderData
 public class GeneratedOrders
 {
     public NullableOrderData order1, order2, order3;
+}
+
+[System.Serializable]
+public class AD_RoomWeight
+{
+    public int roomID;
+    public float weight;
+}
+
+[System.Serializable]
+public class AD_LocationDifficulty
+{
+    public string locationName;
+    public int forgetting = 5;
+    public int alertness = -1;
+    public List<AD_RoomWeight> weights = new();
+}
+
+[System.Serializable]
+public class AD_Locations
+{
+    public List<AD_LocationDifficulty> locations = new();
 }
 
 public static class SaveChecksumCalculator
@@ -165,6 +191,9 @@ public class SaveManager : MonoBehaviour
 {
     [SerializeField] string saveName = "GameData";
     [SerializeField] string saveVersion = "beta2";
+
+    [Header("Adaptive difficulty")]
+    [SerializeField] List<string> locationNames = new(); 
     public string SaveVersion
     {
         get
@@ -341,6 +370,47 @@ public class SaveManager : MonoBehaviour
                 order3 = new NullableOrderData(generatedOrdersData[2])
             };
         }
+        
+        // adaptive difficulty
+        AD_Locations adaptiveDifficulty = new();
+        for (int i = 0; i < locationNames.Count; i++)
+        {
+            if (GlobalAdaptiveDifficultyManager.Instance != null) // if we are in base
+            {
+                // check for data in GADM
+                AD_LocationDifficulty gadmLocationDifficulty = GlobalAdaptiveDifficultyManager.Instance.LocationsData.locations.Find((x) => x.locationName == locationNames[i]);
+                if (gadmLocationDifficulty != null)
+                {
+                    adaptiveDifficulty.locations.Add(gadmLocationDifficulty);
+                    continue;
+                }
+            }
+            else if (AdaptiveDifficultyManager.Instance != null) // if we are on one of locations, replace its data
+            {
+                string locationName = AdaptiveDifficultyManager.Instance.LocationName;
+                if (locationName == locationNames[i])
+                {
+                    adaptiveDifficulty.locations.Add(new AD_LocationDifficulty
+                    {
+                        locationName = locationNames[i],
+                        alertness = AdaptiveDifficultyManager.Instance.AlertnessDegree,
+                        forgetting = AdaptiveDifficultyManager.Instance.ForgettingDegree,
+                        weights = AdaptiveDifficultyManager.Instance.RoomWeights
+                    });
+                    continue;
+                }
+            }
+            
+            AD_LocationDifficulty loadedLocationDifficulty = loadedData?.save.adaptiveDifficulty.locations.Find((x) => x.locationName == locationNames[i]); // find data in loaded save
+            if (loadedLocationDifficulty != null)
+            {
+                adaptiveDifficulty.locations.Add(loadedLocationDifficulty);
+            }
+            else // add default data if not found anywhere
+            {
+                adaptiveDifficulty.locations.Add(new AD_LocationDifficulty { locationName = locationNames[i], alertness = -1, forgetting = 5, weights = new () });
+            }
+        }
 
         Save save = new Save
         {
@@ -348,7 +418,8 @@ public class SaveManager : MonoBehaviour
             baseData = baseData,
             quotaData = quotaData,
             version = saveVersion,
-            generatedOrders = generatedOrders
+            generatedOrders = generatedOrders,
+            adaptiveDifficulty = adaptiveDifficulty
         };
 
         string checksum = SaveChecksumCalculator.CalculateChecksum(save);

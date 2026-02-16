@@ -101,31 +101,39 @@ public class SpaceshipPanelController : Interactable
 
     private void UpdateScreen1()
     {
+        Complex chosenComplex = complexList[currentComplexIndex];
+
+        //calculate adaptive difficulty values
+        int alertness = Mathf.Clamp(GlobalAdaptiveDifficultyManager.Instance.GetAlertnessDegree(chosenComplex.sceneName) + 1, 0, 5);
+        float reinforcementTimer = (GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("ReinforcementTimerMultiplier", alertness) ?? 1f) * chosenComplex.reinforcementTimer;
+        float guardiansSpawnTimer = (GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", alertness) ?? 1f) * chosenComplex.guardiansSpawnTimer;
+        int maxGuardiansBonus = (int)(GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", alertness) ?? 0);
+
         //text
-        currentComplex.text = currentComplexTemplate.Replace("A", complexList[currentComplexIndex].complexName);
-        currentComplexDifficulty.text = currentComplexDifficultyTemplate.Replace("A", $"{complexList[currentComplexIndex].difficulty}");
-        currentComplexRoomsAmount.text = currentComplexRoomsAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].minRooms}").Replace("B", $"{complexList[currentComplexIndex].maxRooms}");
+        currentComplex.text = currentComplexTemplate.Replace("A", chosenComplex.complexName);
+        currentComplexDifficulty.text = currentComplexDifficultyTemplate.Replace("A", $"{chosenComplex.difficulty}");
+        currentComplexRoomsAmount.text = currentComplexRoomsAmountTemplate.Replace("A", $"{chosenComplex.minRooms}").Replace("B", $"{chosenComplex.maxRooms}");
         
-        if (complexList[currentComplexIndex].guardiansMinCount == complexList[currentComplexIndex].guardiansMaxCount)
+        if (chosenComplex.guardiansMinCount == chosenComplex.guardiansMaxCount + maxGuardiansBonus)
         {
-            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansMinCount}").Replace("-B", "");
+            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{chosenComplex.guardiansMinCount}").Replace("-B", "");
         }
         else
         {
-            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{complexList[currentComplexIndex].guardiansMinCount}")
-                .Replace("-B", $"{complexList[currentComplexIndex].guardiansMaxCount}");
+            currentComplexGuardiansAmount.text = currentComplexGuardiansAmountTemplate.Replace("A", $"{chosenComplex.guardiansMinCount}")
+                .Replace("B", $"{chosenComplex.guardiansMaxCount + maxGuardiansBonus}");
         }
         
-        currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", complexList[currentComplexIndex].reinforcementTimer);
-        currentComplexGuardiansSpawnTimer.text = currentComplexGuardiansSpawnTimerTemplate.Replace("A", complexList[currentComplexIndex].guardiansSpawnTimer);
-        currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", complexList[currentComplexIndex].description);
-        if (complexList[currentComplexIndex].cost > 0)
-            currentComplexCost.text = currentComplexCostTemplate.Replace("A", $"{NumberFormatter.FormatNumberWithGrouping(complexList[currentComplexIndex].cost)}");
+        currentComplexReinforcementTimer.text = currentComplexReinforcementTimerTemplate.Replace("A", TimeFormatter.GetTime(reinforcementTimer));
+        currentComplexGuardiansSpawnTimer.text = currentComplexGuardiansSpawnTimerTemplate.Replace("A", TimeFormatter.GetTime(guardiansSpawnTimer));
+        currentComplexDescription.text = currentComplexDescriptionTemplate.Replace("A", chosenComplex.description);
+        if (chosenComplex.cost > 0)
+            currentComplexCost.text = currentComplexCostTemplate.Replace("A", $"{NumberFormatter.FormatNumberWithGrouping(chosenComplex.cost)}");
         else
             currentComplexCost.text = "";
 
         //update spaceship
-        SpaceshipController.Instance.SetCurrentComplex(complexList[currentComplexIndex]);
+        SpaceshipController.Instance.SetCurrentComplex(chosenComplex);
     }
 
     private void UpdateScreen2()

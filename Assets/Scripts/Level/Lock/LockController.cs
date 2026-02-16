@@ -27,7 +27,7 @@ public class LockController : Interactable
     [Space(10)]
     [Header("Alarm Raiser")]
     [SerializeField] bool raiseAlarmOnFail = false;
-    [SerializeField] int raiseAlarmMinDifficulty = 11;
+    [Tooltip("При достижении этого уровня сложности поднимется тревога")][SerializeField] int raiseAlarmMinDifficulty = 11;
 
     private void Awake()
     {

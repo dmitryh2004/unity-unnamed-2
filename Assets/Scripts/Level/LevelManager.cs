@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -38,6 +39,19 @@ public class LevelManager : MonoBehaviour
         {
             InventorySystem.Instance.SetLevel(gameData.save.playerData.inventoryLevel);
             InventorySystem.Instance.SetItemsFromJson(gameData.save.playerData.inventory);
+
+            if (GlobalAdaptiveDifficultyManager.Instance != null)
+            {
+                GlobalAdaptiveDifficultyManager.Instance.SetLocationData(gameData.save.adaptiveDifficulty);
+            }
+            else if (AdaptiveDifficultyManager.Instance != null)
+            {
+                string sceneName = AdaptiveDifficultyManager.Instance.LocationName;
+                AD_LocationDifficulty locationDifficulty = gameData.save.adaptiveDifficulty.locations.FirstOrDefault((x) => x.locationName == sceneName);
+                AdaptiveDifficultyManager.Instance.SetAlertnessDegree(locationDifficulty.alertness);
+                AdaptiveDifficultyManager.Instance.SetForgettingDegree(locationDifficulty.forgetting);
+                AdaptiveDifficultyManager.Instance.SetRoomWeights(locationDifficulty.weights);
+            }
 
             if (VirusController.Instance != null)
                 VirusController.Instance.SetLevel(gameData.save.playerData.virusLevel);

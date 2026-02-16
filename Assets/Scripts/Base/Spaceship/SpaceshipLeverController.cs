@@ -28,6 +28,7 @@ public class SpaceshipLeverController : Interactable
 
     IEnumerator StartShipCoroutine()
     {
+        string chosenLocation = SpaceshipController.Instance.GetCurrentComplex().sceneName;
         InputActionMapSwitcher.Instance.DisableAllMaps();
         animator.SetTrigger("Start");
 
@@ -39,12 +40,14 @@ public class SpaceshipLeverController : Interactable
         QuotaSystem.Instance.SetDaysLeft(QuotaSystem.Instance.GetDaysLeft() - 1);
         playerDefeated = QuotaSystem.Instance.GetDaysLeft() < 0;
 
+        GlobalAdaptiveDifficultyManager.Instance?.UpdateData(chosenLocation);
+
         LevelManager.Instance.BaseGameOver();
         yield return new WaitForSeconds(2f);
         
         if (!playerDefeated)
         {
-            SceneManager.LoadScene(SpaceshipController.Instance.GetCurrentComplex().sceneName);
+            SceneManager.LoadScene(chosenLocation);
         }
         else
         {

@@ -2,11 +2,11 @@ using UnityEngine;
 using Unity.AI.Navigation;
 using System.Collections;
 
-[RequireComponent(typeof(Animator))]
+//[RequireComponent(typeof(Animator))]
 public class DoorController : Lockable
 {
-    Animator anim;
-    NavMeshLink navMeshLink = null;
+    [SerializeField] Animator anim;
+    [SerializeField] NavMeshLink navMeshLink = null;
     [Tooltip("Ќазвание двери (дверь, €щик, сейф и т.д.) в винительном падеже (открыть что?)")]
     [SerializeField] string doorName = "дверь";
     [SerializeField] bool canBeOpenedManually = true;
@@ -23,8 +23,8 @@ public class DoorController : Lockable
     [SerializeField] bool playCreakAudio = true;
     private void Start()
     {
-        anim = GetComponent<Animator>();
-        TryGetComponent<NavMeshLink>(out navMeshLink);
+        if (anim == null) anim = GetComponent<Animator>();
+        if (navMeshLink == null) TryGetComponent<NavMeshLink>(out navMeshLink);
 
         if (IsOpen())
         {

@@ -38,6 +38,7 @@ public class RoomObject : MonoBehaviour
     [SerializeField] int lootChance = 100;
 
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
+    [SerializeField] private float roomWeight = 0;
 
     private void Awake()
     {
@@ -199,4 +200,8 @@ public class RoomObject : MonoBehaviour
 
         return sum;
     }
+
+    public float RoomWeight => roomWeight;
+    public void SetRoomWeight(float w) => roomWeight = w;
+    public void ModifyRoomWeight(float diff) => roomWeight += diff;
 }

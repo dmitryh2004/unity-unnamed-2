@@ -12,6 +12,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
 
     [SerializeField] AdaptiveDifficultyValues values;
     [SerializeField] AlertnessUIController uiController;
+    [SerializeField] LevelGenerator levelGenerator;
     public static AdaptiveDifficultyManager Instance = null;
 
     [SerializeField] bool useRoomWeights = false;
@@ -29,6 +30,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
 
     private void Start()
     {
+        if (levelGenerator == null) levelGenerator = FindFirstObjectByType<LevelGenerator>();
         uiController?.UpdateUI(AlertnessDegree);
     }
 
@@ -45,4 +47,24 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public List<AD_RoomWeight> RoomWeights => roomWeights;
     public void SetRoomWeights(List<AD_RoomWeight> roomWeights) => this.roomWeights = roomWeights;
     public string LocationName => SceneManager.GetActiveScene().name;
+    public void ApplyRoomWeights(List<RoomObject> roomsToApply)
+    {
+        if (!UseRoomWeights) return; // если не используем веса комнат, то выход
+
+        Dictionary<RoomObject, bool> roomApplyStatuses = new (); // создаем словарь для хранения информации о том, какие комнаты мы нашли в сохранении
+        foreach (var room in roomsToApply)
+        {
+            roomApplyStatuses.Add(room, false);
+        }
+
+        foreach (var item in roomWeights) // пытаемся применить веса из сохранения к сгенерированным комнатам
+        {
+            RoomObject roomObject = levelGenerator.GetRoomByPosition(item.roomPosition, 2.5f);
+            if (roomObject != null)
+            {
+                roomObject.SetRoomWeight(item.weight);
+                roomApplyStatuses[roomObject] = true;
+            }
+        }
+    }
 }

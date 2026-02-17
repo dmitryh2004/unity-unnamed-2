@@ -100,7 +100,7 @@ public class GeneratedOrders
 [System.Serializable]
 public class AD_RoomWeight
 {
-    public int roomID;
+    public Vector3 roomPosition;
     public float weight;
 }
 

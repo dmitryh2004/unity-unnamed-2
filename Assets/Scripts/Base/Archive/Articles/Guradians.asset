@@ -34,6 +34,8 @@ MonoBehaviour:
   - rid: 6553496767108218976
   - rid: 6553496767108218977
   - rid: 6553496767108218978
+  - rid: 5720227232747880517
+  - rid: 5720227232747880518
   - rid: 6553496767108218979
   - rid: 6553496767108218980
   - rid: 6553496767108218981
@@ -41,6 +43,31 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 5720227232747880517
+      type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
+      data:
+        text: "upd. \u0423\u0432\u044B, \u043A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E,
+          \u043A\u043E\u0440\u043F\u043E\u0440\u0430\u0446\u0438\u044F [\u0423\u0414\u0410\u041B\u0415\u041D\u041E]
+          \u0440\u0435\u0430\u043B\u044C\u043D\u043E \u0443\u043B\u0443\u0447\u0448\u0438\u043B\u0430
+          \u0418\u0418 \u0441\u0432\u043E\u0438\u0445 \u0440\u043E\u0431\u043E\u0442\u043E\u0432
+          \u0438 \u0443\u0436\u0435 \u0440\u0430\u0441\u043F\u0440\u043E\u0441\u0442\u0440\u0430\u043D\u0438\u043B\u0430
+          \u043D\u043E\u0432\u0443\u044E \u0432\u0435\u0440\u0441\u0438\u044E \u043D\u0430
+          \u0432\u0441\u0435 \u043E\u0445\u0440\u0430\u043D\u044F\u0435\u043C\u044B\u0435
+          \u043E\u0431\u044A\u0435\u043A\u0442\u044B. \u041F\u043E\u0447\u0438\u0442\u0430\u0442\u044C
+          \u043F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435 \u0442\u044B \u0441\u043C\u043E\u0436\u0435\u0448\u044C
+          \u043F\u043E \u0441\u0441\u044B\u043B\u043A\u0435 \u043D\u0438\u0436\u0435."
+        fontSize: 18
+        bold: 0
+        italic: 0
+        underline: 0
+        color: {r: 0, g: 1, b: 1, a: 1}
+        textAlignment: 0
+    - rid: 5720227232747880518
+      type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u044F \u0432 \u0418\u0418
+          \u043E\u0445\u0440\u0430\u043D\u043D\u0438\u043A\u043E\u0432"
+        article: {fileID: 11400000, guid: c0f81819e688b194aa028da04fbb84e0, type: 2}
     - rid: 6553496767108218958
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
       data:

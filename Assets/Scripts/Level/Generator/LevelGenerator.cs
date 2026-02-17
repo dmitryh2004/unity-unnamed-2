@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
 
@@ -52,7 +53,7 @@ public class LevelGenerator : MonoBehaviour
     public int GetGeneratedLootSum() => generatedLootSum;
     public int GetProtectedRoomsCount() => protectedRoomsCount;
     public int GetSecuredRoomsCount() => securedRoomsCount;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Awake()
     {
         if (possibleRoomPrefabs.Count != possibleRoomPrefabsWeights.Count) return;
@@ -68,18 +69,22 @@ public class LevelGenerator : MonoBehaviour
 
     public void Generate()
     {
-        extensionCandidates.RemoveAll(x => true);
-        generatedRooms.Clear();
-        PlaceRooms();
+        extensionCandidates.RemoveAll(x => true); // очищаем список на расширение
+        generatedRooms.Clear(); // очищаем список сгенерированных комнат
 
+        PlaceRooms(); // генерируем комнаты
+
+        /*
         foreach (var room in generatedRooms.Values)
         {
-            //Debug.Log($"room {room.gameObject.name}: neighbours count={room.GetNeighboursCount()}, directions count={room.GetRoomType().neighbours.Count}");
+            Debug.Log($"room {room.gameObject.name}: neighbours count={room.GetNeighboursCount()}, directions count={room.GetRoomType().neighbours.Count}");
         }
+        */
 
-        CreateCoridors();
-        RoomPostGenerate();
-        BakeNavMesh();
+        CreateCoridors(); // создаем коридоры между комнатами-соседями
+
+        RoomPostGenerate(); // выполняем пост-генерационные действия для комнат (наполнение лутом)
+        LevelPostGenerate(); // выполняет пост-генерационные действия для уровня в целом (запечка navmesh, активация охранников)
     }
 
     private void PlaceRooms()
@@ -407,15 +412,34 @@ public class LevelGenerator : MonoBehaviour
         FindFirstObjectByType<PlayerScannerController>()?.FindLootCostHints();
     }
 
-    private void BakeNavMesh()
+    private void LevelPostGenerate()
     {
+        // bake nav mesh
         NavMeshSurface surface = GetComponent<NavMeshSurface>();
         surface.BuildNavMesh();
 
+        // apply weights for rooms from adaptive difficulty manager
+        if (AdaptiveDifficultyManager.Instance.UseRoomWeights)
+            AdaptiveDifficultyManager.Instance.ApplyRoomWeights(generatedRooms.Values.ToList());
+
+        // init preplaced guardians
         GuardianController[] guardianControllers = FindObjectsByType<GuardianController>(FindObjectsSortMode.None);
         foreach (var guardian in guardianControllers)
         {
             guardian.Init();
         }
+    }
+
+    public RoomObject GetRoomByPosition(Vector3 position, float precision)
+    {
+        foreach (var item in generatedRooms)
+        {
+            Vector3 key = item.Key;
+            if (Vector3.Distance(key, position) < precision)
+            {
+                return item.Value;
+            }
+        }
+        return null;
     }
 }

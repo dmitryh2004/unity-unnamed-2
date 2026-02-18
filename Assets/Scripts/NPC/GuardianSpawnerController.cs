@@ -62,6 +62,6 @@ public class GuardianSpawnerController : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(CheckQueue), 0f, 1f);
+        InvokeRepeating(nameof(CheckQueue), 0f, spawnQueueInterval);
     }
 }

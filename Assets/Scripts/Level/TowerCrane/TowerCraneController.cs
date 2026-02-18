@@ -22,6 +22,7 @@ public class TowerCraneController : MonoBehaviour
     private void SetNewTargetRotation()
     {
         if (isRotating) return;
+        if (Random.Range(0f, 1f) > rotateChance) return;
 
         float diff = Random.Range(minRotationAngle, maxRotationAngle);
 

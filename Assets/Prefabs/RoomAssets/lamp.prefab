@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6936048144228089749}
   - component: {fileID: 740761863207414806}
   - component: {fileID: 4682701241168847452}
+  - component: {fileID: 7445269799764447635}
   m_Layer: 0
   m_Name: Point Light_LOD0
   m_TagString: Untagged
@@ -121,6 +122,27 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &7445269799764447635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016388075681207280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1327c3dbd0e7c469a89c6fa49a640c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDisableAfterLastLod: 0
+  minDistanceFirstLod: 20
+  lightLods:
+  - maxDistance: 30
+    shadowType: 1
+    debugColor: {r: 1, g: 1, b: 0, a: 1}
+  - maxDistance: 50
+    shadowType: 0
+    debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &672719046546028672
 PrefabInstance:
   m_ObjectHideFlags: 0

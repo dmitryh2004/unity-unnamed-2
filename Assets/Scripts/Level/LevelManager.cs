@@ -168,6 +168,7 @@ public class LevelManager : MonoBehaviour
         if (hackUI != null)
             hackUI.GetComponent<Animator>().SetBool("visible", false);
 
+        generator.UpdateRoomWeights();
         saveManager.SaveData(slot, showMessage: true);
 
         gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);

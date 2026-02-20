@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &412760836956044408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4973752756020396288}
+  - component: {fileID: 7449614728541685197}
+  - component: {fileID: 3910957428660325503}
+  m_Layer: 0
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4973752756020396288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412760836956044408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6940762361917871142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7449614728541685197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412760836956044408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6651df7b6244c49ab879509ae21612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3910957428660325503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412760836956044408}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 7, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1054176012229714439
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6940762361917871142}
   - component: {fileID: 3706573072825096210}
+  - component: {fileID: 7985435262615584973}
   m_Layer: 0
   m_Name: LadderUpWest
   m_TagString: Untagged
@@ -309,6 +376,7 @@ Transform:
   - {fileID: 5196109778343784884}
   - {fileID: 4681321475818738339}
   - {fileID: 5262103338633200396}
+  - {fileID: 4973752756020396288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3706573072825096210
@@ -333,6 +401,30 @@ MonoBehaviour:
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
+  roomWeight: 0
+  activityValue: 0
+--- !u!114 &7985435262615584973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5267749462926616136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da023013939d3e4396ca10c0545b898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomObject: {fileID: 3706573072825096210}
+  firstEnterActivity: 0.5
+  firstDoorOpenedActivity: 1
+  nextEntersActivity: 0.1
+  hackAttemptActivity: 1
+  alarmRaisedActivity: 5
+  safeOpenedActivity: 0.5
+  tableOpenedActivity: 0.25
+  lootPickedUpActivity: 0.05
+  nextEnterDelay: 60
 --- !u!1 &7377434734068977377
 GameObject:
   m_ObjectHideFlags: 0

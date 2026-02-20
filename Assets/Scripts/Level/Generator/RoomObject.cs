@@ -39,6 +39,7 @@ public class RoomObject : MonoBehaviour
 
     [SerializeField] GameObject coridorHorizontal, coridorVertical;
     [SerializeField] private float roomWeight = 0;
+    [SerializeField] private float activityValue = 0;
 
     private void Awake()
     {
@@ -106,6 +107,11 @@ public class RoomObject : MonoBehaviour
             if (HasNeighbour(i)) res++;
         }
         return res;
+    }
+
+    public int GetMaxNeighboursCount()
+    {
+        return neighbours.Count;
     }
 
     public RoomScriptable GetRoomType() => roomType;
@@ -204,4 +210,6 @@ public class RoomObject : MonoBehaviour
     public float RoomWeight => roomWeight;
     public void SetRoomWeight(float w) => roomWeight = w;
     public void ModifyRoomWeight(float diff) => roomWeight += diff;
+    public float Activity => activityValue;
+    public void ModifyActivity(float diff) => activityValue += diff;
 }

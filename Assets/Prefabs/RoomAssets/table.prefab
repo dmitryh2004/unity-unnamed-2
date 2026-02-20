@@ -754,12 +754,17 @@ MonoBehaviour:
   interactionRange: 1
   locked: 0
   locker: {fileID: 0}
+  anim: {fileID: 0}
+  navMeshLink: {fileID: 0}
   doorName: "\u044F\u0449\u0438\u043A"
   canBeOpenedManually: 1
   openDoorDuration: 1
   closeDoorDuration: 1
   audioPlayer: {fileID: 194519056793921178}
   playCreakAudio: 0
+  triggerOpenDoorEvent: 0
+  triggerOpenSafeEvent: 0
+  triggerOpenTableEvent: 1
 --- !u!114 &8499953718215879237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,12 +1250,17 @@ MonoBehaviour:
   interactionRange: 1
   locked: 0
   locker: {fileID: 0}
+  anim: {fileID: 0}
+  navMeshLink: {fileID: 0}
   doorName: "\u0434\u0432\u0435\u0440\u0446\u0443"
   canBeOpenedManually: 1
   openDoorDuration: 1
   closeDoorDuration: 1
   audioPlayer: {fileID: 5764619054280976711}
   playCreakAudio: 1
+  triggerOpenDoorEvent: 0
+  triggerOpenSafeEvent: 0
+  triggerOpenTableEvent: 1
 --- !u!65 &5076197879915354446
 BoxCollider:
   m_ObjectHideFlags: 0

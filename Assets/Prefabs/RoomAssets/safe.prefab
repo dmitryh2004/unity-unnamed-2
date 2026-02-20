@@ -840,12 +840,17 @@ MonoBehaviour:
   interactionRange: 1
   locked: 1
   locker: {fileID: 3840356198238765478}
+  anim: {fileID: 0}
+  navMeshLink: {fileID: 0}
   doorName: "\u0441\u0435\u0439\u0444"
   canBeOpenedManually: 1
   openDoorDuration: 0.7
   closeDoorDuration: 0.7
   audioPlayer: {fileID: 7820305213247311312}
   playCreakAudio: 1
+  triggerOpenDoorEvent: 0
+  triggerOpenSafeEvent: 1
+  triggerOpenTableEvent: 0
 --- !u!114 &4558882771716350210
 MonoBehaviour:
   m_ObjectHideFlags: 0

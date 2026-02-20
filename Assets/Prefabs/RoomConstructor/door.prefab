@@ -525,6 +525,9 @@ MonoBehaviour:
   closeDoorDuration: 0.65
   audioPlayer: {fileID: 1936229785411758172}
   playCreakAudio: 1
+  triggerOpenDoorEvent: 1
+  triggerOpenSafeEvent: 0
+  triggerOpenTableEvent: 0
 --- !u!65 &7815553658802661687
 BoxCollider:
   m_ObjectHideFlags: 0

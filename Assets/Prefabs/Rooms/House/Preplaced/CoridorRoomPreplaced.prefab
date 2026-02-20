@@ -416,6 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3117697292907724615}
   - component: {fileID: 1360697123459826867}
+  - component: {fileID: 757231091692356646}
   m_Layer: 0
   m_Name: CoridorRoomPreplaced
   m_TagString: Untagged
@@ -441,6 +442,7 @@ Transform:
   - {fileID: 1212264190527530192}
   - {fileID: 3981659850718402080}
   - {fileID: 1936806328901422435}
+  - {fileID: 2726426099194148588}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1360697123459826867
@@ -467,6 +469,31 @@ MonoBehaviour:
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
+  roomWeight: 0
+  activityValue: 0
+--- !u!114 &757231091692356646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745220794698442314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da023013939d3e4396ca10c0545b898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomObject: {fileID: 1360697123459826867}
+  firstEnterActivity: 0.5
+  firstDoorOpenedActivity: 1
+  nextEntersActivity: 0.1
+  hackAttemptDoorActivity: 1
+  hackAttemptSafeActivity: 1
+  alarmRaisedActivity: 5
+  safeOpenedActivity: 0.5
+  tableOpenedActivity: 0.25
+  lootPickedUpActivity: 0.05
+  nextEnterDelay: 60
 --- !u!1 &5017130168381591266
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,6 +558,72 @@ Transform:
   - {fileID: 3096476139305765383}
   m_Father: {fileID: 3981659850718402080}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &6669167624636419900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2726426099194148588}
+  - component: {fileID: 8112447376505883931}
+  - component: {fileID: 340741689924472346}
+  m_Layer: 0
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2726426099194148588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669167624636419900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3117697292907724615}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8112447376505883931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669167624636419900}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &340741689924472346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669167624636419900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6651df7b6244c49ab879509ae21612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6769993778900428785
 GameObject:
   m_ObjectHideFlags: 0

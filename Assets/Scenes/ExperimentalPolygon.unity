@@ -18011,8 +18011,11 @@ MonoBehaviour:
   values: {fileID: 11400000, guid: b18145e056888544d8278d0d33213205, type: 2}
   uiController: {fileID: 1788684511}
   levelGenerator: {fileID: 0}
-  useRoomWeights: 0
+  useRoomWeights: 1
   roomWeights: []
+  attenuationCoeff: 0.25
+  forgettingCoeff: 3
+  remainingCoeff: 0.5
 --- !u!1 &1083562072
 GameObject:
   m_ObjectHideFlags: 0

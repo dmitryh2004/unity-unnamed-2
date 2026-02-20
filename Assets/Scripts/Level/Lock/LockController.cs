@@ -51,6 +51,7 @@ public class LockController : Interactable
         if (IsActive() && IsHackable())
         {
             HackWindowController.Instance.OpenHackWindow(this);
+            GetComponentInParent<RoomEventManager>()?.HackAttemptEvent();
         }
     }
 
@@ -66,6 +67,7 @@ public class LockController : Interactable
                     AlarmController.Instance.StartAlarm();
                 }
                 GuardianManager.Instance.CallGuardians();
+                GetComponentInParent<RoomEventManager>()?.AlarmRaisedEvent();
             }
         }
     }

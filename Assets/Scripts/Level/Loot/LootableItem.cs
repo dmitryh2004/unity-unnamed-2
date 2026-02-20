@@ -14,6 +14,7 @@ public class LootableItem : Interactable
         if (InventorySystem.Instance.CanAddItem(lootCategory))
         {
             InventorySystem.Instance.AddItem(lootCategory);
+            GetComponentInParent<RoomEventManager>()?.LootPickedUpEvent();
             Destroy(gameObject);
         }
     }

@@ -42,7 +42,6 @@ public class GuardianManager : MonoBehaviour
     {
         if (doInitialSpawn)
         {
-            // todo: get spawn delay
             float calculatedSpawnDelay = guardianSpawnDelay;
             if (AdaptiveDifficultyManager.Instance != null)
                 calculatedSpawnDelay *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 1);

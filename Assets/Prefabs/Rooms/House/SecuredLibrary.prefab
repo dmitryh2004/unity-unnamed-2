@@ -1077,6 +1077,72 @@ Transform:
   - {fileID: 8978480922673872688}
   m_Father: {fileID: 2003811438115132948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4091448602775064123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3888523821615867759}
+  - component: {fileID: 5024601678958521025}
+  - component: {fileID: 553008006890915807}
+  m_Layer: 0
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3888523821615867759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091448602775064123}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2003811438115132948}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5024601678958521025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091448602775064123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6651df7b6244c49ab879509ae21612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &553008006890915807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091448602775064123}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13, y: 7, z: 13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4625949292374442579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,6 +1153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2003811438115132948}
   - component: {fileID: 3509023917895590582}
+  - component: {fileID: 1152408000447861638}
   m_Layer: 0
   m_Name: SecuredLibrary
   m_TagString: Untagged
@@ -1107,6 +1174,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3888523821615867759}
   - {fileID: 8585130847994285765}
   - {fileID: 2530009409653316513}
   - {fileID: 7649728788510637954}
@@ -1163,6 +1231,30 @@ MonoBehaviour:
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
+  roomWeight: 0
+  activityValue: 0
+--- !u!114 &1152408000447861638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4625949292374442579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da023013939d3e4396ca10c0545b898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomObject: {fileID: 3509023917895590582}
+  firstEnterActivity: 0.5
+  firstDoorOpenedActivity: 1
+  nextEntersActivity: 0.1
+  hackAttemptActivity: 1
+  alarmRaisedActivity: 5
+  safeOpenedActivity: 0.5
+  tableOpenedActivity: 0.25
+  lootPickedUpActivity: 0.05
+  nextEnterDelay: 60
 --- !u!1 &4657295507870413099
 GameObject:
   m_ObjectHideFlags: 0

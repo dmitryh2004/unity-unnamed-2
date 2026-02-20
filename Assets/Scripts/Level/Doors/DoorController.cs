@@ -21,6 +21,13 @@ public class DoorController : Lockable
     [Space]
     [SerializeField] DoorAudioPlayer audioPlayer;
     [SerializeField] bool playCreakAudio = true;
+
+    [Space]
+    [Header("Trigger room events")]
+    [SerializeField] bool triggerOpenDoorEvent = false;
+    [SerializeField] bool triggerOpenSafeEvent = false;
+    [SerializeField] bool triggerOpenTableEvent = false;
+    bool firstOpen = true;
     private void Start()
     {
         if (anim == null) anim = GetComponent<Animator>();
@@ -57,6 +64,17 @@ public class DoorController : Lockable
             this.opened = opened;
             if (this.opened)
             {
+                if (firstOpen)
+                {
+                    firstOpen = false;
+                    RoomEventManager rem = GetComponentInParent<RoomEventManager>();
+                    if (rem != null)
+                    {
+                        if (triggerOpenDoorEvent) rem.FirstDoorOpenedEvent();
+                        if (triggerOpenSafeEvent) rem.SafeOpenedEvent();
+                        if (triggerOpenTableEvent) rem.TableOpenedEvent();
+                    }
+                }
                 anim.SetTrigger("Open");
                 if (audioPlayer != null)
                     StartCoroutine(PlayOpenAudios());

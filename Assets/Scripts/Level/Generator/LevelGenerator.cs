@@ -442,4 +442,10 @@ public class LevelGenerator : MonoBehaviour
         }
         return null;
     }
+
+    public void UpdateRoomWeights()
+    {
+        if (AdaptiveDifficultyManager.Instance.UseRoomWeights)
+            AdaptiveDifficultyManager.Instance.UpdateRoomWeights(generatedRooms.Values.ToList());
+    }
 }

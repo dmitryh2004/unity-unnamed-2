@@ -88,6 +88,84 @@ public class RoomObject : MonoBehaviour
         return index;
     }
 
+    /// <summary>
+    /// Определяет, разблокирован ли проход в указанном направлении.
+    /// </summary>
+    /// <param name="dir">Номер проверяемого направления</param>
+    /// <returns>true - проход существует и не заблокирован замком, false в противном случае</returns>
+    public bool IsPathUnlocked(int dir)
+    {
+        if (dir < 0 || dir >= neighbours.Count) return false;
+        bool res = HasNeighbour(dir);
+        if (res)
+        {
+            bool hasDoor = doors[dir] != null && doors[dir].activeInHierarchy;
+            if (hasDoor)
+            {
+                if (!roomType.canLockDoors) return true;
+                return !(doors[dir].GetComponent<DoorManager>()?.GetDoorController().IsLocked() ?? true);
+            }
+            else return false;
+        }
+        else return false;
+    }
+
+    public int FindNeighbourIndex(RoomObject neighbour)
+    {
+        for (int i = 0; i < neighbours.Count; i++)
+        {
+            if (neighbours[i] == neighbour) return i;
+        }
+        return -1;
+    }
+
+    /// <summary>
+    /// Проверяет, что между этой комнатой и соседней в заданном направлении существует незаблокированный проход.
+    /// </summary>
+    /// <param name="neighbourIndex">Номер проверяемого направления</param>
+    /// <returns>true, если незаблокированный проход существует, иначе false</returns>
+    public bool HasUnlockedPath(int neighbourIndex)
+    {
+        return IsPathUnlocked(neighbourIndex) && (neighbours[neighbourIndex]?.IsPathUnlocked(neighbours[neighbourIndex].FindNeighbourIndex(this)) ?? false);
+    }
+
+    /// <summary>
+    /// Возвращает список комнат, доступных из текущей комнаты (существует незаблокированный проход к ним).
+    /// </summary>
+    /// <returns>Список доступных комнат.</returns>
+    public List<RoomObject> GetAvailableRooms()
+    {
+        List<RoomObject> res = new ();
+        Queue<RoomObject> temp = new ();
+        List<RoomObject> checkedRooms = new ();
+        temp.Enqueue(this);
+
+        while (temp.Count > 0)
+        {
+            RoomObject currentRoom = temp.Dequeue();
+            checkedRooms.Add(currentRoom);
+            Debug.Log($"current room pos={currentRoom.GetCenter()}");
+            if (currentRoom != this) res.Add(currentRoom);
+
+            for (int i = 0; i < currentRoom.neighbours.Count; i++)
+            {
+                RoomObject neighbour = currentRoom.GetNeighbour(i);
+                if (neighbour == null) continue;
+                if (checkedRooms.Contains(neighbour)) continue;
+                if (currentRoom.HasUnlockedPath(i))
+                {
+                    Debug.Log($"current room pos={currentRoom.GetCenter()} - unlocked path #{i} (to room pos={neighbour.GetCenter()})");
+                    temp.Enqueue(neighbour);
+                }
+                else
+                {
+                    Debug.Log($"current room pos={currentRoom.GetCenter()} - locked path #{i} (to room pos={neighbour.GetCenter()})");
+                }
+            }
+        }
+        return res;
+    }
+
     public bool IsPointOccupied(Vector3 point)
     {
         bool x = false, y = false, z = false;

@@ -301,6 +301,72 @@ Transform:
   - {fileID: 1676009203661681941}
   m_Father: {fileID: 2721531969108142155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3669115611215304712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2469289237357571135}
+  - component: {fileID: 551723654535339153}
+  - component: {fileID: 3242116375478733122}
+  m_Layer: 0
+  m_Name: Border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2469289237357571135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669115611215304712}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2721531969108142155}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551723654535339153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669115611215304712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6651df7b6244c49ab879509ae21612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &3242116375478733122
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669115611215304712}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3691879624541821677
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2721531969108142155}
   - component: {fileID: 3395452743729277034}
+  - component: {fileID: 1109505493299072725}
   m_Layer: 0
   m_Name: Concrete_CoridorRoom
   m_TagString: Untagged
@@ -617,6 +684,7 @@ Transform:
   - {fileID: 4330846849923497957}
   - {fileID: 9053672256554739344}
   - {fileID: 487943068986748334}
+  - {fileID: 2469289237357571135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3395452743729277034
@@ -643,6 +711,30 @@ MonoBehaviour:
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 18530b5ba1e9d7d4080a69d75d296635, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 8543ac66ebef7ae40a56ad576031be3e, type: 3}
+  roomWeight: 0
+  activityValue: 0
+--- !u!114 &1109505493299072725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460495880427986251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da023013939d3e4396ca10c0545b898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomObject: {fileID: 3395452743729277034}
+  firstEnterActivity: 0.5
+  firstDoorOpenedActivity: 1
+  nextEntersActivity: 0.1
+  hackAttemptActivity: 1
+  alarmRaisedActivity: 5
+  safeOpenedActivity: 0.5
+  tableOpenedActivity: 0.25
+  lootPickedUpActivity: 0.05
+  nextEnterDelay: 60
 --- !u!1001 &198317968871892403
 PrefabInstance:
   m_ObjectHideFlags: 0

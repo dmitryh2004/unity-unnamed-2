@@ -97,6 +97,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
                     for (int j = 0; j < neighbour.GetMaxNeighboursCount(); j++) // проверяем соседей соседа
                     {
                         RoomObject neighbour2 = neighbour.GetNeighbour(j);
+                        if (neighbour2 == null) continue;
                         if (checkedRooms.ContainsKey(neighbour2)) // если соседа2 уже проверяли
                         {
                             distance = Mathf.Min(distance, checkedRooms[neighbour2]); // обновляем дистанцию до текущей комнаты
@@ -105,7 +106,8 @@ public class AdaptiveDifficultyManager : MonoBehaviour
 
                     if (roomApplyStatuses.ContainsKey(neighbour) && roomApplyStatuses[neighbour]) // уже есть вес, записываем и пропускаем
                     {
-                        nearestWeightedRooms.Add(neighbour, distance);
+                        if (!nearestWeightedRooms.ContainsKey(neighbour))
+                            nearestWeightedRooms.Add(neighbour, distance);
                         continue;
                     }
                     nearestRooms.Enqueue(new KeyValuePair<RoomObject, int>(neighbour, distance)); // записываем соседа в очередь для перебора

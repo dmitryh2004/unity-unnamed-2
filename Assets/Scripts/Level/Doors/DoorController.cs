@@ -107,21 +107,4 @@ public class DoorController : Lockable
         yield return new WaitForSeconds(closeDoorDuration);
         audioPlayer.PlayCloseEndAudio();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log($"{gameObject.name}: {other.name} entered the trigger");
-        GuardianController gc;
-        if (other.TryGetComponent(out gc))
-        {
-            if (gc.CanOpenClosedDoors())
-            {
-                if (!IsLocked() && !IsOpen())
-                {
-                    Interact();
-                    GuardianManager.Instance.UpdateInteractableState(this, IsOpen());
-                }
-            }
-        }
-    }
 }

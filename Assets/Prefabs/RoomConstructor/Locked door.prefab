@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d6d76aa86d3594baab1560ad409b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 2026070755732558674}
+  door: {fileID: 1223296867634401467}
 --- !u!1001 &1889102086648635214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,6 +61,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 444023240568540188, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
+      propertyPath: locker
+      value: 
+      objectReference: {fileID: 8381401159584157994}
+    - target: {fileID: 778408412967227381, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
+      propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 778408412967227381, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
       propertyPath: locker
       value: 
       objectReference: {fileID: 8381401159584157994}
@@ -113,9 +121,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
---- !u!114 &2026070755732558674 stripped
+--- !u!114 &1223296867634401467 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 444023240568540188, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 778408412967227381, guid: d57e08371d13b9146ae95440bcfe108b, type: 3}
   m_PrefabInstance: {fileID: 1889102086648635214}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -148,7 +156,7 @@ PrefabInstance:
     - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
       propertyPath: 'lockables.Array.data[0]'
       value: 
-      objectReference: {fileID: 2026070755732558674}
+      objectReference: {fileID: 1223296867634401467}
     - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
       propertyPath: 'linkedLocks.Array.data[0]'
       value: 
@@ -237,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
       propertyPath: 'lockables.Array.data[0]'
       value: 
-      objectReference: {fileID: 2026070755732558674}
+      objectReference: {fileID: 1223296867634401467}
     - target: {fileID: 4720681248737215810, guid: 0bd31de35a759db4e8e805ff62b33fef, type: 3}
       propertyPath: 'linkedLocks.Array.data[0]'
       value: 

@@ -10271,7 +10271,13 @@ MonoBehaviour:
     - {fileID: 347942479}
     enterPhase3OnPoints: 0
     addDestinationsToPatrolPoints: 0
+    AD_patrolPointsCount: 2
   guardianSpawnDelay: 120
+  spawnAdditionalGuardians: 1
+  changePatrolPointsForSpecifiedGuardians: 1
+  additionalGuardiansEnterPhase3OnPoints: 0
+  additionalGuardiansAddDestinationsToPatrolPoints: 0
+  additionalGuardiansPatrolPointsCount: 2
   checkDistance: 0
   maxAggroDistance: 100
 --- !u!4 &542123432
@@ -26103,6 +26109,10 @@ PrefabInstance:
       objectReference: {fileID: 542123431}
     - target: {fileID: 1897033830921003735, guid: 9bc5fc7804b891749b41fb50127a85fd, type: 3}
       propertyPath: levelPatrolPoints
+      value: 
+      objectReference: {fileID: 966913749}
+    - target: {fileID: 1897033830921003735, guid: 9bc5fc7804b891749b41fb50127a85fd, type: 3}
+      propertyPath: patrolPointParent
       value: 
       objectReference: {fileID: 966913749}
     - target: {fileID: 1897033830921003735, guid: 9bc5fc7804b891749b41fb50127a85fd, type: 3}

@@ -139,7 +139,7 @@ public class LightLod : MonoBehaviour
         if (_light.enabled == false) return;
 
         var lightColor = _light.color;
-        Gizmos.color = new Color(lightColor.r, lightColor.g, lightColor.b, 0.3f);
+        Gizmos.color = new Color(lightColor.r, lightColor.g, lightColor.b, 0.1f);
         Gizmos.DrawSphere(_transform.position, _lightRangeOfInfluence);
     }
 }

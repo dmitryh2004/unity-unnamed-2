@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8032322516475237213}
   - component: {fileID: 1230024524735703629}
   - component: {fileID: 1897033830921003735}
+  - component: {fileID: 2225980202435155268}
   m_Layer: 0
   m_Name: Concrete Bot Spawner North
   m_TagString: Untagged
@@ -58,6 +59,8 @@ MonoBehaviour:
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
   coridorVertical: {fileID: 6362083151020865821, guid: 2286b4434e1d36a41a196be738910107, type: 3}
+  roomWeight: 0
+  activityValue: 0
 --- !u!114 &1897033830921003735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,14 +74,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guardianPrefab: {fileID: 2330765057951083374, guid: 988cbd8bbf57b704b88fb9f7a5d2db07, type: 3}
+  patrolPointParent: {fileID: 0}
+  patrolPointPrefab: {fileID: 8908337971192136298, guid: f9fac14da36bd6a4c976beaf7da54c23, type: 3}
   guardianManager: {fileID: 0}
   doorController: {fileID: 5724411501154595635}
   trackedObjects: []
   levelPatrolPoints: {fileID: 0}
   spawnPoint: {fileID: 7709481976005165684}
   playerScannerController: {fileID: 0}
+  roomObject: {fileID: 1230024524735703629}
   spawnQueueInterval: 1
   spawnDelay: 2
+--- !u!65 &2225980202435155268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117646069253954076}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.9, y: 3, z: 2.9}
+  m_Center: {x: 0, y: 1.5, z: -2}
 --- !u!1 &3923104304829354303
 GameObject:
   m_ObjectHideFlags: 0

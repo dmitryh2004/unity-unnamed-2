@@ -8,10 +8,13 @@ public class GuardianPatrolData
     public List<Transform> patrolPoints = new();
     public bool enterPhase3OnPoints = false;
     public bool addDestinationsToPatrolPoints = false;
+    public int AD_patrolPointsCount = 2;
 }
 public class GuardianManager : MonoBehaviour
 {
     public static GuardianManager Instance = null;
+    System.Random random = new ();
+
     [SerializeField] Transform player;
     [SerializeField] List<GuardianController> guardians = new();
     [SerializeField] TimerController guardianSpawnTimerController;
@@ -23,6 +26,15 @@ public class GuardianManager : MonoBehaviour
     [SerializeField] float guardianSpawnDelay = 120f;
     float guardianSpawnTimer = 0f;
     bool waitForSpawnTimer = true;
+
+    [Header("Adaptive difficulty")]
+    [SerializeField] bool spawnAdditionalGuardians = true;
+    [SerializeField] bool changePatrolPointsForSpecifiedGuardians = true;
+    [SerializeField] bool additionalGuardiansEnterPhase3OnPoints = false;
+    [SerializeField] bool additionalGuardiansAddDestinationsToPatrolPoints = false;
+    [SerializeField] int additionalGuardiansPatrolPointsCount = 2;
+
+    List<GuardianPatrolData> additionalGuardiansPatrolData = new ();
 
     [Header("Call Guardians Options")]
     [SerializeField] bool checkDistance = false;
@@ -40,6 +52,35 @@ public class GuardianManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (var guardianSpawner in guardianSpawners)
+        {
+            guardianSpawner.FindAvailableRooms();
+        }
+
+        // add additional guardians if needed
+        if (spawnAdditionalGuardians)
+        {
+            if (AdaptiveDifficultyManager.Instance != null)
+            {
+                int additionalGuardiansCount = (int)(AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0);
+                int spawnAdditionalGuardiansChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnAdditionalGuardiansChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0) * 100);
+                for (int i = 0; i < additionalGuardiansCount; i++)
+                {
+                    if (random.Next(0, 100) < spawnAdditionalGuardiansChance)
+                    {
+                        GuardianPatrolData gpd = new GuardianPatrolData
+                        {
+                            patrolPoints = new (),
+                            enterPhase3OnPoints = additionalGuardiansEnterPhase3OnPoints,
+                            addDestinationsToPatrolPoints = additionalGuardiansAddDestinationsToPatrolPoints,
+                            AD_patrolPointsCount = additionalGuardiansPatrolPointsCount
+                        };
+                        additionalGuardiansPatrolData.Add(gpd);
+                    }
+                }
+            }
+        }
+
         if (doInitialSpawn)
         {
             float calculatedSpawnDelay = guardianSpawnDelay;
@@ -87,8 +128,35 @@ public class GuardianManager : MonoBehaviour
                     if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
                 }
 
-                leastBusiedSpawner.AddToSpawnQueue(guardianData);
+                int adjustGuardiansPathChance = 0;
+                if (changePatrolPointsForSpecifiedGuardians && AdaptiveDifficultyManager.Instance != null)
+                {
+                    adjustGuardiansPathChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdjustGuardiansPathChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0) * 100);
+                }
+                bool adjustPath = random.Next(0, 100) < adjustGuardiansPathChance;
+
+                leastBusiedSpawner.AddToSpawnQueue(guardianData, adjustPath);
             }
+
+            foreach (var guardianData in additionalGuardiansPatrolData)
+            {
+                //find the least busied spawner
+                GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
+                foreach (var spawner in guardianSpawners)
+                {
+                    if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
+                }
+
+                leastBusiedSpawner.AddToSpawnQueue(guardianData, true);
+            }
+        }
+    }
+
+    public void RemoveRoomFromSpawnerQueues(RoomObject room)
+    {
+        foreach(GuardianSpawnerController spawner in guardianSpawners)
+        {
+            spawner.RemoveRoomFromQueue(room);
         }
     }
 

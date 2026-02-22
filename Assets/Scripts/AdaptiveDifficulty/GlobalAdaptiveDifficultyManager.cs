@@ -6,6 +6,10 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
     public static GlobalAdaptiveDifficultyManager Instance = null;
     [SerializeField] AdaptiveDifficultyValues values;
 
+    [Header("Constants")]
+    [SerializeField] float forgettingCoeff = 3f;
+    [SerializeField] float remainingCoeff = .5f;
+
     private void Awake()
     {
         if (Instance != null)
@@ -33,12 +37,9 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
             {
                 locationData.alertness = Mathf.Clamp(locationData.alertness - 1, -1, 5);
                 locationData.forgetting = Mathf.Clamp(locationData.forgetting + 1, 0, 5);
-                if (locationData.forgetting == 5)
+                foreach (var roomWeight in locationData.weights)
                 {
-                    foreach(var roomWeight in locationData.weights)
-                    {
-                        roomWeight.weight = 0;
-                    }
+                    roomWeight.weight = locationData.forgetting == 5 ? 0 : GetRecalculatedWeight(roomWeight.weight, 0);
                 }
             }
         }
@@ -54,5 +55,17 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    float GetRecalculatedWeight(float weight, float activity)
+    {
+        if (activity > 0) return weight + activity;
+        else
+        {
+            float newWeight = weight - forgettingCoeff;
+            if (newWeight < 0) newWeight = 0;
+            if (newWeight / weight < remainingCoeff) newWeight = weight * remainingCoeff;
+            return newWeight;
+        }
     }
 }

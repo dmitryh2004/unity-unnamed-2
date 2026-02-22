@@ -47,7 +47,7 @@ public class AlarmController : MonoBehaviour
             StatisticCollector.Instance.AlarmRaised = true;
         if (timerController != null)
             timerController.StartTimer();
-        GuardianManager.Instance.ExpireSpawnTimer();
+        GuardianManager.Instance?.ExpireSpawnTimer();
         alarmSoundSource.Play();
     }
 

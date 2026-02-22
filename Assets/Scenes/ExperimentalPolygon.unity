@@ -10271,13 +10271,13 @@ MonoBehaviour:
     - {fileID: 347942479}
     enterPhase3OnPoints: 0
     addDestinationsToPatrolPoints: 0
-    AD_patrolPointsCount: 2
+    AD_patrolPointsCount: 3
   guardianSpawnDelay: 120
   spawnAdditionalGuardians: 1
   changePatrolPointsForSpecifiedGuardians: 1
   additionalGuardiansEnterPhase3OnPoints: 0
   additionalGuardiansAddDestinationsToPatrolPoints: 0
-  additionalGuardiansPatrolPointsCount: 2
+  additionalGuardiansPatrolPointsCount: 3
   checkDistance: 0
   maxAggroDistance: 100
 --- !u!4 &542123432
@@ -11262,6 +11262,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5103423413745157253, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 95d0b350eee19364e80092b308d17087, type: 3}
     - target: {fileID: 7479945026821977042, guid: 3b166de785f8c164194b5a92c1eb92bf, type: 3}
       propertyPath: inventoryUI
       value: 

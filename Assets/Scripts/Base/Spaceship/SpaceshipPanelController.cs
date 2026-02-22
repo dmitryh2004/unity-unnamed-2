@@ -104,10 +104,10 @@ public class SpaceshipPanelController : Interactable
         Complex chosenComplex = complexList[currentComplexIndex];
 
         //calculate adaptive difficulty values
-        int alertness = Mathf.Clamp(GlobalAdaptiveDifficultyManager.Instance.GetAlertnessDegree(chosenComplex.sceneName) + 1, 0, 5);
-        float reinforcementTimer = (GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("ReinforcementTimerMultiplier", alertness) ?? 1f) * chosenComplex.reinforcementTimer;
-        float guardiansSpawnTimer = (GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", alertness) ?? 1f) * chosenComplex.guardiansSpawnTimer;
-        int maxGuardiansBonus = (int)(GlobalAdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", alertness) ?? 0);
+        int alertness = Mathf.Clamp((GlobalAdaptiveDifficultyManager.Instance?.GetAlertnessDegree(chosenComplex.sceneName) ?? -1) + 1, 0, 5);
+        float reinforcementTimer = (GlobalAdaptiveDifficultyManager.Instance?.Values.GetParameterValue("ReinforcementTimerMultiplier", alertness) ?? 1f) * chosenComplex.reinforcementTimer;
+        float guardiansSpawnTimer = (GlobalAdaptiveDifficultyManager.Instance?.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", alertness) ?? 1f) * chosenComplex.guardiansSpawnTimer;
+        int maxGuardiansBonus = (int)(GlobalAdaptiveDifficultyManager.Instance?.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", alertness) ?? 0);
 
         //text
         currentComplex.text = currentComplexTemplate.Replace("A", chosenComplex.complexName);

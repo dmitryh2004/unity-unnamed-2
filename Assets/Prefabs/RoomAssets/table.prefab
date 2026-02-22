@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 693841093362701088}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.003, z: -0.0002}
+  m_LocalPosition: {x: 0, y: 0.002417, z: -0.00045}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -651,7 +651,7 @@ Transform:
   m_GameObject: {fileID: 4885800237229997231}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0002}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00045}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -822,19 +822,19 @@ MonoBehaviour:
     weight: 4
   - possibleLoot:
     - prefab: {fileID: 2161695717644652126, guid: 3488c379b065d9544a9ed01fd921bab9, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 3556230184912787856, guid: ab06e3c171ecf3443a70aa9af8a15e6c, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 8745994612479495791, guid: 5edaff1ff551d304485837bf1a449e17, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 3556230184912787856, guid: 26e6fc2a24b7527488012f996a5a17d4, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 8442839069217029793, guid: 3cdc7a84e4b614e47863e6e676c29a51, type: 3}
@@ -842,10 +842,22 @@ MonoBehaviour:
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 1189448711684284226, guid: 87012b59196a3744585664ec1c37f2e2, type: 3}
-      weight: 1
+      weight: 4
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 5653931958672697890, guid: e426b22a75f297c49a2832140c040380, type: 3}
+      weight: 4
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: 863a23171799724429e63db540283d90, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: 2327f0a9d0c59654aa8046200e289f37, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 8442839069217029793, guid: cbc6fb95cc09ca14a8061d8c33f664d4, type: 3}
       weight: 1
       minCount: 1
       maxCount: 1
@@ -1593,7 +1605,7 @@ Transform:
   m_GameObject: {fileID: 7866567848310310508}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.003, z: -0.0002}
+  m_LocalPosition: {x: 0, y: -0.00264, z: -0.00045}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []

@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 8274394987540148720}
   - component: {fileID: 815096081926622853}
   - component: {fileID: 6313111605826186331}
-  - component: {fileID: 3444073821251430036}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -139,7 +138,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: 1024
     m_CustomResolution: -1
     m_Strength: 1
@@ -210,27 +209,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &3444073821251430036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976654209141571346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1327c3dbd0e7c469a89c6fa49a640c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableAfterLastLod: 1
-  minDistanceFirstLod: 20
-  lightLods:
-  - maxDistance: 30
-    shadowType: 1
-    debugColor: {r: 1, g: 1, b: 0, a: 1}
-  - maxDistance: 50
-    shadowType: 0
-    debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &5538486226851879909
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +220,6 @@ GameObject:
   - component: {fileID: 5384749224799060524}
   - component: {fileID: 5043772048114209245}
   - component: {fileID: 6307160746291551532}
-  - component: {fileID: 9091391610024797455}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -282,7 +259,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: 1024
     m_CustomResolution: -1
     m_Strength: 1
@@ -353,27 +330,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &9091391610024797455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5538486226851879909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1327c3dbd0e7c469a89c6fa49a640c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableAfterLastLod: 1
-  minDistanceFirstLod: 20
-  lightLods:
-  - maxDistance: 30
-    shadowType: 1
-    debugColor: {r: 1, g: 1, b: 0, a: 1}
-  - maxDistance: 50
-    shadowType: 0
-    debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &7511739939990998909
 GameObject:
   m_ObjectHideFlags: 0

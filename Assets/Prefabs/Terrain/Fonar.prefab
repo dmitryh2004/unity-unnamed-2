@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3813006432217952941}
   - component: {fileID: 400431835629269990}
   - component: {fileID: 7395325948105165645}
-  - component: {fileID: 1058177644527785650}
   m_Layer: 0
   m_Name: Area Light
   m_TagString: Untagged
@@ -122,27 +121,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &1058177644527785650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002829202433896740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1327c3dbd0e7c469a89c6fa49a640c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDisableAfterLastLod: 0
-  minDistanceFirstLod: 20
-  lightLods:
-  - maxDistance: 50
-    shadowType: 1
-    debugColor: {r: 1, g: 1, b: 0, a: 1}
-  - maxDistance: 100
-    shadowType: 0
-    debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &7445538151649701853
 PrefabInstance:
   m_ObjectHideFlags: 0

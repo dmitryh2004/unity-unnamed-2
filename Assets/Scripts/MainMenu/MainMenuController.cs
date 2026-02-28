@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] GameObject mainMenuUI, aboutUI, selectSlotUI;
+    [SerializeField] GameObject mainMenuUI, aboutUI, selectSlotUI, achievementsUI;
     [SerializeField] MainMenuSlotUIController selectSlotUIController;
     [SerializeField] MainMenuButtonAudioPlayer audioPlayer;
     [SerializeField] ExitGame gameExit;
@@ -48,6 +48,7 @@ public class MainMenuController : MonoBehaviour
         mainMenuUI.SetActive(currentUI == 0);
         aboutUI.SetActive(currentUI == 1);
         selectSlotUI.SetActive(currentUI == 2);
+        achievementsUI.SetActive(currentUI == 3);
 
         if (currentUI == 2)
         {

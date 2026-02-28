@@ -148,6 +148,24 @@ public class LevelManager : MonoBehaviour
     {
         if (isGameOver) return;
         isGameOver = true;
+
+        // calculate alertness increase
+        if (AdaptiveDifficultyManager.Instance != null)
+        {
+            int newAlertness = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+            if (reasonCode != 0)
+            {
+                newAlertness = 5;
+            }
+            else
+            {
+                if (AlarmController.Instance.GetAlarmState())
+                    newAlertness += 1;
+            }
+            newAlertness = Mathf.Clamp(newAlertness, -1, 5);
+            AdaptiveDifficultyManager.Instance.SetAlertnessDegree(newAlertness);
+        }
+
         GuardianManager.Instance.StopGuardians(); //deactivate all guardians
 
         InputActionMapSwitcher.Instance.DisableAllMaps(); // disable input

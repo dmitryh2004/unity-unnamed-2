@@ -13,7 +13,12 @@ public class AchievementManager : ScriptableObject
 
     public Achievement GetAchievementByIndex(int index)
     {
-        if (index < 0 || index > achievements.Count) return null;
+        if (index < 0 || index >= achievements.Count) return null;
         return achievements[index];
+    }
+
+    public int GetAchievementCount()
+    {
+        return achievements.Count;
     }
 }

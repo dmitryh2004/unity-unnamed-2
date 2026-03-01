@@ -150,6 +150,7 @@ public class ChestUIController : MonoBehaviour
                     Chest.Instance.RemoveItem(lc);
                     InventorySystem.Instance.AddItem(lc);
                 }
+                AchievementActionTracker.Instance?.OnItemPickedUp(lc);
             }
             else
             {

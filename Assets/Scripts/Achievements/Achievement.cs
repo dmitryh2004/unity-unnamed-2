@@ -16,10 +16,9 @@ public class Achievement : ScriptableObject
     public AchievementCategory categoryID = AchievementCategory.Other;
     public string id;
     public string title;
-    public string desc;
+    [TextArea(5, 7)] public string desc;
     public Sprite image;
     public bool hasProgressBar = false;
-    public int progressBarValue = 0;
     public bool hasGoalValue = false;
-    public int goalValue = 0;
+    public int targetValue = 1;
 }

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 3835350311640938916}
   achievementImage: {fileID: 3415603872750157768}
+  imageRenderer: {fileID: 0}
   title: {fileID: 3431239352345638130}
   text: {fileID: 7686375620518860769}
   progressBarText: {fileID: 4587604451148364452}
@@ -712,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 4d29404f1d334c348a03c716dac45f00, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}

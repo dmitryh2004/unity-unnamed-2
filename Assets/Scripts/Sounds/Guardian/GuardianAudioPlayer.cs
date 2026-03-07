@@ -10,7 +10,9 @@ public class GuardianAudioPlayer : RandomAudioPlayer
 
     public float PlayAttackAudio()
     {
-        return PlayRandomAudio(attackAudios);
+        return PlayRandomAudio(attackAudios, (i) => {
+            AchievementActionTracker.Instance.OnGuardianSoundPlayed(i);
+        });
     }
 
     public float PlayFootstepAudio()

@@ -173,7 +173,7 @@ public class LevelManager : MonoBehaviour
 
         if (AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StopAlarm(); // stop alarm
 
-        StatisticCollector.Instance.CollectedLootCost = InventorySystem.Instance.GetTotalCost();
+        StatisticCollector.Instance.CollectedLootCost = InventorySystem.Instance.GetTotalCost(); // todo: replace it
 
         if (reasonCode != 0) // clear inventory if defeat
         {
@@ -185,6 +185,8 @@ public class LevelManager : MonoBehaviour
             inventoryUI.GetComponent<Animator>().SetBool("visible", false);
         if (hackUI != null)
             hackUI.GetComponent<Animator>().SetBool("visible", false);
+
+        AchievementActionTracker.Instance.OnLevelCompleted(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, reasonCode == 0, StatisticCollector.Instance.CollectedLootCost);
 
         generator.UpdateRoomWeights();
         saveManager.SaveData(slot, showMessage: true);

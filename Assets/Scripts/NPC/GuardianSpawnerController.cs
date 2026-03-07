@@ -110,7 +110,7 @@ public class GuardianSpawnerController : MonoBehaviour
 
     void CheckQueue()
     {
-        Debug.Log($"spawning: {isSpawning}");
+        //Debug.Log($"spawning: {isSpawning}");
         if (isSpawning) return;
         if (spawnQueue.Count > 0)
         {

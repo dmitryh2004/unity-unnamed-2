@@ -14,6 +14,7 @@ public class AchievementPanelUIController : MonoBehaviour
 {
     [SerializeField] Image panel;
     [SerializeField] Image achievementImage;
+    Material materialInstance;
     [SerializeField] TMP_Text title, text;
     [SerializeField] TMP_Text progressBarText;
     [SerializeField] Image progressBarImage;
@@ -21,6 +22,12 @@ public class AchievementPanelUIController : MonoBehaviour
     [SerializeField] GameObject progressBarContainer;
     [SerializeField] List<AchievementCategoryColor> achievementCategoryColors = new();
     Achievement currentAchievement = null;
+
+    private void Awake()
+    {
+        materialInstance = new Material(achievementImage.material);
+        achievementImage.material = materialInstance;
+    }
 
     public void SetAchievement(Achievement achievement)
     {
@@ -31,12 +38,23 @@ public class AchievementPanelUIController : MonoBehaviour
         }
     }
 
+    void SetSprite(Sprite sprite)
+    {
+        materialInstance.SetTexture("_MainTex", sprite.texture);
+    }
+    void SetGrayscaled(bool grayscaled)
+    {
+        materialInstance.SetFloat("_grayscaled", grayscaled ? 1 : 0);
+    }
+
     public void UpdateUI()
     {
         if (currentAchievement == null)
         {
             panel.color = achievementCategoryColors.Find((x) => x.category == AchievementCategory.Other)?.color ?? new Color(1f, 1f, 1f, 0.4f);
             achievementImage.sprite = null;
+            SetSprite(null);
+            SetGrayscaled(false);
             title.text = "Неизвестно";
             text.text = "Неизвестно";
             progressBarContainer.SetActive(false);
@@ -45,7 +63,8 @@ public class AchievementPanelUIController : MonoBehaviour
         {
             panel.color = achievementCategoryColors.Find((x) => x.category == currentAchievement.categoryID)?.color ?? new Color(1f, 1f, 1f, 0.4f);
             achievementImage.sprite = currentAchievement.image;
-            achievementImage.color = AchievementSystem.Instance.IsAchievementAchieved(currentAchievement.id) ? Color.white : Color.gray;
+            SetSprite(currentAchievement.image);
+            SetGrayscaled(!AchievementSystem.Instance.IsAchievementAchieved(currentAchievement.id));
 
             title.text = currentAchievement.title;
             text.text = currentAchievement.desc;
@@ -58,8 +77,8 @@ public class AchievementPanelUIController : MonoBehaviour
 
                 progressBarText.text = $"{NumberFormatter.FormatNumberWithGrouping(value)} / {NumberFormatter.FormatNumberWithGrouping(progressBarValue)}";
                 progressBarImage.color = (ratio >= 1) ? Color.green : Color.cyan;
-                progressBar.SetProgress(value);
                 progressBar.SetMaxValue(progressBarValue);
+                progressBar.SetProgress(value);
             }
             else
             {

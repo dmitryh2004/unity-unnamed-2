@@ -15,6 +15,7 @@ public class LootableItem : Interactable
         {
             AchievementActionTracker.Instance?.OnItemPickedUp(lootCategory);
             InventorySystem.Instance.AddItem(lootCategory);
+            
             GetComponentInParent<RoomEventManager>()?.LootPickedUpEvent();
             Destroy(gameObject);
         }

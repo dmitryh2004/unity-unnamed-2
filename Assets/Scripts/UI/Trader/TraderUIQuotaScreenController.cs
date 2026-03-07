@@ -132,6 +132,8 @@ public class TraderUIQuotaScreenController : TraderUIBaseScreenController
                 }
             }
 
+            AchievementActionTracker.Instance.OnQuotaCompleted(QuotaSystem.Instance.GetRequired());
+
             trader.IncreaseMultiplier();
             trader.GenerateOrders();
             windowController.SetScreen(2);

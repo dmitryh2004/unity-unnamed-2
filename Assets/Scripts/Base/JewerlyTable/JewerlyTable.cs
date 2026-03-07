@@ -35,7 +35,11 @@ public class JewerlyTable : Interactable
 
     public int GetMaxLevel() => maxLevel;
     public int GetLevel() => level;
-    public void SetLevel(int level) => this.level = level;
+    public void SetLevel(int level)
+    {
+        this.level = level;
+        AchievementActionTracker.Instance.OnEquipmentLevelChanged("jewelry_table", level);
+    }
     public int GetUpgradeCost(int level) => upgradeCosts.FirstOrDefault((x) => x.level == level).cost;
     public float GetQuotaMultiplierStepBoost() => quotaMultiplierStepBonus.FirstOrDefault((x) => x.level == level).value;
     public float GetQuotaMultiplierBoost(int level) => quotaMultiplierStepBonus.FirstOrDefault((x) => x.level == level).value;

@@ -44,8 +44,13 @@ public class AchievementSystem : MonoBehaviour
         Achievement ach = GetAchievementByID(id);
         if (ach != null)
         {
+            int prevProgress = GetAchievementProgress(ach.id);
             PlayerPrefs.SetInt($"Achievement_{ach.id}_Progress", progress);
             PlayerPrefs.Save();
+            if (prevProgress < ach.targetValue && IsAchievementAchieved(ach.id))
+            {
+                AchievementMessagePanelController.Instance.AddAchievement(ach);
+            }
             print($"achievement {ach.title} progress saved");
         }
     }
@@ -55,8 +60,13 @@ public class AchievementSystem : MonoBehaviour
         Achievement ach = GetAchievementByIndex(index);
         if (ach != null)
         {
+            int prevProgress = GetAchievementProgress(ach.id);
             PlayerPrefs.SetInt($"Achievement_{ach.id}_Progress", progress);
             PlayerPrefs.Save();
+            if (prevProgress < ach.targetValue && IsAchievementAchieved(ach.id))
+            {
+                AchievementMessagePanelController.Instance.AddAchievement(ach);
+            }
         }
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ public class RandomAudioPlayer : MonoBehaviour
      * Воспроизводит звук. Возвращает его длительность в секундах.
      * </summary>
      * **/
-    public float PlayRandomAudio(List<WeightedAudioClip> audios)
+    public float PlayRandomAudio(List<WeightedAudioClip> audios, Action<int> onComplete = null)
     {
         if (audios.Count == 0) return 0f;
         int totalWeight = 0;
@@ -43,7 +44,7 @@ public class RandomAudioPlayer : MonoBehaviour
             totalWeight += clip.weight;
         }
 
-        int value = Random.Range(0, totalWeight) + 1;
+        int value = UnityEngine.Random.Range(0, totalWeight) + 1;
         int index = 0;
         int temp = 0;
 
@@ -54,6 +55,7 @@ public class RandomAudioPlayer : MonoBehaviour
         }
         
         audioSource.PlayOneShot(audios[index].clip, audios[index].volume);
+        onComplete?.Invoke(index);
         return audios[index].clip.length;
     }
 }

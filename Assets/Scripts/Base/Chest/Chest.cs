@@ -81,6 +81,8 @@ public class Chest : MonoBehaviour
             items.Add(lootCategory.id, 1);
         }
         totalItemsAmount++;
+
+        AchievementActionTracker.Instance.OnChestContentChanged(totalItemsAmount, GetTotalCost());
         return true;
     }
 

@@ -41,6 +41,7 @@ public class SpaceshipLeverController : Interactable
         playerDefeated = QuotaSystem.Instance.GetDaysLeft() < 0;
 
         GlobalAdaptiveDifficultyManager.Instance?.UpdateData(chosenLocation);
+        AchievementActionTracker.Instance.OnFlightStarted();
 
         LevelManager.Instance.BaseGameOver();
         yield return new WaitForSeconds(2f);

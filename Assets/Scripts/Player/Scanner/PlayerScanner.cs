@@ -48,7 +48,7 @@ public class PlayerScanner : UpgradableItem
     protected override void OnSetLevel()
     {
         base.OnSetLevel();
-        AchievementActionTracker.Instance.OnEquipmentLevelChanged("scanner", level);
+        AchievementActionTracker.Instance?.OnEquipmentLevelChanged("scanner", level);
         maxCharge = GetUpgradableValue(3) ?? 0;
         chargeRegenSpeed = GetUpgradableValue(4) ?? 0;
         chargeUseSpeed = GetUpgradableValue(5) ?? 0;

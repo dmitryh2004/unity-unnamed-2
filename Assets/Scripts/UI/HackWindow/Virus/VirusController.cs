@@ -59,7 +59,7 @@ public class VirusController : UpgradableItem
     protected override void OnSetLevel()
     {
         base.OnSetLevel();
-        AchievementActionTracker.Instance.OnEquipmentLevelChanged("programmator", level);
+        AchievementActionTracker.Instance?.OnEquipmentLevelChanged("programmator", level);
         ResetToStart();
     }
 

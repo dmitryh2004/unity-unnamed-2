@@ -51,7 +51,7 @@ public class InventorySystem : UpgradableItem
     public float GetMaxVolume() => maxVolume;
     protected override void OnSetLevel()
     {
-        AchievementActionTracker.Instance.OnEquipmentLevelChanged("backpack", level);
+        AchievementActionTracker.Instance?.OnEquipmentLevelChanged("backpack", level);
         RecalculateMaxSize();
     }
 

@@ -50,7 +50,7 @@ public class PlayerFlashlight : UpgradableItem
     protected override void OnSetLevel()
     {
         base.OnSetLevel();
-        AchievementActionTracker.Instance.OnEquipmentLevelChanged("flashlight", level);
+        AchievementActionTracker.Instance?.OnEquipmentLevelChanged("flashlight", level);
 
         currentCharge = maxCharge = GetUpgradableValue(0) ?? 0;
         chargeUseSpeed = GetUpgradableValue(1) ?? 0;

@@ -82,7 +82,7 @@ public class Chest : MonoBehaviour
         }
         totalItemsAmount++;
 
-        AchievementActionTracker.Instance.OnChestContentChanged(totalItemsAmount, GetTotalCost());
+        AchievementActionTracker.Instance?.OnChestContentChanged(totalItemsAmount, GetTotalCost());
         return true;
     }
 

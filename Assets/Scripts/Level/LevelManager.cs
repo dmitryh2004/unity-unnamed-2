@@ -134,6 +134,7 @@ public class LevelManager : MonoBehaviour
         if (isLevel)
         {
             generator.Generate();
+            Debug.Log("Level generated");
             StatisticCollector.Instance.TotalLootCost = generator.GetGeneratedLootSum();
             startStatsController.ShowStatsWindow();
         }
@@ -186,7 +187,7 @@ public class LevelManager : MonoBehaviour
         if (hackUI != null)
             hackUI.GetComponent<Animator>().SetBool("visible", false);
 
-        AchievementActionTracker.Instance.OnLevelCompleted(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, reasonCode == 0, StatisticCollector.Instance.CollectedLootCost);
+        AchievementActionTracker.Instance?.OnLevelCompleted(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name, reasonCode == 0, StatisticCollector.Instance.CollectedLootCost);
 
         generator.UpdateRoomWeights();
         saveManager.SaveData(slot, showMessage: true);

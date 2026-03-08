@@ -198,6 +198,10 @@ public class GuardianManager : MonoBehaviour
             if (guardian.gameObject.activeInHierarchy)
                 guardian.SetActive(false);
         }
+        foreach (var spawner in guardianSpawners)
+        {
+            spawner.Stop();
+        }
     }
 
     public void UpdateInteractableState(Interactable interactable, bool newState)

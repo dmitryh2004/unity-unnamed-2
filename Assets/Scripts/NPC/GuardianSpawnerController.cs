@@ -119,6 +119,12 @@ public class GuardianSpawnerController : MonoBehaviour
         }
     }
 
+    public void Stop()
+    {
+        StopAllCoroutines();
+        CancelInvoke();
+    }
+
     private void Start()
     {
         InvokeRepeating(nameof(CheckQueue), 0f, spawnQueueInterval);

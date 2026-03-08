@@ -100,6 +100,11 @@ public class GuardianController : MonoBehaviour
 
     public Light FovLight => fovLight;
 
+    private void Awake()
+    {
+        instanceMaterial = headRenderer.material;
+    }
+
     public void SetActive(bool active)
     {
         this.active = active;
@@ -222,8 +227,6 @@ public class GuardianController : MonoBehaviour
         animatorPhase2MovingSpeed = runningSpeed / speed * AD_movingSpeedMultiplier;
 
         currentRotationAngle = baseRotationAngle;
-
-        instanceMaterial = headRenderer.material;
     }
 
     public void Init()
@@ -296,6 +299,7 @@ public class GuardianController : MonoBehaviour
 
     private void Update()
     {
+        if (!agent.isOnNavMesh) return;
         agent.isStopped = !active;
         if (!active) return;
         // find interactables

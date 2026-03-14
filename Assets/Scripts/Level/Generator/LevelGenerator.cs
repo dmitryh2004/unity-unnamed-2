@@ -398,10 +398,21 @@ public class LevelGenerator : MonoBehaviour
 
     private void RoomPostGenerate()
     {
+        float changeAlarmDifficultyChance = AdaptiveDifficultyManager.Instance?.Values.GetParameterValue("ChangeLockRaiseAlarmDifficultyChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0;
+        bool changeAlarmDifficulty = false;
+        if (random.Next(0, 100) < changeAlarmDifficultyChance * 100)
+        {
+            changeAlarmDifficulty = true;
+        }
+
         int lootSum = 0;
         foreach (RoomObject room in generatedRooms.Values)
         {
             room.UpdateDoors();
+            if (changeAlarmDifficulty)
+            {
+                room.ClampLockAlarmDifficulties();
+            }
             lootSum += room.SpawnLoot();
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum Directions
@@ -242,6 +243,19 @@ public class RoomObject : MonoBehaviour
                         RemoveLockFromDoor(i);
                     }
                 }
+            }
+        }
+    }
+
+    public void ClampLockAlarmDifficulties()
+    {
+        for (int i = 0; i < roomType.neighbours.Count; i++)
+        {
+            List<LockController> locks = GetComponentsInChildren<LockController>().ToList();
+            foreach (var _lock in locks)
+            {
+                int difficulty = _lock.GetDifficulty();
+                _lock.SetAlarmDifficulty(difficulty + 1);
             }
         }
     }

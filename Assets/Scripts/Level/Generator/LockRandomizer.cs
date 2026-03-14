@@ -6,7 +6,7 @@ public class LockRandomizer : MonoBehaviour
     System.Random random = new();
     [SerializeField] List<LockController> locks;
     [SerializeField] int minDifficulty, maxDifficulty;
-    void Start()
+    void Awake()
     {
         foreach (LockController _lock in locks)
         {

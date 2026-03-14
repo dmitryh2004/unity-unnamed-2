@@ -28,6 +28,7 @@ public class LockController : Interactable
     [Header("Alarm Raiser")]
     [SerializeField] bool raiseAlarmOnFail = false;
     [Tooltip("При достижении этого уровня сложности поднимется тревога")][SerializeField] int raiseAlarmMinDifficulty = 11;
+    int raiseAlarmDifficulty = 11;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class LockController : Interactable
         rb = GetComponent<Rigidbody>();
         screenRenderer = screen.GetComponent<MeshRenderer>();
         screenRenderer.material = new Material(screenRenderer.material);
+        raiseAlarmDifficulty = raiseAlarmMinDifficulty;
     }
     private void Start()
     {
@@ -44,6 +46,17 @@ public class LockController : Interactable
     public int GetDifficulty()
     {
         return difficulty;
+    }
+
+    public int GetAlarmDifficulty()
+    {
+        return raiseAlarmDifficulty;
+    }
+
+    public bool RaiseAlarmOnFail => raiseAlarmOnFail;
+    public void SetRaiseAlarmOnFail(bool raise)
+    {
+        raiseAlarmOnFail = raise;
     }
     
     public override void Interact()
@@ -60,14 +73,30 @@ public class LockController : Interactable
         if (AlarmController.Instance == null) return;
         if (raiseAlarmOnFail)
         {
-            if (difficulty >= raiseAlarmMinDifficulty)
+            if (difficulty >= raiseAlarmDifficulty)
             {
                 if (AlarmController.Instance.GetAlarmState() == false)
                 {
+                    Debug.Log($"Alarm raised (diff: {difficulty}, alarm diff: {raiseAlarmDifficulty}, raiser coords: {transform.position}");
                     AlarmController.Instance.StartAlarm();
                 }
                 GuardianManager.Instance.CallGuardians();
                 GetComponentInParent<RoomEventManager>()?.AlarmRaisedEvent();
+            }
+        }
+    }
+
+    public void SetAlarmDifficulty(int diff, bool updateLinked = true)
+    {
+        raiseAlarmDifficulty = diff;
+        raiseAlarmOnFail = true;
+        CheckForAlarm();
+        StartCoroutine(ChangeDifficultyOnScreenCoroutine(diff));
+        if (updateLinked)
+        {
+            foreach (LockController linked in linkedLocks)
+            {
+                if (linked.IsActive()) linked.SetAlarmDifficulty(diff, updateLinked: false);
             }
         }
     }
@@ -137,7 +166,7 @@ public class LockController : Interactable
             alarmSign.gameObject.SetActive(raiseAlarmOnFail);
             alarmSign.color = difficultyColor;
 
-            int ramd = raiseAlarmMinDifficulty - 1;
+            int ramd = raiseAlarmDifficulty - 1;
             if (ramd < difficulty) ramd = difficulty;
 
             alarmMinDifficultyText.gameObject.SetActive(raiseAlarmOnFail);

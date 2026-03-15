@@ -286,6 +286,10 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             OnDeath();
         }
+        else
+        {
+            anim.SetTrigger("HPChanged");
+        }
     }
 
     void OnDeath()
@@ -308,6 +312,7 @@ public class Node : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentHP += value;
         UpdateIcon();
+        anim.SetTrigger("HPChanged");
     }
 
     public int GetValue1()

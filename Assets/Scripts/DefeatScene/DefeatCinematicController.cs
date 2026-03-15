@@ -26,6 +26,7 @@ public class DefeatCinematicController : MonoBehaviour
     [SerializeField] TMP_Text uiDefeatScreenText;
     [Space(10)]
     [SerializeField] ExitGame exitGame;
+    [SerializeField] AudioSource fallDamageAudioSource; 
     [Header("Timers")]
     [SerializeField] float changeScreenDelay = 2f;
     [Space]
@@ -155,6 +156,7 @@ public class DefeatCinematicController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
+        fallDamageAudioSource.PlayOneShot(fallDamageAudioSource.clip);
         uiDefeatScreenAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1.5f);
 

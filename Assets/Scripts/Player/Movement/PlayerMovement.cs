@@ -112,13 +112,37 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 moveDirection = (transform.forward * moveInput.y + transform.right * moveInput.x).normalized;
-        rb.linearVelocity = new Vector3(moveDirection.x * currentSpeed, rb.linearVelocity.y, moveDirection.z * currentSpeed);
+        // базовое желаемое направление (в локальных осях)
+        Vector3 inputDir = (transform.forward * moveInput.y + transform.right * moveInput.x).normalized;
 
+        // по умолчанию двигаемся просто по XZ
+        Vector3 moveDirection = inputDir;
+
+        // если на земле — проецируем направление на плоскость склона
+        if (isGrounded)
+        {
+            // получаем нормаль поверхности под ногами
+            if (Physics.Raycast(groundCheckPoint.position, Vector3.down, out RaycastHit hit, 1f, groundMask))
+            {
+                Vector3 groundNormal = hit.normal;
+
+                // проекция направления на плоскость с этой нормалью
+                moveDirection = Vector3.ProjectOnPlane(inputDir, groundNormal).normalized;
+            }
+        }
+
+        // задаём скорость вдоль плоскости
+        Vector3 velocity = rb.linearVelocity;
+        velocity.x = moveDirection.x * currentSpeed;
+        velocity.z = moveDirection.z * currentSpeed;
+        rb.linearVelocity = velocity;
+
+        // прыжок
         if (isJumpPressed && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce * rb.mass, ForceMode.Impulse);
-            isJumpPressed = false; // Сброс, чтобы не прыгал повторно в этом кадре
+            isJumpPressed = false;
         }
     }
+
 }

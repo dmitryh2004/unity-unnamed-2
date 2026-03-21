@@ -10,31 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b40a112f26446341a407675e7a9dc69, type: 3}
-  m_Name: MansionMainRoom
+  m_Name: MansionSecuredRoom
   m_EditorClassIdentifier: 
-  id: 0
-  length: 25
-  width: 7
-  height: 7
+  id: 2
+  length: 5
+  width: 5
+  height: 3
   extensionPriority: 1
   spawnHeightOffset: 0
   neighbours:
   - direction: 2
-    spawnOffset: {x: 0, y: 0, z: -12.5}
-  - direction: 1
-    spawnOffset: {x: -3.5, y: 0, z: 0}
-  - direction: 0
-    spawnOffset: {x: 0, y: 0, z: 12.5}
-  - direction: 3
-    spawnOffset: {x: 3.5, y: 0, z: 0}
+    spawnOffset: {x: 0, y: 0, z: -2.5}
   useInputDirection: 0
   inputDirection: 0
   minNeighbours: 1
-  maxNeighbours: 4
+  maxNeighbours: 1
   hasDoors: 1
-  canLockDoors: 0
+  canLockDoors: 1
   lockChance: 100
-  lockStartDifficultyMin: 1
-  lockStartDifficultyMax: 3
+  lockStartDifficultyMin: 10
+  lockStartDifficultyMax: 10
   isProtectedRoom: 0
-  isSecuredRoom: 0
+  isSecuredRoom: 1

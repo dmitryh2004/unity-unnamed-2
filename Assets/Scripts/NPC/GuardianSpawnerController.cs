@@ -20,7 +20,7 @@ public class GuardianSpawnerController : MonoBehaviour
     [SerializeField] GuardianManager guardianManager;
     [SerializeField] DoorController doorController;
     [SerializeField] List<Transform> trackedObjects = new ();
-    [SerializeField] Transform levelPatrolPoints;
+    //[SerializeField] Transform levelPatrolPoints;
     [SerializeField] Transform spawnPoint;
     [SerializeField] PlayerScannerController playerScannerController;
     [SerializeField] RoomObject roomObject;

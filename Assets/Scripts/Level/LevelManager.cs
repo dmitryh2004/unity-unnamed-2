@@ -48,9 +48,18 @@ public class LevelManager : MonoBehaviour
             {
                 string sceneName = AdaptiveDifficultyManager.Instance.LocationName;
                 AD_LocationDifficulty locationDifficulty = gameData.save.adaptiveDifficulty.locations.FirstOrDefault((x) => x.locationName == sceneName);
-                AdaptiveDifficultyManager.Instance.SetAlertnessDegree(locationDifficulty.alertness);
-                AdaptiveDifficultyManager.Instance.SetForgettingDegree(locationDifficulty.forgetting);
-                AdaptiveDifficultyManager.Instance.SetRoomWeights(locationDifficulty.weights);
+                if (locationDifficulty != null)
+                {
+                    AdaptiveDifficultyManager.Instance.SetAlertnessDegree(locationDifficulty.alertness);
+                    AdaptiveDifficultyManager.Instance.SetForgettingDegree(locationDifficulty.forgetting);
+                    AdaptiveDifficultyManager.Instance.SetRoomWeights(locationDifficulty.weights);
+                }
+                else
+                {
+                    AdaptiveDifficultyManager.Instance.SetAlertnessDegree(0);
+                    AdaptiveDifficultyManager.Instance.SetForgettingDegree(0);
+                    AdaptiveDifficultyManager.Instance.SetRoomWeights(new List<AD_RoomWeight>());
+                }
             }
 
             if (VirusController.Instance != null)

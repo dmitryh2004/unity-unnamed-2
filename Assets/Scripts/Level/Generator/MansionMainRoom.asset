@@ -20,17 +20,17 @@ MonoBehaviour:
   spawnHeightOffset: 0
   neighbours:
   - direction: 2
-    spawnOffset: {x: 0, y: 0, z: -3.5}
+    spawnOffset: {x: 0, y: 0, z: -12.5}
   - direction: 1
-    spawnOffset: {x: -3.5, y: 0, z: 0}
+    spawnOffset: {x: -3.5, y: 0, z: -9}
   - direction: 1
-    spawnOffset: {x: -3.5, y: 0, z: 18}
+    spawnOffset: {x: -3.5, y: 0, z: 9}
   - direction: 0
-    spawnOffset: {x: 0, y: 0, z: 21.5}
+    spawnOffset: {x: 0, y: 0, z: 12.5}
   - direction: 3
-    spawnOffset: {x: 3.5, y: 0, z: 18}
+    spawnOffset: {x: 3.5, y: 0, z: -9}
   - direction: 3
-    spawnOffset: {x: 3.5, y: 0, z: 0}
+    spawnOffset: {x: 3.5, y: 0, z: 9}
   useInputDirection: 0
   inputDirection: 0
   minNeighbours: 1

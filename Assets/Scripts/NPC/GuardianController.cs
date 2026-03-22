@@ -454,6 +454,10 @@ public class GuardianController : MonoBehaviour
                         }
                     }
                 }
+                else if (AD_checkFloorItems && interactable is LootableItem lootableItem && !lootableItem.GetComponentInParent<LootContainer>())
+                {
+                    if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
+                }
             }
         }
     }

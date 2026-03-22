@@ -13,7 +13,7 @@ public class AchievementCategoryColor
 public class AchievementPanelUIController : MonoBehaviour
 {
     [SerializeField] Image panel;
-    [SerializeField] Image achievementImage;
+    [SerializeField] Image achievementImage, achievementCompletedImage;
     Material materialInstance;
     [SerializeField] TMP_Text title, text;
     [SerializeField] TMP_Text progressBarText;
@@ -53,6 +53,7 @@ public class AchievementPanelUIController : MonoBehaviour
         {
             panel.color = achievementCategoryColors.Find((x) => x.category == AchievementCategory.Other)?.color ?? new Color(1f, 1f, 1f, 0.4f);
             achievementImage.sprite = null;
+            achievementCompletedImage.gameObject.SetActive(false);
             SetSprite(null);
             SetGrayscaled(false);
             title.text = "Неизвестно";
@@ -63,6 +64,7 @@ public class AchievementPanelUIController : MonoBehaviour
         {
             panel.color = achievementCategoryColors.Find((x) => x.category == currentAchievement.categoryID)?.color ?? new Color(1f, 1f, 1f, 0.4f);
             achievementImage.sprite = currentAchievement.image;
+            achievementCompletedImage.gameObject.SetActive(AchievementSystem.Instance.IsAchievementAchieved(currentAchievement.id));
             SetSprite(currentAchievement.image);
             SetGrayscaled(!AchievementSystem.Instance.IsAchievementAchieved(currentAchievement.id));
 

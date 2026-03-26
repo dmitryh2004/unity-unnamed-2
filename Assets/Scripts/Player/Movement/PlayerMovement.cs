@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 7f;
     public LayerMask groundMask;
     public float groundCheckRadius = 0.2f;
+    public float headCheckRadius = 0.3f;
     public Transform groundCheckPoint;
 
     private float standScale = .9f;
@@ -98,13 +99,23 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateSpeed()
     {
-        // Определяем скорость
-        currentSpeed = moveSpeed;
-        if (isSprinting) currentSpeed = sprintSpeed;
-        if (isCrouching) currentSpeed = crouchSpeed;
+        // 1. Проверка: есть ли что-то над головой?
+        // Пускаем луч/сферу вверх от текущей позиции
+        bool canStandUp = !Physics.SphereCast(transform.position, headCheckRadius, Vector3.up, out _, (standHeight - crouchHeight) / 2f, groundMask);
 
-        // Изменяем высоту персонажа (например, через коллайдер или визуально)
-        currentHeight = Mathf.Lerp(currentHeight, isCrouching ? crouchHeight : standHeight, Time.deltaTime * heightChangeSpeed);
+        // 2. Логика определения скорости и состояния
+        // Если игрок ХОЧЕТ встать (isCrouching == false), но НЕ МОЖЕТ (canStandUp == false), 
+        // мы заставляем его оставаться в состоянии приседа.
+        bool effectivelyCrouching = isCrouching || !canStandUp;
+
+        currentSpeed = moveSpeed;
+        if (isSprinting && !effectivelyCrouching) currentSpeed = sprintSpeed;
+        if (effectivelyCrouching) currentSpeed = crouchSpeed;
+
+        // 3. Плавное изменение высоты на основе effectivelyCrouching
+        float targetHeight = effectivelyCrouching ? crouchHeight : standHeight;
+        currentHeight = Mathf.Lerp(currentHeight, targetHeight, Time.deltaTime * heightChangeSpeed);
+
         transform.localScale = new Vector3(transform.localScale.x, currentHeight / standHeight * standScale, transform.localScale.z);
 
         isGrounded = Physics.CheckSphere(groundCheckPoint.position, groundCheckRadius, groundMask);

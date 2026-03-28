@@ -54,8 +54,8 @@ public class AchievementActionTracker : MonoBehaviour
         {
             char[] letters = foundSounds.ToCharArray();
             for (int i = 0; i < guardianSoundsCount; i++)
-            {
-                this.foundGuardianSounds[i] = (letters[i] == '1');
+            { 
+                this.foundGuardianSounds[i] = (i < letters.Length) ? (letters[i] == '1') : false;
             }
         }
     }
@@ -75,7 +75,7 @@ public class AchievementActionTracker : MonoBehaviour
             char[] letters = foundItems.ToCharArray();
             for (int i = 0; i < lootCategoryManager.lootCategories.Count; i++)
             {
-                this.foundItems[i + 1] = (letters[i] == '1');
+                this.foundItems[i + 1] = (i < letters.Length) ? (letters[i] == '1') : false;
             }
         }
     }

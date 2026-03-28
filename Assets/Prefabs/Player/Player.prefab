@@ -707,6 +707,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckRadius: 0.2
+  headCheckRadius: 0.3
   groundCheckPoint: {fileID: 5567361824481900740}
   audioPlayer: {fileID: 7662763813534142577}
 --- !u!114 &3344384484649247653
@@ -913,6 +914,19 @@ MonoBehaviour:
     volume: 1
   flashlightOutOfBatteryAudios:
   - clip: {fileID: 8300000, guid: 096a200525ad7f240bcde50a8af4f4c4, type: 3}
+    weight: 1
+    volume: 1
+  ventFootstepAudios:
+  - clip: {fileID: 8300000, guid: d457c2889c17ca04c9ccb16c3ccc58ca, type: 3}
+    weight: 1
+    volume: 1
+  - clip: {fileID: 8300000, guid: 0353a8187d084964f8fa980babb98e2c, type: 3}
+    weight: 1
+    volume: 1
+  - clip: {fileID: 8300000, guid: 265158803c65d5b4b850c0a6fe88b3fd, type: 3}
+    weight: 1
+    volume: 1
+  - clip: {fileID: 8300000, guid: 1b2a953e9ae611a46a26bac2eb9d8b7d, type: 3}
     weight: 1
     volume: 1
 --- !u!82 &6702621504603471115

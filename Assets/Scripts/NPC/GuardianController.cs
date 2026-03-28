@@ -454,7 +454,8 @@ public class GuardianController : MonoBehaviour
                         }
                     }
                 }
-                else if (AD_checkFloorItems && interactable is LootableItem lootableItem && !lootableItem.GetComponentInParent<LootContainer>())
+                else if (AD_checkFloorItems && interactable is LootableItem lootableItem && !lootableItem.GetComponentInParent<LootContainer>()) // весь лут спавнится как дочерний для LootContainer,
+                    // а брошенный игроком лут спавнится в корне сцены и не имеет родительского LootContainer
                 {
                     if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
                 }

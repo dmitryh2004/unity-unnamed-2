@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class DefeatCinematicController : MonoBehaviour
     [SerializeField] TMP_Text uiDefeatScreenTitle;
     [SerializeField] TMP_Text uiDefeatScreenText;
     [Space(10)]
+    [SerializeField] List<SpaceshipLampController> spaceshipLamps = new ();
     [SerializeField] ExitGame exitGame;
     [SerializeField] AudioSource fallDamageAudioSource; 
     [Header("Timers")]
@@ -81,6 +83,9 @@ public class DefeatCinematicController : MonoBehaviour
         receivedResponse.text = "";
         selfDestroy.text = "";
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         yield return new WaitForSeconds(changeScreenDelay);
 
         commonScreen.SetActive(false);
@@ -117,6 +122,7 @@ public class DefeatCinematicController : MonoBehaviour
         yield return new WaitForSeconds(startAlarmDelay);
 
         AlarmController.Instance.StartAlarm();
+        spaceshipLamps.ForEach((l) => { l.SetAlarmed(true); });
         StartCoroutine(AnimatePlayerWalkingAway());
 
         yield return new WaitForSeconds(startRotateShipDelay);
@@ -160,6 +166,8 @@ public class DefeatCinematicController : MonoBehaviour
         uiDefeatScreenAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(1.5f);
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 }

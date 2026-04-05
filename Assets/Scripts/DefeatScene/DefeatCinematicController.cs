@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DefeatCinematicController : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class DefeatCinematicController : MonoBehaviour
     [SerializeField] float exitSceneDelay = 10f;
 
     string defeatScreenTitleText, defeatScreenTextText;
+    bool canSkipCinematic = true;
 
     private void Awake()
     {
@@ -160,6 +162,10 @@ public class DefeatCinematicController : MonoBehaviour
 
     private IEnumerator ExitScene(float delay)
     {
+        canSkipCinematic = false;
+
+        uiDefeatScreen.SetActive(true);
+
         yield return new WaitForSeconds(delay);
 
         fallDamageAudioSource.PlayOneShot(fallDamageAudioSource.clip);
@@ -169,5 +175,14 @@ public class DefeatCinematicController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
+    }
+
+    public void SkipCinematic(InputAction.CallbackContext context)
+    {
+        if (canSkipCinematic)
+        {
+            StopAllCoroutines();
+            StartCoroutine(ExitScene(0f));
+        }
     }
 }

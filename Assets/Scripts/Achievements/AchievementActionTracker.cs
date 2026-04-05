@@ -58,6 +58,7 @@ public class AchievementActionTracker : MonoBehaviour
                 this.foundGuardianSounds[i] = (i < letters.Length) ? (letters[i] == '1') : false;
             }
         }
+        Debug.Log($"Found guardian sound data: {GetFoundSoundsData()}, found count: {GetGuardianSoundsAchievementProgress()}");
     }
 
     void ReadFoundItemsData()
@@ -119,6 +120,8 @@ public class AchievementActionTracker : MonoBehaviour
             PlayerPrefs.Save();
 
             AchievementSystem.Instance.SetAchievementProgress("all_guardian_sounds", GetGuardianSoundsAchievementProgress());
+
+            Debug.Log($"Played sound #{index}, Found guardian sound data: {GetFoundSoundsData()}, found count: {GetGuardianSoundsAchievementProgress()}");
         }
     }
 
@@ -276,7 +279,7 @@ public class AchievementActionTracker : MonoBehaviour
     string GetFoundSoundsData()
     {
         string res = "";
-        for (int i = 1; i <= guardianSoundsCount; i++)
+        for (int i = 0; i < guardianSoundsCount; i++)
         {
             res += foundGuardianSounds.ContainsKey(i) ? (foundGuardianSounds[i] ? "1" : "0") : "0";
         }

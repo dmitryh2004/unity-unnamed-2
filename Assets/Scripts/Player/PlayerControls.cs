@@ -180,6 +180,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DefeatSceneEsc"",
+                    ""type"": ""Button"",
+                    ""id"": ""1de4ce1e-bf20-470e-b6aa-402ee867a852"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -334,6 +343,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57e8deb8-4650-4657-94b8-4c85979655f1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DefeatSceneEsc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -950,6 +970,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Inventory = m_Gameplay.FindAction("Inventory", throwIfNotFound: true);
         m_Gameplay_UseScanner = m_Gameplay.FindAction("UseScanner", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_DefeatSceneEsc = m_Gameplay.FindAction("DefeatSceneEsc", throwIfNotFound: true);
         // InventoryUI
         m_InventoryUI = asset.FindActionMap("InventoryUI", throwIfNotFound: true);
         m_InventoryUI_InventoryExit = m_InventoryUI.FindAction("InventoryExit", throwIfNotFound: true);
@@ -1088,6 +1109,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Inventory;
     private readonly InputAction m_Gameplay_UseScanner;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_DefeatSceneEsc;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -1139,6 +1161,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Pause".
         /// </summary>
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/DefeatSceneEsc".
+        /// </summary>
+        public InputAction @DefeatSceneEsc => m_Wrapper.m_Gameplay_DefeatSceneEsc;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1195,6 +1221,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @DefeatSceneEsc.started += instance.OnDefeatSceneEsc;
+            @DefeatSceneEsc.performed += instance.OnDefeatSceneEsc;
+            @DefeatSceneEsc.canceled += instance.OnDefeatSceneEsc;
         }
 
         /// <summary>
@@ -1236,6 +1265,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @DefeatSceneEsc.started -= instance.OnDefeatSceneEsc;
+            @DefeatSceneEsc.performed -= instance.OnDefeatSceneEsc;
+            @DefeatSceneEsc.canceled -= instance.OnDefeatSceneEsc;
         }
 
         /// <summary>
@@ -2238,6 +2270,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPause(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "DefeatSceneEsc" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDefeatSceneEsc(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "InventoryUI" which allows adding and removing callbacks.

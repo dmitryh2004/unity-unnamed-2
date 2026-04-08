@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AudioZone : MonoBehaviour
 {
-    public Collider triggerZone;   // BoxCollider / SphereCollider ñ isTrigger=true
+    public Collider triggerZone;   // BoxCollider / SphereCollider Ã± isTrigger=true
     public float volume = 1.0f;
     private MultiZoneAudioController parentController;
 

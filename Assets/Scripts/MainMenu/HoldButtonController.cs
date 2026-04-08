@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class HoldButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
-    public float holdTime = 3f; // Время удержания в секундах
+    public float holdTime = 3f; // Р’СЂРµРјСЏ СѓРґРµСЂР¶Р°РЅРёСЏ РІ СЃРµРєСѓРЅРґР°С…
     private float timer = 0f;
     private bool isHolding = false;
 
@@ -34,7 +34,7 @@ public class HoldButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         }
     }
 
-    // Событие при начале нажатия ЛКМ на кнопку
+    // РЎРѕР±С‹С‚РёРµ РїСЂРё РЅР°С‡Р°Р»Рµ РЅР°Р¶Р°С‚РёСЏ Р›РљРњ РЅР° РєРЅРѕРїРєСѓ
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -44,7 +44,7 @@ public class HoldButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         }
     }
 
-    // Событие при отпускании ЛКМ
+    // РЎРѕР±С‹С‚РёРµ РїСЂРё РѕС‚РїСѓСЃРєР°РЅРёРё Р›РљРњ
     public void OnPointerUp(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -54,14 +54,14 @@ public class HoldButtonController : MonoBehaviour, IPointerDownHandler, IPointer
         }
     }
 
-    // Событие при уходе курсора с кнопки (отмена удержания)
+    // РЎРѕР±С‹С‚РёРµ РїСЂРё СѓС…РѕРґРµ РєСѓСЂСЃРѕСЂР° СЃ РєРЅРѕРїРєРё (РѕС‚РјРµРЅР° СѓРґРµСЂР¶Р°РЅРёСЏ)
     public void OnPointerExit(PointerEventData eventData)
     {
         isHolding = false;
         timer = 0f;
     }
 
-    // Метод, вызываемый после успешного удержания 3 секунды
+    // РњРµС‚РѕРґ, РІС‹Р·С‹РІР°РµРјС‹Р№ РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕРіРѕ СѓРґРµСЂР¶Р°РЅРёСЏ 3 СЃРµРєСѓРЅРґС‹
     protected virtual void OnHoldComplete()
     {
 

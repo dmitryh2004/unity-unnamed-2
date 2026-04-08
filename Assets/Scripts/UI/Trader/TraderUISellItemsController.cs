@@ -46,7 +46,7 @@ public class TraderUISellItemsController : TraderUIBaseScreenController
         items = InventorySystem.Instance.GetItems();
 
         int balance = PlayerWallet.Instance.GetMoney();
-        currentBalance.text = $"Текущий баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
+        currentBalance.text = $"РўРµРєСѓС‰РёР№ Р±Р°Р»Р°РЅСЃ: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
 
         inventoryLayoutElement.UpdateLayout(items);
     }

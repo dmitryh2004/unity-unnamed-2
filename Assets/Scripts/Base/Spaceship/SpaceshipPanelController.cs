@@ -181,11 +181,11 @@ public class SpaceshipPanelController : Interactable
     }
 
     /// <summary>
-    /// Плавно перемещает камеру панели от или к панели
+    /// РџР»Р°РІРЅРѕ РїРµСЂРµРјРµС‰Р°РµС‚ РєР°РјРµСЂСѓ РїР°РЅРµР»Рё РѕС‚ РёР»Рё Рє РїР°РЅРµР»Рё
     /// </summary>
-    /// <param name="direction">True - к панели, False - к игроку</param>
-    /// <param name="duration">Время перемещения</param>
-    /// <param name="onComplete">Коллбэк</param>
+    /// <param name="direction">True - Рє РїР°РЅРµР»Рё, False - Рє РёРіСЂРѕРєСѓ</param>
+    /// <param name="duration">Р’СЂРµРјСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ</param>
+    /// <param name="onComplete">РљРѕР»Р»Р±СЌРє</param>
     /// <returns></returns>
     IEnumerator TranslatePanelCamera(bool direction, float duration = 1f, Action onComplete = null)
     {

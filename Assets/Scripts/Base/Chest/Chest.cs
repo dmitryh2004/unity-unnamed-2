@@ -10,7 +10,7 @@ public class Chest : MonoBehaviour
     int maxItemsAmount = 1000;
 
     public LootCategoryManager lootCategoryManager;
-    // список всех предметов. берется из InventorySystem
+    // СЃРїРёСЃРѕРє РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ. Р±РµСЂРµС‚СЃСЏ РёР· InventorySystem
     List<LootCategory> lootCategories;
 
     private Dictionary<int, int> items = new Dictionary<int, int>();
@@ -118,9 +118,9 @@ public class Chest : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить данные всех предметов в инвентаре в JSON-формате
+    /// РџРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ РІСЃРµС… РїСЂРµРґРјРµС‚РѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ РІ JSON-С„РѕСЂРјР°С‚Рµ
     /// </summary>
-    /// <returns>JSON строка с данными предметов</returns>
+    /// <returns>JSON СЃС‚СЂРѕРєР° СЃ РґР°РЅРЅС‹РјРё РїСЂРµРґРјРµС‚РѕРІ</returns>
     public string GetInventoryDataJson()
     {
         List<InventoryItemData> dataList = new List<InventoryItemData>();
@@ -139,14 +139,14 @@ public class Chest : MonoBehaviour
     }
 
     /// <summary>
-    /// Получить LootCategory по id
+    /// РџРѕР»СѓС‡РёС‚СЊ LootCategory РїРѕ id
     /// </summary>
     public LootCategory GetLootCategoryById(int id)
     {
         return lootCategories.FirstOrDefault(x => x.id == id);
     }
 
-    // Вспомогательный класс для сериализации списка в JSON
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґР»СЏ СЃРµСЂРёР°Р»РёР·Р°С†РёРё СЃРїРёСЃРєР° РІ JSON
     [Serializable]
     private class InventoryDataWrapper
     {

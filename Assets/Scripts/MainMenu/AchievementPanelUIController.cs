@@ -56,8 +56,8 @@ public class AchievementPanelUIController : MonoBehaviour
             achievementCompletedImage.gameObject.SetActive(false);
             SetSprite(null);
             SetGrayscaled(false);
-            title.text = "Неизвестно";
-            text.text = "Неизвестно";
+            title.text = "РќРµРёР·РІРµСЃС‚РЅРѕ";
+            text.text = "РќРµРёР·РІРµСЃС‚РЅРѕ";
             progressBarContainer.SetActive(false);
         }
         else

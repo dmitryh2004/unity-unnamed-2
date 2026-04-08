@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class OpenWebPage : MonoBehaviour
 {
-    // Вставьте сюда нужный URL
+    // Р’СЃС‚Р°РІСЊС‚Рµ СЃСЋРґР° РЅСѓР¶РЅС‹Р№ URL
     [SerializeField] string url = "https://example.com";
 
-    // Этот метод нужно назначить на кнопку через инспектор
+    // Р­С‚РѕС‚ РјРµС‚РѕРґ РЅСѓР¶РЅРѕ РЅР°Р·РЅР°С‡РёС‚СЊ РЅР° РєРЅРѕРїРєСѓ С‡РµСЂРµР· РёРЅСЃРїРµРєС‚РѕСЂ
     public void OpenPage()
     {
         Application.OpenURL(url);

@@ -66,7 +66,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
         craftWindow.SetActive(currentScreen == 0);
         upgradeWindow.SetActive(currentScreen == 1);
 
-        swapButtonText.text = (currentScreen == 0) ? "Улучшения" : "Назад";
+        swapButtonText.text = (currentScreen == 0) ? "РЈР»СѓС‡С€РµРЅРёСЏ" : "РќР°Р·Р°Рґ";
     }
 
     protected override void ChangeToMainMenu()
@@ -145,7 +145,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                     int requiredCount = jewerlyTableCraft.requiredItemsCount[i];
 
                     if (canCraft && countInInventory < requiredCount) canCraft = false;
-                    string reqMaterialEntry = (countInInventory >= requiredCount) ? $"- {lc.lootName}: {countInInventory} / {requiredCount} шт." : $"- {lc.lootName}: <color=#ff0000>{countInInventory}</color> / {requiredCount} шт.";
+                    string reqMaterialEntry = (countInInventory >= requiredCount) ? $"- {lc.lootName}: {countInInventory} / {requiredCount} С€С‚." : $"- {lc.lootName}: <color=#ff0000>{countInInventory}</color> / {requiredCount} С€С‚.";
                     reqMaterialsList.Add(reqMaterialEntry);
                 }
 
@@ -170,7 +170,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                     int weight = (int)jewerlyTableCraft.outputVariants[i].weight.FirstOrDefault((x) => { return x.level == tableLevel; }).value;
                     float ratio = (float)weight / totalWeight;
 
-                    string chanceText = $"{i + 1}. <color=#{((i == 0) ? "00ff00" : "ff0000")}>С вероятностью {NumberFormatter.FormatNumber(ratio * 100, 1)}%:</color>";
+                    string chanceText = $"{i + 1}. <color=#{((i == 0) ? "00ff00" : "ff0000")}>РЎ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊСЋ {NumberFormatter.FormatNumber(ratio * 100, 1)}%:</color>";
 
                     List<string> outputs = new();
 
@@ -179,10 +179,10 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                         LootCategory lc = jewerlyTableCraft.outputVariants[i].outputItems[j];
                         int min = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].min;
                         int max = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].max;
-                        outputs.Add($"- {lc.lootName} - {((min != max) ? $"{min}-{max}" : $"{min}")} шт.");
+                        outputs.Add($"- {lc.lootName} - {((min != max) ? $"{min}-{max}" : $"{min}")} С€С‚.");
                     }
 
-                    outputVariantsList.Add($"{chanceText}\n{((outputs.Count > 0) ? string.Join("\n", outputs) : "ничего")}");
+                    outputVariantsList.Add($"{chanceText}\n{((outputs.Count > 0) ? string.Join("\n", outputs) : "РЅРёС‡РµРіРѕ")}");
                 }
 
                 outputVariants = string.Join("\n\n", outputVariantsList);
@@ -201,18 +201,18 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
             upgradeEffectTitle.gameObject.SetActive(currentLevel < maxLevel);
             upgradeEffectText.gameObject.SetActive(currentLevel < maxLevel);
 
-            this.currentLevel.text = $"Текущий уровень: {currentLevel} / {maxLevel}";
-            yourBalance.text = $"Ваш баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
+            this.currentLevel.text = $"РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ: {currentLevel} / {maxLevel}";
+            yourBalance.text = $"Р’Р°С€ Р±Р°Р»Р°РЅСЃ: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
             if (currentLevel == maxLevel)
             {
-                upgradeCost.text = $"<color=#ffff00>Уже максимально улучшен</color>";
+                upgradeCost.text = $"<color=#ffff00>РЈР¶Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕ СѓР»СѓС‡С€РµРЅ</color>";
                 
             }
             else if (currentLevel < maxLevel)
             {
                 int upgradeCost = jewerlyTable.GetUpgradeCost(currentLevel + 1);
                 bool canAfford = balance >= upgradeCost;
-                this.upgradeCost.text = $"Стоимость улучшения: <color=#{(canAfford ? "ffffff" : "ff0000")}>{NumberFormatter.FormatNumberWithGrouping(upgradeCost)}</color> UMU";
+                this.upgradeCost.text = $"РЎС‚РѕРёРјРѕСЃС‚СЊ СѓР»СѓС‡С€РµРЅРёСЏ: <color=#{(canAfford ? "ffffff" : "ff0000")}>{NumberFormatter.FormatNumberWithGrouping(upgradeCost)}</color> UMU";
 
                 //build output variants
                 string outputVariants = "";
@@ -240,7 +240,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                     string color = (diff > 0 ^ i == 0) ? "ff0000" : "00ff00";
                     string diffText = (diff != 0) ? $" <color=#{color}>({sign}{NumberFormatter.FormatNumber(Mathf.Abs(diff * 100), 1)}%)</color>" : "";
 
-                    string chanceText = $"{i + 1}. С вероятностью {NumberFormatter.FormatNumber(nextRatio * 100, 1)}%{diffText}:";
+                    string chanceText = $"{i + 1}. РЎ РІРµСЂРѕСЏС‚РЅРѕСЃС‚СЊСЋ {NumberFormatter.FormatNumber(nextRatio * 100, 1)}%{diffText}:";
 
                     List<string> outputs = new();
 
@@ -249,10 +249,10 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
                         LootCategory lc = jewerlyTableCraft.outputVariants[i].outputItems[j];
                         int min = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].min;
                         int max = jewerlyTableCraft.outputVariants[i].outputItemsAmount[j].max;
-                        outputs.Add($"- {lc.lootName} - {((min != max) ? $"{min}-{max}" : $"{min}")} шт.");
+                        outputs.Add($"- {lc.lootName} - {((min != max) ? $"{min}-{max}" : $"{min}")} С€С‚.");
                     }
 
-                    outputVariantsList.Add($"{chanceText}\n{((outputs.Count > 0) ? string.Join("\n", outputs) : "ничего")}");
+                    outputVariantsList.Add($"{chanceText}\n{((outputs.Count > 0) ? string.Join("\n", outputs) : "РЅРёС‡РµРіРѕ")}");
                 }
 
                 outputVariants = string.Join("\n\n", outputVariantsList);
@@ -284,7 +284,7 @@ public class JewerlyTableUIController : UIWindowCameraTransitioning
 
     public void ShowCraftResult(int result)
     {
-        craftResultText.text = $"Результат: №{result+1}";
+        craftResultText.text = $"Р РµР·СѓР»СЊС‚Р°С‚: в„–{result+1}";
         craftResultAnimator.SetTrigger("Show");
     }
 

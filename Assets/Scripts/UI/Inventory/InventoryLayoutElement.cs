@@ -97,7 +97,7 @@ public class InventoryLayoutElement : MonoBehaviour
             float ratio = currentVolume / maxVolume * 100;
             string format = (ratio < 10f) ? "0.0" : ((ratio < 100f) ? "00.0" : "000");
 
-            totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} ë ({ratio.ToString(format)}%)";
+            totalVolume.text = $"{NumberFormatter.FormatNumber(currentVolume * 1000)} / {NumberFormatter.FormatNumber(maxVolume * 1000)} Ð» ({ratio.ToString(format)}%)";
             volumePB.SetMaxValue(maxVolume);
             volumePB.SetProgress(currentVolume);
         }
@@ -118,9 +118,9 @@ public class InventoryLayoutElement : MonoBehaviour
         if (hasEstimateCost)
         {
             if (totalCost < 2_000_000_000)
-                estimateCost.text = $"Îöåíî÷íàÿ ñòîèìîñòü âåùåé: {NumberFormatter.FormatNumberWithGrouping(totalCost)} UMU";
+                estimateCost.text = $"ÑœÑ†ÐµÐ½Ð¾Ñ‡Ð½Ð°â‚¬ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð²ÐµÑ‰ÐµÐ¹: {NumberFormatter.FormatNumberWithGrouping(totalCost)} UMU";
             else
-                estimateCost.text = $"Îöåíî÷íàÿ ñòîèìîñòü âåùåé: áîëåå 2 ìëðä UMU";
+                estimateCost.text = $"ÑœÑ†ÐµÐ½Ð¾Ñ‡Ð½Ð°â‚¬ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð²ÐµÑ‰ÐµÐ¹: Ð±Ð¾Ð»ÐµÐµ 2 Ð¼Ð»Ñ€Ð´ UMU";
         }
     }
 

@@ -454,8 +454,8 @@ public class GuardianController : MonoBehaviour
                         }
                     }
                 }
-                else if (AD_checkFloorItems && interactable is LootableItem lootableItem && !lootableItem.GetComponentInParent<LootContainer>()) // весь лут спавнится как дочерний для LootContainer,
-                    // а брошенный игроком лут спавнится в корне сцены и не имеет родительского LootContainer
+                else if (AD_checkFloorItems && interactable is LootableItem lootableItem && !lootableItem.GetComponentInParent<LootContainer>()) // РІРµСЃСЊ Р»СѓС‚ СЃРїР°РІРЅРёС‚СЃСЏ РєР°Рє РґРѕС‡РµСЂРЅРёР№ РґР»СЏ LootContainer,
+                    // Р° Р±СЂРѕС€РµРЅРЅС‹Р№ РёРіСЂРѕРєРѕРј Р»СѓС‚ СЃРїР°РІРЅРёС‚СЃСЏ РІ РєРѕСЂРЅРµ СЃС†РµРЅС‹ Рё РЅРµ РёРјРµРµС‚ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ LootContainer
                 {
                     if (!AlarmController.Instance.GetAlarmState()) AlarmController.Instance.StartAlarm();
                 }

@@ -24,7 +24,7 @@ public class LootHintController : MonoBehaviour
     [SerializeField] float maxRenderDistance = 5f;
 
     [SerializeField] Renderer[] objectRenderers = new Renderer[0];
-    private Material[] instanceMaterials;  // Instance материала
+    private Material[] instanceMaterials;  // Instance РјР°С‚РµСЂРёР°Р»Р°
     private Color currentColor;
     private bool emitting = false;
 
@@ -51,7 +51,7 @@ public class LootHintController : MonoBehaviour
     {
         int lootSum = lootContainer.GetSpawnedLootSum();
 
-        Color resultColor = colors[colors.Count - 1].color; // по умолчанию считаем, что стоимость лута максимальна
+        Color resultColor = colors[colors.Count - 1].color; // РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СЃС‡РёС‚Р°РµРј, С‡С‚Рѕ СЃС‚РѕРёРјРѕСЃС‚СЊ Р»СѓС‚Р° РјР°РєСЃРёРјР°Р»СЊРЅР°
 
         for (int i = 0; i < colors.Count; i++)
         {

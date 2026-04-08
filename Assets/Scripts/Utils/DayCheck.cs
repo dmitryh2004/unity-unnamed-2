@@ -24,13 +24,13 @@ public class DayCheck : MonoBehaviour
         September3 = (now.Month == 9 && now.Day == 3);
         NewYear = (now.Month == 12 && (now.Day >= 25)) || (now.Month == 1 && (now.Day <= 7));
 #if UNITY_EDITOR
-        // çäåñü ìîæíî ïðèíóäèòåëüíî ïîñòàâèòü ôëàãè äàò äëÿ òåñòà
+        // Ð·Ð´ÐµÑÑŒ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¸Ð½ÑƒÐ´Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð¿Ð¾ÑÑ‚Ð°Ð²Ð¸Ñ‚ÑŒ Ñ„Ð»Ð°Ð³Ð¸ Ð´Ð°Ñ‚ Ð´Ð»â‚¬ Ñ‚ÐµÑÑ‚Ð°
         // April1 = true;
 		// September3 = true;
 		// NewYear = true;
 #endif
 
-        Debug.Log($"Äàòà çàïóñêà: {now:dd.MM.yy}");
+        Debug.Log($"Æ’Ð°Ñ‚Ð° Ð·Ð°Ð¿ÑƒÑÐºÐ°: {now:dd.MM.yy}");
     }
 
     public bool IsApril1 => April1;

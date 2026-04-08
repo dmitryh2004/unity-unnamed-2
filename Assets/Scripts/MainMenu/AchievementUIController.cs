@@ -24,7 +24,7 @@ public class AchievementUIController : MonoBehaviour
             {
                 panel.gameObject.SetActive(false);
             }
-            currentPageText.text = "Что-то пошло не так :(";
+            currentPageText.text = "Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє :(";
         }
     }
 
@@ -41,7 +41,7 @@ public class AchievementUIController : MonoBehaviour
             }
         }
 
-        currentPageText.text = $"Страница {currentPage} из {totalPages}";
+        currentPageText.text = $"РЎС‚СЂР°РЅРёС†Р° {currentPage} РёР· {totalPages}";
         prevPageBtn.SetActive(currentPage > 1);
         nextPageBtn.SetActive(currentPage < totalPages);
     }

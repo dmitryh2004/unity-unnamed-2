@@ -61,11 +61,11 @@ public class JewerlyTableCraftManager : MonoBehaviour
 
             GUILayout.Space(10);
 
-            if (GUILayout.Button("Найти все крафты", GUILayout.Height(30)))
+            if (GUILayout.Button("РќР°Р№С‚Рё РІСЃРµ РєСЂР°С„С‚С‹", GUILayout.Height(30)))
             {
                 List<JewerlyTableCraft> allAssets = ScriptableObjectFinder<JewerlyTableCraft>.FindAllInstances();
 
-                // Очистка и заполнение serializedProperty crafts найденными объектами
+                // РћС‡РёСЃС‚РєР° Рё Р·Р°РїРѕР»РЅРµРЅРёРµ serializedProperty crafts РЅР°Р№РґРµРЅРЅС‹РјРё РѕР±СЉРµРєС‚Р°РјРё
                 crafts.ClearArray();
                 for (int i = 0; i < allAssets.Count; i++)
                 {
@@ -75,11 +75,11 @@ public class JewerlyTableCraftManager : MonoBehaviour
 
                 serializedObject.ApplyModifiedProperties();
 
-                // Отметить измененный объект для сохранения
+                // РћС‚РјРµС‚РёС‚СЊ РёР·РјРµРЅРµРЅРЅС‹Р№ РѕР±СЉРµРєС‚ РґР»СЏ СЃРѕС…СЂР°РЅРµРЅРёСЏ
                 EditorUtility.SetDirty(target);
 
-                EditorUtility.DisplayDialog("Поиск завершен",
-                    $"Найдено {allAssets.Count} крафтов",
+                EditorUtility.DisplayDialog("РџРѕРёСЃРє Р·Р°РІРµСЂС€РµРЅ",
+                    $"РќР°Р№РґРµРЅРѕ {allAssets.Count} РєСЂР°С„С‚РѕРІ",
                     "OK");
             }
 

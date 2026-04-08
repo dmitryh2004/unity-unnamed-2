@@ -20,9 +20,9 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     [SerializeField] List<AD_RoomWeight> roomWeights = new();
 
     [Header("Constants")]
-    [SerializeField] float attenuationCoeff = 0.25f; // L - коэффициент затухания
-    [SerializeField] float forgettingCoeff = 3f; // k - коэффициент забывания
-    [SerializeField] float remainingCoeff = 0.5f; // w'/w - минимальное соотношение нового и старого весов
+    [SerializeField] float attenuationCoeff = 0.25f; // L - РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°С‚СѓС…Р°РЅРёСЏ
+    [SerializeField] float forgettingCoeff = 3f; // k - РєРѕСЌС„С„РёС†РёРµРЅС‚ Р·Р°Р±С‹РІР°РЅРёСЏ
+    [SerializeField] float remainingCoeff = 0.5f; // w'/w - РјРёРЅРёРјР°Р»СЊРЅРѕРµ СЃРѕРѕС‚РЅРѕС€РµРЅРёРµ РЅРѕРІРѕРіРѕ Рё СЃС‚Р°СЂРѕРіРѕ РІРµСЃРѕРІ
 
     private void Awake()
     {
@@ -55,16 +55,16 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public string LocationName => SceneManager.GetActiveScene().name;
     public void ApplyRoomWeights(List<RoomObject> roomsToApply)
     {
-        if (!UseRoomWeights) return; // если не используем веса комнат, то выход
-        if (roomWeights.Count == 0) return; // если никаких весов комнат нет, то выход
+        if (!UseRoomWeights) return; // РµСЃР»Рё РЅРµ РёСЃРїРѕР»СЊР·СѓРµРј РІРµСЃР° РєРѕРјРЅР°С‚, С‚Рѕ РІС‹С…РѕРґ
+        if (roomWeights.Count == 0) return; // РµСЃР»Рё РЅРёРєР°РєРёС… РІРµСЃРѕРІ РєРѕРјРЅР°С‚ РЅРµС‚, С‚Рѕ РІС‹С…РѕРґ
 
-        Dictionary<RoomObject, bool> roomApplyStatuses = new (); // создаем словарь для хранения информации о том, какие комнаты мы нашли в сохранении
+        Dictionary<RoomObject, bool> roomApplyStatuses = new (); // СЃРѕР·РґР°РµРј СЃР»РѕРІР°СЂСЊ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РёРЅС„РѕСЂРјР°С†РёРё Рѕ С‚РѕРј, РєР°РєРёРµ РєРѕРјРЅР°С‚С‹ РјС‹ РЅР°С€Р»Рё РІ СЃРѕС…СЂР°РЅРµРЅРёРё
         foreach (var room in roomsToApply)
         {
             roomApplyStatuses.Add(room, false);
         }
 
-        foreach (var item in roomWeights) // пытаемся применить веса из сохранения к сгенерированным комнатам
+        foreach (var item in roomWeights) // РїС‹С‚Р°РµРјСЃСЏ РїСЂРёРјРµРЅРёС‚СЊ РІРµСЃР° РёР· СЃРѕС…СЂР°РЅРµРЅРёСЏ Рє СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹Рј РєРѕРјРЅР°С‚Р°Рј
         {
             RoomObject roomObject = levelGenerator.GetRoomByPosition(item.roomPosition, 2.5f);
             if (roomObject != null)
@@ -74,54 +74,54 @@ public class AdaptiveDifficultyManager : MonoBehaviour
             }
         }
 
-        foreach (var room in roomsToApply) // рассчитываем веса для комнат, которых нет в списке
+        foreach (var room in roomsToApply) // СЂР°СЃСЃС‡РёС‚С‹РІР°РµРј РІРµСЃР° РґР»СЏ РєРѕРјРЅР°С‚, РєРѕС‚РѕСЂС‹С… РЅРµС‚ РІ СЃРїРёСЃРєРµ
         {
-            if (roomApplyStatuses[room]) continue; // если вес уже рассчитан, пропускаем
+            if (roomApplyStatuses[room]) continue; // РµСЃР»Рё РІРµСЃ СѓР¶Рµ СЂР°СЃСЃС‡РёС‚Р°РЅ, РїСЂРѕРїСѓСЃРєР°РµРј
             Dictionary<RoomObject, int> nearestWeightedRooms = new();
             Queue<KeyValuePair<RoomObject, int>> nearestRooms = new ();
             Dictionary<RoomObject, int> checkedRooms = new ();
             nearestRooms.Enqueue(new KeyValuePair<RoomObject, int>(room, 0));
 
-            while (nearestRooms.Count > 0) // шаг 1. ищем комнаты с уже расставленными весами в ширину
+            while (nearestRooms.Count > 0) // С€Р°Рі 1. РёС‰РµРј РєРѕРјРЅР°С‚С‹ СЃ СѓР¶Рµ СЂР°СЃСЃС‚Р°РІР»РµРЅРЅС‹РјРё РІРµСЃР°РјРё РІ С€РёСЂРёРЅСѓ
             {
                 KeyValuePair<RoomObject, int> currentRoom = nearestRooms.Dequeue();
                 //checkedRooms.Add(currentRoom.Key);
                 checkedRooms[currentRoom.Key] = currentRoom.Value;
-                for (int i = 0; i < currentRoom.Key.GetMaxNeighboursCount(); i++) // перебираем соседей
+                for (int i = 0; i < currentRoom.Key.GetMaxNeighboursCount(); i++) // РїРµСЂРµР±РёСЂР°РµРј СЃРѕСЃРµРґРµР№
                 {
                     RoomObject neighbour = currentRoom.Key.GetNeighbour(i);
-                    if (neighbour == null) continue; // если null, пропускаем
-                    if (checkedRooms.ContainsKey(neighbour)) continue; // уже проверяли, пропускаем
+                    if (neighbour == null) continue; // РµСЃР»Рё null, РїСЂРѕРїСѓСЃРєР°РµРј
+                    if (checkedRooms.ContainsKey(neighbour)) continue; // СѓР¶Рµ РїСЂРѕРІРµСЂСЏР»Рё, РїСЂРѕРїСѓСЃРєР°РµРј
 
-                    int distance = currentRoom.Value + 1; // устанавливаем дистанцию до соседа равной дистанции до комнаты + 1
-                    for (int j = 0; j < neighbour.GetMaxNeighboursCount(); j++) // проверяем соседей соседа
+                    int distance = currentRoom.Value + 1; // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РґРёСЃС‚Р°РЅС†РёСЋ РґРѕ СЃРѕСЃРµРґР° СЂР°РІРЅРѕР№ РґРёСЃС‚Р°РЅС†РёРё РґРѕ РєРѕРјРЅР°С‚С‹ + 1
+                    for (int j = 0; j < neighbour.GetMaxNeighboursCount(); j++) // РїСЂРѕРІРµСЂСЏРµРј СЃРѕСЃРµРґРµР№ СЃРѕСЃРµРґР°
                     {
                         RoomObject neighbour2 = neighbour.GetNeighbour(j);
                         if (neighbour2 == null) continue;
-                        if (checkedRooms.ContainsKey(neighbour2)) // если соседа2 уже проверяли
+                        if (checkedRooms.ContainsKey(neighbour2)) // РµСЃР»Рё СЃРѕСЃРµРґР°2 СѓР¶Рµ РїСЂРѕРІРµСЂСЏР»Рё
                         {
-                            distance = Mathf.Min(distance, checkedRooms[neighbour2]); // обновляем дистанцию до текущей комнаты
+                            distance = Mathf.Min(distance, checkedRooms[neighbour2]); // РѕР±РЅРѕРІР»СЏРµРј РґРёСЃС‚Р°РЅС†РёСЋ РґРѕ С‚РµРєСѓС‰РµР№ РєРѕРјРЅР°С‚С‹
                         }
                     }
 
-                    if (roomApplyStatuses.ContainsKey(neighbour) && roomApplyStatuses[neighbour]) // уже есть вес, записываем и пропускаем
+                    if (roomApplyStatuses.ContainsKey(neighbour) && roomApplyStatuses[neighbour]) // СѓР¶Рµ РµСЃС‚СЊ РІРµСЃ, Р·Р°РїРёСЃС‹РІР°РµРј Рё РїСЂРѕРїСѓСЃРєР°РµРј
                     {
                         if (!nearestWeightedRooms.ContainsKey(neighbour))
                             nearestWeightedRooms.Add(neighbour, distance);
                         continue;
                     }
-                    nearestRooms.Enqueue(new KeyValuePair<RoomObject, int>(neighbour, distance)); // записываем соседа в очередь для перебора
+                    nearestRooms.Enqueue(new KeyValuePair<RoomObject, int>(neighbour, distance)); // Р·Р°РїРёСЃС‹РІР°РµРј СЃРѕСЃРµРґР° РІ РѕС‡РµСЂРµРґСЊ РґР»СЏ РїРµСЂРµР±РѕСЂР°
                 }
             }
 
-            // если комнаты не найдены, пропускаем
+            // РµСЃР»Рё РєРѕРјРЅР°С‚С‹ РЅРµ РЅР°Р№РґРµРЅС‹, РїСЂРѕРїСѓСЃРєР°РµРј
             if (nearestWeightedRooms.Count == 0)
             {
                 roomApplyStatuses[room] = true;
                 continue;
             }
 
-            // шаг 2. рассчитываем вес для комнаты
+            // С€Р°Рі 2. СЂР°СЃСЃС‡РёС‚С‹РІР°РµРј РІРµСЃ РґР»СЏ РєРѕРјРЅР°С‚С‹
             int minDistance = nearestWeightedRooms.Values.ToList().Min();
             float weightSum = 0f;
             foreach (var weightedRoom in nearestWeightedRooms)
@@ -133,7 +133,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
             weightSum /= nearestWeightedRooms.Count;
             weightSum -= attenuationCoeff * minDistance;
 
-            // шаг 3. присваиваем вес комнате и помечаем ее как взвешенную
+            // С€Р°Рі 3. РїСЂРёСЃРІР°РёРІР°РµРј РІРµСЃ РєРѕРјРЅР°С‚Рµ Рё РїРѕРјРµС‡Р°РµРј РµРµ РєР°Рє РІР·РІРµС€РµРЅРЅСѓСЋ
             room.SetRoomWeight(weightSum);
             roomApplyStatuses[room] = true;
         }

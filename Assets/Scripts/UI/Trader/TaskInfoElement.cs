@@ -21,31 +21,31 @@ public class TaskInfoElement : MonoBehaviour
     {
         ClientType currentClientType = order.GetClientType();
 
-        commonInfo.text = $"- Необходимо собрать: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}";
+        commonInfo.text = $"- РќРµРѕР±С…РѕРґРёРјРѕ СЃРѕР±СЂР°С‚СЊ: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}";
         if (taskAccepted)
         {
-            commonInfo.text += $"\n- Собрано: {NumberFormatter.FormatNumberWithGrouping(QuotaSystem.Instance.GetCollected())}";
+            commonInfo.text += $"\n- РЎРѕР±СЂР°РЅРѕ: {NumberFormatter.FormatNumberWithGrouping(QuotaSystem.Instance.GetCollected())}";
         }
-        commonInfo.text += $"\n- Количество вылетов: {order.GetClientType().days}";
+        commonInfo.text += $"\n- РљРѕР»РёС‡РµСЃС‚РІРѕ РІС‹Р»РµС‚РѕРІ: {order.GetClientType().days}";
 
         if (currentClientType.hasEarlyCompletionBonus)
         {
-            earlyCompletionBonuses.text = "Бонусы за досрочное выполнение:";
+            earlyCompletionBonuses.text = "Р‘РѕРЅСѓСЃС‹ Р·Р° РґРѕСЃСЂРѕС‡РЅРѕРµ РІС‹РїРѕР»РЅРµРЅРёРµ:";
             if (currentClientType.earlyCompletionBonusModifier2 > 0f)
             {
-                earlyCompletionBonuses.text += $"\n- на 2 вылета раньше: х{currentClientType.earlyCompletionBonusModifier2} от заказа";
+                earlyCompletionBonuses.text += $"\n- РЅР° 2 РІС‹Р»РµС‚Р° СЂР°РЅСЊС€Рµ: С…{currentClientType.earlyCompletionBonusModifier2} РѕС‚ Р·Р°РєР°Р·Р°";
             }
             if (currentClientType.earlyCompletionBonusModifier1 > 0f)
             {
-                earlyCompletionBonuses.text += $"\n- на 1 вылет раньше: х{currentClientType.earlyCompletionBonusModifier1} от заказа";
+                earlyCompletionBonuses.text += $"\n- РЅР° 1 РІС‹Р»РµС‚ СЂР°РЅСЊС€Рµ: С…{currentClientType.earlyCompletionBonusModifier1} РѕС‚ Р·Р°РєР°Р·Р°";
             }
         }
         else
         {
-            earlyCompletionBonuses.text = $"Нет бонусов за досрочное выполнение";
+            earlyCompletionBonuses.text = $"РќРµС‚ Р±РѕРЅСѓСЃРѕРІ Р·Р° РґРѕСЃСЂРѕС‡РЅРѕРµ РІС‹РїРѕР»РЅРµРЅРёРµ";
         }
 
-        clientType.text = $"Клиент: {currentClientType.clientType}";
+        clientType.text = $"РљР»РёРµРЅС‚: {currentClientType.clientType}";
 
         List<LootCostModifier> lcmPositive = new (), lcmNegative = new ();
         foreach (LootCostModifier lcm in currentClientType.lootCostModifiers)
@@ -61,7 +61,7 @@ public class TaskInfoElement : MonoBehaviour
 
         if (lcmPositive.Count > 0)
         {
-            lootCostModifiersPositive.text = "Предметы, за которые клиент готов платить больше:";
+            lootCostModifiersPositive.text = "РџСЂРµРґРјРµС‚С‹, Р·Р° РєРѕС‚РѕСЂС‹Рµ РєР»РёРµРЅС‚ РіРѕС‚РѕРІ РїР»Р°С‚РёС‚СЊ Р±РѕР»СЊС€Рµ:";
             foreach (LootCostModifier lcm in lcmPositive)
             {
                 LootCategory lc = lootCategories.lootCategories.FirstOrDefault((x) => x.id == lcm.itemID);
@@ -71,13 +71,13 @@ public class TaskInfoElement : MonoBehaviour
                 int modifiedCost = (int)(lc.cost * modifier);
 
                 lootCostModifiersPositive.text += $"\n- {lootName} <color=#00ff00>(x{NumberFormatter.FormatNumberWithGrouping(modifier)})</color>\n" +
-                    $"  Цена за 1 шт.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
+                    $"  Р¦РµРЅР° Р·Р° 1 С€С‚.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
             }
         }
 
         if (lcmNegative.Count > 0)
         {
-            lootCostModifiersNegative.text = "Предметы, за которые клиент будет платить меньше:";
+            lootCostModifiersNegative.text = "РџСЂРµРґРјРµС‚С‹, Р·Р° РєРѕС‚РѕСЂС‹Рµ РєР»РёРµРЅС‚ Р±СѓРґРµС‚ РїР»Р°С‚РёС‚СЊ РјРµРЅСЊС€Рµ:";
             foreach (LootCostModifier lcm in lcmNegative)
             {
                 LootCategory lc = lootCategories.lootCategories.FirstOrDefault((x) => x.id == lcm.itemID);
@@ -87,7 +87,7 @@ public class TaskInfoElement : MonoBehaviour
                 int modifiedCost = (int)(lc.cost * modifier);
 
                 lootCostModifiersNegative.text += $"\n- {lootName} <color=#ff0000>(x{NumberFormatter.FormatNumberWithGrouping(modifier)})</color>\n" +
-                    $"  Цена за 1 шт.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
+                    $"  Р¦РµРЅР° Р·Р° 1 С€С‚.: {NumberFormatter.FormatNumberWithGrouping(modifiedCost)} UMU";
             }
         }
 

@@ -28,6 +28,6 @@ public class ClientType : ScriptableObject
     public int days = 4;
 
     public bool hasEarlyCompletionBonus;
-    public float earlyCompletionBonusModifier2; //за 2 дня до дедлайна
-    public float earlyCompletionBonusModifier1; //за 1 день до дедлайна
+    public float earlyCompletionBonusModifier2; //Р·Р° 2 РґРЅСЏ РґРѕ РґРµРґР»Р°Р№РЅР°
+    public float earlyCompletionBonusModifier1; //Р·Р° 1 РґРµРЅСЊ РґРѕ РґРµРґР»Р°Р№РЅР°
 }

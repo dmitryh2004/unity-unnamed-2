@@ -36,7 +36,7 @@ public class ArchiveUIController : UIWindowCameraTransitioning
                 SetArticle(mainArticle);
             else return;
 
-        // Скрыть все дочерние объекты
+        // РЎРєСЂС‹С‚СЊ РІСЃРµ РґРѕС‡РµСЂРЅРёРµ РѕР±СЉРµРєС‚С‹
         for (int i = contentParent.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(contentParent.GetChild(i).gameObject);
@@ -44,7 +44,7 @@ public class ArchiveUIController : UIWindowCameraTransitioning
 
         articleHeader.text = currentArticle.header;
 
-        // Создать UI элементы для каждой части статьи
+        // РЎРѕР·РґР°С‚СЊ UI СЌР»РµРјРµРЅС‚С‹ РґР»СЏ РєР°Р¶РґРѕР№ С‡Р°СЃС‚Рё СЃС‚Р°С‚СЊРё
         foreach (var part in currentArticle.articleParts)
         {
             GameObject uiElement = CreateUIElement(part);
@@ -83,10 +83,10 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         textMesh.color = textPart.color;
         textMesh.font = fontAsset;
 
-        // ForceMeshUpdate для корректного preferredHeight
+        // ForceMeshUpdate РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ preferredHeight
         textMesh.ForceMeshUpdate();
 
-        // Стилизация и выравнивание (без изменений)
+        // РЎС‚РёР»РёР·Р°С†РёСЏ Рё РІС‹СЂР°РІРЅРёРІР°РЅРёРµ (Р±РµР· РёР·РјРµРЅРµРЅРёР№)
         if (textPart.bold) textMesh.fontStyle |= FontStyles.Bold;
         if (textPart.italic) textMesh.fontStyle |= FontStyles.Italic;
         if (textPart.underline) textMesh.fontStyle |= FontStyles.Underline;
@@ -101,10 +101,10 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         RectTransform rect = textObj.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(canvasWidth, textMesh.preferredHeight);
 
-        // Layout Element для текста (важно!)
+        // Layout Element РґР»СЏ С‚РµРєСЃС‚Р° (РІР°Р¶РЅРѕ!)
         var layoutElement = textObj.AddComponent<LayoutElement>();
         layoutElement.preferredHeight = textMesh.preferredHeight;
-        layoutElement.flexibleHeight = 0; // Фиксированная высота
+        layoutElement.flexibleHeight = 0; // Р¤РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ РІС‹СЃРѕС‚Р°
 
         return textObj;
     }
@@ -115,12 +115,12 @@ public class ArchiveUIController : UIWindowCameraTransitioning
 
         var image = imageObj.AddComponent<Image>();
         image.sprite = imagePart.sprite;
-        image.preserveAspect = true; // Сохраняет пропорции спрайта
+        image.preserveAspect = true; // РЎРѕС…СЂР°РЅСЏРµС‚ РїСЂРѕРїРѕСЂС†РёРё СЃРїСЂР°Р№С‚Р°
 
         RectTransform rect = imageObj.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(imagePart.width, imagePart.height);
 
-        // LayoutElement с фиксированными размерами (КРИТИЧНО!)
+        // LayoutElement СЃ С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹РјРё СЂР°Р·РјРµСЂР°РјРё (РљР РРўРР§РќРћ!)
         var layoutElement = imageObj.AddComponent<LayoutElement>();
         layoutElement.preferredWidth = imagePart.width;
         layoutElement.preferredHeight = imagePart.height;
@@ -143,7 +143,7 @@ public class ArchiveUIController : UIWindowCameraTransitioning
         textMesh.color = Color.green;
         textMesh.fontStyle |= FontStyles.Underline;
 
-        // Добавить кнопку для перехода
+        // Р”РѕР±Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ РґР»СЏ РїРµСЂРµС…РѕРґР°
         var button = linkObj.AddComponent<Button>();
         button.onClick.AddListener(() => SetArticle(linkPart.article));
 

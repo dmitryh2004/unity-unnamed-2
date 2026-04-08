@@ -16,17 +16,17 @@ public class SelectiveContentSizeFitter : MonoBehaviour
     {
         if (child == null) return;
 
-        // Вычисляем новую высоту: высота child + 2 * padding
+        // Р’С‹С‡РёСЃР»СЏРµРј РЅРѕРІСѓСЋ РІС‹СЃРѕС‚Сѓ: РІС‹СЃРѕС‚Р° child + 2 * padding
         float newHeight = child.rect.height + 2f * padding;
         if (newHeight != oldHeight)
         {
             oldHeight = newHeight;
-            // Устанавливаем высоту self (sizeDelta.y управляет размером относительно anchors)
+            // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РІС‹СЃРѕС‚Сѓ self (sizeDelta.y СѓРїСЂР°РІР»СЏРµС‚ СЂР°Р·РјРµСЂРѕРј РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ anchors)
             Vector2 currentSize = self.sizeDelta;
             self.sizeDelta = new Vector2(currentSize.x, newHeight);
 
-            // Позиционируем child: y = padding (относительно pivot родителя)
-            // Предполагаем стандартный pivot (0.5, 0.5) и anchor (stretch или top)
+            // РџРѕР·РёС†РёРѕРЅРёСЂСѓРµРј child: y = padding (РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ pivot СЂРѕРґРёС‚РµР»СЏ)
+            // РџСЂРµРґРїРѕР»Р°РіР°РµРј СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ pivot (0.5, 0.5) Рё anchor (stretch РёР»Рё top)
             child.anchoredPosition = new Vector2(child.anchoredPosition.x, padding);
         }
     }

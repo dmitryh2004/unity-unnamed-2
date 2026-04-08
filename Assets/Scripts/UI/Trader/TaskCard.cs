@@ -10,9 +10,9 @@ public class TaskCard : MonoBehaviour
     
     public void UpdateText()
     {
-        required.text = $"Сумма: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}";
-        days.text = $"Вылетов: {order.GetClientType().days}";
-        client.text = $"Клиент: {order.GetClientType().clientType}";
+        required.text = $"РЎСѓРјРјР°: {NumberFormatter.FormatNumberWithGrouping(order.GetRequired())}";
+        days.text = $"Р’С‹Р»РµС‚РѕРІ: {order.GetClientType().days}";
+        client.text = $"РљР»РёРµРЅС‚: {order.GetClientType().clientType}";
     }
 
     public void SetOrder(Order order)

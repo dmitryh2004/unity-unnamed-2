@@ -82,13 +82,13 @@ public class ObjectPivotAdjuster : MonoBehaviour
                     {
                         inCanvas = false;
 
-                        // Вычисляем, сколько заходит за границы canvas по X
+                        // Р’С‹С‡РёСЃР»СЏРµРј, СЃРєРѕР»СЊРєРѕ Р·Р°С…РѕРґРёС‚ Р·Р° РіСЂР°РЅРёС†С‹ canvas РїРѕ X
                         if (localPoint.x < canvasRectTransform.rect.xMin)
                             excessX = Mathf.Max(excessX, canvasRectTransform.rect.xMin - localPoint.x);
                         else if (localPoint.x > canvasRectTransform.rect.xMax)
                             excessX = Mathf.Max(excessX, localPoint.x - canvasRectTransform.rect.xMax);
 
-                        // И по Y
+                        // Р РїРѕ Y
                         if (localPoint.y < canvasRectTransform.rect.yMin)
                             excessY = Mathf.Max(excessY, canvasRectTransform.rect.yMin - localPoint.y);
                         else if (localPoint.y > canvasRectTransform.rect.yMax)
@@ -99,12 +99,12 @@ public class ObjectPivotAdjuster : MonoBehaviour
                 if (inCanvas)
                 {
                     // Debug.Log($"{gameObject.name}: i = {i}");
-                    return; // Нашли подходящий вариант — возвращаемся
+                    return; // РќР°С€Р»Рё РїРѕРґС…РѕРґСЏС‰РёР№ РІР°СЂРёР°РЅС‚ вЂ” РІРѕР·РІСЂР°С‰Р°РµРјСЃСЏ
                 }
                 else
                 {
-                    // Сохраняем вариант с наименьшим выходом за границы
-                    // Сравним по суммарному избыточному выходу по X и Y
+                    // РЎРѕС…СЂР°РЅСЏРµРј РІР°СЂРёР°РЅС‚ СЃ РЅР°РёРјРµРЅСЊС€РёРј РІС‹С…РѕРґРѕРј Р·Р° РіСЂР°РЅРёС†С‹
+                    // РЎСЂР°РІРЅРёРј РїРѕ СЃСѓРјРјР°СЂРЅРѕРјСѓ РёР·Р±С‹С‚РѕС‡РЅРѕРјСѓ РІС‹С…РѕРґСѓ РїРѕ X Рё Y
                     float totalExcess = excessX + excessY;
                     float bestTotalExcess = minExcessX + minExcessY;
                     if (totalExcess < bestTotalExcess)
@@ -118,7 +118,7 @@ public class ObjectPivotAdjuster : MonoBehaviour
                 }
             }
 
-            // Если ни один вариант не поместился, применяем вариант с минимальным выходом за границы
+            // Р•СЃР»Рё РЅРё РѕРґРёРЅ РІР°СЂРёР°РЅС‚ РЅРµ РїРѕРјРµСЃС‚РёР»СЃСЏ, РїСЂРёРјРµРЅСЏРµРј РІР°СЂРёР°РЅС‚ СЃ РјРёРЅРёРјР°Р»СЊРЅС‹Рј РІС‹С…РѕРґРѕРј Р·Р° РіСЂР°РЅРёС†С‹
             if (bestIndex != -1)
             {
                 rectTransform.pivot = bestPivot;

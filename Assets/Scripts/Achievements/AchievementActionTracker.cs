@@ -204,7 +204,7 @@ public class AchievementActionTracker : MonoBehaviour
                 break;
             case "jewelry_table":
                 break;
-            default: // такой ачивки нет
+            default: // С‚Р°РєРѕР№ Р°С‡РёРІРєРё РЅРµС‚
                 return;
         }
         AchievementSystem.Instance.ModifyAchievementProgress($"perfect_{equipmentName}", true, level);

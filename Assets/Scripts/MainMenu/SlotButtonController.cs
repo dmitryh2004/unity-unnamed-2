@@ -37,7 +37,7 @@ public class SlotButtonController : MonoBehaviour
 
     public void UpdateUI()
     {
-        slotButtonText.text = $"Слот {number}";
+        slotButtonText.text = $"РЎР»РѕС‚ {number}";
         background.color = (selected) ? selectedColor : unselectedColor;
 
         quotaText.gameObject.SetActive(hasSave && hasQuota);
@@ -57,11 +57,11 @@ public class SlotButtonController : MonoBehaviour
             {
                 if (hasQuota)
                 {
-                    quotaText.text = $"Требуется: {NumberFormatter.FormatNumberWithGrouping(quota)} UMU";
-                    collectedText.text = $"Собрано: {NumberFormatter.FormatNumberWithGrouping(collected)} UMU";
-                    daysLeftText.text = $"Осталось вылетов: {daysLeft}";
+                    quotaText.text = $"РўСЂРµР±СѓРµС‚СЃСЏ: {NumberFormatter.FormatNumberWithGrouping(quota)} UMU";
+                    collectedText.text = $"РЎРѕР±СЂР°РЅРѕ: {NumberFormatter.FormatNumberWithGrouping(collected)} UMU";
+                    daysLeftText.text = $"РћСЃС‚Р°Р»РѕСЃСЊ РІС‹Р»РµС‚РѕРІ: {daysLeft}";
                 }
-                balanceText.text = $"Баланс: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
+                balanceText.text = $"Р‘Р°Р»Р°РЅСЃ: {NumberFormatter.FormatNumberWithGrouping(balance)} UMU";
             }
             else
             {

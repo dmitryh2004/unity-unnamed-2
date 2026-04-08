@@ -50,7 +50,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
             v.UpdateCard();
         }
 
-        yourBalance.text = $"Ваш баланс: {NumberFormatter.FormatNumberWithGrouping(PlayerWallet.Instance.GetMoney())} UMU";
+        yourBalance.text = $"Р’Р°С€ Р±Р°Р»Р°РЅСЃ: {NumberFormatter.FormatNumberWithGrouping(PlayerWallet.Instance.GetMoney())} UMU";
 
         UpdateSelectedItemInfo();
     }
@@ -74,7 +74,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
         UpgradableItem equipment = equipmentCards[selectedItem].GetEquipment();
         title.text = equipment.GetName();
         desc.text = equipment.GetDesc();
-        characteristicsTitle.text = $"Характеристики (уровень {equipment.GetLevel()})";
+        characteristicsTitle.text = $"РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё (СѓСЂРѕРІРµРЅСЊ {equipment.GetLevel()})";
 
         string characteristics = "";
         List<string> chars = new();
@@ -87,7 +87,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
                 chars.Add($"{equipment.GetUpgradableValueName(i)}: {NumberFormatter.FormatNumberWithGrouping((float)uvValue * (float)equipment.GetUpgradableValueShowMultiplier(i))} {equipment.GetUpgradableValueSuffix(i)}");
         }
 
-        characteristics = (chars.Count > 0) ? string.Join("\n", chars) : "Данный предмет еще не куплен";
+        characteristics = (chars.Count > 0) ? string.Join("\n", chars) : "Р”Р°РЅРЅС‹Р№ РїСЂРµРґРјРµС‚ РµС‰Рµ РЅРµ РєСѓРїР»РµРЅ";
         this.characteristics.text = characteristics;
 
         bool maxUpgraded = equipment.GetLevel() == equipment.GetMaxLevel();
@@ -98,7 +98,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
 
         if (!maxUpgraded)
         {
-            upgradeEffectTitle.text = $"Эффекты от улучшения (уровень {equipment.GetLevel() + 1})";
+            upgradeEffectTitle.text = $"Р­С„С„РµРєС‚С‹ РѕС‚ СѓР»СѓС‡С€РµРЅРёСЏ (СѓСЂРѕРІРµРЅСЊ {equipment.GetLevel() + 1})";
             
 
             List<string> ue = new ();
@@ -110,7 +110,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
             string upgradeEffects = string.Join("\n", ue);
             upgradeEffect.text = upgradeEffects;
 
-            upgradeButtonText.text = $"Улучшить ({NumberFormatter.FormatNumberWithGrouping(equipment.GetUpgradeCost(equipment.GetLevel() + 1))} UMU)";
+            upgradeButtonText.text = $"РЈР»СѓС‡С€РёС‚СЊ ({NumberFormatter.FormatNumberWithGrouping(equipment.GetUpgradeCost(equipment.GetLevel() + 1))} UMU)";
         }
 
         additionalInfo.text = equipment.GetAdditionalInfo();
@@ -129,7 +129,7 @@ public class TraderUIEquipmentScreenController : TraderUIBaseScreenController
         {
             if (nextUV != null)
             {
-                ue.Add($"<color=#ffff00>(Новое свойство)</color> {UVName}: {NumberFormatter.FormatNumberWithGrouping((float)nextUV * (float)showMultiplier)} {UVSuffix}");
+                ue.Add($"<color=#ffff00>(РќРѕРІРѕРµ СЃРІРѕР№СЃС‚РІРѕ)</color> {UVName}: {NumberFormatter.FormatNumberWithGrouping((float)nextUV * (float)showMultiplier)} {UVSuffix}");
             }
             return;
         }

@@ -6,7 +6,7 @@ public class LightSourceCuller : MonoBehaviour
     [Header("References")]
     public Camera playerCamera;
     public Light thisLight;
-    public float checkInterval = 0.5f; // Проверять каждые 0.5 сек для производительности
+    public float checkInterval = 0.5f; // РџСЂРѕРІРµСЂСЏС‚СЊ РєР°Р¶РґС‹Рµ 0.5 СЃРµРє РґР»СЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё
 
     [Header("Light Properties")]
     public float lightRange = 10f;
@@ -54,7 +54,7 @@ public class LightSourceCuller : MonoBehaviour
         }
         else
         {
-            // Fallback: расстояние до камеры
+            // Fallback: СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РєР°РјРµСЂС‹
             return Vector3.Distance(transform.position, playerCamera.transform.position) < lightRange;
         }
     }
@@ -64,8 +64,8 @@ public class LightSourceCuller : MonoBehaviour
         Collider lightCol = GetComponent<Collider>();
         if (lightCol == null) return false;
 
-        // Находим nearby объекты с Renderer в радиусе света
-        Collider[] hits = Physics.OverlapSphere(transform.position, lightRange, LayerMask.GetMask("Default")); // Укажите нужные слои
+        // РќР°С…РѕРґРёРј nearby РѕР±СЉРµРєС‚С‹ СЃ Renderer РІ СЂР°РґРёСѓСЃРµ СЃРІРµС‚Р°
+        Collider[] hits = Physics.OverlapSphere(transform.position, lightRange, LayerMask.GetMask("Default")); // РЈРєР°Р¶РёС‚Рµ РЅСѓР¶РЅС‹Рµ СЃР»РѕРё
         nearbyRenderers ??= new Renderer[0];
 
         System.Collections.Generic.List<Renderer> candidates = new();

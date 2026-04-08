@@ -35,46 +35,46 @@ public class PressurePlateTooltip : MonoBehaviour
     {
         if (itemCount % 100 > 10 && itemCount % 100 < 21)
         {
-            return "любых предметов";
+            return "Р»СЋР±С‹С… РїСЂРµРґРјРµС‚РѕРІ";
         }
         else if (itemCount % 10 == 1)
         {
-            return "любой предмет";
+            return "Р»СЋР±РѕР№ РїСЂРµРґРјРµС‚";
         }
         else if (itemCount % 10 < 5)
         {
-            return "любых предмета";
+            return "Р»СЋР±С‹С… РїСЂРµРґРјРµС‚Р°";
         }
         else
         {
-            return "любых предметов";
+            return "Р»СЋР±С‹С… РїСЂРµРґРјРµС‚РѕРІ";
         }
     }
 
     public void UpdateText()
     {
-        string newText = "Условия активации:";
+        string newText = "РЈСЃР»РѕРІРёСЏ Р°РєС‚РёРІР°С†РёРё:";
 
         bool checkItemCount = pressurePlateController.CheckItemCount();
         bool checkLootCategory = pressurePlateController.CheckLootCategory();
 
         if (!checkItemCount && !checkLootCategory)
         {
-            newText += "\nПоложить 1 любой предмет";
+            newText += "\nРџРѕР»РѕР¶РёС‚СЊ 1 Р»СЋР±РѕР№ РїСЂРµРґРјРµС‚";
         }
         else
         {
             if (checkItemCount)
             {
                 int itemCount = pressurePlateController.GetRequiredItemCount();
-                newText += $"\nКоличество предметов на плите: {itemCount}";
+                newText += $"\nРљРѕР»РёС‡РµСЃС‚РІРѕ РїСЂРµРґРјРµС‚РѕРІ РЅР° РїР»РёС‚Рµ: {itemCount}";
             }
             if (checkLootCategory)
             {
                 List<LootCategory> lootCategories = pressurePlateController.GetAcceptableLootCategories();
                 int requiredAcceptedItemsCount = pressurePlateController.GetRequiredCountOfAcceptedItems();
 
-                newText += $"\n{requiredAcceptedItemsCount} {GetEndingForTooltip(requiredAcceptedItemsCount)} из списка:";
+                newText += $"\n{requiredAcceptedItemsCount} {GetEndingForTooltip(requiredAcceptedItemsCount)} РёР· СЃРїРёСЃРєР°:";
 
                 foreach (LootCategory lc in lootCategories)
                 {

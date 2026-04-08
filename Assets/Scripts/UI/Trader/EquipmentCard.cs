@@ -65,16 +65,16 @@ public class EquipmentCard : MonoBehaviour
 
         if (!maxUpgraded)
         {
-            equipmentLevel.text = $"Уровень: {level} / {maxLevel}";
+            equipmentLevel.text = $"РЈСЂРѕРІРµРЅСЊ: {level} / {maxLevel}";
 
             int upgradeCost = equipmentObject.GetUpgradeCost(level + 1);
 
             canUpgrade = PlayerWallet.Instance.CanAfford(upgradeCost);
-            equipmentUpgradeCost.text = $"Цена улучшения: {NumberFormatter.FormatNumberWithGrouping(upgradeCost)} UMU";
+            equipmentUpgradeCost.text = $"Р¦РµРЅР° СѓР»СѓС‡С€РµРЅРёСЏ: {NumberFormatter.FormatNumberWithGrouping(upgradeCost)} UMU";
         }
         else
         {
-            equipmentLevel.text = "Максимально улучшено";
+            equipmentLevel.text = "РњР°РєСЃРёРјР°Р»СЊРЅРѕ СѓР»СѓС‡С€РµРЅРѕ";
             equipmentUpgradeCost.text = "";
         }
 

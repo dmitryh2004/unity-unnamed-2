@@ -58,11 +58,11 @@ public class MainMenuSlotUIController : MonoBehaviour
                 
                 if (!version)
                 {
-                    buttons[i].invalidSaveReasonText = "Несовместимая версия игры";
+                    buttons[i].invalidSaveReasonText = "РќРµСЃРѕРІРјРµСЃС‚РёРјР°СЏ РІРµСЂСЃРёСЏ РёРіСЂС‹";
                 }
                 else if (!checksum)
                 {
-                    buttons[i].invalidSaveReasonText = "Файл поврежден";
+                    buttons[i].invalidSaveReasonText = "Р¤Р°Р№Р» РїРѕРІСЂРµР¶РґРµРЅ";
                 }
             }
             buttons[i].hasSave = hasSave;

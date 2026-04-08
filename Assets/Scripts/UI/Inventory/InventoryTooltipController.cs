@@ -54,30 +54,30 @@ public class InventoryTooltipController : MonoBehaviour
 
         tooltipHeader.text = $"{lc.lootName}";
         tooltipText.text = lc.lootDesc;
-        tooltipCost.text = $"Цена за одну шт.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} UMU";
+        tooltipCost.text = $"Р¦РµРЅР° Р·Р° РѕРґРЅСѓ С€С‚.: {NumberFormatter.FormatNumberWithGrouping(lc.cost)} UMU";
 
         tooltipActions.text = "";
         if (isInTraderUI)
         {
             string sellBind = controls.TraderUI.SellItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{sellBind}] - продать 1 шт. (+Shift - продать всё)";
+            tooltipActions.text += $"\n[{sellBind}] - РїСЂРѕРґР°С‚СЊ 1 С€С‚. (+Shift - РїСЂРѕРґР°С‚СЊ РІСЃС‘)";
         }
         else if (isInChestUI)
         {
             string transferBind = controls.ChestUI.TransferItem.GetBindingDisplayString();
             if (isChestItem)
             {
-                tooltipActions.text += $"\n[{transferBind}] - взять в инвентарь (+Shift - взять всё)";
+                tooltipActions.text += $"\n[{transferBind}] - РІР·СЏС‚СЊ РІ РёРЅРІРµРЅС‚Р°СЂСЊ (+Shift - РІР·СЏС‚СЊ РІСЃС‘)";
             }
             else
             {
-                tooltipActions.text += $"\n[{transferBind}] - положить в сундук (+Shift - положить всё)";
+                tooltipActions.text += $"\n[{transferBind}] - РїРѕР»РѕР¶РёС‚СЊ РІ СЃСѓРЅРґСѓРє (+Shift - РїРѕР»РѕР¶РёС‚СЊ РІСЃС‘)";
             }
         }
         else
         {
             string dropBind = controls.InventoryUI.DropItem.GetBindingDisplayString();
-            tooltipActions.text += $"\n[{dropBind}] - выкинуть 1 шт. (+Shift - выкинуть всё)";
+            tooltipActions.text += $"\n[{dropBind}] - РІС‹РєРёРЅСѓС‚СЊ 1 С€С‚. (+Shift - РІС‹РєРёРЅСѓС‚СЊ РІСЃС‘)";
         }
     }
 }

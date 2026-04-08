@@ -21,7 +21,7 @@ public class VirusController : UpgradableItem
     [Space]
     [SerializeField] Color NotEnoughHPColor1, NotEnoughHPColor2;
     [Space]
-    [Tooltip("Задержка в проигрывании анимации при изменении хп")]
+    [Tooltip("Р—Р°РґРµСЂР¶РєР° РІ РїСЂРѕРёРіСЂС‹РІР°РЅРёРё Р°РЅРёРјР°С†РёРё РїСЂРё РёР·РјРµРЅРµРЅРёРё С…Рї")]
     [SerializeField] float hoverAnimationDelay = 0.5f;
 
     Coroutine delayCoroutine = null;

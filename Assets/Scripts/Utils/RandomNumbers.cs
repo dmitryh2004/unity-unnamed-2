@@ -6,7 +6,7 @@ public class RandomNumbers
     public static List<int> GetUniqueRandomNumbers(int n, int min, int max)
     {
         if (max - min + 1 < n)
-            throw new ArgumentException("Диапазон слишком мал для выбора n уникальных чисел.");
+            throw new ArgumentException("Р”РёР°РїР°Р·РѕРЅ СЃР»РёС€РєРѕРј РјР°Р» РґР»СЏ РІС‹Р±РѕСЂР° n СѓРЅРёРєР°Р»СЊРЅС‹С… С‡РёСЃРµР».");
 
         List<int> numbers = new List<int>();
         for (int i = min; i <= max; i++)
@@ -16,13 +16,13 @@ public class RandomNumbers
         for (int i = numbers.Count - 1; i > 0; i--)
         {
             int j = rnd.Next(i + 1);
-            // Обмениваем местами элементы
+            // РћР±РјРµРЅРёРІР°РµРј РјРµСЃС‚Р°РјРё СЌР»РµРјРµРЅС‚С‹
             int temp = numbers[i];
             numbers[i] = numbers[j];
             numbers[j] = temp;
         }
 
-        // Возвращаем первые n элементов перемешанного списка
+        // Р’РѕР·РІСЂР°С‰Р°РµРј РїРµСЂРІС‹Рµ n СЌР»РµРјРµРЅС‚РѕРІ РїРµСЂРµРјРµС€Р°РЅРЅРѕРіРѕ СЃРїРёСЃРєР°
         return numbers.GetRange(0, n);
     }
 }

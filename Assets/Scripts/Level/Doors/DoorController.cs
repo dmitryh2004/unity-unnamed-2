@@ -7,8 +7,8 @@ public class DoorController : Lockable
 {
     [SerializeField] Animator anim;
     [SerializeField] NavMeshLink navMeshLink = null;
-    [Tooltip("Название двери (дверь, ящик, сейф и т.д.) в винительном падеже (открыть что?)")]
-    [SerializeField] string doorName = "дверь";
+    [Tooltip("РЊР°Р·РІР°РЅРёРµ РґРІРµСЂРё (РґРІРµСЂСЊ, в‚¬С‰РёРє, СЃРµР№С„ Рё С‚.Рґ.) РІ РІРёРЅРёС‚РµР»СЊРЅРѕРј РїР°РґРµР¶Рµ (РѕС‚РєСЂС‹С‚СЊ С‡С‚Рѕ?)")]
+    [SerializeField] string doorName = "РґРІРµСЂСЊ";
     [SerializeField] bool canBeOpenedManually = true;
     bool opened = false;
 

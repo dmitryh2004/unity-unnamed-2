@@ -22,7 +22,7 @@ public class GameOverScreenController : MonoBehaviour
     {
         if (fill)
         {
-            header = (victory) ? "Вылет завершен" : "Неудачный вылет";
+            header = (victory) ? "Р’С‹Р»РµС‚ Р·Р°РІРµСЂС€РµРЅ" : "РќРµСѓРґР°С‡РЅС‹Р№ РІС‹Р»РµС‚";
             headerText.text = "";
 
             desc = reason;
@@ -43,7 +43,7 @@ public class GameOverScreenController : MonoBehaviour
                 .Replace("D", $"{StatisticCollector.Instance.LocksHacked}")
                 .Replace("E", $"{StatisticCollector.Instance.FailedHacks}")
                 .Replace("F", $"{StatisticCollector.Instance.LockedLocks}")
-                .Replace("G", $"{(StatisticCollector.Instance.AlarmRaised ? "да" : "нет")}")
+                .Replace("G", $"{(StatisticCollector.Instance.AlarmRaised ? "РґР°" : "РЅРµС‚")}")
                 .Replace("H", $"{AlarmController.Instance.GetTimerController().GetTimerText(internalUsage: false)}");
         }
 

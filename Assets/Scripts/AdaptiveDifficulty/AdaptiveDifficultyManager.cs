@@ -6,9 +6,6 @@ using UnityEngine.SceneManagement;
 public class AdaptiveDifficultyManager : MonoBehaviour
 {
     [Range(-1, 5)]
-    [SerializeField] int forgettingDegree = 0;
-
-    [Range(-1, 5)]
     [SerializeField] int alertnessDegree = 0;
 
     [SerializeField] AdaptiveDifficultyValues values;
@@ -22,8 +19,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     [Header("Constants")]
     [SerializeField] float attenuationCoeff = 0.25f; // L - коэффициент затухания
     [SerializeField] float forgettingCoeff = 3f; // k - коэффициент забывания
-    [SerializeField] float remainingCoeff = 0.5f; // w'/w - минимальное соотношение нового и старого весов
-
+    
     private void Awake()
     {
         if (Instance != null)
@@ -41,9 +37,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     }
 
     public AdaptiveDifficultyValues Values => values;
-    public int ForgettingDegree => forgettingDegree;
     public int AlertnessDegree => alertnessDegree;
-    public void SetForgettingDegree(int forgettingDegree) => this.forgettingDegree = forgettingDegree;
     public void SetAlertnessDegree(int alertnessDegree)
     {
         this.alertnessDegree = alertnessDegree;
@@ -167,7 +161,6 @@ public class AdaptiveDifficultyManager : MonoBehaviour
         {
             float newWeight = weight - forgettingCoeff;
             if (newWeight < 0) newWeight = 0;
-            if (newWeight / weight < remainingCoeff) newWeight = weight * remainingCoeff;
             return newWeight;
         }
     }

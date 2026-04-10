@@ -31,15 +31,13 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
             if (locationData.locationName == chosenLocation)
             {
                 locationData.alertness = Mathf.Clamp(locationData.alertness + 1, -1, 5);
-                locationData.forgetting = 0;
             }
             else
             {
                 locationData.alertness = Mathf.Clamp(locationData.alertness - 1, -1, 5);
-                locationData.forgetting = Mathf.Clamp(locationData.forgetting + 1, 0, 5);
                 foreach (var roomWeight in locationData.weights)
                 {
-                    roomWeight.weight = locationData.forgetting == 5 ? 0 : GetRecalculatedWeight(roomWeight.weight, 0);
+                    roomWeight.weight = GetRecalculatedWeight(roomWeight.weight, 0);
                 }
             }
         }

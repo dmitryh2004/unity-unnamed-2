@@ -394,7 +394,6 @@ public class SaveManager : MonoBehaviour
                     {
                         locationName = locationNames[i],
                         alertness = AdaptiveDifficultyManager.Instance.AlertnessDegree,
-                        forgetting = AdaptiveDifficultyManager.Instance.ForgettingDegree,
                         weights = AdaptiveDifficultyManager.Instance.RoomWeights
                     });
                     continue;
@@ -408,7 +407,7 @@ public class SaveManager : MonoBehaviour
             }
             else // add default data if not found anywhere
             {
-                adaptiveDifficulty.locations.Add(new AD_LocationDifficulty { locationName = locationNames[i], alertness = -1, forgetting = 5, weights = new () });
+                adaptiveDifficulty.locations.Add(new AD_LocationDifficulty { locationName = locationNames[i], alertness = -1, weights = new () });
             }
         }
 

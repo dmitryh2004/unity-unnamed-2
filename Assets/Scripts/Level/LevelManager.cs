@@ -51,13 +51,11 @@ public class LevelManager : MonoBehaviour
                 if (locationDifficulty != null)
                 {
                     AdaptiveDifficultyManager.Instance.SetAlertnessDegree(locationDifficulty.alertness);
-                    AdaptiveDifficultyManager.Instance.SetForgettingDegree(locationDifficulty.forgetting);
                     AdaptiveDifficultyManager.Instance.SetRoomWeights(locationDifficulty.weights);
                 }
                 else
                 {
                     AdaptiveDifficultyManager.Instance.SetAlertnessDegree(0);
-                    AdaptiveDifficultyManager.Instance.SetForgettingDegree(0);
                     AdaptiveDifficultyManager.Instance.SetRoomWeights(new List<AD_RoomWeight>());
                 }
             }

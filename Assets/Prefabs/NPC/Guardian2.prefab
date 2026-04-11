@@ -509,6 +509,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActiveOnStart: 1
   checkedInteractables: []
+  stuckDetectTime: 5
+  stuckVelocity: 1
   headObj: {fileID: 6180025626888334747}
   fovLight: {fileID: 2590385686160530030}
   agent: {fileID: 5705138749298887910}
@@ -714,6 +716,12 @@ MonoBehaviour:
     weight: 1
     volume: 1
   - clip: {fileID: 8300000, guid: 062ed80bbe8165548b570c7d9d1d45de, type: 3}
+    weight: 1
+    volume: 2
+  - clip: {fileID: 8300000, guid: 1a675f3d96fe9d740a50c79c32b19da4, type: 3}
+    weight: 1
+    volume: 2
+  - clip: {fileID: 8300000, guid: d755138086e4990459599d3cb7f216cd, type: 3}
     weight: 1
     volume: 2
   footstepAudios:

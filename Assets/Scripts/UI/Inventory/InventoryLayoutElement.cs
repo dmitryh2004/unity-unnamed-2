@@ -118,9 +118,9 @@ public class InventoryLayoutElement : MonoBehaviour
         if (hasEstimateCost)
         {
             if (totalCost < 2_000_000_000)
-                estimateCost.text = $"ќценочна€ стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} UMU";
+                estimateCost.text = $"Оценочная стоимость вещей: {NumberFormatter.FormatNumberWithGrouping(totalCost)} UMU";
             else
-                estimateCost.text = $"ќценочна€ стоимость вещей: более 2 млрд UMU";
+                estimateCost.text = $"Оценочная стоимость вещей: более 2 млрд UMU";
         }
     }
 

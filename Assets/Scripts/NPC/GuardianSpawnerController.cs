@@ -22,6 +22,7 @@ public class GuardianSpawnerController : MonoBehaviour
     [SerializeField] List<Transform> trackedObjects = new ();
     //[SerializeField] Transform levelPatrolPoints;
     [SerializeField] Transform spawnPoint;
+    [SerializeField] PlayerScanner playerScanner;
     [SerializeField] PlayerScannerController playerScannerController;
     [SerializeField] RoomObject roomObject;
     Queue<RoomObject> availableRooms = new ();
@@ -83,6 +84,7 @@ public class GuardianSpawnerController : MonoBehaviour
             gc.SetEnterPhase3OnPoints(guardianData.enterPhase3OnPoints);
             guardianManager.AddGuardian(gc);
 
+            playerScanner.AddGuardian(gc);
             playerScannerController.AddHideable(gc.FovLight.gameObject);
 
             doorController.ChangeDoorState(true);
@@ -127,6 +129,8 @@ public class GuardianSpawnerController : MonoBehaviour
 
     private void Start()
     {
+        if (playerScanner == null) playerScanner = FindFirstObjectByType<PlayerScanner>();
+        if (playerScannerController == null) playerScannerController = FindFirstObjectByType<PlayerScannerController>();
         InvokeRepeating(nameof(CheckQueue), 0f, spawnQueueInterval);
     }
 }

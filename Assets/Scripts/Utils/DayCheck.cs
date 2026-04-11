@@ -26,7 +26,7 @@ public class DayCheck : MonoBehaviour
 #if UNITY_EDITOR
         // здесь можно принудительно поставить флаги дат дл€ теста
         // April1 = true;
-		September3 = true;
+		// September3 = true;
 		// NewYear = true;
 #endif
 

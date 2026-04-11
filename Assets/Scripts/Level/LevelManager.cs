@@ -199,6 +199,7 @@ public class LevelManager : MonoBehaviour
         generator.UpdateRoomWeights();
         saveManager.SaveData(slot, showMessage: true);
 
+        FindAnyObjectByType<PlayerCameraBlurController>()?.DisableBlur();
         gameOverScreenController.ShowGameOverWindow(reasonCode == 0, gameOverReasons[reasonCode]);
     }
 

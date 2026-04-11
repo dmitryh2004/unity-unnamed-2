@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8084423362144391917}
   m_Layer: 0
-  m_Name: North
+  m_Name: South
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,8 +395,8 @@ MonoBehaviour:
   dontExtend: 0
   neighbours: []
   doorObjects:
-  - {fileID: 7377434734068977377}
   - {fileID: 1054176012229714439}
+  - {fileID: 7377434734068977377}
   lootContainers: []
   lootChance: 100
   coridorHorizontal: {fileID: 7425032853771772827, guid: 504a1311493ec3b48a14f8108050c0cd, type: 3}
@@ -435,7 +435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306628303079496259}
   m_Layer: 0
-  m_Name: South
+  m_Name: North
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

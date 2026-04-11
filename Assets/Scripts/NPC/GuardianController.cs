@@ -43,6 +43,11 @@ public class GuardianController : MonoBehaviour
     float animatorPhase1MovingSpeed = 0f, animatorPhase2MovingSpeed = 0f;
     Material instanceMaterial;
 
+    //Stuck management
+    float stuckTimer = 0f;
+    [SerializeField] float stuckDetectTime = 5f;
+    [SerializeField] float stuckVelocity = .5f;
+
     //Adaptive Difficulty
     float AD_movingSpeedMultiplier = 1f;
     float AD_xrayRangeMultiplier = 1f;
@@ -254,6 +259,7 @@ public class GuardianController : MonoBehaviour
         //Debug.Log($"{gameObject.name}: switching to phase {newPhase}");
         phase = newPhase; //change phase
         UpdateFovLight();
+        StopAllCoroutines();
         StartCoroutine(SmoothlyRotate(baseRotationAngle - currentRotationAngle, playSounds: false));
 
         instanceMaterial.SetColor("_EmissionColor", GetPhaseEmissionColor());
@@ -284,6 +290,7 @@ public class GuardianController : MonoBehaviour
                 break;
             case 3:
                 agent.speed = speed * AD_movingSpeedMultiplier;
+                agent.destination = transform.position;
 
                 if (animator != null)
                 {
@@ -349,6 +356,41 @@ public class GuardianController : MonoBehaviour
                 case 3:
                     Phase3Update();
                     break;
+            }
+        }
+
+        // stuck check
+        CheckForStuck();
+    }
+
+    public void CheckForStuck()
+    {
+        bool isMoving = agent.velocity.magnitude > stuckVelocity * AD_movingSpeedMultiplier;
+        if (phase == 3 || isMoving)
+        {
+            stuckTimer = 0f;
+        }
+        else
+        {
+            stuckTimer += Time.deltaTime;
+            if (stuckTimer >= stuckDetectTime)
+            {
+                stuckTimer = 0f;
+                if (phase == 1)
+                {
+                    if (enterPhase3OnPoints)
+                    {
+                        SwitchPhase(3);
+                    }
+                    else
+                    {
+                        SetNextWaypoint();
+                    }
+                }
+                else if (phase == 2)
+                {
+                    SwitchPhase(3);
+                }
             }
         }
     }

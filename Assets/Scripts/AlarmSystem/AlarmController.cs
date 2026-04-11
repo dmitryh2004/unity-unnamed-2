@@ -48,6 +48,7 @@ public class AlarmController : MonoBehaviour
         if (timerController != null)
             timerController.StartTimer();
         GuardianManager.Instance?.ExpireSpawnTimer();
+        FindAnyObjectByType<PlayerCameraBlurController>()?.EnableBlur();
         alarmSoundSource.Play();
     }
 

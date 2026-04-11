@@ -7,7 +7,7 @@ public class DoorController : Lockable
 {
     [SerializeField] Animator anim;
     [SerializeField] NavMeshLink navMeshLink = null;
-    [Tooltip("Ќазвание двери (дверь, €щик, сейф и т.д.) в винительном падеже (открыть что?)")]
+    [Tooltip("Название двери (дверь, ящик, сейф и т.д.) в винительном падеже (открыть что?)")]
     [SerializeField] string doorName = "дверь";
     [SerializeField] bool canBeOpenedManually = true;
     bool opened = false;
@@ -28,6 +28,13 @@ public class DoorController : Lockable
     [SerializeField] bool triggerOpenSafeEvent = false;
     [SerializeField] bool triggerOpenTableEvent = false;
     bool firstOpen = true;
+
+    [Space]
+    [SerializeField] bool checkTriggerZone = false; // не закрывать, если игрок в триггер-коллайдере
+    bool inTriggerZone = false;
+
+    public bool CheckTriggerZone => checkTriggerZone;
+    public bool InTriggerZone => inTriggerZone;
     private void Start()
     {
         if (anim == null) anim = GetComponent<Animator>();
@@ -57,9 +64,11 @@ public class DoorController : Lockable
         }
     }
 
+    public void SetInTriggerZone(bool value) => this.inTriggerZone = value;
+
     public void ChangeDoorState(bool opened)
     {
-        if (!IsLocked())
+        if (!IsLocked() && !(checkTriggerZone && inTriggerZone))
         {
             this.opened = opened;
             if (this.opened)

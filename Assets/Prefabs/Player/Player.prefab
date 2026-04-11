@@ -679,6 +679,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 536d3f43-4793-4501-b09c-27ad58a0eae1
     m_ActionName: 'ArchiveUI/Exit[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1de4ce1e-bf20-470e-b6aa-402ee867a852
+    m_ActionName: 'Gameplay/DefeatSceneEsc[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -859,6 +863,59 @@ MonoBehaviour:
   defaultLevel: 0
   upgradableItemData: {fileID: 11400000, guid: 20c9f2e7189f2ae4b9ac2c6df3211e59, type: 2}
   uiController: {fileID: 0}
+  checkGuardianMaxDistance: 20
+  checkGuardianUpdatePositionPeriod: 0.5
+  checkGuardianBeepPeriod:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.24999999
+      inSlope: 0.005867183
+      outSlope: 0.005867183
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.035330422
+    - serializedVersion: 3
+      time: 0.9999172
+      value: 2.0000994
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  checkGuardianBeepVolume:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9976415
+      inSlope: -0.39662242
+      outSlope: -0.39662242
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.20536517
+    - serializedVersion: 3
+      time: 1
+      value: -0.0001373291
+      inSlope: -0.016842945
+      outSlope: -0.016842945
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.49286216
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  guardians: []
+  audioSource: {fileID: 6702621504603471115}
+  beepClip: {fileID: 8300000, guid: e191974c58781914c8fc83a6162917c4, type: 3}
 --- !u!114 &863148354003604142
 MonoBehaviour:
   m_ObjectHideFlags: 0

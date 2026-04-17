@@ -176,6 +176,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 906a5db6d54fdad48b64d64c43f0e5ff, type: 3}
+--- !u!114 &61387127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1139369272422653802, guid: 906a5db6d54fdad48b64d64c43f0e5ff, type: 3}
+  m_PrefabInstance: {fileID: 61387126}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &188773895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5548,6 +5559,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1987016216917279445, guid: b3eb2b8dd5f8652468109c467c94f501, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 61387127}
     - target: {fileID: 2172190967042727368, guid: b3eb2b8dd5f8652468109c467c94f501, type: 3}
       propertyPath: m_Name
       value: PauseUI

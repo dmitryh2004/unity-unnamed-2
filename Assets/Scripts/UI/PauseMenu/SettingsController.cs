@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
+	[SerializeField] Volume volume;
     [SerializeField] VolumeProfile volumeProfile;
     ColorAdjustments colorAdjustments;
 
@@ -12,18 +13,28 @@ public class SettingsController : MonoBehaviour
     float savedPostExposure = 0f, savedContrast = 0f;
     [SerializeField] Slider postExposureSlider, contrastSlider;
     bool initialized = false;
+	
+	void Start() {
+		Init();
+	}
 
     void Init()
     {
-        if (volumeProfile.TryGet<ColorAdjustments>(out colorAdjustments))
-        {
-            ApplySavedValues();
+		if (initialized) return;
+		if (volume != null) {
+			volume.profile = volumeProfile;
+			
+			if (volumeProfile.TryGet<ColorAdjustments>(out colorAdjustments))
+			{
+				ApplySavedValues();
 
-            postExposure = savedPostExposure;
-            contrast = savedContrast;
+				postExposure = savedPostExposure;
+				contrast = savedContrast;
 
-            initialized = true;
-        }
+				initialized = true;
+			}
+
+		}
     }
 
     void UpdateVolumeProfile(bool useSavedValues = false, bool checkInit = true)
@@ -69,7 +80,7 @@ public class SettingsController : MonoBehaviour
     }
 
     public void ApplySavedValues()
-    {
+    {	
         if (colorAdjustments == null)
         {
             if (!volumeProfile.TryGet<ColorAdjustments>(out colorAdjustments)) return;

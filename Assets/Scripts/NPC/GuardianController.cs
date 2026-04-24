@@ -57,6 +57,9 @@ public class GuardianController : MonoBehaviour
     bool AD_checkFloorItems = false;
     bool AD_checkLockActivity = false;
     bool AD_checkLockDifficulty = false;
+	
+	// Misc
+	bool hasPineapple = false;
 
     [Header("Links")]
     [SerializeField] Transform headObj;
@@ -68,6 +71,7 @@ public class GuardianController : MonoBehaviour
     [SerializeField] Transform levelPatrolPoints;
     [SerializeField] Animator animator;
     [SerializeField] Renderer headRenderer;
+	[SerializeField] GameObject pineappleObject;
 
     [Header("Common Settings")]
     [SerializeField] FaceDirection headFaceDirection;
@@ -99,6 +103,9 @@ public class GuardianController : MonoBehaviour
     [SerializeField] Color phase1EmissionColor = Color.blue;
     [SerializeField] Color phase2EmissionColor = Color.red;
     [SerializeField] Color phase3EmissionColor = Color.yellow;
+	
+	[Header("Misc")]
+	[SerializeField] float pineappleSpawnChance = 0.1f;
 
     public bool CanOpenClosedDoors() => openClosedDoors;
     bool RunAdaptiveDifficultyFunctional() => AD_checkDoors || AD_checkFloorItems || AD_checkLockActivity || AD_checkLockDifficulty;
@@ -226,6 +233,10 @@ public class GuardianController : MonoBehaviour
 
     private void Start()
     {
+		float randomValue = (float)(random.NextDouble());
+		hasPineapple = randomValue < pineappleSpawnChance;
+		pineappleObject.SetActive(hasPineapple);
+		
         AdjustToAdaptiveDifficulty();
 
         animatorPhase1MovingSpeed = AD_movingSpeedMultiplier;
@@ -541,8 +552,13 @@ public class GuardianController : MonoBehaviour
             if (Vector3.Distance(target.position, transform.position) < attackDistance)
             {
                 SetActive(false);
-                audioPlayer.PlayAttackAudio();
-                if (animator != null)
+				
+				if (hasPineapple)
+					audioPlayer.PlayPineappleAttackAudio();
+				else
+					audioPlayer.PlayAttackAudio();
+                
+				if (animator != null)
                     animator.SetTrigger("attack");
 
                 LevelManager.Instance.GameOver(1);

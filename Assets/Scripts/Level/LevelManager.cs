@@ -152,6 +152,8 @@ public class LevelManager : MonoBehaviour
         saveManager.SaveData(slot: slot, showMessage: showMessage);
     }
 
+    public bool IsGameOver => isGameOver;
+
     public void GameOver(int reasonCode)
     {
         if (isGameOver) return;

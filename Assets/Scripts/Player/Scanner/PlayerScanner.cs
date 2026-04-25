@@ -128,6 +128,8 @@ public class PlayerScanner : UpgradableItem
 
     void UpdateGuardianBeep()
     {
+        if (LevelManager.Instance.IsGameOver) return;
+
         guardianBeepTimer += Time.deltaTime;
         if (guardianBeepTimer >= guardianBeepPeriod)
         {

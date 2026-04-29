@@ -20,19 +20,19 @@ public class ArticleEditor : Editor
         EditorGUILayout.PropertyField(articlePartsProperty);
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Добавить элементы:", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Р”РѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚С‹:", EditorStyles.boldLabel);
 
         using (new EditorGUILayout.HorizontalScope())
         {
-            if (GUILayout.Button("Текст", GUILayout.Height(25)))
+            if (GUILayout.Button("РўРµРєСЃС‚", GUILayout.Height(25)))
             {
                 AddArticlePart(typeof(ArticlePartText));
             }
-            if (GUILayout.Button("Изображение", GUILayout.Height(25)))
+            if (GUILayout.Button("РР·РѕР±СЂР°Р¶РµРЅРёРµ", GUILayout.Height(25)))
             {
                 AddArticlePart(typeof(ArticlePartImage));
             }
-            if (GUILayout.Button("Ссылка", GUILayout.Height(25)))
+            if (GUILayout.Button("РЎСЃС‹Р»РєР°", GUILayout.Height(25)))
             {
                 AddArticlePart(typeof(ArticlePartLink));
             }

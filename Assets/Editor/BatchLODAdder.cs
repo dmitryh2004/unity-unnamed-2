@@ -19,31 +19,31 @@ public class BatchLODAdder : EditorWindow
             LootableItem lootable = prefab.GetComponent<LootableItem>();
             if (lootable == null) continue;
 
-            // Добавляем LODGroup на корень
+            // Р”РѕР±Р°РІР»СЏРµРј LODGroup РЅР° РєРѕСЂРµРЅСЊ
             LODGroup lodGroup = prefab.GetComponent<LODGroup>();
             if (lodGroup == null) lodGroup = prefab.AddComponent<LODGroup>();
 
-            // Собираем все MeshRenderer в иерархии
+            // РЎРѕР±РёСЂР°РµРј РІСЃРµ MeshRenderer РІ РёРµСЂР°СЂС…РёРё
             MeshRenderer[] renderers = prefab.GetComponentsInChildren<MeshRenderer>(true).Where(r => r != null).ToArray();
             if (renderers.Length == 0) continue;
 
-            // Настраиваем LOD уровни: LOD0 (полный), LOD1 (culling <10% экрана)
+            // РќР°СЃС‚СЂР°РёРІР°РµРј LOD СѓСЂРѕРІРЅРё: LOD0 (РїРѕР»РЅС‹Р№), LOD1 (culling <10% СЌРєСЂР°РЅР°)
             LOD[] lods = new LOD[1];
-            lods[0] = new LOD(0.05f, renderers);     // LOD0: 100-10% экрана
+            lods[0] = new LOD(0.05f, renderers);     // LOD0: 100-10% СЌРєСЂР°РЅР°
 
             lodGroup.SetLODs(lods);
             lodGroup.RecalculateBounds();
 
-            // Сохраняем префаб
+            // РЎРѕС…СЂР°РЅСЏРµРј РїСЂРµС„Р°Р±
             EditorUtility.SetDirty(prefab);
             PrefabUtility.SavePrefabAsset(prefab);
 
             processed++;
-            Debug.Log($"LOD добавлен к {path}", prefab);
+            Debug.Log($"LOD РґРѕР±Р°РІР»РµРЅ Рє {path}", prefab);
         }
 
-        Debug.Log($"Обработано префабов с LootableItem: {processed}");
-        AssetDatabase.SaveAssets();  // Финальный флуш
+        Debug.Log($"РћР±СЂР°Р±РѕС‚Р°РЅРѕ РїСЂРµС„Р°Р±РѕРІ СЃ LootableItem: {processed}");
+        AssetDatabase.SaveAssets();  // Р¤РёРЅР°Р»СЊРЅС‹Р№ С„Р»СѓС€
         AssetDatabase.Refresh();
     }
 }

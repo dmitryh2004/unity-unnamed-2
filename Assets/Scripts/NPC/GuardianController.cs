@@ -217,7 +217,7 @@ public class GuardianController : MonoBehaviour
     {
         if (AdaptiveDifficultyManager.Instance != null)
         {
-            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree();
 
             AD_movingSpeedMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianSpeedMultiplier", alertnessDegree) ?? AD_movingSpeedMultiplier;
             AD_sightRangeMultiplier = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("GuardianSightRangeMultiplier", alertnessDegree) ?? AD_sightRangeMultiplier;

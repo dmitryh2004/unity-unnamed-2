@@ -393,7 +393,7 @@ public class SaveManager : MonoBehaviour
                     adaptiveDifficulty.locations.Add(new AD_LocationDifficulty
                     {
                         locationName = locationNames[i],
-                        alertness = AdaptiveDifficultyManager.Instance.AlertnessDegree,
+                        alertness = AdaptiveDifficultyManager.Instance.AlertnessDegree(),
                         weights = AdaptiveDifficultyManager.Instance.RoomWeights
                     });
                     continue;

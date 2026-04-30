@@ -400,7 +400,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void RoomPostGenerate()
     {
-        float changeAlarmDifficultyChance = AdaptiveDifficultyManager.Instance?.Values.GetParameterValue("ChangeLockRaiseAlarmDifficultyChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0;
+        float changeAlarmDifficultyChance = AdaptiveDifficultyManager.Instance?.Values.GetParameterValue("ChangeLockRaiseAlarmDifficultyChance", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0;
         bool changeAlarmDifficulty = false;
         if (random.Next(0, 100) < changeAlarmDifficultyChance * 100)
         {

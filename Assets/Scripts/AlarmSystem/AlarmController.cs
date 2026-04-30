@@ -22,7 +22,7 @@ public class AlarmController : MonoBehaviour
 
         if (AdaptiveDifficultyManager.Instance != null)
         {
-            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree();
             float adjustedRemainingTime = timerController.GetRemainingTime();
             adjustedRemainingTime *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("ReinforcementTimerMultiplier", alertnessDegree) ?? 1f);
             timerController.SetRemainingTime(adjustedRemainingTime);

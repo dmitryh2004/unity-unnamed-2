@@ -62,8 +62,8 @@ public class GuardianManager : MonoBehaviour
         {
             if (AdaptiveDifficultyManager.Instance != null)
             {
-                int additionalGuardiansCount = (int)(AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0);
-                int spawnAdditionalGuardiansChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnAdditionalGuardiansChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0) * 100);
+                int additionalGuardiansCount = (int)(AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdditionalGuardiansSpawnAttempts", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0);
+                int spawnAdditionalGuardiansChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnAdditionalGuardiansChance", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0) * 100);
                 for (int i = 0; i < additionalGuardiansCount; i++)
                 {
                     if (random.Next(0, 100) < spawnAdditionalGuardiansChance)
@@ -85,7 +85,7 @@ public class GuardianManager : MonoBehaviour
         {
             float calculatedSpawnDelay = guardianSpawnDelay;
             if (AdaptiveDifficultyManager.Instance != null)
-                calculatedSpawnDelay *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 1);
+                calculatedSpawnDelay *= (AdaptiveDifficultyManager.Instance.Values.GetParameterValue("SpawnGuardiansTimeMultiplier", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 1);
 
             guardianSpawnTimer = calculatedSpawnDelay;
             guardianSpawnTimerController.SetRemainingTime(calculatedSpawnDelay);
@@ -131,7 +131,7 @@ public class GuardianManager : MonoBehaviour
                 int adjustGuardiansPathChance = 0;
                 if (changePatrolPointsForSpecifiedGuardians && AdaptiveDifficultyManager.Instance != null)
                 {
-                    adjustGuardiansPathChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdjustGuardiansPathChance", AdaptiveDifficultyManager.Instance.AlertnessDegree) ?? 0) * 100);
+                    adjustGuardiansPathChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdjustGuardiansPathChance", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0) * 100);
                 }
                 bool adjustPath = random.Next(0, 100) < adjustGuardiansPathChance;
 

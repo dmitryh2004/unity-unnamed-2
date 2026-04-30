@@ -158,7 +158,7 @@ public class AchievementActionTracker : MonoBehaviour
                 {
                     AchievementSystem.Instance.ModifyAchievementProgress($"location_expert_{locationNumber}", false, 1);
                 }
-                if (AdaptiveDifficultyManager.Instance != null && AdaptiveDifficultyManager.Instance.AlertnessDegree == 5)
+                if (AdaptiveDifficultyManager.Instance != null && AdaptiveDifficultyManager.Instance.AlertnessDegree() == 5)
                 {
                     AchievementSystem.Instance.ModifyAchievementProgress($"fearless_location_{locationNumber}", true, lootCost);
                 }

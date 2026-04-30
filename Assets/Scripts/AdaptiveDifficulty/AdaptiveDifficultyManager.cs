@@ -33,15 +33,26 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     private void Start()
     {
         if (levelGenerator == null) levelGenerator = FindFirstObjectByType<LevelGenerator>();
-        uiController?.UpdateUI(AlertnessDegree);
+        uiController?.UpdateUI(AlertnessDegree());
     }
 
     public AdaptiveDifficultyValues Values => values;
-    public int AlertnessDegree => alertnessDegree;
+    public int AlertnessDegree()
+    {
+#if ALLOW_CHEATS
+        return CheatController.Instance.AD_Disabled ? 0 : alertnessDegree;
+#else
+        return alertnessDegree;
+#endif
+    }
     public void SetAlertnessDegree(int alertnessDegree)
     {
+#if ALLOW_CHEATS
+        this.alertnessDegree = CheatController.Instance.AD_Disabled ? 0 : alertnessDegree;
+#else
         this.alertnessDegree = alertnessDegree;
-        uiController?.UpdateUI(AlertnessDegree);
+#endif
+        uiController?.UpdateUI(AlertnessDegree());
     }
     public bool UseRoomWeights => useRoomWeights;
     public List<AD_RoomWeight> RoomWeights => roomWeights;
@@ -49,6 +60,9 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public string LocationName => SceneManager.GetActiveScene().name;
     public void ApplyRoomWeights(List<RoomObject> roomsToApply)
     {
+#if ALLOW_CHEATS
+        if (CheatController.Instance.AD_Disabled) return; // если система выключена, ничего не делаем
+#endif
         if (!UseRoomWeights) return; // если не используем веса комнат, то выход
         if (roomWeights.Count == 0) return; // если никаких весов комнат нет, то выход
 
@@ -135,6 +149,9 @@ public class AdaptiveDifficultyManager : MonoBehaviour
 
     public void UpdateRoomWeights(List<RoomObject> roomsToUpdate)
     {
+#if ALLOW_CHEATS
+        if (CheatController.Instance.AD_Disabled) return; // если система выключена, ничего не делаем
+#endif
         if (!UseRoomWeights) return;
 
         foreach (RoomObject room in roomsToUpdate)

@@ -162,7 +162,7 @@ public class LevelManager : MonoBehaviour
         // calculate alertness increase
         if (AdaptiveDifficultyManager.Instance != null)
         {
-            int newAlertness = AdaptiveDifficultyManager.Instance.AlertnessDegree;
+            int newAlertness = AdaptiveDifficultyManager.Instance.AlertnessDegree();
             if (reasonCode != 0)
             {
                 newAlertness = 5;

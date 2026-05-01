@@ -851,6 +851,7 @@ MonoBehaviour:
   triggerOpenDoorEvent: 0
   triggerOpenSafeEvent: 1
   triggerOpenTableEvent: 0
+  checkTriggerZone: 0
 --- !u!114 &4558882771716350210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1340,12 @@ MonoBehaviour:
       minCount: 1
       maxCount: 1
     weight: 1
+  - possibleLoot:
+    - prefab: {fileID: 8173806261022860765, guid: 7725b07bb394fa947894767928f72e6d, type: 3}
+      weight: 1
+      minCount: 1
+      maxCount: 1
+    weight: 4
   lootChance: 40
   lootPointsParent: {fileID: 7190881302755818625}
   maxLootPointsUsed: -1

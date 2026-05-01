@@ -765,6 +765,7 @@ MonoBehaviour:
   triggerOpenDoorEvent: 0
   triggerOpenSafeEvent: 0
   triggerOpenTableEvent: 1
+  checkTriggerZone: 0
 --- !u!114 &8499953718215879237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +814,10 @@ MonoBehaviour:
       maxCount: 1
     - prefab: {fileID: 3556230184912787856, guid: 1215957d72a80f941b2874366b4110eb, type: 3}
       weight: 1
+      minCount: 1
+      maxCount: 1
+    - prefab: {fileID: 3556230184912787856, guid: 0252dbaf61acab74a9e26f611641a90f, type: 3}
+      weight: 2
       minCount: 1
       maxCount: 1
     - prefab: {fileID: 3556230184912787856, guid: f11c3801f401a144cbe452d9eefb165f, type: 3}
@@ -1273,6 +1278,7 @@ MonoBehaviour:
   triggerOpenDoorEvent: 0
   triggerOpenSafeEvent: 0
   triggerOpenTableEvent: 1
+  checkTriggerZone: 0
 --- !u!65 &5076197879915354446
 BoxCollider:
   m_ObjectHideFlags: 0

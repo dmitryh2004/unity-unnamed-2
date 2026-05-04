@@ -71,7 +71,7 @@ public class TraderObject : Interactable
     {
         float multiplierStep = this.multiplierStep;
 #if ALLOW_CHEATS
-        if (!CheatController.Instance.AD_Disabled)
+        if (!(CheatController.Instance?.AD_Disabled ?? false))
         {
 #endif
             multiplierStep += (float)VirusController.Instance.GetQuotaMultiplierStepBoost();

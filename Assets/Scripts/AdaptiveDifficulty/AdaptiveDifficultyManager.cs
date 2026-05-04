@@ -40,7 +40,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public int AlertnessDegree()
     {
 #if ALLOW_CHEATS
-        return CheatController.Instance.AD_Disabled ? 0 : alertnessDegree;
+        return (CheatController.Instance?.AD_Disabled ?? false) ? 0 : alertnessDegree;
 #else
         return alertnessDegree;
 #endif
@@ -48,7 +48,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public void SetAlertnessDegree(int alertnessDegree)
     {
 #if ALLOW_CHEATS
-        this.alertnessDegree = CheatController.Instance.AD_Disabled ? 0 : alertnessDegree;
+        this.alertnessDegree = (CheatController.Instance?.AD_Disabled ?? false) ? 0 : alertnessDegree;
 #else
         this.alertnessDegree = alertnessDegree;
 #endif
@@ -61,7 +61,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public void ApplyRoomWeights(List<RoomObject> roomsToApply)
     {
 #if ALLOW_CHEATS
-        if (CheatController.Instance.AD_Disabled) return; // если система выключена, ничего не делаем
+        if (CheatController.Instance?.AD_Disabled ?? false) return; // если система выключена, ничего не делаем
 #endif
         if (!UseRoomWeights) return; // если не используем веса комнат, то выход
         if (roomWeights.Count == 0) return; // если никаких весов комнат нет, то выход
@@ -150,7 +150,7 @@ public class AdaptiveDifficultyManager : MonoBehaviour
     public void UpdateRoomWeights(List<RoomObject> roomsToUpdate)
     {
 #if ALLOW_CHEATS
-        if (CheatController.Instance.AD_Disabled) return; // если система выключена, ничего не делаем
+        if (CheatController.Instance?.AD_Disabled ?? false) return; // если система выключена, ничего не делаем
 #endif
         if (!UseRoomWeights) return;
 

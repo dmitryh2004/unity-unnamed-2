@@ -120,6 +120,7 @@ public class GuardianController : MonoBehaviour
     public void SetActive(bool active)
     {
         this.active = active;
+        //Debug.Log($"{gameObject.name}: active={this.active}");
 
         if (active)
         {
@@ -236,17 +237,19 @@ public class GuardianController : MonoBehaviour
 		float randomValue = (float)(random.NextDouble());
 		hasPineapple = randomValue < pineappleSpawnChance;
 		pineappleObject.SetActive(hasPineapple);
-		
+    }
+
+    public void Init()
+    {
         AdjustToAdaptiveDifficulty();
 
         animatorPhase1MovingSpeed = AD_movingSpeedMultiplier;
         animatorPhase2MovingSpeed = runningSpeed / speed * AD_movingSpeedMultiplier;
 
-        currentRotationAngle = baseRotationAngle;
-    }
+        //Debug.Log($"{gameObject.name}: moving speed multiplier = {AD_movingSpeedMultiplier}, animator move speed = {animatorPhase1MovingSpeed}");
 
-    public void Init()
-    {
+        currentRotationAngle = baseRotationAngle;
+
         UpdateFovLight();
 
         SetActive(isActiveOnStart);
@@ -267,7 +270,7 @@ public class GuardianController : MonoBehaviour
 
     public void SwitchPhase(int newPhase, bool raiseAlarm = false)
     {
-        //Debug.Log($"{gameObject.name}: switching to phase {newPhase}");
+        //Debug.Log($"{gameObject.name}: switching to phase {newPhase}. Animator: {animator}");
         phase = newPhase; //change phase
         UpdateFovLight();
         StopAllCoroutines();

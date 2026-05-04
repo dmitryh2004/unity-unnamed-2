@@ -31,7 +31,7 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
             if (locationData.locationName == chosenLocation)
             {
 #if ALLOW_CHEATS
-                if (CheatController.Instance.AD_Disabled) locationData.alertness = 0;
+                if (CheatController.Instance?.AD_Disabled ?? false) locationData.alertness = 0;
                 else
 #endif
                 locationData.alertness = Mathf.Clamp(locationData.alertness + 1, -1, 5);
@@ -39,7 +39,7 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
             else
             {
 #if ALLOW_CHEATS
-                if (CheatController.Instance.AD_Disabled) locationData.alertness = -1;
+                if (CheatController.Instance?.AD_Disabled ?? false) locationData.alertness = -1;
                 else
 #endif
                 locationData.alertness = Mathf.Clamp(locationData.alertness - 1, -1, 5);
@@ -47,7 +47,7 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
                 foreach (var roomWeight in locationData.weights)
                 {
 #if ALLOW_CHEATS
-                    if (CheatController.Instance.AD_Disabled) roomWeight.weight = 0;
+                    if (CheatController.Instance?.AD_Disabled ?? false) roomWeight.weight = 0;
                     else
 #endif
                     roomWeight.weight = GetRecalculatedWeight(roomWeight.weight, 0);
@@ -59,7 +59,7 @@ public class GlobalAdaptiveDifficultyManager : MonoBehaviour
     public int GetAlertnessDegree(string location)
     {
 #if ALLOW_CHEATS
-        if (CheatController.Instance.AD_Disabled) return -1;        
+        if (CheatController.Instance?.AD_Disabled ?? false) return -1;        
 #endif
         foreach (var locationData in locationsData.locations)
         {

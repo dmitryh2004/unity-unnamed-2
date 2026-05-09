@@ -210,6 +210,14 @@ public class AchievementActionTracker : MonoBehaviour
         AchievementSystem.Instance.ModifyAchievementProgress($"perfect_{equipmentName}", true, level);
     }
 
+    public void OnDroneSpottedPlayer() {
+        AchievementSystem.Instance.ModifyAchievementProgress("its_a_plane", true, 1);
+    }
+
+    public void OnLyapotaChanged(float newProgress) {
+        AchievementSystem.Instance.ModifyAchievementProgress("lyapota", true, (int) newProgress);
+    }
+
     int GetLootAchievementProgress(string achID)
     {
         List<int> checkedItems = null;

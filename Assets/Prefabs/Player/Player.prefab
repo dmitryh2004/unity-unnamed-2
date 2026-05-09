@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 863148354003604142}
   - component: {fileID: 7662763813534142577}
   - component: {fileID: 6702621504603471115}
+  - component: {fileID: 7548274708676145794}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -863,6 +864,7 @@ MonoBehaviour:
   defaultLevel: 0
   upgradableItemData: {fileID: 11400000, guid: 20c9f2e7189f2ae4b9ac2c6df3211e59, type: 2}
   uiController: {fileID: 0}
+  scannerIcon: {fileID: 0}
   checkGuardianMaxDistance: 20
   checkGuardianUpdatePositionPeriod: 0.5
   checkGuardianBeepPeriod:
@@ -1083,6 +1085,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7548274708676145794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3001975501328665053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897367f5a7673c54383fa8f9b0e1de07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredTime: 60
+  minHeight: 50
 --- !u!1 &3139879928906722712
 GameObject:
   m_ObjectHideFlags: 0

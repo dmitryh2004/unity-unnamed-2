@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d456d687e8539c46a10060678282723, type: 3}
+  m_Name: Teacher
+  m_EditorClassIdentifier: 
+  clientType: "\u0423\u0447\u0438\u0442\u0435\u043B\u044C"
+  lootCostModifiers:
+  - itemID: 25
+    modifier: 10
+  - itemID: 132
+    modifier: 10
+  - itemID: 27
+    modifier: 5
+  - itemID: 128
+    modifier: 4
+  - itemID: 129
+    modifier: 3
+  - itemID: 130
+    modifier: 2
+  - itemID: 30
+    modifier: 5
+  - itemID: 31
+    modifier: 5
+  - itemID: 32
+    modifier: 5
+  - itemID: 32
+    modifier: 5
+  days: 3
+  hasEarlyCompletionBonus: 0
+  earlyCompletionBonusModifier2: 0
+  earlyCompletionBonusModifier1: 0

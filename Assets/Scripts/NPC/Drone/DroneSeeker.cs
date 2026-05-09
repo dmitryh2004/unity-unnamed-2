@@ -74,8 +74,11 @@ public class DroneSeeker : MonoBehaviour
                 {
                     AlarmController.Instance.StartAlarm();
                 }
-                if (obj.CompareTag("Player"))
+                if (obj.CompareTag("Player")) 
+                {
                     GuardianManager.Instance.CallGuardians();
+                    AchievementActionTracker.Instance?.OnDroneSpottedPlayer();
+                }
             }
         }
     }

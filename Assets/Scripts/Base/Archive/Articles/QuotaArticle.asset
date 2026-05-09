@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 3026835278915174476
   - rid: 3026835278915174477
   - rid: 3026835278915174478
+  - rid: 1539561693458726999
   - rid: 3026835278915174479
   - rid: 3026835278915174480
   - rid: 3026835278915174482
@@ -26,6 +27,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 1539561693458726999
+      type: {class: ArticlePartLink, ns: , asm: Assembly-CSharp}
+      data:
+        text: "\u0422\u0438\u043F\u044B \u043A\u043B\u0438\u0435\u043D\u0442\u043E\u0432"
+        article: {fileID: 11400000, guid: 7a27cdce1edc93e4a8ca33407169e6ed, type: 2}
     - rid: 3026835278915174473
       type: {class: ArticlePartText, ns: , asm: Assembly-CSharp}
       data:
@@ -108,7 +114,9 @@ MonoBehaviour:
           \u0441\u0447\u0438\u0442\u0430\u0435\u0442\u0441\u044F \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0435
           \u0438\u0441\u0445\u043E\u0434\u043D\u043E\u0439 \u0441\u0443\u043C\u043C\u044B
           \u0437\u0430\u043A\u0430\u0437\u0430 \u0438 \u0432\u044B\u043F\u043B\u0430\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044F
-          \u0442\u0435\u0431\u0435."
+          \u0442\u0435\u0431\u0435. \u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435
+          \u043C\u043E\u0436\u0435\u0448\u044C \u043F\u043E\u0447\u0438\u0442\u0430\u0442\u044C
+          \u0442\u0443\u0442:"
         fontSize: 18
         bold: 0
         italic: 0

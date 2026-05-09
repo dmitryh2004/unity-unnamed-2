@@ -17,6 +17,7 @@ public class CheatController : MonoBehaviour
     [SerializeField] private string toggleAdaptiveDifficultyPassword = "343507";
     [SerializeField] private string spawnItemsPassword = "734343";
     [SerializeField] private string teleportToOriginPassword = "734507";
+    [SerializeField] private string successLockPassword = "032166";
 
     public static CheatController Instance = null;
 
@@ -117,6 +118,14 @@ public class CheatController : MonoBehaviour
         else if (result == teleportToOriginPassword) 
         {
             TeleportPlayer();
+        }
+        else if (result == successLockPassword)
+        {
+            HackWindowController hwc = GameObject.FindFirstObjectByType<HackWindowController>();
+            if (hwc.IsHacking())
+            {
+                hwc.SuccessLock();
+            }
         }
         else if (result.StartsWith(spawnItemsPassword + "*"))
         {
@@ -227,6 +236,7 @@ public class CheatController : MonoBehaviour
 
         if (player != null)
         {
+            Vector3 newPlayerPosition = new Vector3(0f, 1f, 0f);
             // Пытаемся получить Rigidbody
             if (player.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
@@ -235,15 +245,15 @@ public class CheatController : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
 
                 // 2. Телепортируем через Rigidbody.position (это безопаснее для физики)
-                rb.position = Vector3.zero;
+                rb.position = newPlayerPosition;
                 
                 // 3. Синхронизируем Transform (на всякий случай)
-                player.transform.position = Vector3.zero;
+                player.transform.position = newPlayerPosition;
             }
             else
             {
                 // Если Rigidbody нет, просто двигаем Transform
-                player.transform.position = Vector3.zero;
+                player.transform.position = newPlayerPosition;
                 //Debug.LogWarning("У игрока не найден Rigidbody, телепортирован через Transform.");
             }
         }

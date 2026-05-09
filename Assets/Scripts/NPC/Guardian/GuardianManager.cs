@@ -17,15 +17,15 @@ public class GuardianManager : MonoBehaviour
 
     [SerializeField] Transform player;
     [SerializeField] List<GuardianController> guardians = new();
-    [SerializeField] TimerController guardianSpawnTimerController;
+    // [SerializeField] TimerController guardianSpawnTimerController;
 
     [Header("Guardians initial spawn")]
     [SerializeField] bool doInitialSpawn = true;
     [SerializeField] List<GuardianSpawnerController> guardianSpawners = new();
     [SerializeField] List<GuardianPatrolData> guardianPatrolData = new ();
-    [SerializeField] float guardianSpawnDelay = 120f;
-    float guardianSpawnTimer = 0f;
-    bool waitForSpawnTimer = true;
+    // [SerializeField] float guardianSpawnDelay = 120f;
+    // float guardianSpawnTimer = 0f;
+    // bool waitForSpawnTimer = true;
 
     [Header("Adaptive difficulty")]
     [SerializeField] bool spawnAdditionalGuardians = true;
@@ -81,6 +81,7 @@ public class GuardianManager : MonoBehaviour
             }
         }
 
+        /*
         if (doInitialSpawn)
         {
             float calculatedSpawnDelay = guardianSpawnDelay;
@@ -96,8 +97,10 @@ public class GuardianManager : MonoBehaviour
             waitForSpawnTimer = false;
             HideGuardianSpawnTimer();
         }
+        */
     }
 
+    /*
     void HideGuardianSpawnTimer()
     {
         guardianSpawnTimerController.gameObject.SetActive(false);
@@ -113,42 +116,48 @@ public class GuardianManager : MonoBehaviour
 
             HideGuardianSpawnTimer();
 
-            if (guardianSpawners.Count == 0)
+            SpawnGuardians();
+        }
+    }
+    */
+
+    public void SpawnGuardians()
+    {
+        if (guardianSpawners.Count == 0)
+        {
+            Debug.LogError("Guardian manager: cannot spawn guardians because no guardian spawners specified.");
+            return;
+        }
+
+        foreach (var guardianData in guardianPatrolData)
+        {
+            //find the least busied spawner
+            GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
+            foreach (var spawner in guardianSpawners)
             {
-                Debug.LogError("Guardian manager: cannot spawn guardians because no guardian spawners specified.");
-                return;
+                if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
             }
 
-            foreach(var guardianData in guardianPatrolData)
+            int adjustGuardiansPathChance = 0;
+            if (changePatrolPointsForSpecifiedGuardians && AdaptiveDifficultyManager.Instance != null)
             {
-                //find the least busied spawner
-                GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
-                foreach (var spawner in guardianSpawners)
-                {
-                    if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
-                }
+                adjustGuardiansPathChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdjustGuardiansPathChance", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0) * 100);
+            }
+            bool adjustPath = random.Next(0, 100) < adjustGuardiansPathChance;
 
-                int adjustGuardiansPathChance = 0;
-                if (changePatrolPointsForSpecifiedGuardians && AdaptiveDifficultyManager.Instance != null)
-                {
-                    adjustGuardiansPathChance = (int)((AdaptiveDifficultyManager.Instance.Values.GetParameterValue("AdjustGuardiansPathChance", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? 0) * 100);
-                }
-                bool adjustPath = random.Next(0, 100) < adjustGuardiansPathChance;
+            leastBusiedSpawner.AddToSpawnQueue(guardianData, adjustPath);
+        }
 
-                leastBusiedSpawner.AddToSpawnQueue(guardianData, adjustPath);
+        foreach (var guardianData in additionalGuardiansPatrolData)
+        {
+            //find the least busied spawner
+            GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
+            foreach (var spawner in guardianSpawners)
+            {
+                if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
             }
 
-            foreach (var guardianData in additionalGuardiansPatrolData)
-            {
-                //find the least busied spawner
-                GuardianSpawnerController leastBusiedSpawner = guardianSpawners[0];
-                foreach (var spawner in guardianSpawners)
-                {
-                    if (spawner.GetQueueLength() < leastBusiedSpawner.GetQueueLength()) leastBusiedSpawner = spawner;
-                }
-
-                leastBusiedSpawner.AddToSpawnQueue(guardianData, true);
-            }
+            leastBusiedSpawner.AddToSpawnQueue(guardianData, true);
         }
     }
 
@@ -162,16 +171,20 @@ public class GuardianManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (waitForSpawnTimer)
         {
             UpdateSpawnTimer();
         }
+        */
     }
 
     public void ExpireSpawnTimer()
     {
+        /*
         if (waitForSpawnTimer)
             guardianSpawnTimer = 0f;
+        */
     }
 
     public void AddGuardian(GuardianController guardian)

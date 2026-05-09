@@ -4409,7 +4409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1253419798}
   guardians: []
-  guardianSpawnTimerController: {fileID: 2086283682}
   doInitialSpawn: 1
   guardianSpawners:
   - {fileID: 244548681}
@@ -4427,7 +4426,6 @@ MonoBehaviour:
     enterPhase3OnPoints: 1
     addDestinationsToPatrolPoints: 1
     AD_patrolPointsCount: 2
-  guardianSpawnDelay: 90
   spawnAdditionalGuardians: 1
   changePatrolPointsForSpecifiedGuardians: 1
   additionalGuardiansEnterPhase3OnPoints: 1
@@ -5389,6 +5387,55 @@ MonoBehaviour:
   roomWeights: []
   attenuationCoeff: 0.25
   forgettingCoeff: 3
+--- !u!1 &1117017928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117017930}
+  - component: {fileID: 1117017929}
+  m_Layer: 0
+  m_Name: NPCSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1117017929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117017928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1f5a20310b464418dc1d4d1161ece4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doInitialSpawn: 1
+  spawnGuardians: 1
+  enableDrones: 0
+  initialSpawnDelay: 90
+  spawnTimerController: {fileID: 2086283682}
+--- !u!4 &1117017930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117017928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1224676332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7520,6 +7567,7 @@ SceneRoots:
   - {fileID: 2097115824828302394}
   - {fileID: 912134796}
   - {fileID: 542123432}
+  - {fileID: 1117017930}
   - {fileID: 94325795586785935}
   - {fileID: 6087260065760924786}
   - {fileID: 61387126}

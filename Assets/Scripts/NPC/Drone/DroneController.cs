@@ -14,6 +14,7 @@ public class DroneController : MonoBehaviour
     [SerializeField] float maxRotationDiffForMoving = 15f; // Максимальная разница вращения, при которой дрон будет двигаться
     [SerializeField] List<Transform> patrolPoints = new ();
     [SerializeField] List<DroneSeeker> seekers = new ();
+    [SerializeField] DroneAudioController audioController;
     private float currentFlyingHeight;
     private int currentPoint = -1;
     private Vector3 destination;
@@ -136,9 +137,15 @@ public class DroneController : MonoBehaviour
         foreach (DroneSeeker seeker in seekers)
         {
             if (phase != 1)
+            {
                 seeker.Activate();
+                audioController.Activate();
+            }
             else
+            {
                 seeker.Deactivate();
+                audioController.Deactivate();
+            }
         }
         switch(phase)
         {

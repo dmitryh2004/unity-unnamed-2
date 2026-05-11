@@ -14,11 +14,16 @@ public class DroneManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
 
+    private void Start()
+    {
         if (AdaptiveDifficultyManager.Instance != null)
         {
+            int alertnessDegree = AdaptiveDifficultyManager.Instance.AlertnessDegree();
+            Debug.Log($"Alertness degree: {alertnessDegree}");
             float requiredDronesRatio = AdaptiveDifficultyManager.Instance.Values.GetParameterValue("RequiredDronesRatio", AdaptiveDifficultyManager.Instance.AlertnessDegree()) ?? .5f;
-            requiredDronesCount = (int) Mathf.Ceil(requiredDronesRatio * drones.Count);
+            requiredDronesCount = (int)Mathf.Ceil(requiredDronesRatio * drones.Count);
         }
 
         if (requiredDronesCount < drones.Count)

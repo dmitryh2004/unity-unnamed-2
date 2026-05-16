@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c45151d1f3784ef4ab5b04468fc8479b, type: 3}
-  m_Name: Minecraft villager statue
+  m_Name: Minecraft villager stone
   m_EditorClassIdentifier: 
   id: 131
   sortGroup: 80
-  sprite: {fileID: 21300000, guid: 86596ca676141dd49affb3cd514eb7f4, type: 3}
+  sprite: {fileID: 21300000, guid: c0bb652bbf58c4944bdc23dd6143964f, type: 3}
   lootName: "\u0421\u0442\u0430\u0442\u0443\u044D\u0442\u043A\u0430 \u0436\u0438\u0442\u0435\u043B\u044F"
   lootDesc: "\u0418\u0441\u043A\u0443\u0441\u043D\u043E \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u0430\u044F
     \u043C\u0438\u043D\u0438\u0430\u0442\u044E\u0440\u043D\u0430\u044F \u0444\u0438\u0433\u0443\u0440\u043A\u0430
@@ -25,4 +25,4 @@ MonoBehaviour:
   volume: 0.0005
   cost: 10000
   lootPrefab: {fileID: 8173806261022860765, guid: 7725b07bb394fa947894767928f72e6d, type: 3}
-  dropRotation: {x: -90, y: 0, z: 0}
+  dropRotation: {x: 0, y: 0, z: 0}

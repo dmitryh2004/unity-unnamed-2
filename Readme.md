@@ -16,4 +16,5 @@ Lethal company, но с замками и динамическим измене�
 
 ## Ссылки
 [Билд игры на гугл диске](https://drive.google.com/drive/folders/1NnvadLTysnfWdY-XsxjTAXY85-SGs81t)
+
 [Страница игры](https://dmitryh2004.github.io/the-common-channel-projects/unnamed2.html)
